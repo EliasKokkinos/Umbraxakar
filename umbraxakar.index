@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<index>
+	<info>
+		<name>Umbraxakar</name>
+		<description>Book of the Fallen</description>
+		<author>Elias Kokkinos</author>
+		<update version="0.1.11">
+			<file name="umbraxakar.index" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/umbraxakar.index" />
+		</update>
+	</info>
+	<files>
+		<file name="items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/items.xml" />
+	
+	</files>
+</index>
