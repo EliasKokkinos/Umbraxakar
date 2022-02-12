@@ -4,7 +4,7 @@
 		<name>Umbraxakar</name>
 		<description>Book of the Fallen</description>
 		<author>Elias Kokkinos</author>
-		<update version="0.1.16"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
+		<update version="0.1.17"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
 			<file name="umbraxakar.index" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/umbraxakar.index" />
 		</update>
 	</info>
