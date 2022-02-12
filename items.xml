@@ -11,42 +11,47 @@
   </info>
 
   <!--Start:: Custom Weapons for Book of the fallen -->
-  <!-- <element name="Dragnipur" type="Magic Item" source="Umbraxakar" id="ID_BOTF_UMBRA_MAGIC_ITEM_ACHERON_BLADE">
-    <description>
-      <p>The black blade of this sword is crafted from a mysterious arcane alloy. You gain a +2 bonus to attack and damage rolls made with this magic weapon. While the sword is on your person, you are immune to being frightned.</p>
+  <element name="Dragnipur" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_DRAGNIPUR">
+		<description>
+      <p>The black blade of this sword is crafted from a mysterious arcane alloy. You gain a +3 bonus to attack and damage rolls made with this magic weapon. While the sword is on your person, you are immune to being frightned.</p>
+      <br />
+      <p>You gain the following benefits when attuned to Dragnipur:</p>
       <p class="indent">
-        <strong>
-          <em>Dark Blessing.</em>
-        </strong> While holding the sword, you can see in magical darkness.
+        <ul>
+          <li>You gain a +3 bonus to attack and damage rolls made with this magic weapon. In addition, the weapon ignores resistance to slashing damage.</li>
+          <li>When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creature's heads. 
+            The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions,           
+            or the GM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 6d8 slashing damage from the hit.</li>
+          <li>When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: the target has disadvantage on the next saving throw it makes before the end of your next turn. 
+            The creature ignores this effect if it's immune to the frightened condition. Once you use this property, you can't do so again until the next dusk.</li>
+          <li>You can see in magical darkness.</li>
+          <li>You are immune to being frightned.</li>
+          <li><em>Gift of Draconus.</em></strong> Any creature slain by the sword can have their soul pulled into it. This is a punishment reserved for the most wretched creatures.</li>
+          <li> <em>Disheartening Strike.</em></strong> When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: 
+            the target has disadvantage on the next saving throw it makes before the end of your next turn. The creature ignores this effect if it's immune to the frightened condition. Once you use this property, 
+            you can't do so again until the next dusk.
+        </li>
+        </ul>
       </p>
-      <p class="indent">
-        <strong>
-          <em>Gift of Draconus.</em>
-        </strong> Any creature slain by the sword can have their soul pulled into it. This is a punishment reserved for the most wretched creatures
-      </p>
-      <p class="indent">
-        <strong>
-          <em>Disheartening Strike.</em>
-        </strong> When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: the target has disadvantage on the next saving throw it makes before the end of your next turn. The creature ignores this effect if it’s immune to the frightened condition. Once you use this property, you can’t do so again until the next dusk.
-      </p>
-    </description>
-    <setters>
-      <set name="keywords">any sword</set>
-      <set name="category">Magic Weapons</set>
-      <set name="cost" currency="gp">0</set>
-      <set name="type" addition="any sword">Weapon</set>
-      <set name="weapon">ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE</set>
-      <set name="rarity">Unique</set>
-      <set name="enhancement">2</set>
-      <set name="attunement">true</set>
-    </setters>
-  </element> -->
+		</description>
+		<setters>
+			<set name="keywords">sword</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="any sword that deals slashing damage">Weapon</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">ID_INTERNAL_WEAPON_GROUP_SWORDS, ID_INTERNAL_DAMAGE_TYPE_SLASHING</set>
+		</setters>
+	</element>
 
-  <element name="Hammer of Hephaestus" type="Magic Item" source="Custom Book of the Fallen Item" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_HAMMER_OF_HEPHAESTUS">
+  <element name="Hammer of Hephaestus" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_HAMMER_OF_HEPHAESTUS">
     <supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_BLUDGEONING, ID_INTERNAL_WEAPON_PROPERTY_VERSATILE, ID_INTERNAL_WEAPON_GROUP_HAMMERS</supports>
     <description>
       <p>
         <strong>
+          <br />
           <em>Lore:</em>
         </strong> The wielder is aware that Hephaestus is one of the many names of the god of Blacksmiths, Draconus.
       </p>
@@ -65,7 +70,7 @@
       <set name="keywords">warhammer, dwarf</set>
       <set name="category">Magic Weapons</set>
       <set name="cost" currency="gp">0</set>
-      <set name="rarity">Rare</set>
+      <set name="rarity">Legendary</set>
       <set name="type" addition="warhammer">Weapon</set>
       <set name="slot">onehand</set>
       <set name="damage" type="bludgeoning">1d8</set>
@@ -78,7 +83,7 @@
 
   <!--End:: Custom Weapons for Book of the fallen -->
   <!--Start:: Custom Armors for Book of the fallen -->
-	<element name="Shield of the Umbraxakar" type="Magic Item" source="Custom Book of the Fallen Item" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_SHIELD_OF_THE_UMBRAXAKAR">
+	<element name="Shield of the Umbraxakar" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_SHIELD_OF_THE_UMBRAXAKAR">
 		<description>
 			<p>While holding this shield, you have:</p>
 			<p class="indent">
@@ -95,7 +100,7 @@
 			<set name="category">Magic Armor</set>
 			<set name="cost" currency="gp">0</set>
 			<set name="type" addition="shield">Armor</set>
-			<set name="rarity">Rare</set>
+			<set name="rarity">Legendary</set>
 			<set name="armor">ID_INTERNAL_ARMOR_GROUP_SHIELD</set>
 		</setters>
 		<rules>
