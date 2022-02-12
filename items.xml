@@ -42,7 +42,7 @@
 			<set name="attunement">true</set>
 			<set name="rarity">Legendary</set>
 			<set name="enhancement">3</set>
-			<set name="weapon">ID_INTERNAL_WEAPON_GROUP_SWORDS, ID_INTERNAL_DAMAGE_TYPE_SLASHING</set>
+			<set name="weapon">ID_INTERNAL_WEAPON_GROUP_SWORDS</set>
 		</setters>
 	</element>
 
