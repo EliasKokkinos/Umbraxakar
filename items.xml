@@ -13,7 +13,8 @@
   <!--Start:: Custom Weapons for Book of the fallen -->
   <element name="Dragnipur" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_DRAGNIPUR">
 		<description>
-      <p>The black blade of this sword is crafted from a mysterious arcane alloy. You gain a +3 bonus to attack and damage rolls made with this magic weapon. While the sword is on your person, you are immune to being frightned.</p>
+      <p>The black blade of this sword is crafted from a mysterious arcane alloy which seems to only reflect moonlight. Its blade is wider than a typical sword of its type, with a pronounced medial ridge. It's lightness in unparallel. 
+        Sideswept black quillons protect the hand, while an ornate vine shaped forward basket surrounds a dull part of the blade.</p>
       <br />
       <p>You gain the following benefits when attuned to Dragnipur:</p>
       <p class="indent">
@@ -85,6 +86,7 @@
   <!--Start:: Custom Armors for Book of the fallen -->
 	<element name="Shield of the Umbraxakar" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_SHIELD_OF_THE_UMBRAXAKAR">
 		<description>
+			<p>The shield is emblazoned with a strange depection of a slender crowned woman, possibly a half elf, with golden hair, encompassed by two skulls of some type of beast. The image is engraved and inlayed with golden leaf.</p>
 			<p>While holding this shield, you have:</p>
 			<p class="indent">
 			<ul>
@@ -93,7 +95,6 @@
 			<li>When the bearer is reduced to bellow 20 HP he may be healed with Proficiency Bonus x d12 HP on a raw d20 roll of 15 and above. During this effect the woman on the shield opens her eyes and golden streams of Magical Energy surround the bearer.</li>
 			</ul>
 			</p>
-			<p><strong><em>Description:</em></strong> The shield is emblazoned with a strange depection of a slender crowned woman, possibly a half elf, with golden hair, encompassed by two skulls of some type of beast. The image is engraved and inlayed with golden leaf.</p>
 		</description>
 		<setters>
 			<set name="keywords">shield</set>
