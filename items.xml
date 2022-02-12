@@ -78,28 +78,31 @@
 
   <!--End:: Custom Weapons for Book of the fallen -->
   <!--Start:: Custom Armors for Book of the fallen -->
-  <element name="Umbraxakar Shield" type="Magic Item" source="Umbraxakar" id="ID_BOTF_UMBRA_MAGIC_ITEM_SENTINEL_SHIELD">
-    <description>
-      <p>While holding this shield, you have advantage on initiative rolls and Wisdom (Perception) checks.
-      Furthermore <strong>when the bearer is reduced to bellow 20 HP he may be healed with Proficiency Bonus x d12 HP on a raw d20 roll of 15 and above.</strong>
-      During this effect the woman on the shield opens her eyes and golden streams of Magical Energy surround the bearer. 
-      The shield is emblazoned with a strange depection of a slender crowned woman, possibly a half elf, with golden hair, encompassed by two skulls of some type of beast.
-      The image is engraved and inlayed with golden leaf.
-      </p>
-    </description>
-    <setters>
-      <set name="keywords">shield</set>
-      <set name="category">Magic Armor</set>
-      <set name="cost" currency="gp">0</set>
-      <set name="type" addition="shield">Armor</set>
-      <set name="rarity">Wondrous</set>
-      <set name="armor">ID_INTERNAL_ARMOR_GROUP_SHIELD</set>
-    </setters>
-    <rules>
-      <grant type="Grants" id="ID_INTERNAL_GRANTS_INITIATIVE_ADVANTAGE" />
-      <stat name="perception:passive" value="5" bonus="advantage" />
-    </rules>
-  </element>
+	<element name="Shield of the Umbraxakar" type="Magic Item" source="Custom Book of the Fallen Item" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_SHIELD_OF_THE_UMBRAXAKAR">
+		<description>
+			<p>While holding this shield, you have:</p>
+			<p class="indent">
+			<ul>
+			<li>Advantage on initiative rolls</li>
+			<li>Wisdom (Perception) checks.</li>
+			<li>When the bearer is reduced to bellow 20 HP he may be healed with Proficiency Bonus x d12 HP on a raw d20 roll of 15 and above. During this effect the woman on the shield opens her eyes and golden streams of Magical Energy surround the bearer.</li>
+			</ul>
+			</p>
+			<p><strong><em>Description:</em></strong> The shield is emblazoned with a strange depection of a slender crowned woman, possibly a half elf, with golden hair, encompassed by two skulls of some type of beast. The image is engraved and inlayed with golden leaf.</p>
+		</description>
+		<setters>
+			<set name="keywords">shield</set>
+			<set name="category">Magic Armor</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="shield">Armor</set>
+			<set name="rarity">Rare</set>
+			<set name="armor">ID_INTERNAL_ARMOR_GROUP_SHIELD</set>
+		</setters>
+		<rules>
+			<grant type="Grants" id="ID_INTERNAL_GRANTS_INITIATIVE_ADVANTAGE" />
+			<stat name="perception:passive" value="5" bonus="advantage" />
+		</rules>
+	</element>
 
   <!--End:: Custom Armors for Book of the fallen -->
 
