@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
     selector     : 'example',
@@ -10,7 +11,9 @@ export class ExampleComponent
     /**
      * Constructor
      */
-    constructor()
-    {
+     constructor(private primengConfig: PrimeNGConfig) {}
+
+     ngOnInit() {
+        this.primengConfig.ripple = true;
     }
 }

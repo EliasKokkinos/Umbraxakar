@@ -51,7 +51,10 @@
                             "src/styles/vendors.scss",
                             "src/@fuse/styles/main.scss",
                             "src/styles/styles.scss",
-                            "src/styles/tailwind.scss"
+                            "src/styles/tailwind.scss",
+                            "node_modules/primeicons/primeicons.css",
+                            "node_modules/primeng/resources/themes/arya-blue/theme.css",
+                            "node_modules/primeng/resources/primeng.min.css"
                         ],
                         "scripts": []
                     },
