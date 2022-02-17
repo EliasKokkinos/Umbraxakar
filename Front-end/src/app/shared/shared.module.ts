@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {PanelModule} from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { RippleModule } from 'primeng/ripple';
         PanelModule,
         ButtonModule,
         RippleModule,
+        DropdownModule,
     ]
 })
 export class SharedModule

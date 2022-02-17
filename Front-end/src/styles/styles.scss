@@ -3,10 +3,14 @@
 /*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
 
-.w-full {
-    width: 100%;
-}
-
 .h-min-80vh {
     min-height: 80vh;
 }
+
+.p-dropdown, .p-cascadeselect {
+    width: 100%!important;
+}
+
+
+
+
