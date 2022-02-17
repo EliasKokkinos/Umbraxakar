@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { ExampleComponent } from 'app/modules/admin/example/example.component';
-import {ButtonModule} from 'primeng/button';
-import { RippleModule } from 'primeng/ripple';
+import { SharedModule } from 'app/shared/shared.module';
 
 const exampleRoutes: Route[] = [
     {
@@ -17,8 +16,7 @@ const exampleRoutes: Route[] = [
     ],
     imports     : [
         RouterModule.forChild(exampleRoutes),
-        ButtonModule,
-        RippleModule,
+        SharedModule,
     ]
 })
 export class ExampleModule
