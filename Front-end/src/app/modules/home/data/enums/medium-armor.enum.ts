@@ -1,7 +1,7 @@
 export enum MediumArmor {    
     Hide = 'Hide',
-    ChainShirt = 'ChainShirt',
-    ScaleMail = 'ScaleMail',
-    BreastPlate = 'BreastPlate',
-    HalfPlate =  'HalfPlate',
+    ChainShirt = 'Chain Shirt',
+    ScaleMail = 'Scale Mail',
+    BreastPlate = 'Breast Plate',
+    HalfPlate =  'Half Plate',
 }
