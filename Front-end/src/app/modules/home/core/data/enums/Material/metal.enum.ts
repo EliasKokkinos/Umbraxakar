@@ -11,7 +11,7 @@ export enum Metal {
     AndiiSteel = 'Andii Steel',
     EdurSteel = 'Edur Steel',
     LiosanSteel = 'Liosan Steel',
-    UmbraxakarSteel = 'Liosan Steel',
+    UmbraxakarSteel = 'Umbraxakar Steel',
     Cobalt = 'Cobalt',
     Adamantine = 'Adamantine',
     Shadowsteel = 'Shadowsteel',

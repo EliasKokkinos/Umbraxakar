@@ -1,6 +1,6 @@
 export enum WeaponTypes {
-    SimpleMeeleWeapons = 'Simple Meele Weapons',
+    SimpleMeleeWeapons = 'Simple Melee Weapons',
     SimpleRangedWeapons = 'Simple Ranged Weapons',
-    MartialMeleeeWeapons = 'Martial Meleee Weapons',
+    MartialMeleeWeapons = 'Martial Melee Weapons',
     MartialRangedWeapons = 'Martial Ranged Weapons',
 }

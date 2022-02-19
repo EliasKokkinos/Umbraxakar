@@ -8,6 +8,7 @@ export class CraftingData extends DropdownOptions {
     daysToCraftModifier: number;
     units: number;
     data?: CraftingData[]
+    warrens?: CraftingData[]
 
     constructor(data?: CraftingData) {
         super();

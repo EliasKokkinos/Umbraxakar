@@ -1,4 +1,4 @@
-export enum MartialMeeleWeapons {
+export enum MartialMeleeWeapons {
     Battleaxe = 'Battleaxe',
     Flail = 'Flail',
     Glaive = 'Glaive',
