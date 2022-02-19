@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400&display=swap");
+
+body {
+  font-family: "Roboto Mono", monospace;
+  background: #1f1124;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+$gradientMap: (
+  1: linear-gradient(-45deg, #eb5757, #e44d26, #f2994a, #f2c94c),
+  2: linear-gradient(45deg, #3494e6, #636fa4, #b06ab3, #ec6ead, #ffafbd),
+  3: linear-gradient(45deg, #dce35b, #45b649, #1cefff)
+);
+.btn {
+  background: white;
+  color: black;
+  outline: none;
+  border: 1px solid black;
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  &.btn-light {
+    border-color: white;
+  }
+}
+
+@keyframes move-up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes move-down-up {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.cards-wrapper {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  flex-flow: row wrap;
+  z-index: 999;
+  .card-container {
+    padding: 24px 16px;
+    margin-right: 10px;
+    position: relative;
+    @media (max-width: 991px) {
+      width: 50%;
+      margin: 60px 0 30px 0;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      border-radius: 10px;
+      margin: auto auto;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transition: 0.5s;
+      z-index: -1;
+      filter: brightness(110%);
+    }
+
+    &::after {
+      filter: blur(20px);
+      z-index: -2;
+    }
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        &::before,
+        &::after {
+          background-image: map-get($gradientMap, $i);
+          @if $i%2==0 {
+            transform: skew(20deg);
+          } @else {
+            transform: skew(-20deg);
+          }
+          z-index: 99;
+        }
+      }
+    }
+
+    &:hover {
+      .card {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        &::before,
+        &::after {
+          width: 100px;
+          height: 100px;
+          opacity: 1;
+        }
+        &::before {
+          top: -75px;
+          left: 25px;
+          animation: move-up-down 3s infinite;
+        }
+        &::after {
+          bottom: -75px;
+          right: 25px;
+          animation: move-down-up 3s infinite;
+        }
+      }
+      &::before,
+      &::after {
+        transform: skew(0deg);
+        width: 65%;
+      }
+    }
+
+    .card {
+      color: white;
+      padding: 24px;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: 0.5s;
+      position: relative;
+      z-index: 999;
+      h2,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      .card-content {
+        margin: 16px 0;
+      }
+      &::before,
+      &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        position: absolute;
+        backdrop-filter: blur(15px);
+        opacity: 0;
+        transition: 0.5s;
+        pointer-events:none;
+      }
+      &::before {
+        top: 0;
+        left: 0;
+      }
+      &::after {
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+}

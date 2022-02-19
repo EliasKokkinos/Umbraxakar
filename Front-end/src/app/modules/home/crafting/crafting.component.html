@@ -1,9 +1,10 @@
-<div class="flex flex-col flex-auto min-w-0 p-4">
+<div class="flex flex-col flex-auto min-w-0 p-4 bg-glass">
 
-  <div class="grid grid-cols-3 gap-4">
-    <p-panel header="Title">
+  <div class="grid grid-cols-4 gap-10">
+
+    <ubraxakar-glass-container>
       <div class="">
-        <form [formGroup]="blacksmitForm">
+        <form [formGroup]="blacksmitForm" *ngIf="blacksmitForm">
 
           <div class="grid grid-cols-1">
             <div class="form-group p-2">
@@ -11,6 +12,15 @@
               <div>
                 <p-dropdown [options]="blacksmiths" formControlName="blacksmith" optionLabel="name"
                   placeholder="Select Blacksmith">
+                </p-dropdown>
+
+              </div>
+            </div>
+            <div class="form-group p-2">
+              <label>Enchanter</label>
+              <div>
+                <p-dropdown [options]="enchanters" formControlName="enchanter" optionLabel="name"
+                  placeholder="Select Enchanter">
                 </p-dropdown>
 
               </div>
@@ -40,7 +50,16 @@
           </div>
         </form>
       </div>
-    </p-panel>
+
+    </ubraxakar-glass-container>
+
+    <ubraxakar-glass-container>
+      <pre><code [highlight]="form.value | json"></code></pre>
+    </ubraxakar-glass-container>
+    <!-- 
+    <ubraxakar-glassmorph-container>
+    </ubraxakar-glassmorph-container> -->
+
 
 
   </div>

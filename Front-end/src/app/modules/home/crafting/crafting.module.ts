@@ -1,3 +1,4 @@
+import { HighlightModule } from 'ngx-highlightjs';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     SharedModule,
     CascadeSelectModule,
+    HighlightModule
   ],
   declarations: [CraftingComponent]
 })

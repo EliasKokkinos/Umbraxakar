@@ -1,18 +1,19 @@
-import { MartialMeeleWeapons } from './enums/martial-meele-weapons.enum';
-import { SimpleRangedWeapons } from './enums/simple-ranged-weapons.enum';
-import { SimpleMeleeWeapons } from './enums/simple-melee-weapons.enum';
-import { WeaponTypes } from './enums/weapon-types.enum';
-import { LightArmor } from './enums/light-armor.enum';
+import { MartialMeeleWeapons } from './enums/Weapons/martial-meele-weapons.enum';
+import { SimpleRangedWeapons } from './enums/Weapons/simple-ranged-weapons.enum';
+import { SimpleMeleeWeapons } from './enums/Weapons/simple-melee-weapons.enum';
+import { WeaponTypes } from './enums/Weapons/_weapon-types.enum';
+import { LightArmor } from './enums/Armor/light-armor.enum';
 import { Blacksmiths } from './enums/blacksmiths.enum';
 import { Qualities } from '../models/qualities.enum';
 import { CraftingData } from "../models/crafting-data";
+import { ArmorTypes } from './enums/Armor/_armor-types.enum';
+import { MediumArmor } from './enums/Armor/medium-armor.enum';
+import { Shields } from './enums/Armor/shields.enum';
+import { HeavyArmor } from './enums/Armor/heavy-armor.enum';
+import { MartialRangedWeapons } from './enums/Weapons/martial-ranged-weapons.enum';
 import { Forges } from './enums/forges.enum';
 import { Items } from './enums/items.enum';
-import { ArmorTypes } from './enums/armor-types.enum';
-import { MediumArmor } from './enums/medium-armor.enum';
-import { Shields } from './enums/shields.enum';
-import { HeavyArmor } from './enums/heavy-armor.enum';
-import { MartialRangedWeapons } from './enums/martial-ranged-weapons.enum';
+import { Enchanters } from './enums/enchanter.enum';
 
 export class CraftingStaticData {
 
@@ -20,7 +21,7 @@ export class CraftingStaticData {
         [
             new CraftingData({
                 name: Forges.Hephaestus,
-                code: Forges.Hephaestus,
+                id: Forges.Hephaestus,
                 cost: 0,
                 costModifier: 1,
                 value: 0,
@@ -35,7 +36,22 @@ export class CraftingStaticData {
         [
             new CraftingData({
                 name: Blacksmiths.MorgranFireforge,
-                code: Blacksmiths.MorgranFireforge,
+                id: Blacksmiths.MorgranFireforge,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 1,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
+
+    public static Enchanters: CraftingData[] =
+        [
+            new CraftingData({
+                name: Enchanters.SamuelYellin,
+                id: Enchanters.SamuelYellin,
                 cost: 0,
                 costModifier: 1,
                 value: 0,
@@ -50,7 +66,7 @@ export class CraftingStaticData {
         [
             new CraftingData({
                 name: Qualities.Magic_1,
-                code: Qualities.Magic_1,
+                id: Qualities.Magic_1,
                 cost: 0,
                 costModifier: 1,
                 value: 0,
@@ -61,7 +77,7 @@ export class CraftingStaticData {
             }),
             new CraftingData({
                 name: Qualities.Magic_2,
-                code: Qualities.Magic_2,
+                id: Qualities.Magic_2,
                 cost: 0,
                 costModifier: 1,
                 value: 0,
@@ -72,7 +88,7 @@ export class CraftingStaticData {
             }),
             new CraftingData({
                 name: Qualities.Magic_3,
-                code: Qualities.Magic_3,
+                id: Qualities.Magic_3,
                 cost: 0,
                 costModifier: 1,
                 value: 0,
@@ -87,7 +103,7 @@ export class CraftingStaticData {
         [
             new CraftingData({
                 name: Items.Armors,
-                code: Items.Armors,
+                id: Items.Armors,
                 cost: 0,
                 costModifier: 1,
                 value: 0,
@@ -98,7 +114,7 @@ export class CraftingStaticData {
                 data: [
                     new CraftingData({
                         name: ArmorTypes.LightArmor,
-                        code: ArmorTypes.LightArmor,
+                        id: ArmorTypes.LightArmor,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -109,7 +125,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: LightArmor.Padded,
-                                code: LightArmor.Padded,
+                                id: LightArmor.Padded,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -120,7 +136,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: LightArmor.Leather,
-                                code: LightArmor.Leather,
+                                id: LightArmor.Leather,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -131,7 +147,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: LightArmor.StuddedLeather,
-                                code: LightArmor.StuddedLeather,
+                                id: LightArmor.StuddedLeather,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -144,7 +160,7 @@ export class CraftingStaticData {
                     }),
                     new CraftingData({
                         name: ArmorTypes.MediumArmor,
-                        code: ArmorTypes.MediumArmor,
+                        id: ArmorTypes.MediumArmor,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -155,7 +171,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: MediumArmor.Hide,
-                                code: MediumArmor.Hide,
+                                id: MediumArmor.Hide,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -166,7 +182,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MediumArmor.ChainShirt,
-                                code: MediumArmor.ChainShirt,
+                                id: MediumArmor.ChainShirt,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -177,7 +193,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MediumArmor.ScaleMail,
-                                code: MediumArmor.ScaleMail,
+                                id: MediumArmor.ScaleMail,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -188,7 +204,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MediumArmor.BreastPlate,
-                                code: MediumArmor.BreastPlate,
+                                id: MediumArmor.BreastPlate,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -199,7 +215,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MediumArmor.HalfPlate,
-                                code: MediumArmor.HalfPlate,
+                                id: MediumArmor.HalfPlate,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -213,7 +229,7 @@ export class CraftingStaticData {
                     }),
                     new CraftingData({
                         name: ArmorTypes.HeavyArmor,
-                        code: ArmorTypes.HeavyArmor,
+                        id: ArmorTypes.HeavyArmor,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -224,7 +240,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: HeavyArmor.RingMail,
-                                code: HeavyArmor.RingMail,
+                                id: HeavyArmor.RingMail,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -235,7 +251,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: HeavyArmor.ChainMail,
-                                code: HeavyArmor.ChainMail,
+                                id: HeavyArmor.ChainMail,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -246,7 +262,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: HeavyArmor.Splint,
-                                code: HeavyArmor.Splint,
+                                id: HeavyArmor.Splint,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -257,7 +273,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: HeavyArmor.Plate,
-                                code: HeavyArmor.Plate,
+                                id: HeavyArmor.Plate,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -271,7 +287,7 @@ export class CraftingStaticData {
                     }),
                     new CraftingData({
                         name: ArmorTypes.Shield,
-                        code: ArmorTypes.Shield,
+                        id: ArmorTypes.Shield,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -282,7 +298,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: Shields.Shield,
-                                code: Shields.Shield,
+                                id: Shields.Shield,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -297,7 +313,7 @@ export class CraftingStaticData {
             }),
             new CraftingData({
                 name: Items.Weapons,
-                code: Items.Weapons,
+                id: Items.Weapons,
                 cost: 0,
                 costModifier: 1,
                 value: 0,
@@ -308,7 +324,7 @@ export class CraftingStaticData {
                 data: [
                     new CraftingData({
                         name: WeaponTypes.SimpleMeeleWeapons,
-                        code: WeaponTypes.SimpleMeeleWeapons,
+                        id: WeaponTypes.SimpleMeeleWeapons,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -319,7 +335,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Club,
-                                code: SimpleMeleeWeapons.Club,
+                                id: SimpleMeleeWeapons.Club,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -330,7 +346,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Dagger,
-                                code: SimpleMeleeWeapons.Dagger,
+                                id: SimpleMeleeWeapons.Dagger,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -341,7 +357,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Greatclub,
-                                code: SimpleMeleeWeapons.Greatclub,
+                                id: SimpleMeleeWeapons.Greatclub,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -352,7 +368,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Handaxe,
-                                code: SimpleMeleeWeapons.Handaxe,
+                                id: SimpleMeleeWeapons.Handaxe,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -363,7 +379,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Javelin,
-                                code: SimpleMeleeWeapons.Javelin,
+                                id: SimpleMeleeWeapons.Javelin,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -374,7 +390,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.LightHammer,
-                                code: SimpleMeleeWeapons.LightHammer,
+                                id: SimpleMeleeWeapons.LightHammer,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -385,7 +401,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Mace,
-                                code: SimpleMeleeWeapons.Mace,
+                                id: SimpleMeleeWeapons.Mace,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -396,7 +412,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Quarterstaff,
-                                code: SimpleMeleeWeapons.Quarterstaff,
+                                id: SimpleMeleeWeapons.Quarterstaff,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -407,7 +423,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Sickle,
-                                code: SimpleMeleeWeapons.Sickle,
+                                id: SimpleMeleeWeapons.Sickle,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -418,7 +434,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleMeleeWeapons.Spear,
-                                code: SimpleMeleeWeapons.Spear,
+                                id: SimpleMeleeWeapons.Spear,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -431,7 +447,7 @@ export class CraftingStaticData {
                     }),
                     new CraftingData({
                         name: WeaponTypes.SimpleRangedWeapons,
-                        code: WeaponTypes.SimpleRangedWeapons,
+                        id: WeaponTypes.SimpleRangedWeapons,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -442,7 +458,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: SimpleRangedWeapons.CrossbowLight,
-                                code: SimpleRangedWeapons.CrossbowLight,
+                                id: SimpleRangedWeapons.CrossbowLight,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -453,7 +469,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleRangedWeapons.Dart,
-                                code: SimpleRangedWeapons.Dart,
+                                id: SimpleRangedWeapons.Dart,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -464,7 +480,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleRangedWeapons.Shortbow,
-                                code: SimpleRangedWeapons.Shortbow,
+                                id: SimpleRangedWeapons.Shortbow,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -475,7 +491,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: SimpleRangedWeapons.Sling,
-                                code: SimpleRangedWeapons.Sling,
+                                id: SimpleRangedWeapons.Sling,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -488,7 +504,7 @@ export class CraftingStaticData {
                     }),
                     new CraftingData({
                         name: WeaponTypes.MartialMeleeeWeapons,
-                        code: WeaponTypes.MartialMeleeeWeapons,
+                        id: WeaponTypes.MartialMeleeeWeapons,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -499,7 +515,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: MartialMeeleWeapons.Battleaxe,
-                                code: MartialMeeleWeapons.Battleaxe,
+                                id: MartialMeeleWeapons.Battleaxe,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -510,7 +526,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Flail,
-                                code: MartialMeeleWeapons.Flail,
+                                id: MartialMeeleWeapons.Flail,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -521,7 +537,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Glaive,
-                                code: MartialMeeleWeapons.Glaive,
+                                id: MartialMeeleWeapons.Glaive,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -532,7 +548,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Greataxe,
-                                code: MartialMeeleWeapons.Greataxe,
+                                id: MartialMeeleWeapons.Greataxe,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -543,7 +559,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Greatsword,
-                                code: MartialMeeleWeapons.Greatsword,
+                                id: MartialMeeleWeapons.Greatsword,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -554,7 +570,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Halberd,
-                                code: MartialMeeleWeapons.Halberd,
+                                id: MartialMeeleWeapons.Halberd,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -565,7 +581,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Lance,
-                                code: MartialMeeleWeapons.Lance,
+                                id: MartialMeeleWeapons.Lance,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -576,7 +592,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Longsword,
-                                code: MartialMeeleWeapons.Longsword,
+                                id: MartialMeeleWeapons.Longsword,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -587,7 +603,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Maul,
-                                code: MartialMeeleWeapons.Maul,
+                                id: MartialMeeleWeapons.Maul,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -598,7 +614,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Morningstar,
-                                code: MartialMeeleWeapons.Morningstar,
+                                id: MartialMeeleWeapons.Morningstar,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -609,7 +625,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Pike,
-                                code: MartialMeeleWeapons.Pike,
+                                id: MartialMeeleWeapons.Pike,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -620,7 +636,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Rapier,
-                                code: MartialMeeleWeapons.Rapier,
+                                id: MartialMeeleWeapons.Rapier,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -631,7 +647,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Scimitar,
-                                code: MartialMeeleWeapons.Scimitar,
+                                id: MartialMeeleWeapons.Scimitar,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -642,7 +658,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Shortsword,
-                                code: MartialMeeleWeapons.Shortsword,
+                                id: MartialMeeleWeapons.Shortsword,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -653,7 +669,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Trident,
-                                code: MartialMeeleWeapons.Trident,
+                                id: MartialMeeleWeapons.Trident,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -664,7 +680,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Warpick,
-                                code: MartialMeeleWeapons.Warpick,
+                                id: MartialMeeleWeapons.Warpick,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -675,7 +691,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Warhammer,
-                                code: MartialMeeleWeapons.Warhammer,
+                                id: MartialMeeleWeapons.Warhammer,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -686,7 +702,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialMeeleWeapons.Whip,
-                                code: MartialMeeleWeapons.Whip,
+                                id: MartialMeeleWeapons.Whip,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -699,7 +715,7 @@ export class CraftingStaticData {
                     }),
                     new CraftingData({
                         name: WeaponTypes.MartialRangedWeapons,
-                        code: WeaponTypes.MartialRangedWeapons,
+                        id: WeaponTypes.MartialRangedWeapons,
                         cost: 0,
                         costModifier: 1,
                         value: 0,
@@ -710,7 +726,7 @@ export class CraftingStaticData {
                         data: [
                             new CraftingData({
                                 name: MartialRangedWeapons.Blowgun,
-                                code: MartialRangedWeapons.Blowgun,
+                                id: MartialRangedWeapons.Blowgun,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -721,7 +737,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialRangedWeapons.CrossbowHand,
-                                code: MartialRangedWeapons.CrossbowHand,
+                                id: MartialRangedWeapons.CrossbowHand,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -732,7 +748,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialRangedWeapons.CrossbowHeavy,
-                                code: MartialRangedWeapons.CrossbowHeavy,
+                                id: MartialRangedWeapons.CrossbowHeavy,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -743,7 +759,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialRangedWeapons.Longbow,
-                                code: MartialRangedWeapons.Longbow,
+                                id: MartialRangedWeapons.Longbow,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,
@@ -754,7 +770,7 @@ export class CraftingStaticData {
                             }),
                             new CraftingData({
                                 name: MartialRangedWeapons.Net,
-                                code: MartialRangedWeapons.Net,
+                                id: MartialRangedWeapons.Net,
                                 cost: 0,
                                 costModifier: 1,
                                 value: 0,

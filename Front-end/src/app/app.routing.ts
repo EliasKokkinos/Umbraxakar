@@ -8,14 +8,14 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
 
-    {path: '', pathMatch : 'full', redirectTo: 'crafting'},
+    {path: '', pathMatch : 'full', redirectTo: 'main'},
 
     // Redirect signed in user to the '/example'
     //
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'crafting'},
+    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'main'},
 
     // Auth routes for guests
     {
@@ -59,6 +59,7 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children   : [
+            {path: 'main', loadChildren: () => import('app/modules/home/main/main.module').then(m => m.MainModule)},
             {path: 'crafting', loadChildren: () => import('app/modules/home/crafting/crafting.module').then(m => m.CraftingModule)},
         ]
     }

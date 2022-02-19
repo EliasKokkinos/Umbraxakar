@@ -12,6 +12,7 @@ import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -26,7 +27,7 @@ const routerConfig: ExtraOptions = {
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
-
+        HighlightModule,
         // Fuse, FuseConfig & FuseMockAPI
         FuseModule,
         FuseConfigModule.forRoot(appConfig),
@@ -43,7 +44,15 @@ const routerConfig: ExtraOptions = {
     ],
     bootstrap   : [
         AppComponent
-    ]
+    ],
+    providers: [
+      {
+        provide: HIGHLIGHT_OPTIONS,
+        useValue: {
+          fullLibraryLoader: () => import('highlight.js'),
+        }
+      }
+    ],
 })
 export class AppModule
 {

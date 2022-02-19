@@ -1,0 +1,85 @@
+
+.dialog {
+  position: absolute;
+  width: 480px;
+  box-sizing: border-box;
+  color: snow;
+  border-radius: 8px;
+  box-shadow: 4px 4px 20px 5px #0000006d;
+  background-color: #1e1a4e77;
+  backdrop-filter: blur(20px);
+  
+  .dialog-footer, .dialog-body, .dialog-header {
+    box-sizing: border-box;
+    padding: 1.5em;
+    border: thin solid #ffffff12;
+  }
+  
+  .dialog-header {
+    border-radius: 8px 8px  0 0;
+    cursor: all-scroll;
+    user-select: none;
+    
+    h3 {
+      margin: 0;
+    }
+  }
+  
+  .dialog-body {
+    border-top: none;
+    border-bottom: none;
+    
+    code {
+      display: inline-block;
+      background-color: #1e1a4e66;
+      padding: .25em .5em;
+    }
+    
+    *:first-child {
+      margin-top: 0;
+    }
+    
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 0 0 8px 8px;
+    padding: 1em 1.5em;
+    user-select: none;
+    
+    button {
+      padding: .5em 1em;
+      margin: 0 .5em;
+      outline: none;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      
+      &.ok {
+        $color: mediumseagreen;
+        background-color: $color;
+        color: darken($color, 30%);
+        
+        &:hover {
+          background-color: lighten($color, 10%);
+        }
+      }
+      
+      &.cancel {
+        $color: darkorange;
+        background-color: $color;
+        color: darken($color, 30%);
+        margin-right: 0;
+        
+        &:hover {
+          background-color: lighten($color, 10%);
+        }
+      }
+    }
+  }
+}
