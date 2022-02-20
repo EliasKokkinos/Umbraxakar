@@ -8,29 +8,52 @@
 
           <div class="grid grid-cols-1">
             <div class="form-group p-2">
-              <label>Blacksmith</label>
-              <div>
-                <p-dropdown [options]="blacksmiths" formControlName="blacksmith" optionLabel="name"
-                  placeholder="Select Blacksmith">
-                </p-dropdown>
-
-              </div>
-            </div>
-            <div class="form-group p-2">
-              <label>Enchanter</label>
-              <div>
-                <p-dropdown [options]="enchanters" formControlName="enchanter" optionLabel="name"
-                  placeholder="Select Enchanter">
-                </p-dropdown>
-
-              </div>
-            </div>
-            <div class="form-group p-2">
               <label>Forge</label>
               <div>
                 <p-dropdown [options]="forges" formControlName="forge" optionLabel="name" placeholder="Select Forge">
                 </p-dropdown>
-
+              </div>
+            </div>
+            <div class="mt-2 mb-3 p-2">
+              <div class="text-right">
+                <span>Blacksmiths</span>
+              </div>
+              <div class="form-group pb-2">
+                <label>Blacksmith</label>
+                <div>
+                  <p-dropdown [options]="blacksmiths" formControlName="blacksmith" optionLabel="name"
+                    placeholder="Select Blacksmith">
+                  </p-dropdown>
+                </div>
+              </div>
+              <div class="form-group pb-2">
+                <label>Blacksmith Assistant</label>
+                <div>
+                  <p-dropdown [options]="blacksmithAssistants" formControlName="blacksmithAssistant" optionLabel="name"
+                    placeholder="Select Blacksmith Assistant">
+                  </p-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 mb-3 p-2">
+              <div class="text-right">
+                <span>Enchanters</span>
+              </div>
+              <div class="form-group pb-2">
+                <label>Enchanter</label>
+                <div>
+                  <p-dropdown [options]="enchanters" formControlName="enchanter" optionLabel="name"
+                    placeholder="Select Enchanter">
+                  </p-dropdown>
+                </div>
+              </div>
+              <div class="form-group pb-2">
+                <label>Enchanter Assistant</label>
+                <div>
+                  <p-dropdown [options]="enchanterAssistants" formControlName="enchanterAssistant" optionLabel="name"
+                    placeholder="Select Enchanter Assistant">
+                  </p-dropdown>
+                </div>
               </div>
             </div>
             <div class="form-group p-2">
@@ -49,38 +72,60 @@
             </div>
           </div>
         </div>
-
       </ubraxakar-glass-container>
 
       <div>
-        <ubraxakar-glass-container>
-          <div *ngFor="let enchantment of enchantmentsArray?.controls; let i = index" class="form-group p-2">
-            <div [formGroup]="enchantment" class="form-row">
-              <div>
-                <label>Enchantment {{index}}</label>
-                <p-dropdown [options]="enchantments" formControlName="enchantment" optionLabel="name"
-                  placeholder="Select Enchantment">
-                </p-dropdown>
-              </div>
-              <div>
-                <label>Attribute {{index}}</label>
-                <p-dropdown [options]="attributes" formControlName="attribute" optionLabel="name"
-                  placeholder="Select Attribute">
-                </p-dropdown>
+        <div>
+          <ubraxakar-glass-container>
+
+            <div *ngFor="let material of materialsArray?.controls; let i = index" class="form-group p-2">
+              <div [formGroup]="material" class="form-row">
+                <div>
+                  <label>Material {{i + 1 }}</label>
+                  <p-dropdown [options]="getMaterial(i)" formControlName="material" optionLabel="name"
+                    placeholder="Select Material {{i + 1}}">
+                  </p-dropdown>
+                </div>
               </div>
             </div>
-          </div>
-        </ubraxakar-glass-container>
-        <ubraxakar-glass-container>
-          <label>Forging Technique</label>
-          <p-dropdown [options]="forgingTechniques" formControlName="forgingTechnique" optionLabel="name"
-            placeholder="Select Forging Technique">
-          </p-dropdown>
-        </ubraxakar-glass-container>
+            <div class="p-2">
+              <label>Metal Forging Technique</label>
+              <p-dropdown [options]="forgingTechniques" formControlName="forgingTechnique" optionLabel="name"
+                placeholder="Select Forging Technique">
+              </p-dropdown>
+            </div>
+          </ubraxakar-glass-container>
+        </div>
+        <div class="mt-2">
+          <ubraxakar-glass-container>
+            <div *ngFor="let enchantment of enchantmentsArray?.controls; let i = index" class="form-group p-2">
+              <div [formGroup]="enchantment" class="form-row pb-4">
+                <div class="pb-1 text-right">
+                  <span>Enchantment {{i + 1 }}</span>
+                </div>
+                <div>
+                  <label>Warren</label>
+                  <p-dropdown [options]="enchantments" formControlName="enchantment" optionLabel="name"
+                    placeholder="Select Enchantment {{i + 1}}">
+                  </p-dropdown>
+                </div>
+                <div>
+                  <label>Attribute</label>
+                  <p-dropdown [options]="attributes" formControlName="attribute" optionLabel="name"
+                    placeholder="Select Attribute {{i + 1}}">
+                  </p-dropdown>
+                </div>
+              </div>
+            </div>
+          </ubraxakar-glass-container>
+        </div>
       </div>
 
       <ubraxakar-glass-container>
-        <pre><code [highlight]="form.value | json"></code></pre>
+        <div style="max-height: 85vh; overflow: auto;" id="style-1">
+
+          <pre><code [highlight]="form.value | json"></code></pre>
+        </div>
       </ubraxakar-glass-container>
 
     </div>

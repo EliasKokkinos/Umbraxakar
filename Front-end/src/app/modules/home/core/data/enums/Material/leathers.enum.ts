@@ -1,4 +1,4 @@
-export enum Wood {
+export enum Leathers {
     Leather = 'Leather',
     CuredLeather = 'Cured Leather',
     HardenedLeather = 'Hardened Leather',

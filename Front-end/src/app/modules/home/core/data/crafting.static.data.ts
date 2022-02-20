@@ -1,3 +1,4 @@
+import { Bones } from './enums/Material/bone.enum';
 import { Attributes } from './enums/attributes.enum';
 import { Assistants } from './enums/assistants.enum';
 import { MartialMeleeWeapons } from './enums/Weapons/martial-meele-weapons.enum';
@@ -18,6 +19,10 @@ import { Items } from './enums/items.enum';
 import { Enchanters } from './enums/enchanter.enum';
 import { Warrens } from './enums/warrens.enum';
 import { ForgingTechniques } from './enums/forging-techniques.enum';
+import { Wood } from './enums/Material/woods.enum';
+import { Metal } from './enums/Material/metal.enum';
+import { Leathers } from './enums/Material/leathers.enum';
+import { OtherMaterial } from './enums/Material/other-material.enum';
 
 export class CraftingStaticData {
 
@@ -32,7 +37,7 @@ export class CraftingStaticData {
                 valueModifier: 4,
                 units: 0,
                 daysToCraft: 0,
-                daysToCraftModifier: 0.5,
+                daysToCraftModifier: 1,
                 warrens: [
                     new CraftingData({
                         name: Warrens.KuraldGalain,
@@ -849,72 +854,88 @@ export class CraftingStaticData {
             }),
         ];
 
-    public static Assistants: CraftingData[] =
-    [
-        new CraftingData({
-            name: Assistants.Imogen,
-            id: Assistants.Imogen,
-            cost: 0,
-            costModifier: 1,
-            value: 0,
-            valueModifier: 4,
-            units: 0,
-            daysToCraft: 0,
-            daysToCraftModifier: 0.5,
-        }),
-    ];
+    public static EnchanterAssistants: CraftingData[] =
+        [
+            new CraftingData({
+                name: Assistants.Imogen,
+                id: Assistants.Imogen,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
+
+    public static BlacksmithAssistants: CraftingData[] =
+        [
+            new CraftingData({
+                name: Assistants.Imogen,
+                id: Assistants.Imogen,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
 
     public static Attributes: CraftingData[] =
-    [
-        new CraftingData({
-            name: Attributes.Offensive,
-            id: Attributes.Offensive,
-            cost: 0,
-            costModifier: 1,
-            value: 0,
-            valueModifier: 4,
-            units: 0,
-            daysToCraft: 0,
-            daysToCraftModifier: 0.5,
-        }),
-        new CraftingData({
-            name: Attributes.Defensive,
-            id: Attributes.Defensive,
-            cost: 0,
-            costModifier: 1,
-            value: 0,
-            valueModifier: 4,
-            units: 0,
-            daysToCraft: 0,
-            daysToCraftModifier: 0.5,
-        }),
-        new CraftingData({
-            name: Attributes.Utility,
-            id: Attributes.Utility,
-            cost: 0,
-            costModifier: 1,
-            value: 0,
-            valueModifier: 4,
-            units: 0,
-            daysToCraft: 0,
-            daysToCraftModifier: 0.5,
-        }),
-    ];
+        [
+            new CraftingData({
+                name: Attributes.Offensive,
+                id: Attributes.Offensive,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Attributes.Defensive,
+                id: Attributes.Defensive,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Attributes.Utility,
+                id: Attributes.Utility,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
 
+    //TODO
     public static Enchantments: CraftingData[] =
-    [
-        new CraftingData({
-            name: Assistants.Imogen,
-            id: Assistants.Imogen,
-            cost: 0,
-            costModifier: 1,
-            value: 0,
-            valueModifier: 4,
-            units: 0,
-            daysToCraft: 0,
-            daysToCraftModifier: 0.5,
-        }),
-    ];
+        [
+            new CraftingData({
+                name: Assistants.Imogen,
+                id: Assistants.Imogen,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
 
     public static ForgingTechniques: CraftingData[] =
         [
@@ -1117,4 +1138,334 @@ export class CraftingStaticData {
                 daysToCraftModifier: 1,
             }),
         ];
+
+    public static Woods: CraftingData[] =
+        [
+            new CraftingData({
+                name: Wood.Softwood,
+                id: Wood.Softwood,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Wood.Wood,
+                id: Wood.Wood,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Wood.Hardwood,
+                id: Wood.Hardwood,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Wood.Blackwood,
+                id: Wood.Blackwood,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Wood.Bloodwood,
+                id: Wood.Bloodwood,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
+
+    public static Leathers: CraftingData[] =
+        [
+            new CraftingData({
+                name: Leathers.Leather,
+                id: Leathers.Leather,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Leathers.CuredLeather,
+                id: Leathers.CuredLeather,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Leathers.HardenedLeather,
+                id: Leathers.HardenedLeather,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Leathers.ReinforcedLeather,
+                id: Leathers.ReinforcedLeather,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Leathers.Dragonskin,
+                id: Leathers.Dragonskin,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
+
+    public static Metals: CraftingData[] =
+        [
+            new CraftingData({
+                name: Metal.Iron,
+                id: Metal.Iron,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Bronze,
+                id: Metal.Bronze,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Copper,
+                id: Metal.Copper,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Steel,
+                id: Metal.Steel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.SuperiorSteel,
+                id: Metal.SuperiorSteel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Tungsten,
+                id: Metal.Tungsten,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Orichalcum,
+                id: Metal.Orichalcum,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.AndiiSteel,
+                id: Metal.AndiiSteel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.EdurSteel,
+                id: Metal.EdurSteel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.LiosanSteel,
+                id: Metal.LiosanSteel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.UmbraxakarSteel,
+                id: Metal.UmbraxakarSteel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Cobalt,
+                id: Metal.Cobalt,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Adamantine,
+                id: Metal.Adamantine,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.Shadowsteel,
+                id: Metal.Shadowsteel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Metal.PrimordialSteel,
+                id: Metal.PrimordialSteel,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 4,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
+
+    public static Bones: CraftingData[] =
+        [
+            new CraftingData({
+                name: Bones.AnimalBone,
+                id: Bones.AnimalBone,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 1,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+            new CraftingData({
+                name: Bones.Dragonbone,
+                id: Bones.Dragonbone,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 1,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
+
+    public static OtherMaterial: CraftingData[] =
+        [
+            new CraftingData({
+                name: OtherMaterial.Rock,
+                id: OtherMaterial.Rock,
+                cost: 0,
+                costModifier: 1,
+                value: 0,
+                valueModifier: 1,
+                units: 0,
+                daysToCraft: 0,
+                daysToCraftModifier: 1,
+            }),
+        ];
 }
+
+

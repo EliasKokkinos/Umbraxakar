@@ -19,9 +19,13 @@ export class CraftingComponent implements OnInit {
   forges: CraftingData[];
   blacksmiths: CraftingData[];
   enchanters: CraftingData[];
+  enchanterAssistants: CraftingData[];
+  blacksmithAssistants: CraftingData[];
   enchantments: CraftingData[];
   attributes: CraftingData[];
   forgingTechniques: CraftingData[];
+  metals: CraftingData[];
+  woods: CraftingData[];
   blacksmithForm: FormGroup;
   items: any[];
   selectedCity1: any;
@@ -31,6 +35,7 @@ export class CraftingComponent implements OnInit {
   }
 
   public get enchantmentsArray() { return  this.blacksmithForm.controls['enchantments'] as FormArray; }
+  public get materialsArray() { return  this.blacksmithForm.controls['materials'] as FormArray; }
 
   /**
    * Constructor
@@ -43,14 +48,20 @@ export class CraftingComponent implements OnInit {
       this.items = CraftingStaticData.Items;
       this.attributes = CraftingStaticData.Attributes;
       this.forgingTechniques = CraftingStaticData.ForgingTechniques;
+      this.enchanterAssistants = CraftingStaticData.EnchanterAssistants;
+      this.enchanterAssistants = CraftingStaticData.EnchanterAssistants;
+      this.blacksmithAssistants = CraftingStaticData.BlacksmithAssistants;
       
       this.blacksmithForm = this.formBuilder.group({
           blacksmith: ['', Validators.required],
+          blacksmithAssistant: [''],
           enchanter: ['', Validators.required],
+          enchanterAssistant: [''],
           forge: ['', Validators.required],
           itemType: ['', Validators.required],
           weaponQuality: ['', Validators.required],
           enchantments: new FormArray([]),
+          materials: new FormArray([]),
           forgingTechnique: ['', Validators.required],
 
       })
@@ -68,11 +79,21 @@ export class CraftingComponent implements OnInit {
           enchantment: ['', Validators.required],
           attribute: ['', Validators.required]
         }));
+
+        
+        this.materialsArray.push(this.formBuilder.group({
+          material: ['', Validators.required],
+        }));
+        this.materialsArray.push(this.formBuilder.group({
+          material: ['', Validators.required],
+        }));
         
       });
       
       //TODO Depends on the weapons
       this.forgingTechniques = CraftingStaticData.ForgingTechniques;
+      this.woods = CraftingStaticData.Woods;
+      this.metals = CraftingStaticData.Metals;
   }
 
   ngOnInit() {
@@ -80,5 +101,10 @@ export class CraftingComponent implements OnInit {
       this.form.controls["blacksmith"].patchValue(this.blacksmiths.find(c => c.id === Blacksmiths.MorgranFireforge));
       this.form.controls["enchanter"].patchValue(this.enchanters.find(c => c.id === Enchanters.SamuelYellin));
       this.form.controls["forge"].patchValue(this.forges.find(c => c.id === Forges.Hephaestus));
+  }
+
+  public getMaterial(i: number) {
+    if(i === 0) return this.metals;
+    return this.woods;
   }
 }
