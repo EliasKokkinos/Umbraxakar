@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+  <info>
+    <name>Book of the Fallen - Custom Armors</name>
+    <description>
+		Contains Custom Swords created specifically for the campaign &quot;Book of the Fallen&quot;.
+    </description>
+    <update version="1.0.0">
+      <file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml" />
+    </update>
+  </info>
+
+  <!--Start:: Custom Armors for Book of the fallen -->
+	<element name="Shield of the Umbraxakar" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_SHIELD_OF_THE_UMBRAXAKAR">
+		<description>
+			<p>The shield is emblazoned with a strange depection of a slender crowned woman, possibly a half elf, with golden hair, encompassed by two skulls of some type of beast. The image is engraved and inlayed with golden leaf.</p>
+			<p>While holding this shield, you have:</p>
+			<p class="indent">
+			<ul>
+			<li>Advantage on initiative rolls</li>
+			<li>Wisdom (Perception) checks.</li>
+			<li>When the bearer is reduced to bellow 20 HP he may be healed with Proficiency Bonus x d12 HP on a raw d20 roll of 15 and above. During this effect the woman on the shield opens her eyes and golden streams of Magical Energy surround the bearer.</li>
+			</ul>
+			</p>
+		</description>
+		<setters>
+			<set name="keywords">shield</set>
+			<set name="category">Magic Armor</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="shield">Armor</set>
+			<set name="rarity">Legendary</set>
+			<set name="armor">ID_INTERNAL_ARMOR_GROUP_SHIELD</set>
+		</setters>
+		<rules>
+			<grant type="Grants" id="ID_INTERNAL_GRANTS_INITIATIVE_ADVANTAGE" />
+			<stat name="perception:passive" value="5" bonus="advantage" />
+		</rules>
+	</element>
+  <!--End:: Custom Armors for Book of the fallen -->
+  
+</elements>

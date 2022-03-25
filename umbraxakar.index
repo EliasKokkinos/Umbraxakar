@@ -9,7 +9,8 @@
 		</update>
 	</info>
 	<files>
-		<file name="items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/items.xml" />
+		<file name="swords.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml" />
+		<file name="armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml" />
 	
 	</files>
 </index>
