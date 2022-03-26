@@ -52,7 +52,6 @@
 			<set name="category">Wondrous Items</set>
 			<set name="cost" currency="gp">0</set>
 			<set name="slot">head</set>
-			<set name="type" addition="shield">Armor</set>
 			<set name="rarity">Legendary</set>
 		</setters>
 		<rules>
