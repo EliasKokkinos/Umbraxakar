@@ -110,6 +110,54 @@
 			<grant type="Spell" id="ID_PHB_SPELL_TONGUES" />
 		</rules>
 	</element>
+	<element name="Armor of the Duke (Nobility Plate)" type="Magic Item" source="Book of the Fallen" id="ID_WOTC_DMG_MAGIC_ITEM_ARMOR_OF_THE_DUKE_NOBILITY_PLATE">
+		<description>
+			<p>This dark armor has been made from nobility steel.<br />
+			Steeped in the blood from relentless battles, this metal carries with it a magical aversion to all things holy. While wearing this armor, you gain:
+			<ul>
+				<li>+2 bonus to your AC.</li>
+				<li>Resistance to Radiant damage.</li>
+				<li>The following benefits:</li>
+			</ul>
+			</p>
+			<p><b><i>Death Transference:</i></b> Whenever you are subjected to Necrotic damage, you can use your reaction to take no damage and instead gain a number of temporary hit points equal to half the necrotic damage dealt.<br />
+			This property of the armor can't be used again until the next dusk.</p>
+			<p><b><i>The Battlefield Remembers:</i></b> You can use an action to touch a weapon, piece of armor, or similar object that's seen blood and battle to recreate the effect of the <i>Legend Lore</i> spell, using the touched object as the subject of the effect. Once this property of the armor has been used, it can't be used again until 7 days have passed.</p>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_LEGEND_LORE" />
+			</div>
+			<p><b><i>Unholy Aura:</i></b> As a bonus action, you can speak the armor's command word to surround yourself with an aura of grim blasphemy. The aura remains for 1 minute or until you are incapacitated or die. For the duration, celestials have disadvantage on attack rolls against you, and the first time that a celestial moves within 5 feet of you on its turn or starts its turn there, that creature takes 1d10 necrotic damage. This damage ignores resistance and immunity. In addition, once before the aura ends, if you fail a saving throw against an effect from a celestial (such as a solar's Slaying Longbow}, you can choose to succeed instead. Once the aura ends, it can't be used again until the next dusk.</p>
+			<p><b><i>Spells:</i></b> You can use an action to cast one of the following spells (save DC 17) from the armor: <i>Bestow Curse</i>, <i>Divine Word</i>, or <i>Nondetection</i>. Once the armor has been used to cast a spell, it can't be used to cast that spell again until the next dusk.</p>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_BESTOW_CURSE" />
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_DIVINE_WORD" />
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_NONDETECTION" />
+			</div>
+		</description>
+		<setters>
+			<set name="keywords">armor, duke, nobility plate</set>
+			<set name="category">Magic Armor</set>
+			<set name="attunement">true</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">body</set>
+			<set name="type" addition="heavy">Armor</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">2</set>
+			<set name="armor">ID_INTERNAL_ARMOR_GROUP_HEAVY</set>
+		</setters>
+		<rules>
+			<stat name="ac:armored:enhancement" value="2" bonus="enhancement" />
+			<grant type="Condition" id="ID_INTERNAL_CONDITION_DAMAGE_RESISTANCE_RADIANT" />
+			<grant type="Spell" id="ID_PHB_SPELL_LEGEND_LORE" />
+			<grant type="Spell" id="ID_PHB_SPELL_BESTOW_CURSE" />
+			<grant type="Spell" id="ID_PHB_SPELL_DIVINE_WORD" />
+			<grant type="Spell" id="ID_PHB_SPELL_NONDETECTION" />
+		</rules>
+	</element>
   <!--End:: Custom Armors for Book of the fallen -->
   
 </elements>
