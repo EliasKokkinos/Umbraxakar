@@ -111,19 +111,37 @@
 	  <br />
 	  In the pommel something is written in a strange unknown language.	  
 	  </p>
+	<div class="reference">
+		<div element="ID_PHB_SPELL_MIRROR_IMAGE" />
+	</div>
+	<div class="reference">
+		<div element="ID_PHB_SPELL_PHANTOM_STEED" />
+	</div>
+	<div class="reference">
+		<div element="ID_PHB_SPELL_SPEAK_WITH_DEAD" />
+	</div>
+	<div class="reference">
+		<div element="ID_PHB_SPELL_SPIRIT_GUARDIANS" />
+	</div>
 	</description>
 	<setters>
-      <set name="keywords">glaive</set>
-      <set name="category">Magic Weapons</set>
-      <set name="cost" currency="gp">0</set>
-      <set name="rarity">Legendary</set>
-      <set name="type" addition="glaive">Weapon</set>
-      <set name="slot">twohand</set>
-      <set name="damage" type="slashing">1d10</set>
-      <set name="attunement">true</set>
-      <set name="enhancement">2</set>
-      <set name="weapon">Glaive</set>
-    </setters>
+		<set name="keywords">glaive</set>
+		<set name="category">Magic Weapons</set>
+		<set name="cost" currency="gp">0</set>
+		<set name="rarity">Legendary</set>
+		<set name="type" addition="glaive">Weapon</set>
+		<set name="slot">twohand</set>
+		<set name="damage" type="slashing">1d10</set>
+		<set name="attunement">true</set>
+		<set name="enhancement">2</set>
+		<set name="weapon">Glaive</set>
+	</setters>
+	<rules>
+		<grant type="Spell" id="ID_PHB_SPELL_MIRROR_IMAGE" />
+		<grant type="Spell" id="ID_PHB_SPELL_PHANTOM_STEED" />
+		<grant type="Spell" id="ID_PHB_SPELL_SPEAK_WITH_DEAD" />
+		<grant type="Spell" id="ID_PHB_SPELL_SPIRIT_GUARDIANS" />
+	</rules>
   </element>
   <element name="Matriarch's Kiss" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MATRIARCHS_KISS">
 	<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_GROUP_SWORDS</supports>
