@@ -36,6 +36,29 @@
 			<stat name="perception:passive" value="5" bonus="advantage" />
 		</rules>
 	</element>
+	<element name="Tiara of the Mindmaster Matriarch" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_TIARA_OF_THE_MINDMASTER_MATRIARCH">
+		<description>
+			<p>While wearing this Tiara, you can use an action to cast the <b><i>Telepathic Bond</i></b> (amended) spell from it. </p>
+			<p>In addition, you can use an action to cast the <b><i>Dominate Person</i></b> spell using your spell save DC from it. On a failed save, a creature is affected by the spell for the duration, and for the next 24 hours after the spell ends, you have advantage on Charisma checks you make to interact with it. These effects end early if you or an ally deals damage to the creature. If the target is connected to you through your telepathic bond, it has disadvantage on the saving throw to resist this spell's effects when cast in this way. Once this property has been used, it can't be used again until the next dawn.</p>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_RARYS_TELEPATHIC_BOND" />
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_DOMINATE_PERSON" />
+			</div>
+		</description>
+		<setters>
+			<set name="keywords">tiara</set>
+			<set name="category">Wondrous Items</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">head</set>
+			<set name="type" addition="shield">Armor</set>
+			<set name="rarity">Legendary</set>
+		</setters>
+		<rules>
+			<grant type="Spell" id="ID_PHB_SPELL_DOMINATE_PERSON" />
+		</rules>
+	</element>
   <!--End:: Custom Armors for Book of the fallen -->
   
 </elements>
