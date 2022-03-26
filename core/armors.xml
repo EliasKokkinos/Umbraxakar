@@ -58,6 +58,55 @@
 			<grant type="Spell" id="ID_PHB_SPELL_DOMINATE_PERSON" />
 		</rules>
 	</element>
+	<element name="Mask of the Duke" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_MASK_OF_THE_DUKE">
+		<description>
+			<p>This skull mask covers the top of your face and offers several benefits while worn. The mask has 5 charges and regains all expended charges daily at dusk. While wearing the mask, you can use an action to expend 1 of its charges to cast one of the following spells from it (save DC 16):
+			<ul>
+				<li>Bestow Curse</li>
+				<li>Fear</li>
+				<li>Speak with Dead</li>
+				<li>Tongues</li>
+			</ul>
+			You have advantage on Constitution saving throws you make in order to maintain Concentration on a spell you cast this way. In addition, you can read all writing.</p>
+			<p><br /><strong>Curse:</strong> When you place this mask over your face for the first time, make a DC 16 Intelligence saving throw. On a success, you are aware of the curse’s effects and can immediately remove the mask before it extends the curse to you. On a failure, you take 5d10 psychic damage as the curse extends to you and magically latches onto your face. As long as you remain cursed, the mask can’t be removed unless targeted by the remove curse spell, and the skin surrounding the mask is riddled with blackened veins and sickly gray skin. While wearing this mask, you can’t smell or taste anything and automatically fail any check relying on smell or taste. Your voice also changes. Use the table below to determine the new voice. In addition, whenever you roll a 1 on an ability check, saving throw, or attack roll, you take 1d10 psychic damage.</p>
+			<table>
+				<thead>
+					<tr><td>d6</td><td>Change to your Voice</td></tr>
+				</thead>
+				<tr><td>1</td><td>Your voice deepens and doesn't echo</td></tr>
+				<tr><td>2</td><td>Your voice becomes raspy and overly enunciates consonant sounds</td></tr>
+				<tr><td>3</td><td>Your voice becomes quiet, almost a whisper, but can still be heard as if it were spoken at a normal volume</td></tr>
+				<tr><td>4</td><td>Your voice becomes high pitched, and your laugh maniacal</td></tr>
+				<tr><td>5</td><td>Your words become slurred, as if your tongue is suddenly too large for your mouth, and your spit releases a faint hiss when it escapes your mouth</td></tr>
+				<tr><td>6</td><td>Your voice becomes that of another ally’s and changes each time you finish a long rest</td></tr>
+			</table>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_BESTOW_CURSE" />
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_FEAR" />
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_SPEAK_WITH_DEAD" />
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_TONGUES" />
+			</div>
+		</description>
+		<setters>
+			<set name="keywords">mask</set>
+			<set name="category">Wondrous Items</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">head</set>
+			<set name="rarity">Very Rare</set>
+		</setters>
+		<rules>
+			<grant type="Spell" id="ID_PHB_SPELL_BESTOW_CURSE" />
+			<grant type="Spell" id="ID_PHB_SPELL_FEAR" />
+			<grant type="Spell" id="ID_PHB_SPELL_SPEAK_WITH_DEAD" />
+			<grant type="Spell" id="ID_PHB_SPELL_TONGUES" />
+		</rules>
+	</element>
   <!--End:: Custom Armors for Book of the fallen -->
   
 </elements>
