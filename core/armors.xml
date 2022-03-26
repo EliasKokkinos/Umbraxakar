@@ -26,6 +26,7 @@
 		<setters>
 			<set name="keywords">shield</set>
 			<set name="category">Magic Armor</set>
+			<set name="attunement">true</set>
 			<set name="cost" currency="gp">0</set>
 			<set name="type" addition="shield">Armor</set>
 			<set name="rarity">Legendary</set>
@@ -50,6 +51,7 @@
 		<setters>
 			<set name="keywords">tiara</set>
 			<set name="category">Wondrous Items</set>
+			<set name="attunement">true</set>
 			<set name="cost" currency="gp">0</set>
 			<set name="slot">head</set>
 			<set name="rarity">Legendary</set>
@@ -96,6 +98,7 @@
 		<setters>
 			<set name="keywords">mask</set>
 			<set name="category">Wondrous Items</set>
+			<set name="attunement">true</set>
 			<set name="cost" currency="gp">0</set>
 			<set name="slot">head</set>
 			<set name="rarity">Very Rare</set>
