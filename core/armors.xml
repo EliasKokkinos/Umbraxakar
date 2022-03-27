@@ -139,15 +139,15 @@
 			</div>
 		</description>
 		<setters>
-			<set name="keywords">armor, duke, nobility plate</set>
+			<set name="keywords">armor, duke, nobility, plate</set>
 			<set name="category">Magic Armor</set>
 			<set name="attunement">true</set>
 			<set name="cost" currency="gp">0</set>
 			<set name="slot">body</set>
-			<set name="type" addition="heavy">Armor</set>
+			<set name="type" addition="plate">Armor</set>
 			<set name="rarity">Legendary</set>
 			<set name="enhancement">2</set>
-			<set name="armor">ID_INTERNAL_ARMOR_GROUP_HEAVY</set>
+			<set name="armor">Plate</set>
 		</setters>
 		<rules>
 			<stat name="ac:armored:enhancement" value="2" bonus="enhancement" />
