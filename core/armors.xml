@@ -112,7 +112,7 @@
 	</element>
 	<element name="Armor of the Duke (Nobility Plate)" type="Magic Item" source="Book of the Fallen" id="ID_WOTC_DMG_MAGIC_ITEM_ARMOR_OF_THE_DUKE_NOBILITY_PLATE">
 		<description>
-			<p>This dark armor has been made from nobility steel.<br />
+			<p>This Plate dark armor has been made from nobility steel.<br />
 			Steeped in the blood from relentless battles, this metal carries with it a magical aversion to all things holy. While wearing this armor, you gain:
 			<ul>
 				<li>+2 bonus to your AC.</li>
