@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--THIS IS XML VERSION-->
+<index>
+	<info>
+		<name>Umbraxakar</name>
+		<description>Book of the Fallen</description>
+		<author>Elias Kokkinos</author>
+		<update version="0.1.17"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
+			<file name="umbraxakar.index" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/umbraxakar.index" />
+		</update>
+	</info>
+	<files>
+		<file name="swords.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml" />
+		<file name="armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml" />
+	
+	</files>
+</index>
