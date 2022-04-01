@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--THIS IS XML VERSION-->
+<index>
+	<info>
+		<name>Umbraxakar</name>
+		<description>Book of the Fallen</description>
+		<author>Elias Kokkinos</author>
+		<update version="0.1.18"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
+			<file name="testing-nikos-cretan.index" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/Nikos-the-Cretan/testing-nikos-cretan.index" />
+		</update>
+	</info>
+	<files>
+		<file name="testing-nikos-swords.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/weapons.xml" />
+		<file name="testing-nikos-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/armors.xml" />
+	
+	</files>
+</index>
