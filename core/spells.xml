@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+  <info>
+    <name>Book of the Fallen - Custom Spells</name>
+    <description>
+		Contains Custom Spells created specifically for the campaign &quot;Book of the Fallen&quot;.
+    </description>
+    <update version="1.0.0">
+      <file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/spells.xml" />
+    </update>
+  </info>
+
+
+  <!--Start:: Custom Spells (Cantrips) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Cantrips) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 1) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 1) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 2) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 2) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 3) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 3) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 4) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 4) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 5) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 5) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 6) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 6) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 7) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 7) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 8) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 8) for Book of the fallen -->
+
+
+  <!--Start:: Custom Spells (Level 9) for Book of the fallen -->
+
+  <!--End:: Custom Spells (Level 9) for Book of the fallen -->
+  
+</elements>
