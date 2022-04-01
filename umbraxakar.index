@@ -11,6 +11,7 @@
 	<files>
 		<file name="swords.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml" />
 		<file name="armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml" />
+		<file name="spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/spells.xml" />
 	
 	</files>
 </index>
