@@ -45,7 +45,7 @@
 			<set name="enhancement">3</set>
 			<set name="weapon">ID_INTERNAL_WEAPON_GROUP_SWORDS</set>
 		</setters>
-	</element>
+  </element>
 
   <element name="Hammer of Hephaestus" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_HAMMER_OF_HEPHAESTUS">
     <supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_BLUDGEONING, ID_INTERNAL_WEAPON_PROPERTY_VERSATILE, ID_INTERNAL_WEAPON_GROUP_HAMMERS</supports>
@@ -182,6 +182,33 @@
 	<rules>
 	  <stat name="ac:misc" value="2" />
 	</rules>
+  </element>
+  <element name="Crysknife" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_CRYSKNIFE">
+    <supports>ID_INTERNAL_WEAPON_CATEGORY_SIMPLE_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_PROPERTY_THROWN</supports>
+    <description>
+	  <p>This dagger grants its wielder the following benefits:
+	  <ul>
+	    <li>+3d4 Psychic damage.</li>
+	    <li>Range when thrown: 30/90 ft</li>
+		<li><b><i>Shifting Sands:</i></b> The weapon can appear in the owners hand when its command word is spoken (Free Action)</li>
+		<li><b><i>Shai-Hulud Skin:</i></b> You can use your Reaction to turn your skin into a layered, string as mithral, brown skin that provides the brearer with 50 temporary HP. This effect ends when all the temporary HP are depleted or at the start of the bearer's next turn.</li>
+		<li><b><i>Missionaria Protectiva:</i></b> There is a deep cultural recognition among people of the desert of this type of blade. They consider the acquisition of the blad as a consequence of fate and will treat the bearer with the utmost respect.</li>
+	  </ul>
+	  </p>
+    </description>
+    <setters>
+	  <set name="keywords">dagger</set>
+      <set name="category">Magic Weapons</set>
+	  <set name="type" addition="dagger">Weapon</set>
+	  <set name="weapon">Dagger</set>
+      <set name="cost" currency="gp">0</set>
+	  <set name="slot">onehand</set>
+	  <set name="range">30/90</set>
+	  <set name="damage" type="piercing">1d4</set>
+      <set name="attunement">true</set>
+      <set name="rarity">Legendary</set>
+	  <set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_DAGGER</set>
+    </setters>
   </element>
   <!--End:: Custom Weapons for Book of the fallen -->
   
