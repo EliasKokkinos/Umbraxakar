@@ -12,7 +12,26 @@
 
 
   <!--Start:: Custom Spells (Cantrips) for Book of the fallen -->
-
+  <element name="Custom Spell" type="Spell" source="Test Handbook" id="CUSTOM_SPELL_123">
+    <supports>Sorcerer, Wizard, Artificer</supports>
+    <description>
+      <p>THIS IS A TEST</p>
+    </description>
+    <setters>
+      <set name="keywords">acid</set>
+      <set name="level">0</set>
+      <set name="school">Conjuration</set>
+      <set name="time">1 action</set>
+      <set name="duration">Instantaneous</set>
+      <set name="range">60 feet</set>
+      <set name="hasVerbalComponent">true</set>
+      <set name="hasSomaticComponent">true</set>
+      <set name="hasMaterialComponent">false</set>
+      <set name="materialComponent" />
+      <set name="isConcentration">false</set>
+      <set name="isRitual">false</set>
+    </setters>
+  </element>
   <!--End:: Custom Spells (Cantrips) for Book of the fallen -->
 
 
