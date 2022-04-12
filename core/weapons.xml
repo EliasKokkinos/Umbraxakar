@@ -210,6 +210,32 @@
 	  <set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_DAGGER</set>
     </setters>
   </element>
+  <element name="Staff or Molten Lava" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_STAFF_STAFF_OF_MOLTEN_LAVA">
+    <description>
+	  <p>A Staff of Molten Lava gifted to the mage Darwin by the spirit of Jólnir, an Ascendant god of volcanoes.
+	  <ul>
+	    <li>The staff can be made to shine bright Sunlight in a 30ft radius, and dim light for an additional 30ft.</li>
+	    <li>When attuned, the bearer gains access to the Firebrand spell.</li>
+	  </ul>
+	  </p>
+	  <div class="reference">
+	    <div element="ID_BOTF_SPELL_FIREBRAND" />
+	  </div>
+    </description>
+    <setters>
+	  <set name="category">Staffs</set>
+	  <set name="cost" currency="gp">0</set>
+	  <set name="weight" lb="4">4 lb.</set>
+	  <set name="slot">onehand</set>
+	  <set name="weapon">Quarterstaff</set>
+	  <set name="type">Staff</set>
+	  <set name="attunement" addition="by a Wizard or Sorcerer">true</set>
+	  <set name="rarity">Very Rare</set>
+    </setters>
+    <rules>
+	  <grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND" />
+	</rules>
+  </element>
   <!--End:: Custom Weapons for Book of the fallen -->
   
 </elements>
