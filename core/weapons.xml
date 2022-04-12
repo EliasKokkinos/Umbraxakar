@@ -230,7 +230,7 @@
 	  <set name="weapon">Quarterstaff</set>
 	  <set name="type">Staff</set>
 	  <set name="attunement" addition="by a Wizard or Sorcerer">true</set>
-	  <set name="rarity">Very Rare</set>
+	  <set name="rarity">Legendary</set>
     </setters>
     <rules>
 	  <grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND" />
