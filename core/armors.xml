@@ -37,6 +37,7 @@
 			<stat name="perception:passive" value="5" bonus="advantage"/>
 		</rules>
 	</element>
+	
 	<element name="Tiara of the Mindmaster Matriarch" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_TIARA_OF_THE_MINDMASTER_MATRIARCH">
 		<description>
 			<p>While wearing this Tiara, you can use an action to cast the<b><i>Telepathic Bond</i></b>(amended) spell from it.</p>
@@ -60,6 +61,7 @@
 			<grant type="Spell" id="ID_PHB_SPELL_DOMINATE_PERSON"/>
 		</rules>
 	</element>
+	
 	<element name="Mask of the Duke" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_MASK_OF_THE_DUKE">
 		<description>
 			<p>This skull mask covers the top of your face and offers several benefits while worn. The mask has 5 charges and regains all expended charges daily at dusk. While wearing the mask, you can use an action to expend 1 of its charges to cast one of the following spells from it (save DC 16):
@@ -110,6 +112,7 @@
 			<grant type="Spell" id="ID_PHB_SPELL_TONGUES"/>
 		</rules>
 	</element>
+	
 	<element name="Armor of the Duke (Nobility Plate)" type="Magic Item" source="Book of the Fallen" id="ID_WOTC_DMG_MAGIC_ITEM_ARMOR_OF_THE_DUKE_NOBILITY_PLATE">
 		<description>
 			<p>This Plate dark armor has been made from nobility steel.<br/>
