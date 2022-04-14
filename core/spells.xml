@@ -11,53 +11,79 @@
   </info>
 
 
-  <!--Start:: Custom Spells (Cantrips) for Book of the fallen -->
+	<!--Start:: Custom Spells (Cantrips) for Book of the fallen -->
 
-  <!--End:: Custom Spells (Cantrips) for Book of the fallen -->
-
-
-  <!--Start:: Custom Spells (Level 1) for Book of the fallen -->
-
-  <!--End:: Custom Spells (Level 1) for Book of the fallen -->
+	<!--End:: Custom Spells (Cantrips) for Book of the fallen -->
 
 
-  <!--Start:: Custom Spells (Level 2) for Book of the fallen -->
+	<!--Start:: Custom Spells (Level 1) for Book of the fallen -->
 
-  <!--End:: Custom Spells (Level 2) for Book of the fallen -->
-
-
-  <!--Start:: Custom Spells (Level 3) for Book of the fallen -->
-
-  <!--End:: Custom Spells (Level 3) for Book of the fallen -->
+	<!--End:: Custom Spells (Level 1) for Book of the fallen -->
 
 
-  <!--Start:: Custom Spells (Level 4) for Book of the fallen -->
+	<!--Start:: Custom Spells (Level 2) for Book of the fallen -->
 
-  <!--End:: Custom Spells (Level 4) for Book of the fallen -->
-
-
-  <!--Start:: Custom Spells (Level 5) for Book of the fallen -->
-
-  <!--End:: Custom Spells (Level 5) for Book of the fallen -->
+	<!--End:: Custom Spells (Level 2) for Book of the fallen -->
 
 
-  <!--Start:: Custom Spells (Level 6) for Book of the fallen -->
+	<!--Start:: Custom Spells (Level 3) for Book of the fallen -->
 
-  <!--End:: Custom Spells (Level 6) for Book of the fallen -->
-
-
-  <!--Start:: Custom Spells (Level 7) for Book of the fallen -->
-
-  <!--End:: Custom Spells (Level 7) for Book of the fallen -->
+  	<!--End:: Custom Spells (Level 3) for Book of the fallen -->
 
 
-  <!--Start:: Custom Spells (Level 8) for Book of the fallen -->
+	<!--Start:: Custom Spells (Level 4) for Book of the fallen -->
+	<element name="Firebrand" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_FIREBRAND">
+		<supports>Sorcerer, Wizard</supports>
+		<description>
+			<p>Pillars of lava erupt from the chosen points, shattering the earth and reaching a height of 20 feet. Each pillar of flame occupies a 5ft square and deals 10d6 points of Fire damage on a failed dexterity save, or half as much damage on a successful one. Creatures that fail the save are knocked prone.
+				<ul>
+					<li>The spell creates a number of pillars equal to 2x Proficiency bonus.</li>
+					<li>The flame ignites flammable objects in the area that aren’t being worn or carried.</li>
+				</ul>
+			</p>
+			<p><b><i>At Higher Levels:</i></b>When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d6 for each slot level above 4th.</p>
+		</description>
+		<setters>
+			<set name="keywords">fire</set>
+			<set name="level">4</set>
+			<set name="school">Evocation</set>
+			<set name="time">1 action</set>
+			<set name="duration">Instantaneous</set>
+			<set name="range">150 feet</set>
+			<set name="hasVerbalComponent">true</set>
+			<set name="hasSomaticComponent">true</set>
+			<set name="hasMaterialComponent">true</set>
+			<set name="materialComponent">a small piece of petrified lava</set>
+			<set name="isConcentration">false</set>
+			<set name="isRitual">false</set>
+		</setters>
+	</element>
 
-  <!--End:: Custom Spells (Level 8) for Book of the fallen -->
+	<!--End:: Custom Spells (Level 4) for Book of the fallen -->
 
 
-  <!--Start:: Custom Spells (Level 9) for Book of the fallen -->
+	<!--Start:: Custom Spells (Level 5) for Book of the fallen -->
 
-  <!--End:: Custom Spells (Level 9) for Book of the fallen -->
+	<!--End:: Custom Spells (Level 5) for Book of the fallen -->
+
+
+	<!--Start:: Custom Spells (Level 6) for Book of the fallen -->
+
+	<!--End:: Custom Spells (Level 6) for Book of the fallen -->
+
+
+	<!--Start:: Custom Spells (Level 7) for Book of the fallen -->
+
+	<!--End:: Custom Spells (Level 7) for Book of the fallen -->
+
+
+	<!--Start:: Custom Spells (Level 8) for Book of the fallen -->
+
+	<!--End:: Custom Spells (Level 8) for Book of the fallen -->
+
+
+	<!--Start:: Custom Spells (Level 9) for Book of the fallen -->
+
+	<!--End:: Custom Spells (Level 9) for Book of the fallen -->
   
 </elements>

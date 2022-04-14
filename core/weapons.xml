@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <elements>
-  <info>
-    <name>Book of the Fallen - Custom Weapons</name>
-    <description>
+	<info>
+		<name>Book of the Fallen - Custom Weapons</name>
+		<description>
 		Contains Custom Swords created specifically for the campaign &quot;Book of the Fallen&quot;.
-    </description>
-    <update version="1.0.0">
-      <file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml" />
-    </update>
-  </info>
+		</description>
+		<update version="1.0.0">
+			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
+		</update>
+	</info>
 
-  <!--Start:: Custom Weapons for Book of the fallen -->
+	<!--Start:: Custom Weapons for Book of the fallen -->
 	<element name="Dragnipur" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_DRAGNIPUR">
 		<description>
 			<p>The black blade of this sword is crafted from a mysterious arcane alloy which seems to only reflect moonlight. Its blade is wider than a typical sword of its type, with a pronounced medial ridge. It's lightness in unparallel. 
-			Sideswept golden quillons protect the hand, while an ornate vine shaped forward basket surrounds a dull part of the blade.</p>
-			<br />
+        Sideswept golden quillons protect the hand, while an ornate vine shaped forward basket surrounds a dull part of the blade.			</p>
+			<br/>
 			<p>You gain the following benefits when attuned to Dragnipur:</p>
 			<p class="indent">
 				<ul>
 					<li>You gain a +3 bonus to attack and damage rolls made with this magic weapon. In addition, the weapon ignores resistance to slashing damage.</li>
 					<li>When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creature's heads. 
-				The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions,           
-				or the GM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 6d8 slashing damage from the hit.</li>
+            The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions,           
+            or the GM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 6d8 slashing damage from the hit.					</li>
 					<li>When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: the target has disadvantage on the next saving throw it makes before the end of your next turn. 
-				The creature ignores this effect if it's immune to the frightened condition. Once you use this property, you can't do so again until the next dusk.</li>
+            The creature ignores this effect if it's immune to the frightened condition. Once you use this property, you can't do so again until the next dusk.					</li>
 					<li>You can see in magical darkness.</li>
 					<li>You are immune to being frightned.</li>
-					<li>
-						<em>Gift of Draconus.</em> Any creature slain by the sword can have their soul pulled into it. This is a punishment reserved for the most wretched creatures.</li>
-					<li>
-						<em>Disheartening Strike.</em> When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: 
-				the target has disadvantage on the next saving throw it makes before the end of your next turn. The creature ignores this effect if it's immune to the frightened condition. Once you use this property, 
-				you can't do so again until the next dusk.
+					<li><em>Gift of Draconus.</em>Any creature slain by the sword can have their soul pulled into it. This is a punishment reserved for the most wretched creatures.</li>
+					<li><em>Disheartening Strike.</em>When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: 
+            the target has disadvantage on the next saving throw it makes before the end of your next turn. The creature ignores this effect if it's immune to the frightened condition. Once you use this property, 
+            you can't do so again until the next dusk.
 					</li>
 				</ul>
 			</p>
@@ -54,11 +52,11 @@
 		<description>
 			<p>
 				<strong>
-					<br />
+					<br/>
 					<em>Lore:</em>
-				</strong> The wielder is aware that Hephaestus is one of the many names of the god of Blacksmiths, Draconus.
+				</strong>The wielder is aware that Hephaestus is one of the many names of the god of Blacksmiths, Draconus.
 			</p>
-			<br />
+			<br/>
 			<p>You gain the following benefits when attuned and wielding the Hammer of Hephaestus:</p>
 			<p class="indent">
 				<ul>
@@ -83,49 +81,48 @@
 			<set name="weapon">Warhammer</set>
 		</setters>
 	</element>
-
 	<element name="Glaive of the Sword" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_GLAIVE_OF_THE_SWORD">
 		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_SLASHING, ID_INTERNAL_WEAPON_PROPERTY_HEAVY, ID_INTERNAL_WEAPON_PROPERTY_REACH, ID_INTERNAL_WEAPON_PROPERTY_TWOHANDED</supports>
 		<description>
-		<p>
-			<ul>
-			<li>You gain a +2 bonus to attack and damage rolls made with this magic weapon.</li>
-			<li>When you hit, you add an additional 2d4 Necrotic Damage.</li>
-			<li>Requires attunement (1 hour of meditation).</li>
-			<li>This weapon has 6 charges and regains 1d4 + 2 expended charges daily at dusk. While holding this glaive, you can expend 1 or more of its charges to cast one of the following spells from it (Save DC 16):<br />
-			- Mirror Image (1 charge)<br />
-			- Phantom Steed (1 charge)<br />
-			- Speak with Dead (1 charge)<br />
-			- Spirit Guardians (2 charges)</li>
-			</ul>
-		</p>
-		<p>
-		<strong><em>Spectral Warrior: </em></strong>Once on each of your turns, when you hit a creature with this Glaive, you can choose to summon a Spectral Warrior from the weapon. Until the start of your next turn, that creature is haunted by the warrior. While haunted, a creature has disadvantage on weapon attacks against you.
-		</p>
-		<p>
-		<strong><em>Spectral Phalanx: </em></strong>You can use an action while holding this glaive to expend 3 of its charges and point it forward commandingly. Four spectral, glaive-wielding warriors appear in line with you and march in a 25-foot-by-50(max)-foot  line in a direction you choose. You can choose to traverse less than 50 feet. During the attack you become spectral as well, and you can select how many of the four spectral warriors stand to the left and your right, essentially determining you position in the phalanx.  This movement does not count towards your allotted movement in a given round, and can only be initiated if an enemy will be affected during the march. As a spectral entity you can pass through enemies, but not stop in their occupied area, and solid objects spanning less that a continuous 3 feet. This restriction does not apply for the summoned spectral warriors.<br />
-		Any creature within that line’s area must make a DC 16 Intelligence saving throw. On a failed save, a creature takes 3d10 necrotic damage and 3d10 psychic damage and is affected by the weapon’s spectral warrior property. On a success, the creature takes half as much damage and isn’t affected by the spectral warriors.
-		Spectral Phalanx counts as a Level 1 spell for the purposes of the players turn, but does not consume a spell slot and cannot be countered or stopped by the normal means applying for a spell of that level.
-		</p>
-		<p>
-		<br /><strong>Lore:</strong>
-		The Glaive is believed to have been crafted by the God Hephaestus himself, and enchanted by the master enchanter Samuel Yellin.<br />
-		When first attuned to the Glaive the bearer is made aware that the weapon and others of its kind where carried by some of the men in the company known as Dassem's Sword and in a vision can see soldiers saluting.<br />
-		<br />
-		In the pommel something is written in a strange unknown language.	  
-		</p>
-		<div class="reference">
-			<div element="ID_PHB_SPELL_MIRROR_IMAGE" />
-		</div>
-		<div class="reference">
-			<div element="ID_PHB_SPELL_PHANTOM_STEED" />
-		</div>
-		<div class="reference">
-			<div element="ID_PHB_SPELL_SPEAK_WITH_DEAD" />
-		</div>
-		<div class="reference">
-			<div element="ID_PHB_SPELL_SPIRIT_GUARDIANS" />
-		</div>
+			<p>
+				<ul>
+					<li>You gain a +2 bonus to attack and damage rolls made with this magic weapon.</li>
+					<li>When you hit, you add an additional 2d4 Necrotic Damage.</li>
+					<li>Requires attunement (1 hour of meditation).</li>
+					<li>This weapon has 6 charges and regains 1d4 + 2 expended charges daily at dusk. While holding this glaive, you can expend 1 or more of its charges to cast one of the following spells from it (Save DC 16):<br/>
+		  - Mirror Image (1 charge)<br/>
+		  - Phantom Steed (1 charge)<br/>
+		  - Speak with Dead (1 charge)<br/>
+		  - Spirit Guardians (2 charges)</li>
+				</ul>
+			</p>
+			<p>
+				<strong><em>Spectral Warrior:</em></strong>Once on each of your turns, when you hit a creature with this Glaive, you can choose to summon a Spectral Warrior from the weapon. Until the start of your next turn, that creature is haunted by the warrior. While haunted, a creature has disadvantage on weapon attacks against you.
+			</p>
+			<p>
+				<strong><em>Spectral Phalanx:</em></strong>You can use an action while holding this glaive to expend 3 of its charges and point it forward commandingly. Four spectral, glaive-wielding warriors appear in line with you and march in a 25-foot-by-50(max)-foot  line in a direction you choose. You can choose to traverse less than 50 feet. During the attack you become spectral as well, and you can select how many of the four spectral warriors stand to the left and your right, essentially determining you position in the phalanx.  This movement does not count towards your allotted movement in a given round, and can only be initiated if an enemy will be affected during the march. As a spectral entity you can pass through enemies, but not stop in their occupied area, and solid objects spanning less that a continuous 3 feet. This restriction does not apply for the summoned spectral warriors.<br/>
+	  Any creature within that line’s area must make a DC 16 Intelligence saving throw. On a failed save, a creature takes 3d10 necrotic damage and 3d10 psychic damage and is affected by the weapon’s spectral warrior property. On a success, the creature takes half as much damage and isn’t affected by the spectral warriors.
+	  Spectral Phalanx counts as a Level 1 spell for the purposes of the players turn, but does not consume a spell slot and cannot be countered or stopped by the normal means applying for a spell of that level.
+			</p>
+			<p>
+				<br/><strong>Lore:</strong>
+	  The Glaive is believed to have been crafted by the God Hephaestus himself, and enchanted by the master enchanter Samuel Yellin.				<br/>
+	  When first attuned to the Glaive the bearer is made aware that the weapon and others of its kind where carried by some of the men in the company known as Dassem's Sword and in a vision can see soldiers saluting.				<br/>
+				<br/>
+	  In the pommel something is written in a strange unknown language.	  
+			</p>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_MIRROR_IMAGE"/>
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_PHANTOM_STEED"/>
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_SPEAK_WITH_DEAD"/>
+			</div>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_SPIRIT_GUARDIANS"/>
+			</div>
 		</description>
 		<setters>
 			<set name="keywords">glaive</set>
@@ -140,53 +137,105 @@
 			<set name="weapon">Glaive</set>
 		</setters>
 		<rules>
-			<grant type="Spell" id="ID_PHB_SPELL_MIRROR_IMAGE" />
-			<grant type="Spell" id="ID_PHB_SPELL_PHANTOM_STEED" />
-			<grant type="Spell" id="ID_PHB_SPELL_SPEAK_WITH_DEAD" />
-			<grant type="Spell" id="ID_PHB_SPELL_SPIRIT_GUARDIANS" />
+			<grant type="Spell" id="ID_PHB_SPELL_MIRROR_IMAGE"/>
+			<grant type="Spell" id="ID_PHB_SPELL_PHANTOM_STEED"/>
+			<grant type="Spell" id="ID_PHB_SPELL_SPEAK_WITH_DEAD"/>
+			<grant type="Spell" id="ID_PHB_SPELL_SPIRIT_GUARDIANS"/>
 		</rules>
 	</element>
-
 	<element name="Matriarch's Kiss" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MATRIARCHS_KISS">
 		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_GROUP_SWORDS</supports>
 		<description>
-		<p>
-			<ul>
-			<li>You gain a +2 bonus to attack and damage rolls made with this magic weapon.</li>
-			<li>When you hit, you add an additional 1d6 Slashing + 1d6 Necrotic.</li>
-			<li>Requires attunement.</li>
-			<li>Causes Bleeding on failed Constitution save (DC 15).</li>
-			</ul>
-		</p>
-		<p>
-		<strong><em>Envelop in Mist: </em></strong>
-		<ul>
-			<li>While wielded in combat a magical mist envelops the bearer, providing them with an additional +2 AC.</li>
-			<li>As a Reaction, the mist can be caused to thicken and cause any attacks targeting the user to be taken with disadvantage.</li>
-		</ul>
-		</p>
-		<p>
-		<br /><strong>Bleeding Condition:<br /></strong>
-		Bleeding creatures must make a Constitution Saving Throw DC 14 at the end of their turns, or lose 18 (6d6) maximum hit points. A successful Const. save of DC 18 ends this condition. Multiple instances of bleeding do not stack. If a bleeding creature's maximum hit points becomes less than their current hit points, its current hit points are reduced to match the max. The target gains a level of exhaustion for every 1/5 of its original max hp lost this way. A DC 15 Wisdom (Medicine) check or magical healing will stop the bleeding. A long rest with food and water recovers all max hit points and all levels of bleeding exhaustion. Alternatively, Greater Restoration or a DC 18 Wisdom (Medicine) check may restore the max hit points, but not the exhaustion. 	  
-		</p>
+			<p>
+				<ul>
+					<li>You gain a +2 bonus to attack and damage rolls made with this magic weapon.</li>
+					<li>When you hit, you add an additional 1d6 Slashing + 1d6 Necrotic.</li>
+					<li>Requires attunement.</li>
+					<li>Causes Bleeding on failed Constitution save (DC 15).</li>
+				</ul>
+			</p>
+			<p>
+				<strong><em>Envelop in Mist:</em></strong>
+				<ul>
+					<li>While wielded in combat a magical mist envelops the bearer, providing them with an additional +2 AC.</li>
+					<li>As a Reaction, the mist can be caused to thicken and cause any attacks targeting the user to be taken with disadvantage.</li>
+				</ul>
+			</p>
+			<p>
+				<br/><strong>Bleeding Condition:<br/></strong>
+	  Bleeding creatures must make a Constitution Saving Throw DC 14 at the end of their turns, or lose 18 (6d6) maximum hit points. A successful Const. save of DC 18 ends this condition. Multiple instances of bleeding do not stack. If a bleeding creature's maximum hit points becomes less than their current hit points, its current hit points are reduced to match the max. The target gains a level of exhaustion for every 1/5 of its original max hp lost this way. A DC 15 Wisdom (Medicine) check or magical healing will stop the bleeding. A long rest with food and water recovers all max hit points and all levels of bleeding exhaustion. Alternatively, Greater Restoration or a DC 18 Wisdom (Medicine) check may restore the max hit points, but not the exhaustion. 	  
+			</p>
 		</description>
 		<setters>
-		<set name="keywords">shortsword</set>
-		<set name="category">Magic Weapons</set>
-		<set name="cost" currency="gp">0</set>
-		<set name="rarity">Legendary</set>
-		<set name="type" addition="shortsword">Weapon</set>
-		<set name="slot">onehand</set>
-		<set name="damage" type="piercing">1d6</set>
-		<set name="attunement">true</set>
-		<set name="enhancement">2</set>
-		<set name="weapon">Shortsword</set>
-		<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_SHORTSWORD</set>
+			<set name="keywords">shortsword</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="rarity">Legendary</set>
+			<set name="type" addition="shortsword">Weapon</set>
+			<set name="slot">onehand</set>
+			<set name="damage" type="piercing">1d6</set>
+			<set name="attunement">true</set>
+			<set name="enhancement">2</set>
+			<set name="weapon">Shortsword</set>
+			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_SHORTSWORD</set>
 		</setters>
 		<rules>
-		<stat name="ac:misc" value="2" />
+			<stat name="ac:misc" value="2"/>
 		</rules>
 	</element>
-  <!--End:: Custom Weapons for Book of the fallen -->
+	<element name="Crysknife" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_CRYSKNIFE">
+		<supports>ID_INTERNAL_WEAPON_CATEGORY_SIMPLE_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_PROPERTY_THROWN</supports>
+		<description>
+			<p>This dagger grants its wielder the following benefits:
+				<ul>
+					<li>+3d4 Psychic damage.</li>
+					<li>Range when thrown: 30/90 ft</li>
+					<li><b><i>Shifting Sands:</i></b>The weapon can appear in the owners hand when its command word is spoken (Free Action)</li>
+					<li><b><i>Shai-Hulud Skin:</i></b>You can use your Reaction to turn your skin into a layered, string as mithral, brown skin that provides the brearer with 50 temporary HP. This effect ends when all the temporary HP are depleted or at the start of the bearer's next turn.</li>
+					<li><b><i>Missionaria Protectiva:</i></b>There is a deep cultural recognition among people of the desert of this type of blade. They consider the acquisition of the blad as a consequence of fate and will treat the bearer with the utmost respect.</li>
+				</ul>
+			</p>
+		</description>
+		<setters>
+			<set name="keywords">dagger</set>
+			<set name="category">Magic Weapons</set>
+			<set name="type" addition="dagger">Weapon</set>
+			<set name="weapon">Dagger</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">onehand</set>
+			<set name="range">30/90</set>
+			<set name="damage" type="piercing">1d4</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_DAGGER</set>
+		</setters>
+	</element>
+	<element name="Staff or Molten Lava" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_STAFF_STAFF_OF_MOLTEN_LAVA">
+		<description>
+			<p>A Staff of Molten Lava gifted to the mage Darwin by the spirit of Jólnir, an Ascendant god of volcanoes.
+				<ul>
+					<li>The staff can be made to shine bright Sunlight in a 30ft radius, and dim light for an additional 30ft.</li>
+					<li>When attuned, the bearer gains access to the Firebrand spell.</li>
+				</ul>
+			</p>
+			<div class="reference">
+				<div element="ID_BOTF_SPELL_FIREBRAND"/>
+			</div>
+		</description>
+		<setters>
+			<set name="category">Staffs</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="weight" lb="4">4 lb.</set>
+			<set name="slot">onehand</set>
+			<set name="weapon">Quarterstaff</set>
+			<set name="type">Staff</set>
+			<set name="attunement" addition="by a Wizard or Sorcerer">true</set>
+			<set name="rarity">Legendary</set>
+		</setters>
+		<rules>
+			<grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND"/>
+		</rules>
+	</element>
+	<!--End:: Custom Weapons for Book of the fallen -->
   
 </elements>
