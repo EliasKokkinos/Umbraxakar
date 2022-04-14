@@ -210,7 +210,7 @@
 			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_DAGGER</set>
 		</setters>
 	</element>
-	<element name="Staff or Molten Lava" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_STAFF_STAFF_OF_MOLTEN_LAVA">
+	<element name="Jolnir" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_STAFF_Jolnir">
 		<description>
 			<p>A Staff of Molten Lava gifted to the mage Darwin by the spirit of Jólnir, an Ascendant god of volcanoes.
 				<ul>
