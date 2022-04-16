@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <elements>
 	<info>
-		<name>Book of the Fallen - Custom Armors</name>
+		<name>Book of the Fallen - Custom Supernatural Gifts and Boons</name>
 		<description>
-		Contains Custom Swords created specifically for the campaign &quot;Book of the Fallen&quot;.
+		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
 		<update version="1.0.1">
-			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
+			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
 	
