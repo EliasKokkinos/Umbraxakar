@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+	<info>
+		<name>Book of the Fallen - Custom Armors</name>
+		<description>
+		Contains Custom Swords created specifically for the campaign &quot;Book of the Fallen&quot;.
+		</description>
+		<update version="1.0.1">
+			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
+		</update>
+	</info>
+	
+	<!--Start:: Custom Supernatural Gifts and Boons for Book of the fallen -->
+	<element name="Mark of Tyr" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_MARK_OF_TYR">
+		<description>
+			<p>You can use your action to unleash the divine energy within yourself, causing a searing light to radiate from you, pour out of your eyes and mouth, and threaten to char you.
+				<ul>
+					<li>When you transform, all enemies within 30 ft. of you must make a dexterity saving throw against your spell DC, taking (Prof. Bonus)d8 radiant damage on a failed save, or half as much on a successful one. Allies within the same range get healed for (Prof. Bonus)d8 instead.</li>
+					<li>Your transformation lasts for rounds equal to your cleric level divided by half (rounded down) or until you end it as a free action. During it, you can use your bonus action to summon a radiant orb within 60 ft of you. A creature that either passes through or starts it turn in the same square as the orb, will regain a number of hit points equal to 1d8 + your spellcasting ability modifier if it is an ally, or take an equal amount of damage if it is an enemy. The orb then gets consumed. You may have multiple orbs on the field, but they expire when your transformation ends.</li>
+					<li>Once you use this trait, you can't use it again until you finish a long rest.</li>
+				</ul>
+			</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->
+	
+</elements>
