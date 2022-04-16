@@ -13,5 +13,6 @@
 		<file name="armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml" />
 		<file name="spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/spells.xml" />
 		<file name="supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml" />
+		<file name="companions.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/companions.xml" />
 	</files>
 </index>
