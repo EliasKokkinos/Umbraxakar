@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+	<info>
+		<name>Book of the Fallen - Custom Companions</name>
+		<description>
+		Contains Custom Companions created specifically for the campaign &quot;Book of the Fallen&quot;.
+		</description>
+		<update version="1.0.0">
+			<file name="botf-custom-companions.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/companions.xml"/>
+		</update>
+	</info>
+
+	<!--Start:: Custom Companions for Book of the fallen -->
+	<element name="Kurald Galain Steed" type="Companion" source="Book of the Fallen" id="ID_BOTF_COMPANION_KURALD_GALAIN_STEED">
+		<description/>
+		<setters>
+			<set name="strength">18</set>
+			<set name="dexterity">15</set>
+			<set name="constitution">14</set>
+			<set name="intelligence">12</set>
+			<set name="wisdom">12</set>
+			<set name="charisma">13</set>
+			<set name="ac">15</set>
+			<set name="hp">114 (16d12+2)</set>
+			<set name="speed">50 ft.</set>
+			<set name="senses">Passive Perception 13</set>
+			<set name="languages">Ancient, Common, Draconic</set>
+			<set name="skills">Insight +3, Athletics +7, Intimidation +4</set>
+			<set name="type">Beast</set>
+			<set name="size">Large</set>
+			<set name="alignment">Neutral Good</set>
+			<set name="challenge">0</set>
+			<set name="traits">ID_BOTF_COMPANION_TRAIT_KURALD_GALAIN_SIGHT,ID_BOTF_COMPANION_TRAIT_KURALD_GALAIN_DARKNESS,ID_BOTF_COMPANION_TRAIT_MAGIC_RESISTANCE</set>
+			<set name="actions">ID_BOTF_COMPANION_ACTION_HOOVES_ATTACK,ID_BOTF_COMPANION_ACTION_TRAMPLING_CHARGE</set>
+		</setters>
+		<rules>
+			<stat name="companion:ac" value="15"/>
+			<stat name="companion:hp:max" value="114" bonus="base"/>
+			<stat name="companion:speed" value="50" bonus="base"/>
+			<stat name="companion:athletics:proficiency" value="3" bonus="base"/>
+			<stat name="companion:insight:proficiency" value="companion:proficiency" bonus="base"/>
+			<stat name="companion:intimidation:proficiency" value="3" bonus="base"/>
+			<stat name="companion:perception:proficiency" value="companion:proficiency" bonus="base"/>
+		</rules>
+	</element>
+	<!--End:: Custom Companions for Book of the fallen -->
+  
+  
+	<!--Start:: Custom Companions Traits for Book of the fallen -->
+	<element name="Kurald Galain Darkness" type="Companion Trait" source="Book of the Fallen" id="ID_BOTF_COMPANION_TRAIT_KURALD_GALAIN_DARKNESS">
+		<description>
+			<p>Magical darkness spreads from the steed to fill a 15-foot-radius sphere. The darkness spreads around corners. A creature with darkvision can’t see through this darkness, and nonmagical light can’t illuminate it.
+				<br/>
+			If any of this spell’s area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled.
+				<br/>
+			Any creature that finds themselves inside the darkness at the beginning of turn their must succeed on a Wisdom Save DC 13 or suffer 2d12 Psychic damage and become stunned, as they suffer disorienting illusions.
+				<br/>
+			The beast can choose to exclude creatures from experiencing these effects.
+			</p>
+		</description>
+		<sheet>
+			<description>Magical darkness spreads from the steed to fill a 15-foot-radius sphere. The darkness spreads around corners. A creature with darkvision can’t see through this darkness, and nonmagical light can’t illuminate it. If any of this spell’s area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled. Any creature that finds themselves inside the darkness at the beginning of turn their must succeed on a Wisdom Save DC 13 or suffer 2d12 Psychic damage and become stunned, as they suffer disorienting illusions. The beast can choose to exclude creatures from experiencing these effects.
+			</description>
+		</sheet>
+	</element>
+	
+	<element name="Kurald Galain Sight" type="Companion Trait" source="Book of the Fallen" id="ID_BOTF_COMPANION_TRAIT_KURALD_GALAIN_SIGHT">
+		<description>
+			<p>Magical darkness doesn't impede the steeds darkvision.</p>
+		</description>
+		<sheet>
+			<description>Magical darkness doesn't impede the steeds darkvision.</description>
+		</sheet>
+	</element>
+	
+	<element name="Magic Resistance" type="Companion Trait" source="Book of the Fallen" id="ID_BOTF_COMPANION_TRAIT_MAGIC_RESISTANCE">
+		<description>
+			<p>The steed has advantage on saving throws against spells and other magical effects.</p>
+		</description>
+		<sheet>
+			<description>The steed has advantage on saving throws against spells and other magical effects.</description>
+		</sheet>
+	</element>
+	<!--End:: Custom Companions Traits for Book of the fallen -->
+	
+	
+	<!--Start:: Custom Companions Actions for Book of the fallen -->
+	<element name="Hooves (w/o rider)" type="Companion Action" source="Book of the Fallen" id="ID_BOTF_COMPANION_ACTION_HOOVES_ATTACK">
+		<description>
+			<p>Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 2d12 + 4 bludgeoning damage.</p>
+		</description>
+		<sheet>
+			<description>Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 2d12 + 4 bludgeoning damage.</description>
+		</sheet>
+	</element>
+	
+	<element name="Trampling Charge(w/ or w/o rider)" type="Companion Action" source="Book of the Fallen" id="ID_BOTF_COMPANION_ACTION_TRAMPLING_CHARGE">
+		<description>
+			<p>If the horse moves at least 20 ft. straight toward a creature it can choose to trample it. The target must succeed on a DC 17 Strength saving throw or be knocked prone.<br />
+			If the target is prone, the horse can make an attack with its hooves against it as a bonus action. If the horse has a rider they can take their full action with the command for trampling, consuming their bonus action.</p>
+		</description>
+		<sheet>
+			<description>If the horse moves at least 20 ft. straight toward a creature it can choose to trample it. The target must succeed on a DC 17 Strength saving throw or be knocked prone. If the target is prone, the horse can make an attack with its hooves against it as a bonus action. If the horse has a rider they can take their full action with the command for trampling, consuming their bonus action.</description>
+		</sheet>
+	</element>
+	<!--End:: Custom Companions Actions for Book of the fallen -->
+</elements>
