@@ -13,5 +13,6 @@
 		<file name="testing-nikos-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/armors.xml" />
 		<file name="testing-nikos-spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/Nikos-the-Cretan/core/spells.xml" />
 		<file name="testing-nikos-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/Nikos-the-Cretan/core/supernatural-gifts.xml" />
+		<file name="testing-nikos-companions" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/Nikos-the-Cretan/core/companions.xml" />
 	</files>
 </index>
