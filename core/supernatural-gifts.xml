@@ -15,8 +15,8 @@
 		<description>
 			<p>You can use your action to unleash the divine energy within yourself, causing a searing light to radiate from you, pour out of your eyes and mouth, and threaten to char you.
 				<ul>
-					<li>When you transform, all enemies within 30 ft. of you must make a dexterity saving throw against your spell DC, taking (Prof. Bonus)d8 radiant damage on a failed save, or half as much on a successful one. Allies within the same range get healed for (Prof. Bonus)d8 instead.</li>
-					<li>Your transformation lasts for rounds equal to your cleric level divided by half (rounded down) or until you end it as a free action. During it, you can use your bonus action to summon a radiant orb within 60 ft of you. A creature that either passes through or starts it turn in the same square as the orb, will regain a number of hit points equal to 1d8 + your spellcasting ability modifier if it is an ally, or take an equal amount of damage if it is an enemy. The orb then gets consumed. You may have multiple orbs on the field, but they expire when your transformation ends.</li>
+					<li>When you transform, all enemies within 30 ft. of you must make a Dexterity saving throw against your spell DC, taking (Prof. Bonus)d8 radiant damage on a failed save, or half as much on a successful one. Allies within the same range get healed for (Prof. Bonus)d8 instead.</li>
+					<li>Your transformation lasts for rounds equal to half your Cleric level (rounded down) or until you end it as a Free Action. During it, you can use your Bonus Action to summon a radiant orb within 60 ft of you. A creature that either passes through or starts its turn in the same square as the orb will regain a number of hit points equal to 1d8 + your spellcasting ability modifier if it is an ally, or take an equal amount of damage if it is an enemy. The orb then gets consumed. You may have multiple orbs on the field, but they expire when your transformation ends.</li>
 					<li>Once you use this trait, you can't use it again until you finish a long rest.</li>
 				</ul>
 			</p>
