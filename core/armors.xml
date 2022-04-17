@@ -3,10 +3,10 @@
 	<info>
 		<name>Book of the Fallen - Custom Armors</name>
 		<description>
-		Contains Custom Swords created specifically for the campaign &quot;Book of the Fallen&quot;.
+		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
 		<update version="1.0.1">
-			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
+			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
 
@@ -113,7 +113,7 @@
 		</rules>
 	</element>
 	
-	<element name="Armor of the Duke (Nobility Plate)" type="Magic Item" source="Book of the Fallen" id="ID_WOTC_DMG_MAGIC_ITEM_ARMOR_OF_THE_DUKE_NOBILITY_PLATE">
+	<element name="Armor of the Duke (Nobility Plate)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_OF_THE_DUKE_NOBILITY_PLATE">
 		<description>
 			<p>This Plate dark armor has been made from nobility steel.<br/>
 			Steeped in the blood from relentless battles, this metal carries with it a magical aversion to all things holy. While wearing this armor, you gain:
