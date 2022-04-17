@@ -66,10 +66,10 @@
 	
 	<element name="Kurald Galain Sight" type="Companion Trait" source="Book of the Fallen" id="ID_BOTF_COMPANION_TRAIT_KURALD_GALAIN_SIGHT">
 		<description>
-			<p>Magical darkness doesn't impede the steeds darkvision.</p>
+			<p>Magical darkness doesn't impede the creatures darkvision.</p>
 		</description>
 		<sheet>
-			<description>Magical darkness doesn't impede the steeds darkvision.</description>
+			<description>Magical darkness doesn't impede the creatures darkvision.</description>
 		</sheet>
 	</element>
 	
