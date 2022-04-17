@@ -31,7 +31,7 @@
 			<set name="alignment">Neutral Good</set>
 			<set name="challenge">0</set>
 			<set name="traits">ID_BOTF_COMPANION_TRAIT_KURALD_GALAIN_SIGHT,ID_BOTF_COMPANION_TRAIT_KURALD_GALAIN_DARKNESS,ID_BOTF_COMPANION_TRAIT_MAGIC_RESISTANCE</set>
-			<set name="actions">ID_BOTF_COMPANION_ACTION_HOOVES_ATTACK,ID_BOTF_COMPANION_ACTION_TRAMPLING_CHARGE</set>
+			<set name="actions">ID_BOTF_COMPANION_ACTION_KURALD_GALAIN_HOOVES_ATTACK,ID_BOTF_COMPANION_ACTION_KURALD_GALAIN_TRAMPLING_CHARGE</set>
 		</setters>
 		<rules>
 			<stat name="companion:ac" value="15"/>
@@ -85,7 +85,7 @@
 	
 	
 	<!--Start:: Custom Companions Actions for Book of the fallen -->
-	<element name="Hooves (w/o rider)" type="Companion Action" source="Book of the Fallen" id="ID_BOTF_COMPANION_ACTION_HOOVES_ATTACK">
+	<element name="Hooves (w/o rider)" type="Companion Action" source="Book of the Fallen" id="ID_BOTF_COMPANION_ACTION_KURALD_GALAIN_HOOVES_ATTACK">
 		<description>
 			<p>Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 2d12 + 4 bludgeoning damage.</p>
 		</description>
@@ -94,14 +94,15 @@
 		</sheet>
 	</element>
 	
-	<element name="Trampling Charge(w/ or w/o rider)" type="Companion Action" source="Book of the Fallen" id="ID_BOTF_COMPANION_ACTION_TRAMPLING_CHARGE">
+	<element name="Trampling Charge(w/ or w/o rider)" type="Companion Action" source="Book of the Fallen" id="ID_BOTF_COMPANION_ACTION_KURALD_GALAIN_TRAMPLING_CHARGE">
 		<description>
-			<p>If the horse moves at least 20 ft. straight toward a creature it can choose to trample it. The target must succeed on a DC 17 Strength saving throw or be knocked prone.<br />
-			If the target is prone, the horse can make an attack with its hooves against it as a bonus action. If the horse has a rider they can take their full action with the command for trampling, consuming their bonus action.</p>
+			<p>If the horse moves at least 20 ft. straight toward a creature it can choose to trample it. The target must succeed on a DC 17 Strength saving throw or be knocked prone.<br/>
+			If the target is prone, the horse can make an attack with its hooves against it as a bonus action. If the horse has a rider, they can command for Trampling using their Bonus Action, then take the their Full Action as well after the Trample.			</p>
 		</description>
 		<sheet>
-			<description>If the horse moves at least 20 ft. straight toward a creature it can choose to trample it. The target must succeed on a DC 17 Strength saving throw or be knocked prone. If the target is prone, the horse can make an attack with its hooves against it as a bonus action. If the horse has a rider they can take their full action with the command for trampling, consuming their bonus action.</description>
+			<description>If the horse moves at least 20 ft. straight toward a creature it can choose to trample it. The target must succeed on a DC 17 Strength saving throw or be knocked prone. If the target is prone, the horse can make an attack with its hooves against it as a bonus action.  If the horse has a rider, they can command for Trampling using their Bonus Action, then take the their Full Action as well after the Trample.</description>
 		</sheet>
 	</element>
 	<!--End:: Custom Companions Actions for Book of the fallen -->
+	
 </elements>
