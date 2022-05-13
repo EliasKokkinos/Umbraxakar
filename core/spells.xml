@@ -16,8 +16,29 @@
 	<!--End:: Custom Spells (Cantrips) for Book of the fallen -->
 
 
-	<!--Start:: Custom Spells (Level 1) for Book of the fallen -->
-
+	<!--Start:: Custom Spells (Level 1) for Book of the fallen -->	
+	<element name="Shadow Walk" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_SHADOWWALK">
+		<supports>Bard, Druid, Ranger, Sorcerer, Wizard</supports>
+		<description>
+			<p class="flavor">In the beginning, there was only darkness. It will return.</p>
+			<p>Choose a location within range that is within 5 feet of a creature or in dim light or darkness. You teleport to this location. As a bonus action before or after teleporting, you can make a single melee spell attack against a target within your reach. If you hit, the target takes 1d6 psychic damage. </p>
+			<p class="indent"><b><i>At Higher Levels. </i></b>When you cast this spell using a spell slot of 2nd level or higher, the range increases by 5 feet and the psychic damage increases by 1d6 per spell slot level above 1st.</p>
+		</description>
+		<setters>
+			<set name="keywords"></set>
+			<set name="level">1</set>
+			<set name="school">Divination</set>
+			<set name="time">1 action</set>
+			<set name="duration">Instantaneous</set>
+			<set name="range">15 feet</set>
+			<set name="hasVerbalComponent">true</set>
+			<set name="hasSomaticComponent">true</set>
+			<set name="hasMaterialComponent">false</set>
+			<set name="materialComponent"></set>
+			<set name="isConcentration">false</set>
+			<set name="isRitual">false</set>
+		</setters>
+	</element>
 	<!--End:: Custom Spells (Level 1) for Book of the fallen -->
 
 

@@ -81,6 +81,7 @@
 			<set name="weapon">Warhammer</set>
 		</setters>
 	</element>
+
 	<element name="Glaive of the Sword" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_GLAIVE_OF_THE_SWORD">
 		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_SLASHING, ID_INTERNAL_WEAPON_PROPERTY_HEAVY, ID_INTERNAL_WEAPON_PROPERTY_REACH, ID_INTERNAL_WEAPON_PROPERTY_TWOHANDED</supports>
 		<description>
@@ -143,6 +144,7 @@
 			<grant type="Spell" id="ID_PHB_SPELL_SPIRIT_GUARDIANS"/>
 		</rules>
 	</element>
+
 	<element name="Matriarch's Kiss" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MATRIARCHS_KISS">
 		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_GROUP_SWORDS</supports>
 		<description>
@@ -183,6 +185,7 @@
 			<stat name="ac:misc" value="2"/>
 		</rules>
 	</element>
+
 	<element name="Crysknife" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_CRYSKNIFE">
 		<supports>ID_INTERNAL_WEAPON_CATEGORY_SIMPLE_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_PROPERTY_THROWN</supports>
 		<description>
@@ -210,6 +213,7 @@
 			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_DAGGER</set>
 		</setters>
 	</element>
+	
 	<element name="Jolnir" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_STAFF_Jolnir">
 		<description>
 			<p>A Staff of Molten Lava gifted to the mage Darwin by the spirit of Jólnir, an Ascendant god of volcanoes.
