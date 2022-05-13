@@ -40,9 +40,11 @@
 		</description>
 		<sheet>
 			<description>You can burn steel 1d8 (every short rest if you have access to salvageable steel. The steel must be non magical) times, without expending a spell slot.</description>
+			<description>You can burn iron 1d8 (every short rest if you have access to salvageable steel. The steel must be non magical) times, without expending a spell slot.</description>
 		</sheet>
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
+			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRON" />
 		</rules>
 	</element>
 	<!--End:: Custom Feats for Book of the fallen -->
