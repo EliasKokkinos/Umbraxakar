@@ -43,12 +43,12 @@
 	<element name="Allomancy: Steel" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_ALLOMANCYSTEEL">
 		<supports>Rogue, Ranger, Sorcerer, Wizard, Fighter</supports>
 		<description>
-			<p class="flavor">You have the ability to burn Steel.<b><i>This speel is only available to Mistborn. </i></b></p>
+			<p class="flavor">You have the ability to burn Steel.<b><i>This spell is only available to Mistborn. </i></b></p>
 			<p>Coinshots can "Push" on nearby metals. This can allow them to make metallic objects that weigh 
 				less than they do to fly through the air away from them (using coins, for instance, as weapons). For metallic objects which weigh more than they do, 
 				this can cause them to be pushed away from the object. It was generally assumed that a Coinshot could not Push on metals that pierce or are otherwise 
 				contained in the body of another (e.g., ingested metals).</p>
-			<p class="indent"><b><i>Pushing/Pulling. </i></b>You can push or pull the equivalent to your weight practically 40 feet. You can also use mettallic objects 
+			<p class="indent"><b><i>Pushing. </i></b>You can push the equivalent to your weight practically 40 feet. You can also use mettallic objects 
 				such as coins (30/90 (up to 3 coins) x 1 bludgeoning), Darts (20/60 1d4 piercing) and Daggers (20/60 1d4 piercing) can be used to inflict damage,
 			 	at which case their thrown properties are used.</p>
 		</description>
