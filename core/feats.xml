@@ -15,13 +15,14 @@
 		<description>
 			<p>Shadows now bow to your will, for the Shadowthrone mark is upon your soul. You gain the following benefits:</p>
 			<ul>
+				<li>You can use the Hide action in dim light or darkness.</li>
 				<li>Whenever you take the Hide action and successfully become undetected, you can move normally up to 30 feet before losing the benefits of being hidden.</li>
-				<li>You can cast Duskwalk once without expending a spell slot. Charisma is your spellcasting ability for this spell. You can’t do so again until you finish a short or long rest.</li>
+				<li>You can cast Duskwalk times and casting level equal to your Proficiency Bonus, without expending a spell slot. You can’t do so again until you finish a long rest.</li>
 			</ul>
 		</description>
 		<sheet>
 			<description>Whenever you take the Hide action and successfully become undetected, you can move normally up to 30 feet before losing the benefits of being hidden.
-			Once per short or long rest you can cast Duskwalk once without expending a spell slot. Charisma is your spellcasting ability for this spell.</description>
+			You can cast Duskwalk times and casting level equal to your Proficiency Bonus, without expending a spell slot. You can’t do so again until you finish a long rest.</description>
 		</sheet>
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWWALK" />
