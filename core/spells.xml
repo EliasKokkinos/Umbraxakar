@@ -18,7 +18,7 @@
 
 	<!--Start:: Custom Spells (Level 1) for Book of the fallen -->	
 	<element name="Shadow Walk" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_SHADOWWALK">
-		<supports>Bard, Druid, Ranger, Sorcerer, Wizard</supports>
+		<supports>Rogue, Ranger</supports>
 		<description>
 			<p class="flavor">In the beginning, there was only darkness. It will return.</p>
 			<p>Choose a location within range that is within 5 feet of a creature or in dim light or darkness. You teleport to this location. As a bonus action before or after teleporting, you can make a single melee spell attack against a target within your reach. If you hit, the target takes 1d6 psychic damage. </p>
@@ -35,6 +35,34 @@
 			<set name="hasSomaticComponent">true</set>
 			<set name="hasMaterialComponent">false</set>
 			<set name="materialComponent"></set>
+			<set name="isConcentration">false</set>
+			<set name="isRitual">false</set>
+		</setters>
+	</element>
+
+	<element name="Allomancy: Steel" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_ALLOMANCYSTEEL">
+		<supports>Rogue, Ranger, Sorcerer, Wizard, Fighter</supports>
+		<description>
+			<p class="flavor">You have the ability to burn Steel.<b><i>This speel is only available to Mistborn. </i></b></p>
+			<p>Coinshots can "Push" on nearby metals. This can allow them to make metallic objects that weigh 
+				less than they do to fly through the air away from them (using coins, for instance, as weapons). For metallic objects which weigh more than they do, 
+				this can cause them to be pushed away from the object. It was generally assumed that a Coinshot could not Push on metals that pierce or are otherwise 
+				contained in the body of another (e.g., ingested metals).</p>
+			<p class="indent"><b><i>Pushing/Pulling. </i></b>You can push or pull the equivalent to your weight practically 40 feet. You can also use mettallic objects 
+				such as coins (30/90 (up to 3 coins) x 1 bludgeoning), Darts (20/60 1d4 piercing) and Daggers (20/60 1d4 piercing) can be used to inflict damage,
+			 	at which case their thrown properties are used.</p>
+		</description>
+		<setters>
+			<set name="keywords"></set>
+			<set name="level">1</set>
+			<set name="school">Allomancy</set>
+			<set name="time">1 action</set>
+			<set name="duration">Instantaneous</set>
+			<set name="range">40 feet</set>
+			<set name="hasVerbalComponent">false</set>
+			<set name="hasSomaticComponent">false</set>
+			<set name="hasMaterialComponent">true</set>
+			<set name="materialComponent">Bead of Steel</set>
 			<set name="isConcentration">false</set>
 			<set name="isRitual">false</set>
 		</setters>

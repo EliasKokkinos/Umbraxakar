@@ -28,6 +28,23 @@
 			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWWALK" />
 		</rules>
 	</element>
+
+
+	<element name="Mistborn" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_MIST">
+		<description>
+			<p>You have become Mistborn by the swallowing of a bead of Lerasium:</p>
+			<ul>
+				<li>You can burn various metals which alter your physical and mental abilities. This ability is known as Allomancy and its secrets are closely guarded.</li>
+				<li>You can burn steel 1d8 times (every short rest if you have access to salvageable steel. The steel must be non magical), without expending a spell slot.</li>				
+			</ul>
+		</description>
+		<sheet>
+			<description>You can burn steel 1d8 (every short rest if you have access to salvageable steel. The steel must be non magical) times, without expending a spell slot.</description>
+		</sheet>
+		<rules>
+			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
+		</rules>
+	</element>
 	<!--End:: Custom Feats for Book of the fallen -->
-  
+
 </elements>
