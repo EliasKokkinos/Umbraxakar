@@ -3,7 +3,7 @@
 	<info>
 		<name>Umbraxakar</name>
 		<description>Book of the Fallen</description>
-		<author>Elias Kokkinos</author>
+		<author>Anomander the Rake / Nikos the Cretan</author>
 		<update version="0.1.20"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
 			<file name="umbraxakar.index" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/umbraxakar.index" />
 		</update>
@@ -14,5 +14,6 @@
 		<file name="spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/spells.xml" />
 		<file name="supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml" />
 		<file name="companions.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/companions.xml" />
+		<file name="feats.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml" />
 	</files>
 </index>

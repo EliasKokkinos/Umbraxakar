@@ -11,7 +11,6 @@
 	</info>
 
 	<!--Start:: Custom Feats for Book of the fallen -->
-
 	<element name="Mark of Shadowthrone" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_MOST">
 		<description>
 			<p>Shadows now bow to your will, for the Shadowthrone mark is upon your soul. You gain the following benefits:</p>
