@@ -161,6 +161,31 @@
 			<grant type="Spell" id="ID_PHB_SPELL_NONDETECTION"/>
 		</rules>
 	</element>
+	
+	<element name="Plate Armor of Eloquence" type="Armor" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_HEAVY_PLATE_OF_ELOQUENCE">
+		<supports>ID_INTERNAL_ARMOR_GROUP_HEAVY</supports>
+		<description>
+			<p>Plate Armor of Eloquence Description.</p>
+		</description>
+		<setters>
+			<set name="category">Magic Armor</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="weight" lb="32">32 lb.</set>
+			<set name="slot">body</set>
+			<set name="type" addition="plate">Armor</set>
+			<set name="armor">Plate</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="armorClass">18</set>
+			<set name="enhancement">2</set>
+			<set name="proficiency">ID_PROFICIENCY_ARMOR_PROFICIENCY_PLATE</set>
+		</setters>
+		<rules>
+			<stat name="ac:armored:enhancement" value="2" bonus="enhancement"/>
+			<!--<stat name="charisma" value="1" /> -->
+			<grant type="Feat" id="ID_BOTF_FEAT_SILVERTONGUED_PERSUASION"/>
+		</rules>
+	</element>
 	<!--End:: Custom Armors for Book of the fallen -->
   
 </elements>
