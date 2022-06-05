@@ -162,7 +162,7 @@
 		</rules>
 	</element>
 	
-	<element name="Plate Armor of Eloquence" type="Armor" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_HEAVY_PLATE_OF_ELOQUENCE">
+	<element name="Plate Armor of Eloquence" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_HEAVY_PLATE_OF_ELOQUENCE">
 		<supports>ID_INTERNAL_ARMOR_GROUP_HEAVY</supports>
 		<description>
 			<p>Plate Armor of Eloquence Description.</p>
