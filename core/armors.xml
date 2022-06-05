@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.1">
+		<update version="1.0.2">
 			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
@@ -164,13 +164,17 @@
 	
 	<element name="Plate Armor of Eloquence" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_HEAVY_PLATE_OF_ELOQUENCE">
 		<description>
-			<p>Plate Armor of Eloquence Description.</p>
+			<p>While wearing this Mithral Plate Armor, you gain the following benefits:
+				<ul>
+					<li>+2 bonus to your AC.</li>
+					<li>The feat "Silver-Tongued (Persuasion)", i.e. +1 Charisma, Proficiency in "Persuasion", distracting attack action.</li>
+					<li>The armor can be magically donned on/off in 1 Action using the command word.</li>
+				</ul></p>
 		</description>
 		<setters>
 			<set name="keywords">plate</set>
 			<set name="category">Magic Armor</set>
 			<set name="cost" currency="gp">0</set>
-			<set name="weight" lb="32">32 lb.</set>
 			<set name="slot">body</set>
 			<set name="type" addition="plate">Armor</set>
 			<set name="armor">Plate</set>
@@ -182,7 +186,6 @@
 		</setters>
 		<rules>
 			<stat name="ac:armored:enhancement" value="2" bonus="enhancement"/>
-			<!--<stat name="charisma" value="1" /> -->
 			<grant type="Feat" id="ID_BOTF_FEAT_SILVERTONGUED_PERSUASION"/>
 		</rules>
 	</element>
