@@ -160,12 +160,12 @@
 				<strong><em>Envelop in Mist:</em></strong>
 				<ul>
 					<li>While wielded in combat a magical mist envelops the bearer, providing them with an additional +2 AC.</li>
-					<li>As a Reaction, the mist can be caused to thicken and cause any attacks targeting the user to be taken with disadvantage.</li>
+					<li>As a Reaction, mist surrounding the wielder thickens which causes any attacks targeting them to be taken with disadvantage until the start of their next turn. Can be used Prof. Bonus times per Long Rest.</li>
 				</ul>
 			</p>
 			<p>
 				<br/><strong>Bleeding Condition:<br/></strong>
-	  Bleeding creatures must make a Constitution Saving Throw DC 14 at the end of their turns, or lose 18 (6d6) maximum hit points. A successful Const. save of DC 18 ends this condition. Multiple instances of bleeding do not stack. If a bleeding creature's maximum hit points becomes less than their current hit points, its current hit points are reduced to match the max. The target gains a level of exhaustion for every 1/5 of its original max hp lost this way. A DC 15 Wisdom (Medicine) check or magical healing will stop the bleeding. A long rest with food and water recovers all max hit points and all levels of bleeding exhaustion. Alternatively, Greater Restoration or a DC 18 Wisdom (Medicine) check may restore the max hit points, but not the exhaustion. 	  
+	  Bleeding creatures must make a Constitution Saving Throw DC 14 at the end of their turns, or lose 18 (2d6) maximum hit points. A successful Const. save of DC 18 ends this condition. Multiple instances of bleeding do not stack. If a bleeding creature's maximum hit points becomes less than their current hit points, its current hit points are reduced to match the max. The target gains a level of exhaustion for every 1/5 of its original max hp lost this way. A DC 15 Wisdom (Medicine) check or magical healing will stop the bleeding. A long rest with food and water recovers all max hit points and all levels of bleeding exhaustion. Alternatively, Greater Restoration or a DC 18 Wisdom (Medicine) check may restore the max hit points, but not the exhaustion. 	  
 			</p>
 		</description>
 		<setters>
