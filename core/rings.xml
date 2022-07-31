@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+	<info>
+		<name>Book of the Fallen - Custom Rings</name>
+		<description>
+		Contains Custom Rings created specifically for the campaign &quot;Book of the Fallen&quot;.
+		</description>
+		<update version="1.0.0">
+			<file name="botf-custom-rings.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/rings.xml"/>
+		</update>
+	</info>
+
+	<!--Start:: Custom Rings for Book of the fallen -->
+	<element name="Goblin Ring (Lackey)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_GOBLIN_RING_LACKEY">
+		<description>
+			<p>This ring has a design of a heart dripping blood.<br />
+			While wearing the ring, your weapon attacks with a <b>Polearm</b> score a critical hit on a roll of 19 or 20.</p>
+		</description>
+		<setters>
+			<set name="category">Wondrous Items</set>
+			<set name="type">Ring</set>
+			<set name="rarity">Very Rare</set>
+			<set name="slot">ring</set>
+			<set name="equippable">true</set>
+			<set name="attunement">true</set>
+		</setters>
+	</element>
+
+	<element name="Goblin Ring (Bossman)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_GOBLIN_RING_BOSSMAN">
+		<description>
+			<p>This ring has a design of a heart dripping blood.<br />
+			While wearing the ring, your <b>Spell Attacks</b> score a critical hit on a roll of 19 or 20.</p>
+		</description>
+		<setters>
+			<set name="category">Wondrous Items</set>
+			<set name="type">Ring</set>
+			<set name="rarity">Very Rare</set>
+			<set name="slot">ring</set>
+			<set name="equippable">true</set>
+			<set name="attunement">true</set>
+		</setters>
+	</element>
+	<!--End:: Custom Rings for Book of the fallen -->
+ 
+</elements>
