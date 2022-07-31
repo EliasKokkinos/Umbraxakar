@@ -192,11 +192,11 @@
 	
 	<element name="Nightfall (Cape)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_NIGHTFALL_CAPE">
 		<description>
-			<p>The cape latches it self seamlessly onto any type of armour. It is made from a dark cloth that even most experts would be unable to identify, but a true scholar would be able to trace its origins to the Eternal City.</p>
+			<p>The cape latches itself seamlessly onto any type of armour. It is made from a dark cloth that even most experts would be unable to identify, but a true scholar would be able to trace its origins to the Eternal City.</p>
 			<p>While being attuned to the cape you have resistance to chaos damage.<br />
-			When attuned it absorbs any type of light around it and envelops the wearer in a 10 foot radius sphere of <b>Dim</b>, Kurald Galain darkness. When its command word is used, this effect becomes more pronounced and the wearer is enveloped in total darkness. The effects area remains the same.</p>
+			When attuned it absorbs any type of light around it and envelops the wearer in a 10 foot radius sphere of <b>Dim</b>, Kurald Galain darkness. When its command word is used, this effect becomes more pronounced and the wearer is enveloped in total darkness. The effect area remains the same.</p>
 			<p><ul>
-				<li>Can be dispelled only by certain Chaos Magic, and the wearer loses the attunement if it's torn from the armour. Tearing the cape only un-attunes and does not damage the cape in any way. Tearing the cape works the same way as disarming.</li>
+				<li>Can be dispelled only by certain Chaos Magic and the wearer loses the attunement if it's torn from the armour. Tearing the cape only un-attunes and does not damage the cape in any way. Tearing the cape works the same way as disarming.</li>
 				<li>During the identification/attunement process the person is made aware that Kurald Galain darkness can be sensed by creatures of the realm, sometimes miles or hundreds of miles away.</li>
 			</ul></p>
 		</description>
