@@ -58,9 +58,9 @@
 
 	<element name="Rings of Spell Sharing" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_RINGS_OF_SPELL_SHARING">
 		<description>
-			<p>This pari of purple rings are linked by a magical force. Each ring displayes an outstretched hand. One rings hand looks to be casting a spell from a gemstonem while the other rings hand levitates a larger gem above it. The former is a Siphoning Ring, and the latter is a Channeling Ring. Only the Channeling Ring can be attuned to.</p>
-			<p>The ring has a Proficiency Bonus / 2 charges and regains 1d4/2 expended charges daily at dawn. If you;re wearing the Channeling Ring while the other ring is being worn by another willing spellcaster on the same place if existence as you, you can use an action to expend 1 of the rings charges to cast a spell from the other creatures known or prepared spells, using no spell slot, but your own spell DC, Spell Attack Bonues and spellcasting ability to do so.</p>
-			<p>The spell must have a casting time of one action or bonus acton, and must provide any materiak components required by the spell. If the creature wearing the Siphoning Ring is willing, you are magically aware of its known or prepared spells while wearing the Channeling Ring.</p>
+			<p>This pair of purple rings are linked by a magical force. Each ring displays an outstretched hand. One rings hand looks to be casting a spell from a gemstone while the other rings hand levitates a larger gem above it. The former is a Siphoning Ring, and the latter is a Channeling Ring. Only the Channeling Ring can be attuned to.</p>
+			<p>The ring has a Proficiency Bonus / 2 charges and regains 1d4/2 expended charges daily at dawn. If you're wearing the Channeling Ring while the other ring is being worn by another willing spellcaster on the same place if existence as you, you can use an action to expend 1 of the rings charges to cast a spell from the other creatures known or prepared spells, using no spell slot, but your own spell DC, Spell Attack Bonues and spellcasting ability to do so.</p>
+			<p>The spell must have a casting time of one action or bonus acton, and must provide any material components required by the spell. If the creature wearing the Siphoning Ring is willing, you are magically aware of its known or prepared spells while wearing the Channeling Ring.</p>
 			<p>You have access to their spells up to +2 levels above your own maximum.</p>
 		</description>
 		<setters>
