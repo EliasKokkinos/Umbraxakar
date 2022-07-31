@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.2">
+		<update version="1.0.3">
 			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
@@ -189,6 +189,27 @@
 			<grant type="Feat" id="ID_BOTF_FEAT_SILVERTONGUED_PERSUASION"/>
 		</rules>
 	</element>
+	
+	<element name="Nightfall (Cape)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_NIGHTFALL_CAPE">
+		<description>
+			<p>The cape latches it self seamlessly onto any type of armour. It is made from a dark cloth that even most experts would be unable to identify, but a true scholar would be able to trace its origins to the Eternal City.</p>
+			<p>While being attuned to the cape you have resistance to chaos damage.<br />
+			When attuned it absorbs any type of light around it and envelops the wearer in a 10 foot radius sphere of <b>Dim</b>, Kurald Galain darkness. When its command word is used, this effect becomes more pronounced and the wearer is enveloped in total darkness. The effects area remains the same.</p>
+			<p><ul>
+				<li>Can be dispelled only by certain Chaos Magic, and the wearer loses the attunement if it's torn from the armour. Tearing the cape only un-attunes and does not damage the cape in any way. Tearing the cape works the same way as disarming.</li>
+				<li>During the identification/attunement process the person is made aware that Kurald Galain darkness can be sensed by creatures of the realm, sometimes miles or hundreds of miles away.</li>
+			</ul></p>
+		</description>
+		<setters>
+			<set name="category">Wondrous Items</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">shoulders</set>
+			<set name="type">Wondrous Item</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Very Rare</set>
+		</setters>
+	</element>
+
 	<!--End:: Custom Armors for Book of the fallen -->
   
 </elements>
