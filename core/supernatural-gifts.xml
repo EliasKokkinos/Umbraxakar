@@ -43,7 +43,7 @@
 	<element name="Dark Senses" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DARK_SENSES">
 		<description>
 			<p>You can see in darkness as well as any Tiste Andii and your passive perception is increased by 2.<br /><br />
-			This bonus applies only during night-time or the character is in Kurald Galain darkness.
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
 			</p>
 		</description>
 		<setters>
@@ -56,7 +56,7 @@
 	<element name="Mothers Embrace" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_MOTHERS_EMBRACE">
 		<description>
 			<p>A Short Rest can be completed in 10 minutes and a Full Rest only requires 4 hours.<br /><br />
-			This bonus applies only during night-time or the character is in Kurald Galain darkness.
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
 			</p>
 		</description>
 		<setters>
@@ -69,7 +69,7 @@
 	<element name="Defy Death" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DEFY_DEATH">
 		<description>
 			<p>You have advantage on death saving throws.<br /><br />
-			This bonus applies only during night-time or the character is in Kurald Galain darkness.
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
 			</p>
 		</description>
 		<setters>
@@ -82,7 +82,7 @@
 	<element name="Hard to Kill" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_HARD_TO_KILL">
 		<description>
 			<p>When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Once you use this trait, you can’t use it again until you finish a long rest.<br /><br />
-			This bonus applies only during night-time or the character is in Kurald Galain darkness.
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
 			</p>
 		</description>
 		<setters>
