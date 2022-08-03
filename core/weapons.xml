@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.1">
+		<update version="1.0.2">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -239,6 +239,27 @@
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND"/>
 		</rules>
+	</element>
+	
+	<element name="Fang of the Wyvern" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_HANDAXE_FANG_OF_THE_WYVERN">
+		<description>
+			<p>A +1 magic Handaxe crafted in a way so that it latches deeply onto the flesh of its target, while being perfectly balanced when thrown. Attacking at long range doesn't impose disadvantage on your attack rolls with this weapon.</p>
+			<p><b>Latch:</b> When this weapon strikes a surface that it can penetrate, it latches into it in a way that is extremely difficult to be removed, requiring either a 15 Strength check to pull out or a 17 Sleigth of Hands to remove it without further damage. If the target is a creature and the weapon gets forcefully pulled out, it causes Bleeding.</p>
+			<p><b>Returning:</b> As a Free Action on your turn, you may utter the words written upon the hilt of the weapon. The weapon immediately disappears and materializes within its holster at the beginning of your next round.</p>
+		</description>
+		<setters>
+			<set name="keywords">Handaxe</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="weight" lb="2">2 lb.</set>
+			<set name="slot">onehand</set>
+			<set name="weapon">Handaxe</set>
+			<set name="type">Handaxe</set>
+			<set name="attunement">true</set>
+			<set name="damage" type="slashing">1d6</set>
+			<set name="rarity">Rare</set>
+			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_HANDAXE</set>
+		</setters>
 	</element>
 	<!--End:: Custom Weapons for Book of the fallen -->
   
