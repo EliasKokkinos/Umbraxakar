@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.3">
+		<update version="1.0.4">
 			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
@@ -208,6 +208,34 @@
 			<set name="attunement">true</set>
 			<set name="rarity">Very Rare</set>
 		</setters>
+	</element>
+	
+	<element name="Malasul Gathol" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_HEAVY_PLATE_MALASUL_GATHOL">
+		<description>
+			<p>Made of thousands of tiny rings crafted out of a rare obsidian colored metal intertwined with strings of blackwood, and enchanted in a way that allows it to change its form, Malasul Gathol is a suit of armor which can shift into two distinct modes, either into a plate armor or into a shiny black chain link cloak.</p>
+			<p><b>Shifting:</b> As a Bonus Action, the armor can shift into one of two forms. While in that form, you gain the following benefits:
+			<ul>
+				<li>Plate Armor: You get the benefits of a +2 Mithral Armor, as well as a +5 bonus to Dexterity (Stealth) checks.</li>
+				<li>Cloak: You get your proficiency bonus added to any charisma skill check, but you no longer get any bonus to your armor class. While in this form, it only takes an action to don or doff the armor.</li>
+			</ul></p>
+		</description>
+		<setters>
+			<set name="keywords">plate</set>
+			<set name="category">Magic Armor</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">body</set>
+			<set name="type" addition="plate">Armor</set>
+			<set name="armor">Plate</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Very Rare</set>
+			<set name="armorClass">18</set>
+			<set name="enhancement">2</set>
+			<set name="proficiency">ID_PROFICIENCY_ARMOR_PROFICIENCY_PLATE</set>
+		</setters>
+		<rules>
+			<stat name="ac:armored:enhancement" value="2" bonus="enhancement"/>
+			<stat name="stealth:misc" value="5" />
+		</rules>
 	</element>
 
 	<!--End:: Custom Armors for Book of the fallen -->
