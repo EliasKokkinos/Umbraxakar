@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.1">
+		<update version="1.0.2">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -27,6 +27,71 @@
 			<set name="slot">gift</set>
 		</setters>
 	</element>
+	
+	<element name="Night Kin" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_NIGHT_KIN">
+		<description>
+			<p>Most creatures connected to the Kurald Galain and Elder Darkness realm will have a more positive disposition towards you. You gain a +2 to any Persuasion checks when conversing with one of these creatures. <br />Notable races are all Tiste Andii, certain groups of Tiste Edur, certain groups of Tiste Liosan, Dark Elves and Vampires.<br />
+			</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+	
+	<element name="Dark Senses" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DARK_SENSES">
+		<description>
+			<p>You can see in darkness as well as any Tiste Andii and your passive perception is increased by 2.<br /><br />
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
+			</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+	
+	<element name="Mothers Embrace" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_MOTHERS_EMBRACE">
+		<description>
+			<p>A Short Rest can be completed in 10 minutes and a Full Rest only requires 4 hours.<br /><br />
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
+			</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+	
+	<element name="Defy Death" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DEFY_DEATH">
+		<description>
+			<p>You have advantage on death saving throws.<br /><br />
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
+			</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+	
+	<element name="Hard to Kill" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_HARD_TO_KILL">
+		<description>
+			<p>When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Once you use this trait, you can’t use it again until you finish a long rest.<br /><br />
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
+			</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+
 	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->
 	
 </elements>

@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.1">
+		<update version="1.0.4">
 			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
@@ -161,6 +161,83 @@
 			<grant type="Spell" id="ID_PHB_SPELL_NONDETECTION"/>
 		</rules>
 	</element>
+	
+	<element name="Plate Armor of Eloquence" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_HEAVY_PLATE_OF_ELOQUENCE">
+		<description>
+			<p>While wearing this Mithral Plate Armor, you gain the following benefits:
+				<ul>
+					<li>+2 bonus to your AC.</li>
+					<li>The feat "Silver-Tongued (Persuasion)", i.e. +1 Charisma, Proficiency in "Persuasion", distracting attack action.</li>
+					<li>The armor can be magically donned on/off in 1 Action using the command word.</li>
+				</ul></p>
+		</description>
+		<setters>
+			<set name="keywords">plate</set>
+			<set name="category">Magic Armor</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">body</set>
+			<set name="type" addition="plate">Armor</set>
+			<set name="armor">Plate</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="armorClass">18</set>
+			<set name="enhancement">2</set>
+			<set name="proficiency">ID_PROFICIENCY_ARMOR_PROFICIENCY_PLATE</set>
+		</setters>
+		<rules>
+			<stat name="ac:armored:enhancement" value="2" bonus="enhancement"/>
+			<grant type="Feat" id="ID_BOTF_FEAT_SILVERTONGUED_PERSUASION"/>
+		</rules>
+	</element>
+	
+	<element name="Nightfall (Cape)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_NIGHTFALL_CAPE">
+		<description>
+			<p>The cape latches itself seamlessly onto any type of armour. It is made from a dark cloth that even most experts would be unable to identify, but a true scholar would be able to trace its origins to the Eternal City.</p>
+			<p>While being attuned to the cape you have resistance to chaos damage.<br />
+			When attuned it absorbs any type of light around it and envelops the wearer in a 10 foot radius sphere of <b>Dim</b>, Kurald Galain darkness. When its command word is used, this effect becomes more pronounced and the wearer is enveloped in total darkness. The effect area remains the same.</p>
+			<p><ul>
+				<li>Can be dispelled only by certain Chaos Magic and the wearer loses the attunement if it's torn from the armour. Tearing the cape only un-attunes and does not damage the cape in any way. Tearing the cape works the same way as disarming.</li>
+				<li>During the identification/attunement process the person is made aware that Kurald Galain darkness can be sensed by creatures of the realm, sometimes miles or hundreds of miles away.</li>
+			</ul></p>
+		</description>
+		<setters>
+			<set name="category">Wondrous Items</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">shoulders</set>
+			<set name="type">Wondrous Item</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Very Rare</set>
+		</setters>
+	</element>
+	
+	<element name="Malasul Gathol" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_HEAVY_PLATE_MALASUL_GATHOL">
+		<description>
+			<p>Made of thousands of tiny rings crafted out of a rare obsidian colored metal intertwined with strings of blackwood, and enchanted in a way that allows it to change its form, Malasul Gathol is a suit of armor which can shift into two distinct modes, either into a plate armor or into a shiny black chain link cloak.</p>
+			<p><b>Shifting:</b> As a Bonus Action, the armor can shift into one of two forms. While in that form, you gain the following benefits:
+			<ul>
+				<li><b>Plate Armor:</b> You get the benefits of a +2 Mithral Armor, as well as a +5 bonus to Dexterity (Stealth) checks.</li>
+				<li><b>Cloak:</b> You get your proficiency bonus added to any charisma skill check, but you no longer get any bonus to your armor class. While in this form, it only takes an action to don or doff the armor.</li>
+			</ul></p>
+		</description>
+		<setters>
+			<set name="keywords">plate</set>
+			<set name="category">Magic Armor</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">body</set>
+			<set name="type" addition="plate">Armor</set>
+			<set name="armor">Plate</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Very Rare</set>
+			<set name="armorClass">18</set>
+			<set name="enhancement">2</set>
+			<set name="proficiency">ID_PROFICIENCY_ARMOR_PROFICIENCY_PLATE</set>
+		</setters>
+		<rules>
+			<stat name="ac:armored:enhancement" value="2" bonus="enhancement"/>
+			<stat name="stealth:misc" value="5" />
+		</rules>
+	</element>
+
 	<!--End:: Custom Armors for Book of the fallen -->
   
 </elements>

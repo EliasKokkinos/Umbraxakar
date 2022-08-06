@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.0">
+		<update version="1.0.2">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -160,12 +160,12 @@
 				<strong><em>Envelop in Mist:</em></strong>
 				<ul>
 					<li>While wielded in combat a magical mist envelops the bearer, providing them with an additional +2 AC.</li>
-					<li>As a Reaction, the mist can be caused to thicken and cause any attacks targeting the user to be taken with disadvantage.</li>
+					<li>As a Reaction, mist surrounding the wielder thickens which causes any attacks targeting them to be taken with disadvantage until the start of their next turn. Can be used Prof. Bonus times per Long Rest.</li>
 				</ul>
 			</p>
 			<p>
 				<br/><strong>Bleeding Condition:<br/></strong>
-	  Bleeding creatures must make a Constitution Saving Throw DC 14 at the end of their turns, or lose 18 (6d6) maximum hit points. A successful Const. save of DC 18 ends this condition. Multiple instances of bleeding do not stack. If a bleeding creature's maximum hit points becomes less than their current hit points, its current hit points are reduced to match the max. The target gains a level of exhaustion for every 1/5 of its original max hp lost this way. A DC 15 Wisdom (Medicine) check or magical healing will stop the bleeding. A long rest with food and water recovers all max hit points and all levels of bleeding exhaustion. Alternatively, Greater Restoration or a DC 18 Wisdom (Medicine) check may restore the max hit points, but not the exhaustion. 	  
+	  Bleeding creatures must make a Constitution Saving Throw DC 14 at the end of their turns, or lose 18 (2d6) maximum hit points. A successful Const. save of DC 18 ends this condition. Multiple instances of bleeding do not stack. If a bleeding creature's maximum hit points becomes less than their current hit points, its current hit points are reduced to match the max. The target gains a level of exhaustion for every 1/5 of its original max hp lost this way. A DC 15 Wisdom (Medicine) check or magical healing will stop the bleeding. A long rest with food and water recovers all max hit points and all levels of bleeding exhaustion. Alternatively, Greater Restoration or a DC 18 Wisdom (Medicine) check may restore the max hit points, but not the exhaustion. 	  
 			</p>
 		</description>
 		<setters>
@@ -240,6 +240,29 @@
 			<grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND"/>
 		</rules>
 	</element>
+	
+	<element name="Fang of the Wyvern" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_HANDAXE_FANG_OF_THE_WYVERN">
+		<description>
+			<p>A +1 Magic Handaxe crafted in a way so that it latches deeply onto the flesh of its target, while being perfectly balanced when thrown. Attacking at long range doesn't impose disadvantage on your attack rolls with this weapon.</p>
+			<p><b>Latch:</b> When this weapon strikes a surface that it can penetrate, it latches into it in a way that is extremely difficult to be removed, requiring either a 15 Strength check to pull out or a 17 Sleigth of Hands to remove it without further damage. If the target is a creature and the weapon gets forcefully pulled out, it causes Bleeding.</p>
+			<p><b>Returning:</b> As a Free Action on your turn, you may utter the words written upon the hilt of the weapon. The weapon immediately disappears and materializes within its holster at the beginning of your next round.</p>
+		</description>
+		<setters>
+			<set name="keywords">handaxe</set>
+			<set name="category">Magic Weapons</set>
+			<set name="type" addition="handaxe">Weapon</set>
+			<set name="weapon">Handaxe</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="slot">onehand</set>
+			<set name="range">60/60</set>
+			<set name="attunement">true</set>
+			<set name="enhancement">1</set>
+			<set name="damage" type="slashing">1d6</set>
+			<set name="rarity">Rare</set>
+			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_HANDAXE</set>
+		</setters>
+	</element>
+
 	<!--End:: Custom Weapons for Book of the fallen -->
   
 </elements>

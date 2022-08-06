@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Feats created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.1">
+		<update version="1.0.2">
 			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml"/>
 		</update>
 	</info>
@@ -29,7 +29,6 @@
 		</rules>
 	</element>
 
-
 	<element name="Mistborn" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_MIST">
 		<description>
 			<p>You have become Mistborn by the swallowing of a bead of Lerasium:</p>
@@ -46,6 +45,24 @@
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
 			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRON" />
+		</rules>
+	</element>
+
+	<element name="Silver-Tongued (Persuasion)" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_SILVERTONGUED_PERSUASION">
+		<description>
+			<p>You develop your conversational skill to better deceive others. You gain the following benefits:</p>
+			<ul>
+				<li>Increase your Charisma score by 1, to a maximum of 20</li>
+				<li>You gain proficiency in the Persuasion skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.</li>
+				<li>When you take the Attack action on your turn, you can replace one attack with an attempt to persuade one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Persuasion) check contested by the target’s Wisdom (Insight) check. If your check succeeds, your movement doesn’t provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can’t be deceived by you in this way for 1 hour.</li>
+			</ul>
+		</description>
+		<sheet action="Attack">
+			<description>You can attempt to persuade one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Persuasion) check contested by the target’s Wisdom (Insight) check. If your check succeeds, your movement doesn’t provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can’t be deceived by you in this way for 1 hour.</description>
+		</sheet>
+		<rules>
+			<stat name="charisma" value="1" />
+			<grant type="Grants" id="ID_INTERNAL_GRANTS_PROFICIENCY_SKILL_OR_DOUBLE_PERSUASION" />
 		</rules>
 	</element>
 	<!--End:: Custom Feats for Book of the fallen -->
