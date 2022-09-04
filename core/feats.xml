@@ -76,6 +76,11 @@
 			</ul>
 			you either gain a +5 bonus to the attack damage roll (if you make a melee attack and hit), or push the target up to 10 feet away from you (if you shove and you succeed).</p>
 		</description>
+		<sheet>
+			<description>When you use your Action to Dash or Jump using Allomancy, as a Bonus Action you can make one melee weapon Attack or Shove a creature with Advantage.<br />
+			Additionally, if you Dash and move move at least 10 feet in a straight line immediately before taking the Bonus Action, or if move 10 feet before Jumping and land within reach of the target, you either gain a +5 bonus to the attack damage roll, or push the target up to 10 feet away from you.
+			</description>
+		</sheet>
 	</element>
 
 	<!--End:: Custom Feats for Book of the fallen -->
