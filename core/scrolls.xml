@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+	<info>
+		<name>Book of the Fallen - Custom Rings</name>
+		<description>
+		Contains Custom Rings created specifically for the campaign &quot;Book of the Fallen&quot;.
+		</description>
+		<update version="1.0.1">
+			<file name="botf-custom-rings.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/rings.xml"/>
+		</update>
+	</info>
+
+	<!--Start:: Custom Rings for Book of the fallen -->
+	
+</elements>
