@@ -261,6 +261,28 @@
 		</setters>
 	</element>
 
+	<element name="The Rose" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_THE_ROSE">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>You gain a +3 bonus to attach and damage rolls made with this magic weapon.</p>
+			<p><strong><em>Oathkeeper:</em></strong></p>
+			<p>While attuned to this weapon it's nearly impossible to lie, however you are recognized and respected by people. Reduce any deception rolls made while attuned by 10 to a minimum of 1. Add +5 to any persuasion rolls made while attuned.</p>
+			<p><strong><em>Vorpal:</em></strong></p>
+			<p>When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creatures heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it's immune to slashing damage, doesn't have or need a head, has legendary actions, of the GM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 6d8 Slashing damage from this hit.</p>
+			<p><strong><em>Devastating Fury:</em></strong></p>
+			<p>Against humanoid enemies with a Dexterity modifier of 2 and below (Dex 15), with a 19 on the attack roll you can break a limb if the enemy fails a Constitution Saving Throw DC 16. This will significantly lower their ability to defend and attack. A creature is immune to this effect if it'ss immune to Bludgeoning damage or has legenday actions.</p>
+		</description>
+		<setters>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="greatsword">Weapon</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Greatsword</set>
+		</setters>
+	</element>
+
 	<!--End:: Custom Weapons for Book of the fallen -->
   
 </elements>
