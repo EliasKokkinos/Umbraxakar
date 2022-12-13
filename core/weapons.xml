@@ -5,7 +5,6 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.3">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -239,6 +238,26 @@
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND"/>
 		</rules>
+	</element>
+
+	<element name="The Leech" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_THE_LEECH">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>Made of special alloy highly receptive to necromantic enchantment.</p>
+			<p>This fine blade is crafted from a strange black metal and seems to draw in blood if any touches its blade. You gain +3 bonus to attack and damage rolls made with this magic weapon</p>
+			<p>When you hit a Small or larger living creature with this weapon, that creature takes an extra 2d8 necrotic damage and you regain hit points equal to half the amount of necrotic damage dealt in this way. Constructs, plants and undead creatures are immune to this necrotic damage.</p>
+			<p><strong><em>Curse:</em></strong></p>
+			<p class="indent">The sword is cursed, and becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the sword, keeping it within reach at all times. You also have disadvantage on attack rolls with weapons other than this one, unless no foe is within 60 feet of you that you can see of hear. In addition, while you remain cursed, the number of HP you regain when healed my magical means (other than the sword's effect) is halved.</p>
+		</description>
+		<setters>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="greatsword">Weapon</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Greatsword</set>
+		</setters>
 	</element>
 
 	<!--End:: Custom Weapons for Book of the fallen -->
