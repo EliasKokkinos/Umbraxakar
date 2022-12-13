@@ -4,7 +4,7 @@
 		<name>Umbraxakar</name>
 		<description>Book of the Fallen</description>
 		<author>Anomander the Rake / Nikos the Cretan</author>
-		<update version="0.1.21"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
+		<update version="0.1.23"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
 			<file name="umbraxakar.index" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/umbraxakar.index" />
 		</update>
 	</info>
