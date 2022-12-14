@@ -282,6 +282,22 @@
 			<set name="weapon">Greatsword</set>
 		</setters>
 	</element>
+	<element name="Stinger (light)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_STINGER_LIGHT">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>The weapon is a feat of engineering and magic, as it is entirely mechanical in operation, but augments its attacks with magic. You gain +3 bonus to attack and damage rolls made with this magic weapon. When you hit an undead creature with an attack using this weapon, the attack deals an extra 1d8 necrotic damage, and the creature has disadvantage on Saving Throws and is vulnerable against necromantic spells.</p>
+			<p>The repeating crossbow (whether heavy or light) holds 15 crossbow bolts. As long as it holds bolts, you can reload it by pulling the reloading level (Free Action). Loading a new case of 15 bolts is a Full-round Action that provokes Attacks of Opportunity. You can fire a repeating crossbow with one hand or with one in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the loading lever, and you must use two hands to load a new case of bolts.</p>
+		</description>
+		<setters>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="light, repeating">Weapon</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">ID_INTERNAL_WEAPON_PROPERTY_LIGHT,ID_INTERNAL_WEAPON_GROUP_CROSSBOWS,ID_INTERNAL_WEAPON_PROPERTY_AMMUNITION</set>
+		</setters>
+	</element>
 
 	<!--End:: Custom Weapons for Book of the fallen -->
   
