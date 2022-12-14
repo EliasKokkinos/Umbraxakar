@@ -325,6 +325,38 @@
 		</setters>
 	</element>
 
+	<element name="The Punisher" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_THE_PUNISHER">
+		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_BLUDGEONING, ID_INTERNAL_WEAPON_PROPERTY_VERSATILE, ID_INTERNAL_WEAPON_GROUP_HAMMERS</supports>
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>MAde of special alloy highly receptive to the enchantments associated with the effects listed in the table below.</p>
+			<p>You gain a +3 bonus to attack and damage rolls made with this magic weapon. You attack with advantage against heavily armored foes or creatures with scales and natural armor.</p>
+			<p>The might of this hammer changes to reflect your nature, using your innermost morality to overpower those that would oppose you. A creature hit by te hammer takes an extra 1d8 damage for each hald of your alignment, for a total of 2d8 extra damage. The damage type(s) are determined by their associated alignments, as shown below:</p>
+			<table>
+				<thead>
+					<tr><td>Alignment 1</td><td>Damage Type 1</td><td>Alignment 2</td><td>Damage Type 2</td></tr>
+				</thead>
+				<tr><td>Lawful</td><td>Thunder</td><td>Good</td><td>Radiant</td></tr>
+				<tr><td>Neutral</td><td>Force</td><td>Neutral</td><td>Force</td></tr>
+				<tr><td>Chaotic</td><td>Fire</td><td>Evil</td><td>Necrotic</td></tr>
+			</table>
+			<p>You can choose to surpress one or both halves of your alignment each time you hit a target with the hammer (no action required). When you do, the creature doesn't take the surpressed alignment's damage.</p>
+		</description>
+		<setters>
+			<set name="keywords">warhammer, dwarf</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="rarity">Legendary</set>
+			<set name="type" addition="any hammer">Weapon</set>
+			<set name="slot">onehand</set>
+			<set name="damage" type="bludgeoning">1d8</set>
+			<set name="versatile">1d10</set>
+			<set name="attunement">true</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Warhammer</set>
+		</setters>
+	</element>
+
 	<!--End:: Custom Weapons for Book of the fallen -->
   
 </elements>
