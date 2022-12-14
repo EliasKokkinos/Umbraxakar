@@ -282,6 +282,32 @@
 			<set name="weapon">Greatsword</set>
 		</setters>
 	</element>
+	
+	<!-- PENDING IN GAME ROLLS
+	<element name="Staff of Promises" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_STAFF_OF_PROMISES">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>The staff seemingly posses a soul which can be speculated to be an amalgam of souls harvested or fed to it by its previous owners. It's obvious to anyone with considerable arcane skil to examine this artifact that attuning to this is liable to at the very least twist the psyche or even drive their mind into madness.</p>
+			<div class="reference">
+				<div element="ID_BOTF_SPELL_FIREBRAND"/>
+			</div>
+		</description>
+		<setters>
+			<set name="category">Staffs</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="weight" lb="4">4 lb.</set>
+			<set name="slot">onehand</set>
+			<set name="weapon">Quarterstaff</set>
+			<set name="type">Staff</set>
+			<set name="attunement" addition="by a Spellcaster">true</set>
+			<set name="rarity">Legendary</set>
+		</setters>
+		<rules>
+			<grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND"/>
+		</rules>
+	</element>
+	-->
+
 	<element name="Stinger (light)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_STINGER_LIGHT">
 		<description>
 			<p>Does not count towards attuned items count.</p>
