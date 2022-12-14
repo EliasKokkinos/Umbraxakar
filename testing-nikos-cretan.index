@@ -16,6 +16,6 @@
 		<file name="companions.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/companions.xml" />
 		<file name="feats.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/feats.xml" />
 		<file name="rings.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/rings.xml" />
-		<file name="rings.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/scrolls.xml" />
+		<file name="scrolls.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/scrolls.xml" />
 	</files>
 </index>
