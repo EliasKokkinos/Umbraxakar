@@ -9,7 +9,7 @@
 		</update>
 	</info>
 	<files>
-		<file name="swords.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/weapons.xml" />
+		<file name="weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/weapons.xml" />
 		<file name="armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/armors.xml" />
 		<file name="spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/spells.xml" />
 		<file name="supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/Nikos-the-Cretan/core/supernatural-gifts.xml" />
