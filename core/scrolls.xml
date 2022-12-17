@@ -6,7 +6,7 @@
 		Contains Custom Scrolls created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
 		<update version="1.0.1">
-			<file name="botf-custom-rings.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/scrolls.xml"/>
+			<file name="botf-custom-scrolls.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/scrolls.xml"/>
 		</update>
 	</info>
 
