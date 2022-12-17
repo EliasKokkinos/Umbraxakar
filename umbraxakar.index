@@ -9,13 +9,14 @@
 		</update>
 	</info>
 	<files>
-		<file name="swords.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml" />
+		<file name="weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml" />
 		<file name="armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml" />
 		<file name="spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/spells.xml" />
 		<file name="supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml" />
 		<file name="companions.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/companions.xml" />
 		<file name="feats.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml" />
-		<file name="feats.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/rings.xml" />
-		<file name="feats.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/scrolls.xml" />
+		<file name="rings.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/rings.xml" />
+		<file name="scrolls.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/scrolls.xml" />
+		<file name="misc-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/misc-items.xml" />
 	</files>
 </index>
