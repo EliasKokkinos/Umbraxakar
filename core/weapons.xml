@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.4">
+		<update version="1.0.5">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -281,6 +281,10 @@
 			<set name="enhancement">3</set>
 			<set name="weapon">Greatsword</set>
 		</setters>
+		<rules>
+			<stat name="persuasion:misc" value="5" />
+			<stat name="deception:misc" value="-10" />
+		</rules>
 	</element>
 	
 	<!-- PENDING IN GAME ROLLS
