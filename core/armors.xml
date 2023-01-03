@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.4">
+		<update version="1.0.5">
 			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
@@ -235,6 +235,29 @@
 		<rules>
 			<stat name="ac:armored:enhancement" value="2" bonus="enhancement"/>
 			<stat name="stealth:misc" value="5" />
+		</rules>
+	</element>
+
+	<element name="Blight Shield" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_BLIGHT_SHIELD">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>Made of special alloy highly receptive to necromantic enchantment.</p>
+			<p>The Magic Shield +2 has 3 charges and regains 1d3 expended charges daily at dawn. When you take damage from a creature within 5 feet of you while holding this shield, you can use your reaction to expend 1 of its charges to use the spell "Blight" on that creature. The spell does not emanate from you, instead from the shield itself.</p>
+			<p>Constitution Saving Throw DC 18.</p>
+		</description>
+		<setters>
+			<set name="keywords">shield</set>
+			<set name="category">Magic Armor</set>
+			<set name="attunement">true</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="shield">Armor</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">2</set>
+			<set name="armor">ID_INTERNAL_ARMOR_GROUP_SHIELD</set>
+		</setters>
+		<rules>
+			<stat name="ac:shield" value="2" bonus="enhancement"/>
+			<grant type="Spell" id="ID_PHB_SPELL_BLIGHT"/>
 		</rules>
 	</element>
 

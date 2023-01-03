@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.2">
+		<update version="1.0.4">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -240,26 +240,120 @@
 			<grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND"/>
 		</rules>
 	</element>
-	
-	<element name="Fang of the Wyvern" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_HANDAXE_FANG_OF_THE_WYVERN">
+
+	<element name="The Leech" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_THE_LEECH">
 		<description>
-			<p>A +1 Magic Handaxe crafted in a way so that it latches deeply onto the flesh of its target, while being perfectly balanced when thrown. Attacking at long range doesn't impose disadvantage on your attack rolls with this weapon.</p>
-			<p><b>Latch:</b> When this weapon strikes a surface that it can penetrate, it latches into it in a way that is extremely difficult to be removed, requiring either a 15 Strength check to pull out or a 17 Sleigth of Hands to remove it without further damage. If the target is a creature and the weapon gets forcefully pulled out, it causes Bleeding.</p>
-			<p><b>Returning:</b> As a Free Action on your turn, you may utter the words written upon the hilt of the weapon. The weapon immediately disappears and materializes within its holster at the beginning of your next round.</p>
+			<p>Does not count towards attuned items count.</p>
+			<p>Made of special alloy highly receptive to necromantic enchantment.</p>
+			<p>This fine blade is crafted from a strange black metal and seems to draw in blood if any touches its blade. You gain +3 bonus to attack and damage rolls made with this magic weapon</p>
+			<p>When you hit a Small or larger living creature with this weapon, that creature takes an extra 2d8 necrotic damage and you regain hit points equal to half the amount of necrotic damage dealt in this way. Constructs, plants and undead creatures are immune to this necrotic damage.</p>
+			<p><strong><em>Curse:</em></strong></p>
+			<p class="indent">The sword is cursed, and becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the sword, keeping it within reach at all times. You also have disadvantage on attack rolls with weapons other than this one, unless no foe is within 60 feet of you that you can see of hear. In addition, while you remain cursed, the number of HP you regain when healed my magical means (other than the sword's effect) is halved.</p>
 		</description>
 		<setters>
-			<set name="keywords">handaxe</set>
 			<set name="category">Magic Weapons</set>
-			<set name="type" addition="handaxe">Weapon</set>
-			<set name="weapon">Handaxe</set>
 			<set name="cost" currency="gp">0</set>
-			<set name="slot">onehand</set>
-			<set name="range">60/60</set>
+			<set name="type" addition="greatsword">Weapon</set>
 			<set name="attunement">true</set>
-			<set name="enhancement">1</set>
-			<set name="damage" type="slashing">1d6</set>
-			<set name="rarity">Rare</set>
-			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_HANDAXE</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Greatsword</set>
+		</setters>
+	</element>
+
+	<element name="The Rose" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_THE_ROSE">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>You gain a +3 bonus to attach and damage rolls made with this magic weapon.</p>
+			<p><strong><em>Oathkeeper:</em></strong></p>
+			<p>While attuned to this weapon it's nearly impossible to lie, however you are recognized and respected by people. Reduce any deception rolls made while attuned by 10 to a minimum of 1. Add +5 to any persuasion rolls made while attuned.</p>
+			<p><strong><em>Vorpal:</em></strong></p>
+			<p>When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creatures heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it's immune to slashing damage, doesn't have or need a head, has legendary actions, of the GM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 6d8 Slashing damage from this hit.</p>
+			<p><strong><em>Devastating Fury:</em></strong></p>
+			<p>Against humanoid enemies with a Dexterity modifier of 2 and below (Dex 15), with a 19 on the attack roll you can break a limb if the enemy fails a Constitution Saving Throw DC 16. This will significantly lower their ability to defend and attack. A creature is immune to this effect if it'ss immune to Bludgeoning damage or has legenday actions.</p>
+		</description>
+		<setters>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="greatsword">Weapon</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Greatsword</set>
+		</setters>
+	</element>
+	
+	<!-- PENDING IN GAME ROLLS
+	<element name="Staff of Promises" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_STAFF_OF_PROMISES">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>The staff seemingly posses a soul which can be speculated to be an amalgam of souls harvested or fed to it by its previous owners. It's obvious to anyone with considerable arcane skil to examine this artifact that attuning to this is liable to at the very least twist the psyche or even drive their mind into madness.</p>
+			<div class="reference">
+				<div element="ID_BOTF_SPELL_FIREBRAND"/>
+			</div>
+		</description>
+		<setters>
+			<set name="category">Staffs</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="weight" lb="4">4 lb.</set>
+			<set name="slot">onehand</set>
+			<set name="weapon">Quarterstaff</set>
+			<set name="type">Staff</set>
+			<set name="attunement" addition="by a Spellcaster">true</set>
+			<set name="rarity">Legendary</set>
+		</setters>
+		<rules>
+			<grant type="Spell" id="ID_BOTF_SPELL_FIREBRAND"/>
+		</rules>
+	</element>
+	-->
+
+	<element name="Stinger (light)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_STINGER_LIGHT">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>The weapon is a feat of engineering and magic, as it is entirely mechanical in operation, but augments its attacks with magic. You gain +3 bonus to attack and damage rolls made with this magic weapon. When you hit an undead creature with an attack using this weapon, the attack deals an extra 1d8 necrotic damage, and the creature has disadvantage on Saving Throws and is vulnerable against necromantic spells.</p>
+			<p>The repeating crossbow (whether heavy or light) holds 15 crossbow bolts. As long as it holds bolts, you can reload it by pulling the reloading level (Free Action). Loading a new case of 15 bolts is a Full-round Action that provokes Attacks of Opportunity. You can fire a repeating crossbow with one hand or with one in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the loading lever, and you must use two hands to load a new case of bolts.</p>
+		</description>
+		<setters>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="light, repeating">Weapon</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">ID_INTERNAL_WEAPON_PROPERTY_LIGHT,ID_INTERNAL_WEAPON_GROUP_CROSSBOWS,ID_INTERNAL_WEAPON_PROPERTY_AMMUNITION</set>
+		</setters>
+	</element>
+
+	<element name="The Punisher" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_THE_PUNISHER">
+		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_BLUDGEONING, ID_INTERNAL_WEAPON_PROPERTY_VERSATILE, ID_INTERNAL_WEAPON_GROUP_HAMMERS</supports>
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>MAde of special alloy highly receptive to the enchantments associated with the effects listed in the table below.</p>
+			<p>You gain a +3 bonus to attack and damage rolls made with this magic weapon. You attack with advantage against heavily armored foes or creatures with scales and natural armor.</p>
+			<p>The might of this hammer changes to reflect your nature, using your innermost morality to overpower those that would oppose you. A creature hit by te hammer takes an extra 1d8 damage for each hald of your alignment, for a total of 2d8 extra damage. The damage type(s) are determined by their associated alignments, as shown below:</p>
+			<table>
+				<thead>
+					<tr><td>Alignment 1</td><td>Damage Type 1</td><td>Alignment 2</td><td>Damage Type 2</td></tr>
+				</thead>
+				<tr><td>Lawful</td><td>Thunder</td><td>Good</td><td>Radiant</td></tr>
+				<tr><td>Neutral</td><td>Force</td><td>Neutral</td><td>Force</td></tr>
+				<tr><td>Chaotic</td><td>Fire</td><td>Evil</td><td>Necrotic</td></tr>
+			</table>
+			<p>You can choose to surpress one or both halves of your alignment each time you hit a target with the hammer (no action required). When you do, the creature doesn't take the surpressed alignment's damage.</p>
+		</description>
+		<setters>
+			<set name="keywords">warhammer, dwarf</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="rarity">Legendary</set>
+			<set name="type" addition="any hammer">Weapon</set>
+			<set name="slot">onehand</set>
+			<set name="damage" type="bludgeoning">1d8</set>
+			<set name="versatile">1d10</set>
+			<set name="attunement">true</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Warhammer</set>
 		</setters>
 	</element>
 

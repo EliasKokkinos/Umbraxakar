@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+	<info>
+		<name>Book of the Fallen - Custom Scrolls</name>
+		<description>
+		Contains Custom Scrolls created specifically for the campaign &quot;Book of the Fallen&quot;.
+		</description>
+		<update version="1.0.1">
+			<file name="botf-custom-scrolls.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/scrolls.xml"/>
+		</update>
+	</info>
+
+	<!--Start:: Custom Scrolls for Book of the fallen -->
+	<element name="Scroll of the Eclipse" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_SCROLL_OF_THE_ECLIPSE">
+		<description>
+			<p>When you use an action to read this scroll, any sun or moonlight within a 3-mile radius of you (whether natural or created by a magical effect) is magically suppressed. For the duration, everything in the area is in darkness unless illuminated by another source, such as a torch or the light spell.</p>
+			<p class="indent">The effect lasts for 8 hours and can only be ended early by a wish spell. You must be outdoors when you use the scroll, or nothing happens and the scroll is wasted. Looking at the sky during this time shows no sign of the sun or moon, and if you can normally see the stars, they're nowhere to be seen for the duration.</p>
+			<p class="indent">The scroll can be used after 13 - 1d12 months. (player needs to roll after they use the scroll).</p>
+		</description>
+		<setters>
+			<set name="category">Scrolls</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="weight" lb="0">0 lb.</set>
+			<set name="type">Scroll</set>
+			<set name="rarity">legendary</set>
+			<set name="stackable">true</set>
+		</setters>
+	</element>
+	
+</elements>

@@ -41,21 +41,6 @@
 		</setters>
 	</element>
 
-	<element name="Goblin Ring (Bossman)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_GOBLIN_RING_BOSSMAN">
-		<description>
-			<p>This ring has a design of a heart dripping blood.<br />
-			While wearing the ring, your <b>Spell Attacks</b> score a critical hit on a roll of 19 or 20.</p>
-		</description>
-		<setters>
-			<set name="category">Wondrous Items</set>
-			<set name="type">Ring</set>
-			<set name="rarity">Very Rare</set>
-			<set name="slot">ring</set>
-			<set name="equippable">true</set>
-			<set name="attunement">true</set>
-		</setters>
-	</element>
-
 	<element name="Rings of Spell Sharing" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_RINGS_OF_SPELL_SHARING">
 		<description>
 			<p>This pair of purple rings are linked by a magical force. Each ring displays an outstretched hand. One rings hand looks to be casting a spell from a gemstone while the other rings hand levitates a larger gem above it. The former is a Siphoning Ring, and the latter is a Channeling Ring. Only the Channeling Ring can be attuned to.</p>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<elements>
+	<info>
+		<name>Book of the Fallen - Custom Miscellaneous Items</name>
+		<description>
+		Contains Custom Miscellaneous Items created specifically for the campaign &quot;Book of the Fallen&quot;.
+		</description>
+		<update version="1.0.0">
+			<file name="botf-custom-misc-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/misc-items.xml"/>
+		</update>
+	</info>
+
+	<!--Start:: Custom Miscellaneous Items for Book of the fallen -->
+	<element name="Sigil of the Iron Company" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MISC_ITEM_SIGIL_IRON_COMPANY">
+		<description>
+			<p>This Sigil shows that the bearer is a member of "The Iron Company". Wearing this Sigil grants +1 to Charisma Skill Checks due the respect it inspires to others knowing that the bearer is part of this group.</p>
+		</description>
+		<setters>
+			<set name="category">Wondrous Items</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="weight" lb="0">0 lb.</set>
+			<set name="type">Wondrous Item</set>
+			<set name="rarity">Legendary</set>
+			<set name="slot">misc</set>
+		</setters>
+		<rules>
+			<stat name="deception:misc" value="1" />
+			<stat name="intimidation:misc" value="1" />
+			<stat name="performance:misc" value="1" />
+			<stat name="persuasion:misc" value="1" />
+		</rules>
+	</element>
+	
+	
+	
+</elements>

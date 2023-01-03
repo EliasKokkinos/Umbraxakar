@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Feats created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.2">
+		<update version="1.0.3">
 			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml"/>
 		</update>
 	</info>
@@ -65,6 +65,24 @@
 			<grant type="Grants" id="ID_INTERNAL_GRANTS_PROFICIENCY_SKILL_OR_DOUBLE_PERSUASION" />
 		</rules>
 	</element>
+
+	<element name="Allomantic Charger" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_ALLOMANTIC_CHARGER">
+		<description>
+			<p>When you use your Action to Dash or Jump using Allomancy, as a Bonus Action you can make one melee weapon Attack or Shove a creature with Advantage.<br />
+			Additionally, if you:
+			<ul>
+				<li>Dash: move at least 10 feet in a straight line immediately before taking this Bonus Action</li>
+				<li>Jump: move 10 feet before performing the Jump and land within reach of the target</li>
+			</ul>
+			you either gain a +5 bonus to the attack damage roll (if you make a melee attack and hit), or push the target up to 10 feet away from you (if you shove and you succeed).</p>
+		</description>
+		<sheet>
+			<description>When you use your Action to Dash or Jump using Allomancy, as a Bonus Action you can make one melee weapon Attack or Shove a creature with Advantage.<br />
+			Additionally, if you Dash and move move at least 10 feet in a straight line immediately before taking the Bonus Action, or if move 10 feet before Jumping and land within reach of the target, you either gain a +5 bonus to the attack damage roll, or push the target up to 10 feet away from you.
+			</description>
+		</sheet>
+	</element>
+
 	<!--End:: Custom Feats for Book of the fallen -->
 
 </elements>
