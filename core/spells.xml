@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Spells created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.0">
+		<update version="1.0.2">
 			<file name="botf-custom-spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/spells.xml"/>
 		</update>
 	</info>
@@ -21,8 +21,8 @@
 		<supports>Rogue, Ranger</supports>
 		<description>
 			<p class="flavor">In the beginning, there was only darkness. It will return.</p>
-			<p>Choose a location within range that is within 5 feet of a creature or in dim light or darkness. You teleport to this location. As a bonus action before or after teleporting, you can make a single melee spell attack against a target within your reach. If you hit, the target takes 1d6 psychic damage. </p>
-			<p class="indent"><b><i>At Higher Levels. </i></b>When you cast this spell using a spell slot of 2nd level or higher, the range increases by 5 feet and the psychic damage increases by 1d6 per spell slot level above 1st.</p>
+			<p>Choose a location within range that is within 5 feet of a creature or in dim light or darkness. You teleport to this location. As a bonus action before or after teleporting, you can make a single melee attack against a target within your reach.</p>
+			<p class="indent"><b><i>At Higher Levels. </i></b>When you cast this spell using a spell slot of 2nd level or higher, the range increases by 5 feet and the amount of attacks increases by 1 for each extra level.</p>
 		</description>
 		<setters>
 			<set name="keywords"></set>
@@ -48,16 +48,22 @@
 				less than they do to fly through the air away from them (using coins, for instance, as weapons). For metallic objects which weigh more than they do, 
 				this can cause them to be pushed away from the object. It was generally assumed that a Coinshot could not Push on metals that pierce or are otherwise 
 				contained in the body of another (e.g., ingested metals).</p>
-			<p class="indent"><b><i>Pushing. </i></b>You can push the equivalent to your weight practically 40 feet. You can also use mettallic objects 
-				such as coins (30/90 (up to 3 coins) x 1 bludgeoning), Darts (20/60 1d4 piercing) and Daggers (20/60 1d4 piercing) can be used to inflict damage,
-			 	at which case their thrown properties are used.</p>
+			<p class="indent"><b><i>Pushing. </i></b>You can push the equivalent to your weight practically 40 feet.</p>
+			<p class="indent"><b><i>Coinshot. </i></b>Replace one or more Attacks with coinshot, where you can hurl a number of coins, or other similarly shaped metal, 
+			equal to your intelligence modifier (minimum of 1) towards an enemy at a distance of up to 60 feet causing 1d12 piercing damage for each coin. </p>
+			<p class="indent"><b><i>Metallic Hail. </i></b>As an Action direct a hail of metallic shards (usually coins) at a point of at least 20 feet away from you, 
+			to a max of 60 feet. Each creature in a 5-foot-radius sphere centered on that point, OR in the path of the shards/coins, must make a Dexterity saving throw
+			 equal to your Character Level + Proficiency Bonus. A target takes 4d12 piercing damage on a failed save, or half as much damage on a successful one. 
+			 The coins/shards land at that sphere and can be used in subsequent turns by Allomancers. </p>
+			<p class="indent"><b><i>Metal Haze. </i></b>As a Bonus Action push metallic dust into the eyes of a creature withing 10 feet. The creature must succeed on a 
+			constitution saving throw equal to your Character Level + Proficiency Bonus or be blinded. The creature can repeat the saving throw at the end of their round.</p>
 		</description>
 		<setters>
 			<set name="keywords"></set>
 			<set name="level">1</set>
 			<set name="school">Allomancy</set>
-			<set name="time">1 action</set>
-			<set name="duration">Instantaneous</set>
+			<set name="time">1 bonus action</set>
+			<set name="duration">1 min</set>
 			<set name="range">40 feet</set>
 			<set name="hasVerbalComponent">false</set>
 			<set name="hasSomaticComponent">false</set>
@@ -72,20 +78,25 @@
 		<supports>Rogue, Ranger, Sorcerer, Wizard, Fighter</supports>
 		<description>
 			<p class="flavor">You have the ability to burn Iron.<b><i>This spell is only available to Mistborn. </i></b></p>
-			<p>Lurchers have the ability to burn Iron, which allows them to Pull on nearby metals. This can allow them to make metallic objects 
-			that weigh less than they do to fly through the air toward them. For metallic objects which weigh more than they do, this can cause them 
-			to be pulled toward the object. It was generally assumed that a Lurcher could not Pull on metals that pierce or are otherwise contained in the body of another  
-			(e.g., ingested metals).</p>
-			<p class="indent"><b><i>Pulling. </i></b>You can pull the equivalent to your weight practically 40 feet. You can also use mettallic objects 
-				such as coins (30/90 (up to 3 coins) x 1 bludgeoning), Darts (20/60 1d4 piercing) and Daggers (20/60 1d4 piercing) can be used to inflict damage,
-			 	at which case their thrown properties are used. The target must be in the path of these items towards their way to you.</p>
+			<p>Lurchers have the ability to burn Iron, which allows them to Pull on nearby metals. 
+			The Lurchers abilities mirror that of Coinshots with the caveat that the metal must originate in a location away from them, in order to pull it. 
+			Throwing metal shards to a distance of 10 feet from them is a free action, and to a distance between 10 and 60 feet requires a bonus action. (can be done once per turn). </p>
+			<p class="indent"><b><i>Pulling. </i></b>You can pull the equivalent to your weight practically 40 feet.</p>
+			<p class="indent"><b><i>Coinshot. </i></b>Replace one or more Attacks with coinshot, where you can Pull a number of coins, or other similarly shaped metal, 
+			equal to your intelligence modifier (minimum of 1) towards an enemy at a distance of up to 60 feet causing 1d12 piercing damage for each coin.  </p>
+			<p class="indent"><b><i>Metallic Hail. </i></b>As an Action direct a hail of metallic shards (usually coins) at a point of at least 20 feet away from the target, 
+			to a max of 60 feet. Each creature in a 5-foot-radius sphere centered on that point, OR in the path of the shards/coins, must make a Dexterity saving throw equal 
+			to your Character Level + Proficiency Bonus. A target takes 4d12 piercing damage on a failed save, or half as much damage on a successful one. The coins/shards 
+			land at that sphere and can be used in subsequent turns by Allomancers.</p>
+			<p class="indent"><b><i>Metal Haze. </i></b>As a Bonus Action push metallic dust into the eyes of a creature withing 10 feet. The creature must succeed on a constitution 
+			saving throw equal to your Character Level + Proficiency Bonus or be blinded. The creature can repeat the saving throw at the end of their round.</p>
 		</description>
 		<setters>
 			<set name="keywords"></set>
 			<set name="level">1</set>
 			<set name="school">Allomancy</set>
-			<set name="time">1 action</set>
-			<set name="duration">Instantaneous</set>
+			<set name="time">1 bonus action</set>
+			<set name="duration">1 min</set>
 			<set name="range">40 feet</set>
 			<set name="hasVerbalComponent">false</set>
 			<set name="hasSomaticComponent">false</set>
@@ -95,10 +106,80 @@
 			<set name="isRitual">false</set>
 		</setters>
 	</element>
+
+	<element name="Allomancy: Iron and Steel" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_ALLOMANCYIRONSTEEL">
+		<supports>Rogue, Ranger, Sorcerer, Wizard, Fighter</supports>
+		<description>
+			<p class="flavor">You have the ability to burn Iron and Steel at the same time.<b><i>This spell is only available to Mistborn. </i></b></p>
+			<p>Kestrels have the ability to burn Iron and Steel, which allows them to Pull and Push on nearby metals. </p>
+			<p class="indent"><b><i>Kestrel in Flight. </i></b>As a bonus action use metal (provided there is) around your environment to hover into the air, you replace your move action to 
+			move 40 feet to any direction. You must be a minimum of 120 feet from 2 metal objects to achieve this. (this put usual achievable hover height to about 60 feet)
+			You require both metals burning to stabilize your hovering. Falling unconscious or becoming unable to burn iron and steel at the same time stops this effect. 
+			You can safely land if you can reduce your falling rate with only one metal burning.</p>
+			<p class="indent"><b><i>Metal Savant. </i></b>
+			<ul>
+				<li>Disarm: As a Bonus Action, by both tugging and pushing on a metal item in the hands of a creature you can attempt to dislodge it from their grasp. The creature must must make a Strength saving throw 
+				equal to your Character Level + Proficiency Bonus or the item flies 10 feet either towards, or away from you.</li>
+				<li>Knockdown: As a Bonus Action, by both tugging and pushing on metal armor of a humanoid your size you can attempt to disrupt their balance and send them prone. 
+				The creature must must make a Strength saving throw equal to your Character Level + Proficiency Bonus or they fall prone.</li>			
+			</ul>
+			</p>
+			<p class="indent"><b><i>Metallic Hail. </i></b>As an Action direct a hail of metallic shards (usually coins) at a point of at least 20 feet away from the target, 
+			to a max of 60 feet. Each creature in a 5-foot-radius sphere centered on that point, OR in the path of the shards/coins, must make a Dexterity saving throw equal 
+			to your Character Level + Proficiency Bonus. A target takes 4d12 piercing damage on a failed save, or half as much damage on a successful one. The coins/shards 
+			land at that sphere and can be used in subsequent turns by Allomancers.</p>
+			<p class="indent"><b><i>Metal Haze. </i></b>As a Bonus Action push metallic dust into the eyes of a creature withing 10 feet. The creature must succeed on a constitution 
+			saving throw equal to your Character Level + Proficiency Bonus or be blinded. The creature can repeat the saving throw at the end of their round.</p>
+		</description>
+		<setters>
+			<set name="keywords"></set>
+			<set name="level">1</set>
+			<set name="school">Allomancy</set>
+			<set name="time">1 bonus action</set>
+			<set name="duration">1 min</set>
+			<set name="range">40 feet</set>
+			<set name="hasVerbalComponent">false</set>
+			<set name="hasSomaticComponent">false</set>
+			<set name="hasMaterialComponent">true</set>
+			<set name="materialComponent">Bead of Iron and Steel</set>
+			<set name="isConcentration">false</set>
+			<set name="isRitual">false</set>
+		</setters>
+	</element>
 	<!--End:: Custom Spells (Level 1) for Book of the fallen -->
 
 
 	<!--Start:: Custom Spells (Level 2) for Book of the fallen -->
+
+	<element name="Allomancy: Pewter" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_ALLOMANCYPEWTER">
+		<supports>Rogue, Ranger, Sorcerer, Wizard, Fighter</supports>
+		<description>
+			<p class="flavor">You have the ability to burn Pewter.<b><i>This spell is only available to Mistborn. </i></b></p>
+			<p>Pewterarms, or Thugs, have the ability to burn Pewter, which allows them to greatly enhance their physical capabilities. 
+			While burning pewter, a Thug can fight or perform physical labor longer than any normal person, and is also many times stronger than his or her normal self. 
+			This enhanced strength also allows a Thug to shrug off wounds that would kill or incapacitate a normal person. Pewter-burning also provides a Thug with an 
+			increased sense of balance and vastly increased speed and dexterity. 
+			</p>
+			<p class="indent"><b><i>Thug. </i></b>Dexterity and strength increase temporarily by 4. Similarly your movement speed increases by 20 feet and carrying capacity doubles. After completing 
+			the burn the user must succeed a DC 15 or suffer a level of exhaustion. For every extra pewter bead burned withing the next 10 minutes the DC increases by 5 and the level of exhaustion by 1. </p>
+			<p class="indent"><b><i>Pewter drag. (lasts 20 min per bead, requires concentration)</i></b>Increase only movement speed by 40 feet and triple your carrying capacity for a significantly longer period. After completing 
+			the burn the user must succeed a DC 15 or suffer a level of exhaustion. For every extra pewter bead burned withing the next 10 minutes the DC increases by 5 and the level of exhaustion by 1.</p>
+		</description>
+		<setters>
+			<set name="keywords"></set>
+			<set name="level">2</set>
+			<set name="school">Allomancy</set>
+			<set name="time">1 bonus action (takes effect on the next turn)</set>
+			<set name="duration">1 min</set>
+			<set name="range">self</set>
+			<set name="hasVerbalComponent">false</set>
+			<set name="hasSomaticComponent">false</set>
+			<set name="hasMaterialComponent">true</set>
+			<set name="materialComponent">Bead of Pewter</set>
+			<set name="isConcentration">false</set>
+			<set name="isRitual">false</set>
+		</setters>
+	</element>
 
 	<!--End:: Custom Spells (Level 2) for Book of the fallen -->
 

@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Feats created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.3">
+		<update version="1.0.4">
 			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml"/>
 		</update>
 	</info>
@@ -22,7 +22,7 @@
 		</description>
 		<sheet>
 			<description>You can use the Hide action in dim light or darkness. Whenever you take the Hide action and successfully become undetected, you can move normally up to 30 feet before losing the benefits of being hidden.
-			You can cast Duskwalk times and casting level equal to your Proficiency Bonus, without expending a spell slot. You can’t do so again until you finish a long rest.</description>
+			You can cast Shadow Walk times and casting level equal to your Proficiency Bonus, without expending a spell slot. You can’t do so again until you finish a long rest.</description>
 		</sheet>
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWWALK" />
@@ -36,15 +36,24 @@
 				<li>You can burn various metals which alter your physical and mental abilities. This ability is known as Allomancy and its secrets are closely guarded.</li>
 				<li>You can burn steel 1d8 times (every short rest if you have access to salvageable steel. The steel must be non magical), without expending a spell slot.</li>				
 				<li>You can burn iron 1d8 times (every short rest if you have access to salvageable steel. The iron must be non magical), without expending a spell slot.</li>				
+				<li>You can burn pewter 1d4 times (every long rest if you have access to salvageable steel. The pewter must be non magical), without expending a spell slot.</li>				
 			</ul>
 		</description>
 		<sheet>
-			<description>You can burn steel 1d8 (every short rest if you have access to salvageable steel. The steel must be non magical) times, without expending a spell slot.
-			You can burn iron 1d8 (every short rest if you have access to salvageable steel. The iron must be non magical) times, without expending a spell slot.</description>
+			<description>
+			<ul>
+				<li>You can burn various metals which alter your physical and mental abilities. This ability is known as Allomancy and its secrets are closely guarded.</li>
+				<li>You can burn steel 1d8 times (every short rest if you have access to salvageable steel. The steel must be non magical), without expending a spell slot.</li>				
+				<li>You can burn iron 1d8 times (every short rest if you have access to salvageable steel. The iron must be non magical), without expending a spell slot.</li>				
+				<li>You can burn pewter 1d4 times (every long rest if you have access to salvageable steel. The pewter must be non magical), without expending a spell slot.</li>				
+			</ul>
+			</description>
 		</sheet>
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
 			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRON" />
+			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRONSTEEL" />
+			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYPEWTER" />
 		</rules>
 	</element>
 
