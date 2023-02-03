@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.5">
+		<update version="1.0.6">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -112,7 +112,8 @@
 		</setters>
 		<rules>
 			<stat name="charisma" value="2" />
-			<select type="Ability Score Improvement" name="Ascendant" supports="ID_PHB_FEAT_ASI_STRENGTH|ID_PHB_FEAT_ASI_DEXTERITY|ID_PHB_FEAT_ASI_CHARISMA|ID_PHB_FEAT_ASI_CONSTITUTION|ID_PHB_FEAT_ASI_INTELLIGENCE|ID_PHB_FEAT_ASI_WISDOM" value="2"/>
+			<select type="Ability Score Improvement" name="Ascendant" supports="ID_PHB_FEAT_ASI_STRENGTH|ID_PHB_FEAT_ASI_DEXTERITY|ID_PHB_FEAT_ASI_CHARISMA|ID_PHB_FEAT_ASI_CONSTITUTION|ID_PHB_FEAT_ASI_INTELLIGENCE|ID_PHB_FEAT_ASI_WISDOM" />
+			<select type="Ability Score Improvement" name="Ascendant" supports="ID_PHB_FEAT_ASI_STRENGTH|ID_PHB_FEAT_ASI_DEXTERITY|ID_PHB_FEAT_ASI_CHARISMA|ID_PHB_FEAT_ASI_CONSTITUTION|ID_PHB_FEAT_ASI_INTELLIGENCE|ID_PHB_FEAT_ASI_WISDOM" />
 			<grant type="Condition" id="ID_INTERNAL_CONDITION_DAMAGE_IMMUNITY_POISON" />
 		</rules>
 	</element>
