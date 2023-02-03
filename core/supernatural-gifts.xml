@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.1" encoding="utf-8" ?>
 <elements>
 	<info>
 		<name>Book of the Fallen - Custom Supernatural Gifts and Boons</name>
@@ -90,6 +90,30 @@
 			<set name="type">Epic Boon</set>
 			<set name="slot">gift</set>
 		</setters>
+	</element>
+	
+	<element name="Ascendant" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_ASCENDANT">
+		<description>
+			<p>
+			Ascendants were individuals who had transcended death. In the time of the First Empire they had been called First Heroes. 
+			Ascendants could become gods if they gained sufficient following among mortals, but they were not gods by default.
+			Those without worshippers were considered unchained, or Unaligned in the language of the Deck of Dragons.
+			</p>
+			<ul>
+				<li>You stop aging. You are immune to any effect that would age you, and you can’t die from old age.</li>
+				<li>You are immune to curses, diseases, and the poisoned condition</li>
+				<li>Increase Charisma and an ability score of your choice by 2 each.</li>
+			</ul>
+		</description>
+		<setters>
+			<set name="category">Supernatural Event</set>
+			<set name="type">Ascendancy</set>
+		</setters>
+		<rules>
+			<stat name="charisma" value="2" />
+			<select type="Ability Score Improvement" name="Ascendant" supports="ID_PHB_FEAT_ASI_STRENGTH|ID_PHB_FEAT_ASI_DEXTERITY|ID_PHB_FEAT_ASI_CHARISMA|ID_PHB_FEAT_ASI_CONSTITUTION|ID_PHB_FEAT_ASI_INTELLIGENCE|ID_PHB_FEAT_ASI_WISDOM" />
+			<grant type="Condition" id="ID_INTERNAL_CONDITION_DAMAGE_IMMUNITY_POISON" />
+		</rules>
 	</element>
 
 	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->
