@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.3">
+		<update version="1.0.4">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -106,8 +106,9 @@
 			</ul>
 		</description>
 		<setters>
-			<set name="category">Supernatural Event</set>
-			<set name="type">Ascendancy</set>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
 		</setters>
 		<rules>
 			<stat name="charisma" value="2" />
