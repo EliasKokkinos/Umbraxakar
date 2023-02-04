@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <elements>
+	<info>
+		<name>Book of the Fallen - Rogue Mistborn</name>
+		<description>
+		Contains Rogue Mistborn created specifically for the campaign &quot;Book of the Fallen&quot;.
+		</description>
+		<update version="1.0.0">
+			<file name="botf-rogue-mistborn.xml.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/rogue-mistborn.xml"/>
+		</update>
+	</info>
     <element name="Mistborn" type="Archetype" source="Book of the Fallen" id="ID_BOTF_SUBCLASS_MISTBORN">
         <supports>Roguish Archetype</supports>
         <description>
