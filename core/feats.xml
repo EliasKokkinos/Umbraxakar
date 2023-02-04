@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Feats created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.5">
+		<update version="1.0.6">
 			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml"/>
 		</update>
 	</info>
@@ -92,7 +92,7 @@
 		</sheet>
 	</element>
 	
-	<element name="Soul Inspiration" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_SOUL_INSPIRATION">
+	<element name="Soul Inspiration" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_FEAT_SOUL_INSPIRATION">
 		<description>
 			<p>Prerequisite: Proficiency Persuasion, Medicine higher than 3</p>
 			<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally. When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your 

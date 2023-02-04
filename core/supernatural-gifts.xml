@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.7">
+		<update version="1.0.8">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -121,7 +121,7 @@
 			 and could work to ensure that they receive proper burials and funerary rights. As a member of the Iron Company, a group of mercenaries, her devotion to Hood could also influence her role within the group. 
 			 She may be a leader of a group of soldiers, who follow her in the belief that death is nothing to be feared, and that it may be a good thing. The Iron Company may be known for their fearless fighting style, as they are not afraid of death.</p>
 			<p>
-				Shield Anvil is granted the Soul Inspiration Feat..
+				Shield Anvil is granted the Soul Inspiration Feat.
 			</p>
 		</description>
 		<setters>
@@ -130,7 +130,7 @@
 			<set name="slot">gift</set>
 		</setters>
 		<rules>
-			<grant type="Feat" id="ID_BOTF_FEAT_SOUL_INSPIRATION" />
+			<grant type="Archetype Feature" id="ID_BOTF_FEAT_SOUL_INSPIRATION" level="9"/>
 		</rules>
 	</element>
 
