@@ -3,14 +3,14 @@
     <element name="Mistborn" type="Archetype" source="Book of the Fallen" id="ID_BOTF_SUBCLASS_MISTBORN">
         <supports>Roguish Archetype</supports>
         <description>
-            <p>Some are born Mistoborns, others are made through a secretive ritual, giving them the ability to consume and burn metals to access an unknown magic source, very rarely seen before.</p>
+            <p>Some are born Mistoborns, others are made through a secretive ritual, consuming a bead of Lerasium, giving them the ability to consume and burn metals to access an unknown magic source, very rarely seen before.</p>
             <p class="indent">Mistborns are usually secretive individuals who closely guard their secrets since obscurity and misinterpretation of their powers gives them a great advantage in combat.
-            Another reason for this secrecy is that the very real weaknesses of Mistborns, that are sometimes hidden or not shared with other Mistborns. Mistborns distrust and avoid others of their kind, 
+            Another reason for this secrecy is the very real weaknesses of Mistborns, that are sometimes hidden or not shared with other Mistborns. Mistborns distrust and avoid others of their kind, 
             since they represent the most dangerous enemies to them.</p>
             <p class="indent">As a Mistborn, you almost never unleash your true potential or share your true capabilities with anyone. Mistborns have hunted and killed others for less.
             You exploit your obscure magic to catch enemies off guard and to enhance your preexisting skills to become an unmatched force in the battlefield.</p>
-            <div element="ID_BOTF_ARCHETYPE_FEATURE_MISTBORN" />
-            <div element="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_CLEVER_AS_THE_GODS" />
+            <div element="ID_BOTF_ARCHETYPE_FEATURE_ALLOMANCY" />
+            <div element="ID_BOTF_ARCHETYPE_FEATURE_LURCHER_AND_COINSHOT" />
             <div element="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_NOTORIOUS_TRICKSTER" />
             <div element="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR" />
             <div element="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING" />
@@ -19,59 +19,84 @@
             <description>Mistoborns are obscure individuals who at first glance seem like common adventurers.</description>
         </sheet>
         <rules>
-            <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_MISTBORN" level="3"/>
-            <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_CLEVER_AS_THE_GODS" level="3"/>
+            <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ALLOMANCY" level="3"/>
+            <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_LURCHER_AND_COINSHOT" level="3"/>
             <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_NOTORIOUS_TRICKSTER" level="9"/>
             <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR" level="13"/>
             <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING" level="17"/>
         </rules>
     </element>
-    <element name="Mistborn" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_MISTBORN">
+    <element name="Allomancy" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ALLOMANCY">
         <description>
-            <p>You gain the ability to burn metals that grant you a access tpo obscure but specific magical skills.</p>
+            <p>You have become Mistborn by the swallowing of a bead of Lerasium and can burn various metals which alter your physical and mental abilities. 
+            This ability is known as Allomancy and its secrets are closely guarded.</p>
         </description>
         <sheet>
-            <description>Burn Steel and Iron without the need to succeed on a constitution saving throw.</description>
-        </sheet>
-        <rules>
-			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
-			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRON" />
-			<grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRONSTEEL" />
-        </rules>
-    </element>
-    <element name="Clever as the Gods" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_CLEVER_AS_THE_GODS">
-        <description>
-            <p>Starting at 3rd level, you are rarely outwitted on the field of battle. On your turn, you may use your bonus action to devise a clever plan to trick an enemy. Choose one creature that you can see. Make a Charisma (Deception) roll contested by that creature’s Wisdom (Insight). If you win the contest, you and your allies have advantage on attacks against that creature until the beginning of your next turn. This feature cannot be used on the same creature more than once per combat encounter.</p>
-        </description>
-        <sheet>
-            <description action="Bonus Action">Choose one creature that you can see. Make a Deception roll contested by that creature’s Insight. If you win the contest, you and your allies have advantage on attacks against that creature until the beginning of your next turn. This feature cannot be used on the same creature more than once per combat encounter.</description>
+            <description>
+                <p>You have become Mistborn and can burn various metals which alter your physical and mental abilities.
+            You can simultaneously burn a number of metals equal to your Intelligence or Wisdom modifier divided by 2.
+            Burning some metals requires a constitution saving throw, determined by the DM.
+                </p>
+            </description>
         </sheet>
     </element>
-    <element name="Notorious Trickster" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_NOTORIOUS_TRICKSTER">
+    <element name="Lurcher and Coinshot" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_LURCHER_AND_COINSHOT">
         <description>
-            <p>Starting at 9th level, you are famed for your cleverness, to the point where intelligent enemies are extremely wary of you. Creatures who are aware of your presence but cannot see you become too distracted to perform opportunity attacks until they can see you again. Additionally, when you hit a creature with a Sneak Attack, if that creature is concentrating on a spell, they have disadvantage on the roll to maintain concentration.</p>
-        </description>
-        <sheet>
-            <description>Creatures who are aware of your presence but cannot see you become too distracted to perform opportunity attacks until they can see you again. Additionally, when you hit a creature with a Sneak Attack, if that creature is concentrating on a spell, they have disadvantage on the roll to maintain concentration.</description>
-        </sheet>
-    </element>
-    <element name="Tenacious Survivor" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR">
-        <description>
-            <p>At 13th level, you’ve survived through so many ordeals that you face each new challenge with grim determination. You can add your Charisma bonus to your initiative rolls. Also, at the beginning of your first turn in combat, you may use a bonus action to take a deep breath and regain hit points equal to your rogue level. You may use this feature a number of times equal to your Charisma modifier, and you regain any expended uses when you finish a short or long rest.</p>
-        </description>
-        <sheet action="Bonus Action" usage="{{charisma:modifier}}/Short Rest">
-            <description>At the beginning of your first turn in combat, you may take a deep breath and regain {{level:rogue}} hp.</description>
-        </sheet>
-		<rules>
-            <stat name="initiative:misc" value="charisma:modifier" />
-		</rules>
-    </element>    
-    <element name="Legendary Cunning" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING">
-        <description>
-            <p>Starting at 17th level, you are able to instantly assess every opportunity to seize the upper hand in combat. Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</p>
-        </description>
-        <sheet>
-            <description>Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</description>
-        </sheet>
-    </element>
-</elements>
+            <p>Starting at 3rd level, you can burn Iron and Steel without any hindrance. 
+            On your turn, you may use your bonus action to pull or push anything close to your size at a distance of 40 feet.</p></description>
+            <sheet>
+                <description action="Bonus Action">
+                    Burn Steel and Iron without the need to succeed on a constitution saving throw. Pull or push anything close to your size at a distance of 40 feet.
+                    <br/>
+                    You can burn steel 1d4 times (every short rest), without expending a spell slot.
+                    <br/>
+                    You can burn iron 1d4 times (every short rest), without expending a spell slot.
+                </description>
+            </sheet>
+                <rules>
+                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
+                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRON" />
+                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRONSTEEL" />
+                </rules>
+        </element>
+        <element name="Thug and Tineye" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_THUG_AND_TINEYE">
+            <description>
+                <p>Starting at 9th level, you can burn Tin and Pewter without any hindrance.
+                You can greatly enhance your physical skill and agility by burning Pewter. As well as all five of your senses by burning Tin.  
+                </p>
+            </description>
+            <sheet>
+                <description action="Bonus Action">
+                    Burn Tin and Pewter without the need to succeed on a constitution saving throw. 
+                    Increase your Strength and Dexterity by 4 and movement speed by 20 feet for Pewter.
+                    Tin TODO
+                    <br/>
+                    You can burn Pewter 1d4 times (every long rest), without expending a spell slot.
+                    <br/>
+                    You can burn Tin 1d4 times (every long rest), without expending a spell slot.
+                </description>            
+            </sheet>
+                <rules>
+                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYPEWTER" />
+                </rules>
+        </element>
+        <element name="Tenacious Survivor" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR">
+            <description>
+                <p>At 13th level, you’ve survived through so many ordeals that you face each new challenge with grim determination. You can add your Charisma bonus to your initiative rolls. Also, at the beginning of your first turn in combat, you may use a bonus action to take a deep breath and regain hit points equal to your rogue level. You may use this feature a number of times equal to your Charisma modifier, and you regain any expended uses when you finish a short or long rest.</p>
+            </description>
+            <sheet action="Bonus Action" usage="{{charisma:modifier}}/Short Rest">
+                <description>At the beginning of your first turn in combat, you may take a deep breath and regain {{level:rogue}} hp.</description>
+            </sheet>
+            <rules>
+                <stat name="initiative:misc" value="charisma:modifier" />
+            </rules>
+        </element>
+        <element name="Legendary Cunning" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING">
+            <description>
+                <p>Starting at 17th level, you are able to instantly assess every opportunity to seize the upper hand in combat. Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</p>
+            </description>
+            <sheet>
+                <description>Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</description>
+            </sheet>
+        </element>
+    </elements>
