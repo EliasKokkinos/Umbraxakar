@@ -18,6 +18,6 @@
 		<file name="rings.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/rings.xml" />
 		<file name="scrolls.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/scrolls.xml" />
 		<file name="misc-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/misc-items.xml" />
-		<file name="subclass-rogue-mistborn.xml" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/master/core/class/subclass-rogue-mistborn.xml" />
+		<file name="subclass-rogue-mistborn.xml" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/master/core/rogue-mistborn.xml" />
 	</files>
 </index>
