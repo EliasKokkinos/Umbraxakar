@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.8">
+		<update version="1.0.9">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -54,7 +54,7 @@
 	
 	<element name="Mothers Embrace" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_MOTHERS_EMBRACE">
 		<description>
-			<p>A Short Rest can be completed in 10 minutes and a Full Rest only requires 4 hours.<br /><br />
+			<p>A Short Rest can be completed in 10 minutes and a Full Rest only requires 4 hours.<br />
 			This bonus applies only during night-time or when the character is in Kurald Galain darkness.</p>
 		</description>
 		<setters>

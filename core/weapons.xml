@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.5">
+		<update version="1.0.6">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -358,6 +358,41 @@
 			<set name="attunement">true</set>
 			<set name="enhancement">3</set>
 			<set name="weapon">Warhammer</set>
+		</setters>
+	</element>
+
+	<element name="Mothers Dawn" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MOTHERS_DAWN">
+		<description>
+			<p>This glorious sword leaves ribbons of light trailing in the wake of the blade. Some who have witnessed it say that the ribbons of light appear to reveal a painting of a sunrise. 
+			This weapon deals radiant damage instead of piercing damage. Once per turn, when you attack with this weapon while prone, you can rise to your feet and gain advantage on the attack.</p>
+		</description>
+		<setters>
+			<set name="keywords">shortsword</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="shortsword">Weapon</set>
+			<set name="rarity">Unique</set>
+			<set name="enhancement">2</set>
+			<set name="weapon">Shortsword</set>
+			<set name="attunement">true</set>
+		</setters>
+	</element>
+
+	<element name="Mothers Dusk" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MOTHERS_DUSK">
+		<description>
+			<p>This shrouded blade is cast in a black hue and appears to have stars dimly shining from within. Some say that an image of a sunset can be seen in the dark shadows that follow the blade’s edge. 
+			This weapon deals kuralt galain damage instead of piercing damage. Once per turn, when you attack with this weapon while dim light, darkness or kuralt galain, you gain advantage on the attack, 
+			and if you hit, the target is knocked prone.</p>
+		</description>
+		<setters>
+			<set name="keywords">shortsword</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="shortsword">Weapon</set>
+			<set name="rarity">Unique</set>
+			<set name="enhancement">2</set>
+			<set name="weapon">Shortsword</set>
+			<set name="attunement">true</set>
 		</setters>
 	</element>
 
