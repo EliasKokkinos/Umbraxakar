@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Feats created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.4">
+		<update version="1.0.5">
 			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml"/>
 		</update>
 	</info>
@@ -90,6 +90,17 @@
 			Additionally, if you Dash and move move at least 10 feet in a straight line immediately before taking the Bonus Action, or if move 10 feet before Jumping and land within reach of the target, you either gain a +5 bonus to the attack damage roll, or push the target up to 10 feet away from you.
 			</description>
 		</sheet>
+	</element>
+	
+	<element name="Soul Inspiration" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_SOUL_INSPIRATION">
+		<description>
+			<p>Prerequisite: Proficiency Persuasion, Medicine higher than 3</p>
+			<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally. When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your 
+			level + your Wisdom modifier. Additionally, when you use a bonus action to make a persuasion check on a creature that is frightened, it is no longer frightened. 
+			Additionally, once per long rest, you can use an action to grant all creatures within a 60-foot radius of you advantage on saving throws against fear for 1 hour. Empowering Presence: Imogen has a natural aura of confidence and resolve. 
+			As an action, Imogen can grant a number of creatures within 30 feet of her equal to her Wisdom modifier (minimum 1) advantage on all attack rolls, saving throws, and skill checks for the next turn. These creatures must be able to see or 
+			hear Imogen. Once per long rest.</p>
+		</description>
 	</element>
 
 	<!--End:: Custom Feats for Book of the fallen -->
