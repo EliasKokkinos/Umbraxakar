@@ -43,60 +43,61 @@
     <element name="Lurcher and Coinshot" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_LURCHER_AND_COINSHOT">
         <description>
             <p>Starting at 3rd level, you can burn Iron and Steel without any hindrance. 
-            On your turn, you may use your bonus action to pull or push anything close to your size at a distance of 40 feet.</p></description>
-            <sheet>
-                <description action="Bonus Action">
-                    Burn Steel and Iron without the need to succeed on a constitution saving throw. Pull or push anything close to your size at a distance of 40 feet.
-                    <br/>
-                    You can burn steel 1d4 times (every short rest), without expending a spell slot.
-                    <br/>
-                    You can burn iron 1d4 times (every short rest), without expending a spell slot.
-                </description>
-            </sheet>
-                <rules>
-                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
-                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRON" />
-                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRONSTEEL" />
-                </rules>
-        </element>
-        <element name="Thug and Tineye" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_THUG_AND_TINEYE">
-            <description>
-                <p>Starting at 9th level, you can burn Tin and Pewter without any hindrance.
-                You can greatly enhance your physical skill and agility by burning Pewter. As well as all five of your senses by burning Tin.  
-                </p>
+            On your turn, you may use your bonus action to pull or push anything close to your size at a distance of 40 feet.</p>
+        </description>
+        <sheet>
+            <description action="Bonus Action">
+                Burn Steel and Iron without the need to succeed on a constitution saving throw. Pull or push anything close to your size at a distance of 40 feet.
+                <br/>
+                You can burn steel 1d4 times (every short rest), without expending a spell slot.
+                <br/>
+                You can burn iron 1d4 times (every short rest), without expending a spell slot.
             </description>
-            <sheet>
-                <description action="Bonus Action">
+        </sheet>
+        <rules>
+            <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYSTEEL" />
+            <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRON" />
+            <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYIRONSTEEL" />
+        </rules>
+    </element>
+    <element name="Thug and Tineye" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_THUG_AND_TINEYE">
+        <description>
+            <p>Starting at 9th level, you can burn Tin and Pewter without any hindrance.
+                You can greatly enhance your physical skill and agility by burning Pewter. As well as all five of your senses by burning Tin.  
+            </p>
+        </description>
+        <sheet>
+            <description action="Bonus Action">
                     Burn Tin and Pewter without the need to succeed on a constitution saving throw. 
                     Increase your Strength and Dexterity by 4 and movement speed by 20 feet for Pewter.
                     Tin TODO
-                    <br/>
+                <br/>
                     You can burn Pewter 1d4 times (every long rest), without expending a spell slot.
-                    <br/>
+                <br/>
                     You can burn Tin 1d4 times (every long rest), without expending a spell slot.
-                </description>            
-            </sheet>
-                <rules>
-                    <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYPEWTER" />
-                </rules>
-        </element>
-        <element name="Tenacious Survivor" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR">
-            <description>
-                <p>At 13th level, you’ve survived through so many ordeals that you face each new challenge with grim determination. You can add your Charisma bonus to your initiative rolls. Also, at the beginning of your first turn in combat, you may use a bonus action to take a deep breath and regain hit points equal to your rogue level. You may use this feature a number of times equal to your Charisma modifier, and you regain any expended uses when you finish a short or long rest.</p>
             </description>
-            <sheet action="Bonus Action" usage="{{charisma:modifier}}/Short Rest">
-                <description>At the beginning of your first turn in combat, you may take a deep breath and regain {{level:rogue}} hp.</description>
-            </sheet>
-            <rules>
-                <stat name="initiative:misc" value="charisma:modifier" />
-            </rules>
-        </element>
-        <element name="Legendary Cunning" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING">
-            <description>
-                <p>Starting at 17th level, you are able to instantly assess every opportunity to seize the upper hand in combat. Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</p>
-            </description>
-            <sheet>
-                <description>Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</description>
-            </sheet>
-        </element>
-    </elements>
+        </sheet>
+        <rules>
+            <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYPEWTER" />
+        </rules>
+    </element>
+    <element name="Tenacious Survivor" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR">
+        <description>
+            <p>At 13th level, you’ve survived through so many ordeals that you face each new challenge with grim determination. You can add your Charisma bonus to your initiative rolls. Also, at the beginning of your first turn in combat, you may use a bonus action to take a deep breath and regain hit points equal to your rogue level. You may use this feature a number of times equal to your Charisma modifier, and you regain any expended uses when you finish a short or long rest.</p>
+        </description>
+        <sheet action="Bonus Action" usage="{{charisma:modifier}}/Short Rest">
+            <description>At the beginning of your first turn in combat, you may take a deep breath and regain {{level:rogue}} hp.</description>
+        </sheet>
+        <rules>
+            <stat name="initiative:misc" value="charisma:modifier" />
+        </rules>
+    </element>
+    <element name="Legendary Cunning" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING">
+        <description>
+            <p>Starting at 17th level, you are able to instantly assess every opportunity to seize the upper hand in combat. Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</p>
+        </description>
+        <sheet>
+            <description>Whenever any of your allies makes an opportunity attack against a creature, you may choose to make a ranged attack against that same creature with advantage.</description>
+        </sheet>
+    </element>
+</elements>
