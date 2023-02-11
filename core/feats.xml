@@ -18,6 +18,7 @@
 				<li>You can use the Hide action in dim light or darkness.</li>
 				<li>Whenever you take the Hide action and successfully become undetected, you can move normally up to 30 feet before losing the benefits of being hidden.</li>
 				<li>You can cast Duskwalk times and casting level equal to your Proficiency Bonus, without expending a spell slot. You can’t do so again until you finish a long rest.</li>
+				<li>You gain a +10 bonus to Dexterity (Stealth) checks, and you can’t be detected or targeted by divination magic, including scrying sensors.</li>
 			</ul>
 		</description>
 		<sheet>
@@ -26,6 +27,7 @@
 		</sheet>
 		<rules>
 			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWWALK" />
+			<stat name="stealth:misc" value="10" />
 		</rules>
 	</element>
 
@@ -34,19 +36,19 @@
 			<p>You have become Mistborn by the swallowing of a bead of Lerasium:</p>
 			<ul>
 				<li>You can burn various metals which alter your physical and mental abilities. This ability is known as Allomancy and its secrets are closely guarded.</li>
-				<li>You can burn steel 1d4 times (every short rest if you have access to salvageable steel. The steel must be non magical), without expending a spell slot.</li>				
-				<li>You can burn iron 1d4 times (every short rest if you have access to salvageable steel. The iron must be non magical), without expending a spell slot.</li>				
-				<li>You can burn pewter 1d4 times (every long rest if you have access to salvageable steel. The pewter must be non magical), without expending a spell slot.</li>				
+				<li>You can burn steel 1d4 times (every short rest if you have access to salvageable steel. The steel must be non magical), without expending a spell slot.</li>
+				<li>You can burn iron 1d4 times (every short rest if you have access to salvageable steel. The iron must be non magical), without expending a spell slot.</li>
+				<li>You can burn pewter 1d4 times (every long rest if you have access to salvageable steel. The pewter must be non magical), without expending a spell slot.</li>
 			</ul>
 		</description>
 		<sheet>
 			<description>
-			<ul>
-				<li>You can burn various metals which alter your physical and mental abilities. This ability is known as Allomancy and its secrets are closely guarded.</li>
-				<li>You can burn steel 1d4 times (every short rest if you have access to salvageable steel. The steel must be non magical), without expending a spell slot.</li>				
-				<li>You can burn iron 1d4 times (every short rest if you have access to salvageable steel. The iron must be non magical), without expending a spell slot.</li>				
-				<li>You can burn pewter 1d4 times (every long rest if you have access to salvageable steel. The pewter must be non magical), without expending a spell slot.</li>				
-			</ul>
+				<ul>
+					<li>You can burn various metals which alter your physical and mental abilities. This ability is known as Allomancy and its secrets are closely guarded.</li>
+					<li>You can burn steel 1d4 times (every short rest if you have access to salvageable steel. The steel must be non magical), without expending a spell slot.</li>
+					<li>You can burn iron 1d4 times (every short rest if you have access to salvageable steel. The iron must be non magical), without expending a spell slot.</li>
+					<li>You can burn pewter 1d4 times (every long rest if you have access to salvageable steel. The pewter must be non magical), without expending a spell slot.</li>
+				</ul>
 			</description>
 		</sheet>
 		<rules>
@@ -84,25 +86,25 @@
 				<li>Jump: move 10 feet before performing the Jump and land within reach of the target</li>
 			</ul>
 			you either gain a +5 bonus to the attack damage roll (if you make a melee attack and hit), or push the target up to 10 feet away from you (if you shove and you succeed).</p>
-		</description>
-		<sheet>
-			<description>When you use your Action to Dash or Jump using Allomancy, as a Bonus Action you can make one melee weapon Attack or Shove a creature with Advantage.<br />
+	</description>
+	<sheet>
+		<description>When you use your Action to Dash or Jump using Allomancy, as a Bonus Action you can make one melee weapon Attack or Shove a creature with Advantage.<br />
 			Additionally, if you Dash and move move at least 10 feet in a straight line immediately before taking the Bonus Action, or if move 10 feet before Jumping and land within reach of the target, you either gain a +5 bonus to the attack damage roll, or push the target up to 10 feet away from you.
-			</description>
-		</sheet>
-	</element>
-	
-	<element name="Soul Inspiration" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_FEAT_SOUL_INSPIRATION">
-		<description>
-			<p>Prerequisite: Proficiency Persuasion, Medicine higher than 3</p>
-			<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally. When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your 
+		</description>
+	</sheet>
+</element>
+
+<element name="Soul Inspiration" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_FEAT_SOUL_INSPIRATION">
+	<description>
+		<p>Prerequisite: Proficiency Persuasion, Medicine higher than 3</p>
+		<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally. When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your 
 			level + your Wisdom modifier. Additionally, when you use a bonus action to make a persuasion check on a creature that is frightened, it is no longer frightened. 
 			Additionally, once per long rest, you can use an action to grant all creatures within a 60-foot radius of you advantage on saving throws against fear for 1 hour. Empowering Presence: Imogen has a natural aura of confidence and resolve. 
 			As an action, Imogen can grant a number of creatures within 30 feet of her equal to her Wisdom modifier (minimum 1) advantage on all attack rolls, saving throws, and skill checks for the next turn. These creatures must be able to see or 
 			hear Imogen. Once per long rest.</p>
-		</description>
-	</element>
+	</description>
+</element>
 
-	<!--End:: Custom Feats for Book of the fallen -->
+<!--End:: Custom Feats for Book of the fallen -->
 
 </elements>
