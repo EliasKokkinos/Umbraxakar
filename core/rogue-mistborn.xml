@@ -21,7 +21,7 @@
             <div element="ID_BOTF_ARCHETYPE_FEATURE_ALLOMANCY" />
             <div element="ID_BOTF_ARCHETYPE_FEATURE_LURCHER_AND_COINSHOT" />
             <div element="ID_BOTF_ARCHETYPE_FEATURE_THUG_AND_TINEYE" />
-            <div element="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR" />
+            <div element="ID_BOTF_ARCHETYPE_FEATURE_RIOTER_AND_SOOTHER" />
             <div element="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING" />
         </description>
         <sheet display="false">
@@ -31,7 +31,7 @@
             <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ALLOMANCY" level="3"/>
             <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_LURCHER_AND_COINSHOT" level="3"/>
             <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_THUG_AND_TINEYE" level="9"/>
-            <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR" level="13"/>
+            <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_RIOTER_AND_SOOTHER" level="13"/>
             <grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_LEGENDARY_CUNNING" level="17"/>
         </rules>
     </element>
@@ -79,7 +79,7 @@
             <description action="Bonus Action">
                     Burn Tin and Pewter without the need to succeed on a constitution saving throw. 
                     Increase your Strength and Dexterity by 4 and movement speed by 20 feet for Pewter.
-                    Tin TODO
+                    Add your proficiency to your Investigation, Perception and Survival while burning Tin. 
                 <br/>
                     You can burn Pewter 1d4 times (every long rest), without expending a spell slot.
                 <br/>
@@ -90,12 +90,21 @@
             <grant type="Spell" id="ID_BOTF_SPELL_ALLOMANCYPEWTER" />
         </rules>
     </element>
-    <element name="Tenacious Survivor" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_ODYSSEAN_TENACIOUS_SURVIVOR">
+    <element name="Rioter and Soother" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_RIOTER_AND_SOOTHER">
         <description>
-            <p>At 13th level, you’ve survived through so many ordeals that you face each new challenge with grim determination. You can add your Charisma bonus to your initiative rolls. Also, at the beginning of your first turn in combat, you may use a bonus action to take a deep breath and regain hit points equal to your rogue level. You may use this feature a number of times equal to your Charisma modifier, and you regain any expended uses when you finish a short or long rest.</p>
+            <p>Starting at the 13th level, you can burn Zinc and Brass without any hindrance.
+                You can control the emotial state of those around you, either to agrievate by burning Zinc or soothe them by using Brass.</p>
         </description>
-        <sheet action="Bonus Action" usage="{{charisma:modifier}}/Short Rest">
-            <description>At the beginning of your first turn in combat, you may take a deep breath and regain {{level:rogue}} hp.</description>
+        <sheet action="Bonus Action">
+            <description>
+                    Burn Zinc and Brass without the need to succeed on a constitution saving throw. 
+                    Burn Zinc to infame the emotions of a 1d8 amount of creatures. Any creature failing Wisdom saving throw of a DC equal the Mistborn level plus their proficiency is affected.
+                    Burn Brass to soothe the emotions of a 1d8 amount of creatures. Any creature failing Wisdom saving throw of a DC equal the Mistborn level plus their proficiency is affected.
+                <br/>
+                    You can burn Zinc 1d4 times (every long rest), without expending a spell slot.
+                <br/>
+                    You can burn Brass 1d4 times (every long rest), without expending a spell slot.
+            </description>
         </sheet>
         <rules>
             <stat name="initiative:misc" value="charisma:modifier" />
