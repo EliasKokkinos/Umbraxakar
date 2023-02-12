@@ -5,7 +5,6 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.6">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -145,7 +144,7 @@
 		</rules>
 	</element>
 
-	<element name="Matriarch's Kiss" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MATRIARCHS_KISS">
+	<element name="Matriarch's Kiss (Shortsword)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MATRIARCHS_KISS">
 		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_GROUP_SWORDS</supports>
 		<description>
 			<p>
@@ -153,7 +152,7 @@
 					<li>You gain a +2 bonus to attack and damage rolls made with this magic weapon.</li>
 					<li>When you hit, you add an additional 1d6 Slashing + 1d6 Necrotic.</li>
 					<li>Requires attunement.</li>
-					<li>Causes Bleeding on failed Constitution save (DC 15).</li>
+					<li>Causes Bleeding on failed Constitution savaving throw (DC 15).</li>
 				</ul>
 			</p>
 			<p>
