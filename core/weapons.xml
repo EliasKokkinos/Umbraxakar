@@ -185,6 +185,51 @@
 		</rules>
 	</element>
 
+	<element name="Matriarch's Kiss (Longsword)" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_MATRIARCHS_KISS_LONGSWORD">
+		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_SLASHING, ID_INTERNAL_WEAPON_PROPERTY_VERSATILE, ID_INTERNAL_WEAPON_GROUP_SWORDS</supports>
+		<description>
+			<p>
+				<ul>
+					<li>You gain a +3 bonus to attack and damage rolls made with this magic weapon.</li>
+					<li>When you hit, you add an additional 1d8 Piercing + 1d8 Necrotic.</li>
+					<li>Requires attunement.</li>
+					<li>Causes Bleeding on failed Constitution saving throw (DC 15).</li>
+				</ul>
+			</p>
+			<p>
+				<strong><em>Envelop in Mist:</em></strong>
+				<ul>
+					<li>While wielded in combat a magical mist envelops the bearer, providing them with an additional +2 AC.</li>
+					<li>As a Reaction, mist surrounding the wielder thickens which causes any attacks targeting them to be taken with disadvantage until the start of their next turn. Can be used Prof. Bonus times per Long Rest.</li>
+				</ul>
+				<strong><em>Vampiric Blade:</em></strong>
+				<ul>
+					<li>The wielder of this sword recovers hitpoints equal to the necrotic damage dealt with each successful hit.</li>
+				</ul>
+			</p>
+			<p>
+				<br/><strong>Bleeding Condition:<br/></strong>
+	  Bleeding creatures must make a Constitution Saving Throw DC 14 at the end of their turns, or lose 18 (2d6) maximum hit points. A successful Const. save of DC 18 ends this condition. Multiple instances of bleeding do not stack. If a bleeding creature's maximum hit points becomes less than their current hit points, its current hit points are reduced to match the max. The target gains a level of exhaustion for every 1/5 of its original max hp lost this way. A DC 15 Wisdom (Medicine) check or magical healing will stop the bleeding. A long rest with food and water recovers all max hit points and all levels of bleeding exhaustion. Alternatively, Greater Restoration or a DC 18 Wisdom (Medicine) check may restore the max hit points, but not the exhaustion. 	  
+			</p>
+		</description>
+		<setters>
+			<set name="keywords">longsword</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="rarity">Legendary</set>
+			<set name="type" addition="longsword">Weapon</set>
+			<set name="slot">onehand</set>
+			<set name="damage" type="slashing">1d8</set>
+			<set name="attunement">true</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Longsword</set>
+			<set name="proficiency">ID_PROFICIENCY_WEAPON_PROFICIENCY_LONGSWORD</set>
+		</setters>
+		<rules>
+			<stat name="ac:misc" value="2"/>
+		</rules>
+	</element>
+
 	<element name="Crysknife" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_WEAPON_CRYSKNIFE">
 		<supports>ID_INTERNAL_WEAPON_CATEGORY_SIMPLE_MELEE, ID_INTERNAL_DAMAGE_TYPE_PIERCING, ID_INTERNAL_WEAPON_PROPERTY_FINESSE, ID_INTERNAL_WEAPON_PROPERTY_LIGHT, ID_INTERNAL_WEAPON_PROPERTY_THROWN</supports>
 		<description>
