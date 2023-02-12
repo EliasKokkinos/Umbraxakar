@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.2">
+		<update version="1.0.9">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -43,8 +43,7 @@
 	<element name="Dark Senses" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DARK_SENSES">
 		<description>
 			<p>You can see in darkness as well as any Tiste Andii and your passive perception is increased by 2.<br /><br />
-			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
-			</p>
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.</p>
 		</description>
 		<setters>
 			<set name="category">Supernatural Gifts</set>
@@ -55,9 +54,8 @@
 	
 	<element name="Mothers Embrace" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_MOTHERS_EMBRACE">
 		<description>
-			<p>A Short Rest can be completed in 10 minutes and a Full Rest only requires 4 hours.<br /><br />
-			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
-			</p>
+			<p>A Short Rest can be completed in 10 minutes and a Full Rest only requires 4 hours.<br />
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.</p>
 		</description>
 		<setters>
 			<set name="category">Supernatural Gifts</set>
@@ -69,8 +67,7 @@
 	<element name="Defy Death" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DEFY_DEATH">
 		<description>
 			<p>You have advantage on death saving throws.<br /><br />
-			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
-			</p>
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.</p>
 		</description>
 		<setters>
 			<set name="category">Supernatural Gifts</set>
@@ -82,7 +79,49 @@
 	<element name="Hard to Kill" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_HARD_TO_KILL">
 		<description>
 			<p>When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Once you use this trait, you can’t use it again until you finish a long rest.<br /><br />
-			This bonus applies only during night-time or when the character is in Kurald Galain darkness.
+			This bonus applies only during night-time or when the character is in Kurald Galain darkness.</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+	
+	<element name="Ascendant" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_ASCENDANT">
+		<description>
+			<p>Ascendants were individuals who had transcended death. In the time of the First Empire they had been called First Heroes. 
+			Ascendants could become gods if they gained sufficient following among mortals, but they were not gods by default.
+			Those without worshippers were considered unchained, or Unaligned in the language of the Deck of Dragons.</p>
+			<ul>
+				<li>You stop aging. You are immune to any effect that would age you, and you can’t die from old age.</li>
+				<li>You are immune to curses, diseases, and the poisoned condition</li>
+				<li>Increase Charisma and an ability score of your choice by 2 each.</li>
+			</ul>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+		<rules>
+			<stat name="charisma" value="2" />
+			<select type="Ability Score Improvement" name="Ascendant" supports="ID_PHB_FEAT_ASI_STRENGTH|ID_PHB_FEAT_ASI_DEXTERITY|ID_PHB_FEAT_ASI_CHARISMA|ID_PHB_FEAT_ASI_CONSTITUTION|ID_PHB_FEAT_ASI_INTELLIGENCE|ID_PHB_FEAT_ASI_WISDOM" />
+			<select type="Ability Score Improvement" name="Ascendant" supports="ID_PHB_FEAT_ASI_STRENGTH|ID_PHB_FEAT_ASI_DEXTERITY|ID_PHB_FEAT_ASI_CHARISMA|ID_PHB_FEAT_ASI_CONSTITUTION|ID_PHB_FEAT_ASI_INTELLIGENCE|ID_PHB_FEAT_ASI_WISDOM" />
+			<grant type="Condition" id="ID_INTERNAL_CONDITION_DAMAGE_IMMUNITY_POISON" />
+		</rules>
+	</element>
+	
+	<element name="Shield Anvil" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_SHIELD_ANVIL">
+		<description>
+			<p>Shield Anvil is a title given to the leader of the warrior order known as the Iron Company. The Shield Anvil is responsible for leading the order in battle, as well as serving as a spiritual leader and mediator between the people
+			 and the Hood, the Lord of Death. The Shield Anvil is also responsible for the protection of the people and the land, and is often called upon to act as a mediator in disputes between the various factions and peoples of the Malazan world. 
+			 The Shield Anvil is considered to be one of the most powerful and respected figures in the Malazan world. The Shield Anvil, Imogen, is devoted to Hood, the god of death in the Malazan universe, it could mean that she has dedicated her 
+			 life to serving and honoring the god of death. This could manifest in her actions and beliefs, such as accepting death as a natural part of life and possibly even embracing it. She may also have a strong sense of duty to the dead, 
+			 and could work to ensure that they receive proper burials and funerary rights. As a member of the Iron Company, a group of mercenaries, her devotion to Hood could also influence her role within the group. 
+			 She may be a leader of a group of soldiers, who follow her in the belief that death is nothing to be feared, and that it may be a good thing. The Iron Company may be known for their fearless fighting style, as they are not afraid of death.</p>
+			<p>
+				Shield Anvil is granted the Soul Inspiration Feat.
 			</p>
 		</description>
 		<setters>
@@ -90,6 +129,9 @@
 			<set name="type">Epic Boon</set>
 			<set name="slot">gift</set>
 		</setters>
+		<rules>
+			<grant type="Archetype Feature" id="ID_BOTF_FEAT_SOUL_INSPIRATION" level="9"/>
+		</rules>
 	</element>
 
 	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->
