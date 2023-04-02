@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.5">
+		<update version="1.0.6">
 			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
@@ -258,6 +258,29 @@
 		<rules>
 			<stat name="ac:shield" value="2" bonus="enhancement"/>
 			<grant type="Spell" id="ID_PHB_SPELL_BLIGHT"/>
+		</rules>
+	</element>
+	
+	<element name="Dwarven Shield of Swift Reflexes" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_DWARVEN_SHIELD_OF_SWIFT_REFLEXES">
+		<description>
+			<p>Does not count towards attuned items count.</p>
+			<p>A peculiar shaped shield, specifically made to accommodate dwarfs and enhance their combat abilities. While being held, it allows its bearer to use specific maneuvers that would be otherwise impossible. You can use these maneuvers a number of times equal to your Proficiency Bonus, and you regain all expended uses after a long rest. Furthermore, while holding this shield, you have a +3 bonus to your AC. This bonus is in addition to the shield's normal bonus to AC.</p>
+			<p><b><em>Expeditious Intervention:</em></b> Whenever a creature you can see attempts to attack an ally within 25ft of you with a melee attack, you may use your reaction to move up to them and attempt to intercept the attack by interposing your shield between them. During this turn, the allied creature is considered to be under the effects of half cover against its attacker.</p>
+			<p><b><em>Reflex Block:</em></b> Whenever you are subjected to an AoE effect that allows you to make a Dexterity Saving Throw to take only half damage and you fail to pass the check, you can spend your reaction to interpose your shield between you and the source of the effect, halving all damage. The attempt fails if you can’t see the source of the effect or if it is sound based.</p>
+			<p><b><em>Defensive Stance:</em></b> If a single attack causes you damage that is more than 25% of your maximum hit point, or when you drop to less than 25% of your hit point maximum, you may take the Dodge Action as a reaction until the start of your next turn. You can’t perform this maneuver if you are Incapacitated or if your speed drops to 0.</p>
+		</description>
+		<setters>
+			<set name="keywords">shield</set>
+			<set name="category">Magic Armor</set>
+			<set name="attunement">true</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="shield">Armor</set>
+			<set name="rarity">Very Rare</set>
+			<set name="enhancement">3</set>
+			<set name="armor">ID_INTERNAL_ARMOR_GROUP_SHIELD</set>
+		</setters>
+		<rules>
+			<stat name="ac:shield" value="3" bonus="enhancement"/>
 		</rules>
 	</element>
 
