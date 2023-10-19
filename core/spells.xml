@@ -17,7 +17,7 @@
 
 
 	<!--Start:: Custom Spells (NON SPELLS) for Book of the fallen -->	
-	<element name="Shadow Walk" type="Spell" source="Book of the Fallen" id="ID_BOTF_FEAT_SHADOWDANCER">
+	<element name="Shadow Walk" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_SHADOWDANCING">
 		<supports>Rogue, Ranger</supports>
 		<description>
 			<p class="flavor">Shadows move in deadly grace.</p>

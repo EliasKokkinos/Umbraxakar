@@ -45,7 +45,7 @@
 			<description>You are a Shadow Dancer. You can perfom both the non martial and martial version of Shadow Dance.</description>
 		</sheet>
 		<rules>
-			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWDANCE" />
+			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWDANCING" />
 		</rules>
 	</element>
 
