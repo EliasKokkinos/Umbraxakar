@@ -16,21 +16,24 @@
 	<!--End:: Custom Spells (Cantrips) for Book of the fallen -->
 
 
-	<!--Start:: Custom Spells (Level 1) for Book of the fallen -->	
-	<element name="Shadow Walk" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_SHADOWWALK">
+	<!--Start:: Custom Spells (NON SPELLS) for Book of the fallen -->	
+	<element name="Shadow Walk" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_SHADOWDANCING">
 		<supports>Rogue, Ranger</supports>
 		<description>
-			<p class="flavor">In the beginning, there was only darkness. It will return.</p>
-			<p>Choose a location within range that is within 5 feet of a creature or in dim light or darkness. You teleport to this location. As a bonus action before or after teleporting, you can make a single melee attack against a target within your reach.</p>
-			<p class="indent"><b><i>At Higher Levels. </i></b>When you cast this spell using a spell slot of 2nd level or higher, the range increases by 5 feet and the amount of attacks increases by 1 for each extra level.</p>
+			<p class="flavor">Shadows move in deadly grace.</p>
+			<p>
+					Choose targets equal to your proficiency that are in dim light or darkness in a 60 feet radius from your location and you can see.
+					Attack all targets with advantage, sneak attack can only apply to the first target. 
+					Any creature hit that doesnt belong to the following groups, of higher level than the Shadow Dancer, Legendary Creature, Ascendant, Demigod or God instantly dies. 
+			</p>
 		</description>
 		<setters>
 			<set name="keywords"></set>
 			<set name="level">1</set>
-			<set name="school">Divination</set>
+			<set name="school">Meanas</set>
 			<set name="time">1 action</set>
 			<set name="duration">Instantaneous</set>
-			<set name="range">15 feet</set>
+			<set name="range">60 feet radius</set>
 			<set name="hasVerbalComponent">true</set>
 			<set name="hasSomaticComponent">true</set>
 			<set name="hasMaterialComponent">false</set>
@@ -146,6 +149,10 @@
 			<set name="isRitual">false</set>
 		</setters>
 	</element>
+	<!--End:: Custom Spells (NON SPELLS) for Book of the fallen -->
+
+
+	<!--Start:: Custom Spells (Level 1) for Book of the fallen -->	
 	<!--End:: Custom Spells (Level 1) for Book of the fallen -->
 
 

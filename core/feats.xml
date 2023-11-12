@@ -15,19 +15,37 @@
 		<description>
 			<p>Shadows now bow to your will, for the Shadowthrone mark is upon your soul. You gain the following benefits:</p>
 			<ul>
-				<li>You can use the Hide action in dim light or darkness.</li>
-				<li>Whenever you take the Hide action and successfully become undetected, you can move normally up to 30 feet before losing the benefits of being hidden.</li>
-				<li>You can cast Duskwalk times and casting level equal to your Proficiency Bonus, without expending a spell slot. You can’t do so again until you finish a long rest.</li>
-				<li>You gain a +10 bonus to Dexterity (Stealth) checks, and you can’t be detected or targeted by divination magic, including scrying sensors.</li>
+				<li>You can enter or exit Meanas as an action.</li>
+				<li>You gain a +10 bonus to Dexterity (Stealth) checks, and you can`t be detected or targeted by divination magic, including scrying sensors.</li>
+				<li>You can see normally in darkness, both magical and nonmagical, to a distance of 120 feet.</li>
 			</ul>
 		</description>
 		<sheet>
-			<description>You can use the Hide action in dim light or darkness. Whenever you take the Hide action and successfully become undetected, you can move normally up to 30 feet before losing the benefits of being hidden.
-			You can cast Shadow Walk times and casting level equal to your Proficiency Bonus, without expending a spell slot. You can’t do so again until you finish a long rest.</description>
+			<description>You can enter or exit Meanas as an action. You gain a +10 bonus to Dexterity (Stealth) checks 
+			and you can`t be detected or targeted by divination magic, including scrying sensors.
+			You can see normally in darkness, both magical and nonmagical, to a distance of 120 feet.
+			</description>
 		</sheet>
 		<rules>
-			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWWALK" />
 			<stat name="stealth:misc" value="10" />
+		</rules>
+	</element>
+
+	
+	<element name="Shadow Dancer" type="Feat" source="Book of the Fallen" id="ID_BOTF_FEAT_SHADOWDANCER">
+		<description>
+			<p>An art lost to the Tiste Andii, has been kept alive by the assassin priesteses of Meanas. You gain the following benefits:</p>
+			<ul>
+				<li>You can perfom the non martial version of Shadow Dance.</li>
+				<li>You can permorm the Shadow Dance once every short rest.</li>
+				<li>If a targeted spell attack misses you, you can use your reaction to initiate the Shadow Dance.</li>
+			</ul>
+		</description>
+		<sheet>
+			<description>You are a Shadow Dancer. You can perfom both the non martial and martial version of Shadow Dance.</description>
+		</sheet>
+		<rules>
+			<grant type="Spell" id="ID_BOTF_SPELL_SHADOWDANCING" />
 		</rules>
 	</element>
 
