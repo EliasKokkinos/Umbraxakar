@@ -105,6 +105,17 @@
 	</description>
 </element>
 
+<element name="Allomantic Strike" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_FEAT_ARCHETYPE_FEATURE_MANEUVER_ALLOMANTIC_STRIKE">
+	<supports>Maneuver, Battle Master</supports>
+	<description>
+		<p>If you have at least 3 attacks available during your turn and are wielding a metallic weapon, you can expend one superiority die to sacrifice 3 attacks to make a single attack that is guided by your allomancy. The damage if this attack doubles the normal damage the weapon would do while wielding it. Additionally, after making the attack roll, you can choose whether to add superiority die to your Attack or Damage roll.</p>
+		<p>If the target is wearing metallic armour or wielding metallic weapons an ally Lurcher or Coinshot within 60 feet of the target can expend their reaction to assist the strike, by imbalancing the them. Gain a +5 to your attack roll.</p>
+	</description>
+	<sheet>
+		<description>Sacrifice 3 attacks and expend 1 superiority die on your turn to make a single attack. Roll your damage dice normally and double the totla damage if it hits. After the Attack roll, you can also decide if the superiority die is added to the Attack or Damage. Additionally, another Lurcher/Coinshot within 60ft can expend their Reaction to give you a +5 on your Attack.</description>
+	</sheet>
+</element>
+
 <!--End:: Custom Feats for Book of the fallen -->
 
 </elements>
