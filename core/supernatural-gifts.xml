@@ -113,14 +113,16 @@
 		</rules>
 	</element>
 	
-	<element name="Shield Anvil" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_SHIELD_ANVIL">
+	<element name="Shield Anvil: Hood" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_SHIELD_ANVIL">
 		<description>
-			<p>Shield Anvil is a title given to the leader of the warrior order known as the Iron Company. The Shield Anvil is responsible for leading the order in battle, as well as serving as a spiritual leader and mediator between the people
-			 and the Hood, the Lord of Death. The Shield Anvil is also responsible for the protection of the people and the land, and is often called upon to act as a mediator in disputes between the various factions and peoples of the Malazan world. 
-			 The Shield Anvil is considered to be one of the most powerful and respected figures in the Malazan world. The Shield Anvil, Imogen, is devoted to Hood, the god of death in the Malazan universe, it could mean that she has dedicated her 
-			 life to serving and honoring the god of death. This could manifest in her actions and beliefs, such as accepting death as a natural part of life and possibly even embracing it. She may also have a strong sense of duty to the dead, 
-			 and could work to ensure that they receive proper burials and funerary rights. As a member of the Iron Company, a group of mercenaries, her devotion to Hood could also influence her role within the group. 
-			 She may be a leader of a group of soldiers, who follow her in the belief that death is nothing to be feared, and that it may be a good thing. The Iron Company may be known for their fearless fighting style, as they are not afraid of death.</p>
+			<p>
+				A Shield Anvil was "the mortal repository for the fallen (dead), sworn to a particular god." Also described as a mortal soul, to assume the sorrow of the world on behalf of a god.
+				The Shield Anvil of Hood has traditionally taken command of a third of the Avowed, an order of immortal warriors, bound to Prince K'azz D'Avore and subsequently the Lord of Death himself.
+				As part of Hoods Triumvirate the Shield Anvil can cast one of three votes for matters of significance involving the operations of the God in the mortal realm, with the Prince's vote breaking ties. 
+				The Shield Anvil serves as the spiritual mediator between the people and the Hood, the Lord of Death, and is also responsible for the protection of the people and the land, 
+				often called upon to act as an arbiter in disputes between the various factions and peoples of the Malazan world. 
+				The Shield Anvil is considered to be one of the most powerful and respected figures on Edar. 
+			</p>
 			<p>
 				Shield Anvil is granted the Soul Inspiration Feat.
 			</p>
