@@ -4,7 +4,7 @@
 		<name>Umbraxakar</name>
 		<description>Book of the Fallen</description>
 		<author>Elias Kokkinos</author>
-		<update version="0.1.24"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
+		<update version="0.1.25"><!--THIS IS THE VERSION YOU WANT TO CHANGE-->
 			<file name="testing-nikos-cretan.index" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/Nikos-the-Cretan/testing-nikos-cretan.index" />
 		</update>
 	</info>
