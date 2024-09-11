@@ -60,9 +60,10 @@
 			<p>You gain the following benefits when attuned and wielding the Hammer of Hephaestus:</p>
 			<p class="indent">
 				<ul>
-					<li>You have a +2 bonus to attack and damage rolls made with this magic weapon.</li>
+					<li>You have a +3 bonus to attack and damage rolls made with this magic weapon.</li>
 					<li>You may use you SPELL ATTACK BONUS instead of your ATTACK BONUS to strike with this weapon, to which you may also add the +2 bonus.</li>
-					<li>The weapon is charged by the wielder's magic. Does an extra Proficiency Modifier x d10 Fire Damage after at least 1/3 of the casters spell slots are consumed in the last 10 minutes.</li>
+					<li>The weapon is charged by the wielder's magic. Does an extra Proficiency Modifier x d6 Fire Damage after at least 1/(Prof. Mod.) of the casters spell slots are consumed in the last 10 minutes.</li>
+					<li>Iron Hand of Justice: Once every long rest. 30 feet radius. 1 min. Reaction, Concentration. The High Priest of Thyr glows with divine radiance (does not affect darkness in any way, its a radiance within the Thyr Warren). Chooses to remove a negative spell effect from themselves. When an ally first enters the glow they are healed for 20 HP, this can raise a fallen ally. When an enemy enters the glow they must succeed on a wisdom saving throw equal to the casters or be frightened of you, until your next turn. The Iron Hand is healed 10 HP every round.</li>
 					<li>When the wielder attunes with the hammer they are aware that if it is hit on the ground on its spike and the words "By the name of Hephaestus I seek entry" are called, something may happen.</li>
 				</ul>
 			</p>
@@ -77,7 +78,7 @@
 			<set name="damage" type="bludgeoning">1d8</set>
 			<set name="versatile">1d10</set>
 			<set name="attunement">true</set>
-			<set name="enhancement">2</set>
+			<set name="enhancement">3</set>
 			<set name="weapon">Warhammer</set>
 		</setters>
 	</element>
