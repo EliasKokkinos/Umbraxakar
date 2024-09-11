@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.7">
+		<update version="1.0.8">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -53,7 +53,7 @@
 			<p>
 				<strong>
 					<br/>
-					<em>Lore:</em>
+					<em>Lore: </em>
 				</strong>The wielder is aware that Hephaestus is one of the many names of the god of Blacksmiths, Draconus.
 			</p>
 			<br/>
