@@ -19,5 +19,6 @@
 		<file name="scrolls.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/scrolls.xml" />
 		<file name="misc-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/misc-items.xml" />
 		<file name="rogue-mistborn.xml" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/master/core/rogue-mistborn.xml" />
+		<file name="paladin-providence.xml" url="https://raw.githubusercontent.com/EliasKokkinos/Umbraxakar/master/core/paladin-providence.xml" />
 	</files>
 </index>
