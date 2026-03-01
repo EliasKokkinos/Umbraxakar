@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.8">
+		<update version="1.0.9">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -440,6 +440,35 @@
 			<set name="weapon">Shortsword</set>
 			<set name="attunement">true</set>
 		</setters>
+	</element>
+
+	<element name="Fatum" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_MAGIC_ITEM_WEAPON_FATUM">
+		<supports>ID_INTERNAL_WEAPON_CATEGORY_MARTIAL_MELEE, ID_INTERNAL_DAMAGE_TYPE_SLASHING, ID_INTERNAL_WEAPON_PROPERTY_HEAVY, ID_INTERNAL_WEAPON_PROPERTY_TWOHANDED, ID_INTERNAL_WEAPON_GROUP_SWORDS</supports>
+		<description>
+			<p>You gain the following benefits when attuned to Fatum:</p>
+			<p class="indent">
+				<ul>
+					<li>You gain a +3 bonus to attack and damage rolls made with this magic weapon.</li>
+					<li>The weapon deals 2d10 slashing damage.</li>
+					<li><strong><em>Aura of Fate.</em></strong> While you wield Fatum, an aura of destined purpose radiates from you in a 10-foot radius. You and all friendly creatures within the aura gain a +1 bonus to AC and a +1d10 bonus to damage rolls on weapon attacks.</li>
+				</ul>
+			</p>
+		</description>
+		<setters>
+			<set name="keywords">sword, greatsword</set>
+			<set name="category">Magic Weapons</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="greatsword">Weapon</set>
+			<set name="slot">twohand</set>
+			<set name="damage" type="slashing">2d10</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">3</set>
+			<set name="weapon">Greatsword</set>
+		</setters>
+		<rules>
+			<stat name="ac:misc" value="1" />
+		</rules>
 	</element>
 
 	<!--End:: Custom Weapons for Book of the fallen -->
