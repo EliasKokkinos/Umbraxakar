@@ -5,7 +5,7 @@
 		<description>
 		Contains the Oath of Fate Sacred Oath created specifically for the campaign "Book of the Fallen".
 		</description>
-		<update version="1.0.1">
+		<update version="1.0.2">
 			<file name="botf-paladin-fate.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/paladin-fate.xml"/>
 		</update>
 	</info>
@@ -73,7 +73,7 @@
 	<element name="Channel Divinity" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CHANNEL_DIVINITY">
 		<description>
 			<p>When you take this option at 3rd level, you gain the following two Channel Divinity options.</p>
-			<p class="indent"><strong><em>Predestination.</em></strong> You can use your Channel Divinity to invoke the divine to smile upon your allies. When one creature within 60 feet of you that you can see makes a saving throw, you can use your reaction to grant the creature advantage on the save, using your Channel Divinity. If the effect allows the creature to take only half damage on a successful save, the creature instead takes no damage on a successful save, and only half as much damage one a failed one.</p>
+			<p class="indent"><strong><em>Predestination.</em></strong> As an action, you invoke the divine to shield your allies from misfortune. For 1 minute, you emanate an aura in a 10-foot radius. Friendly creatures within the aura have advantage on saving throws and are immune to the frightened condition.</p>
 			<p class="indent"><strong><em>Kiss of Calamity.</em></strong> As an action, your Channel Divinity can be used to besiege your enemies with bad luck. Each unfriendly creature that can see or hear you within 30 feet of you must make a Charisma saving throw, gaining disadvantage on all saving throws for 1 minute on a failure. You must be conscious for this feature to have effect.</p>
 		</description>
 		<sheet display="false" />
@@ -81,10 +81,10 @@
 
 	<element name="Channel Divinity: Predestination" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CD_PREDESTINATION">
 		<description>
-			<p>You can use your Channel Divinity to invoke the divine to smile upon your allies. When one creature within 60 feet of you that you can see makes a saving throw, you can use your reaction to grant the creature advantage on the save, using your Channel Divinity. If the effect allows the creature to take only half damage on a successful save, the creature instead takes no damage on a successful save, and only half as much damage one a failed one.</p>
+			<p>As an action, you invoke the divine to shield your allies from misfortune. For 1 minute, you emanate an aura in a 10-foot radius. Friendly creatures within the aura have advantage on saving throws and are immune to the frightened condition.</p>
 		</description>
 		<sheet alt="Predestination" usage="Channel Divinity">
-			<description>You can use your Channel Divinity to invoke the divine to smile upon your allies. When one creature within 60 feet of you that you can see makes a saving throw, you can use your reaction to grant the creature advantage on the save, using your Channel Divinity. If the effect allows the creature to take only half damage on a successful save, the creature instead takes no damage on a successful save, and only half as much damage one a failed one.</description>
+			<description>As an action, you emanate a 10-foot aura for 1 minute. Friendly creatures within the aura have advantage on saving throws and are immune to the frightened condition.</description>
 		</sheet>
 	</element>
 
