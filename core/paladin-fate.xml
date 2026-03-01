@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <elements>
 	<info>
-		<name>Book of the Fallen - Oath of Providence</name>
+		<name>Book of the Fallen - Oath of Fate</name>
 		<description>
-		Contains the Oath of Providence Sacred Oath created specifically for the campaign "Book of the Fallen".
+		Contains the Oath of Fate Sacred Oath created specifically for the campaign "Book of the Fallen".
 		</description>
-		<update version="1.0.0">
-			<file name="botf-paladin-providence.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/paladin-providence.xml"/>
+		<update version="1.0.1">
+			<file name="botf-paladin-fate.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/paladin-fate.xml"/>
 		</update>
 	</info>
 
-	<element name="Oath of Providence" type="Archetype" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_OATH_OF_PROVIDENCE">
+	<element name="Oath of Fate" type="Archetype" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_OATH_OF_FATE">
 		<supports>Sacred Oath</supports>
 		<description>
-			<p>Paladins who take the Oath of Providence believe they are the hand of destiny, striking down enemies beyond redemption. They believe in their hearts that some creatures, often those who commit atrocities, are fated to die in battle. These paladins are the executioners. Their oath gives them the power to bend destiny in their favor and send foes to their final fate.</p>
-			<h5>Tenets of Providence</h5>
-			<p>The tenets of the Oath of Providence are written in stone on the tombs of paladins undertaking this path.</p>
+			<p>Paladins who take the Oath of Fate believe they are the hand of destiny, striking down enemies beyond redemption. They believe in their hearts that some creatures, often those who commit atrocities, are fated to die in battle. These paladins are the executioners. Their oath gives them the power to bend destiny in their favor and send foes to their final fate.</p>
+			<h5>Tenets of Fate</h5>
+			<p>The tenets of the Oath of Fate are written in stone on the tombs of paladins undertaking this path.</p>
 			<p class="indent"><strong><em>Embrace Destiny.</em></strong> When bad luck comes your way, understand it was meant to be and search for the opportunity fate has given you within your loss.</p>
 			<p class="indent"><strong><em>Deliver Enemies to Fate.</em></strong> Those who become your enemies aren't long for this world. They must die by your hand.</p>
 			<p class="indent"><strong><em>Accept that which Cannot Change.</em></strong> Fate is a force more powerful than the gods. Accept that there are situations in which you're powerless and take power over that you can influence.</p>
 			<p class="indent"><strong><em>Strength in Numbers.</em></strong> Together with your allies, you have the power to influence fate. Destiny smiles upon those who embrace it.</p>
-			<div element="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_OATH_SPELLS" />
-			<div element="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_CHANNEL_DIVINITY" />
-			<div element="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_FAVOR_THE_BOLD" />
-			<div element="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_GIFT_OF_FORESIGHT" />
-			<div element="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_HAND_OF_FATE" />
+			<div element="ID_BOTF_ARCHETYPE_FEATURE_FATE_OATH_SPELLS" />
+			<div element="ID_BOTF_ARCHETYPE_FEATURE_FATE_CHANNEL_DIVINITY" />
+			<div element="ID_BOTF_ARCHETYPE_FEATURE_FATE_FAVOR_THE_BOLD" />
+			<div element="ID_BOTF_ARCHETYPE_FEATURE_FATE_GIFT_OF_FORESIGHT" />
+			<div element="ID_BOTF_ARCHETYPE_FEATURE_FATE_HAND_OF_FATE" />
 		</description>
 		<sheet display="false">
-			<description>Paladins who take the Oath of Providence believe they are the hand of destiny, striking down enemies beyond redemption.</description>
+			<description>Paladins who take the Oath of Fate believe they are the hand of destiny, striking down enemies beyond redemption.</description>
 		</sheet>
 		<rules>
-			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_OATH_SPELLS" level="3" />
-			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_CHANNEL_DIVINITY" level="3" />
-			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_FAVOR_THE_BOLD" level="7" />
-			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_GIFT_OF_FORESIGHT" level="15" />
-			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_HAND_OF_FATE" level="20" />
+			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_OATH_SPELLS" level="3" />
+			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CHANNEL_DIVINITY" level="3" />
+			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_FAVOR_THE_BOLD" level="7" />
+			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_GIFT_OF_FORESIGHT" level="15" />
+			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_HAND_OF_FATE" level="20" />
 		</rules>
 	</element>
 
-	<element name="Oath Spells" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_OATH_SPELLS">
+	<element name="Oath Spells" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_OATH_SPELLS">
 		<description>
-			<p>You gain oath spells at the paladin levels listed in the Oath of Providence Spells table. See the Sacred Oath class feature for how oath spells work.</p>
+			<p>You gain oath spells at the paladin levels listed in the Oath of Fate Spells table. See the Sacred Oath class feature for how oath spells work.</p>
 			<h6>OATH OF PROVIDENCE SPELLS</h6>
 			<table>
 				<thead>
@@ -54,7 +54,7 @@
 			</table>
 		</description>
 		<sheet display="false">
-			<description>You gain oath spells at the paladin levels listed in the Oath of Providence Spells table.</description>
+			<description>You gain oath spells at the paladin levels listed in the Oath of Fate Spells table.</description>
 		</sheet>
 		<rules>
 			<grant type="Spell" id="ID_PHB_SPELL_BLESS" level="3" spellcasting="Paladin" prepared="true" />
@@ -70,7 +70,7 @@
 		</rules>
 	</element>
 
-	<element name="Channel Divinity" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_CHANNEL_DIVINITY">
+	<element name="Channel Divinity" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CHANNEL_DIVINITY">
 		<description>
 			<p>When you take this option at 3rd level, you gain the following two Channel Divinity options.</p>
 			<p class="indent"><strong><em>Predestination.</em></strong> You can use your Channel Divinity to invoke the divine to smile upon your allies. When one creature within 60 feet of you that you can see makes a saving throw, you can use your reaction to grant the creature advantage on the save, using your Channel Divinity. If the effect allows the creature to take only half damage on a successful save, the creature instead takes no damage on a successful save, and only half as much damage one a failed one.</p>
@@ -79,7 +79,7 @@
 		<sheet display="false" />
 	</element>
 
-	<element name="Channel Divinity: Predestination" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_CD_PREDESTINATION">
+	<element name="Channel Divinity: Predestination" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CD_PREDESTINATION">
 		<description>
 			<p>You can use your Channel Divinity to invoke the divine to smile upon your allies. When one creature within 60 feet of you that you can see makes a saving throw, you can use your reaction to grant the creature advantage on the save, using your Channel Divinity. If the effect allows the creature to take only half damage on a successful save, the creature instead takes no damage on a successful save, and only half as much damage one a failed one.</p>
 		</description>
@@ -88,7 +88,7 @@
 		</sheet>
 	</element>
 
-	<element name="Channel Divinity: Kiss of Calamity" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_CD_KISS_OF_CALAMITY">
+	<element name="Channel Divinity: Kiss of Calamity" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CD_KISS_OF_CALAMITY">
 		<description>
 			<p>As an action, your Channel Divinity can be used to besiege your enemies with bad luck. Each unfriendly creature that can see or hear you within 30 feet of you must make a Charisma saving throw, gaining disadvantage on all saving throws for 1 minute on a failure. You must be conscious for this feature to have effect.</p>
 		</description>
@@ -97,7 +97,7 @@
 		</sheet>
 	</element>
 
-	<element name="Favor the Bold" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_FAVOR_THE_BOLD">
+	<element name="Favor the Bold" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_FAVOR_THE_BOLD">
 		<description>
 			<p>Beginning at 7th level, your good fortune guides your hand. Once per turn when you miss with an attack, you can choose to hit instead. When you use this feature, the creature takes extra radiant damage equal to your Charisma modifier (minimum of 1). You can use this feature a number of times equal to your Charisma modifier (a minimum of once).</p>
 			<p class="indent">You regain any expended uses when you finish a long rest.</p>
@@ -113,7 +113,7 @@
 		</rules>
 	</element>
 
-	<element name="Gift of Foresight" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_GIFT_OF_FORESIGHT">
+	<element name="Gift of Foresight" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_GIFT_OF_FORESIGHT">
 		<description>
 			<p>Starting at 15th level, your faith grants you a prophetic glimpse into the future. When you finish a short or long rest, roll one d20 and record the number rolled. You can replace any attack roll, saving throw, or ability check made by you or a creature that you can see with your prophetic roll. You must choose to do so before the roll, and you can use roll in this way only once.</p>
 			<p class="indent">When you finish a short or long rest, you lose any unused prophetic roll.</p>
@@ -124,7 +124,7 @@
 		</sheet>
 	</element>
 
-	<element name="Hand of Fate" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_PROVIDENCE_HAND_OF_FATE">
+	<element name="Hand of Fate" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_HAND_OF_FATE">
 		<description>
 			<p>At 20th level, you become an agent of destiny, heavily influencing the outcome of the events around you. For 1 minute, an argent glow shines dim light from you in 30-foot radius. Whenever an enemy creature starts its turn in your glow, it has disadvantage on attacks and saving throws, while you and friendly creatures have advantage on attack rolls and saving throws. As the glow fades away, you regain all expended uses of Channel Divinity, Favor the Bold, and your Gift of Foresight features.</p>
 			<p class="indent">Once you use this feature, you can't use it again until you finish a long rest.</p>
