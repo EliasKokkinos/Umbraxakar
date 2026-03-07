@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Spells created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.2">
+		<update version="1.0.3">
 			<file name="botf-custom-spells.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/spells.xml"/>
 		</update>
 	</info>
@@ -16,7 +16,34 @@
 	<!--End:: Custom Spells (Cantrips) for Book of the fallen -->
 
 
-	<!--Start:: Custom Spells (NON SPELLS) for Book of the fallen -->	
+	<!--Start:: Custom Spells (NON SPELLS) for Book of the fallen -->
+	<element name="Unfortunate Series of Events" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_UNFORTUNATE_SERIES_OF_EVENTS">
+		<supports>Cleric, Warlock, Wizard</supports>
+		<description>
+			<p class="flavor">Oppon turns her back — and smiles.</p>
+			<p><em>Only accessible to the High Priest of Oppon.</em> This spell can only be cast by spending your Inspiration.</p>
+			<p>You lay a curse upon a creature you can see within 60 feet. For the next 24 hours, Oppon turns against them in a cascade of misfortune:</p>
+			<ul>
+				<li>The target rolls all attack rolls, ability checks, and saving throws with disadvantage.</li>
+				<li>Whenever the target rolls a natural 1, an additional misfortune occurs at the GM's discretion — beyond the normal failure.</li>
+				<li>The target cannot benefit from Inspiration, Lucky feat rerolls, or any other effect that would allow them to reroll a die for the duration.</li>
+			</ul>
+			<p>The curse lasts 24 hours or until removed by <em>Remove Curse</em> or similar magic. Once cast, this spell cannot be cast again until you receive Inspiration.</p>
+		</description>
+		<setters>
+			<set name="keywords">curse, luck</set>
+			<set name="level">8</set>
+			<set name="school">Oppon</set>
+			<set name="time">1 action</set>
+			<set name="duration">24 hours</set>
+			<set name="range">60 feet</set>
+			<set name="hasVerbalComponent">true</set>
+			<set name="hasSomaticComponent">true</set>
+			<set name="hasMaterialComponent">false</set>
+			<set name="isConcentration">false</set>
+			<set name="isRitual">false</set>
+		</setters>
+	</element>	
 	<element name="Shadow Walk" type="Spell" source="Book of the Fallen" id="ID_BOTF_SPELL_SHADOWDANCING">
 		<supports>Rogue, Ranger</supports>
 		<description>

@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.16">
+		<update version="1.0.21">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -179,6 +179,23 @@
 		<rules>
 			<grant type="Spell" id="ID_PHB_SPELL_REGENERATE"/>
 		</rules>
+	</element>
+
+	<element name="High Priest" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_HIGH_PRIEST">
+		<description>
+			<p>
+				A High Priest's connection to their god is not one of devotion alone — it is immediate, visceral, and mutual. Where others pray, a High Priest commands. Where others hope for divine attention, a High Priest can compel it.
+				This intimacy with the divine is a double-edged gift. A god's strength flows into their High Priest directly, but a weak or wounded god may not sustain the full weight of their servant's power.
+				The GM may reduce the High Priest's effective class levels to reflect the current strength or disposition of their god — the more diminished the god, the greater the cost to their mortal vessel.
+			</p>
+			<p><strong><em>Dual Invocation.</em></strong> Once per long rest, you can concentrate on two spells simultaneously. Both spells must be cast within the same turn. If you take damage while maintaining dual concentration, you must make two separate Constitution saving throws. The first is the standard concentration check (DC 10 or half the damage taken, whichever is higher). The second, to maintain the additional spell, uses the same DC + 5. Failing the first check causes you to lose concentration on both spells. Failing only the second causes you to lose concentration on the additional spell while the first persists normally.</p>
+			<p><strong><em>Warren's Trademark.</em></strong> You gain access to your god's Warren trademark spell. This spell is always prepared and does not count against your number of prepared spells.</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
 	</element>
 
 	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->
