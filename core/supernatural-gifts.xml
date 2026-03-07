@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.13">
+		<update version="1.0.15">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -136,6 +136,23 @@
 		<rules>
 			<grant type="Archetype Feature" id="ID_BOTF_FEAT_SOUL_INSPIRATION" level="9"/>
 		</rules>
+	</element>
+
+	<element name="Mortal Sword" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_MORTAL_SWORD">
+		<description>
+			<p>
+				A Mortal Sword is a god's mortal defender — a living manifestation of the god's own sword, chosen to act as their champion in the mortal world.
+				Alongside the Shield Anvil and the Destriant, the Mortal Sword forms the mortal triumvirate that represents a particular faith.
+				The Mortal Sword assumes military and overall command of a god's reve, leading the faithful in battle as the direct extension of their god's will.
+			</p>
+			<p><strong><em>God's Blade.</em></strong> Your attacks are imbued with the power of your god's Warren. You deal an additional 1d10 damage on each attack, of a type determined by the Warren of the god you serve. The damage type is assigned by the GM to reflect the god's domain (examples: necrotic for Hood, radiant for Tyr, psychic for Shadow).</p>
+			<p><strong><em>God's Own Sword.</em></strong> Your weapon is a manifestation of your god's will and cannot be disarmed, stolen, or destroyed by any means. If you are ever separated from it, it reappears in your hand at the start of your next turn.</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
 	</element>
 
 	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->
