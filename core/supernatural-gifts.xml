@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.15">
+		<update version="1.0.16">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -27,7 +27,7 @@
 			<set name="slot">gift</set>
 		</setters>
 	</element>
-	
+
 	<element name="Night Kin" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_NIGHT_KIN">
 		<description>
 			<p>Most creatures connected to the Kurald Galain and Elder Darkness realm will have a more positive disposition towards you. You gain a +2 to any Persuasion checks when conversing with one of these creatures. <br />Notable races are all Tiste Andii, certain groups of Tiste Edur, certain groups of Tiste Liosan, Dark Elves and Vampires.<br />
@@ -153,6 +153,32 @@
 			<set name="type">Epic Boon</set>
 			<set name="slot">gift</set>
 		</setters>
+	</element>
+
+	<element name="Destriant" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DESTRIANT">
+		<description>
+			<p>
+				The Destriant — Destrai Anant, God Chosen, the Well of the Spirit — is the mortal representative of a particular faith.
+				Alongside the Shield Anvil and the Mortal Sword, the Destriant forms the triumvirate which represents a particular faith.
+				The Destriant is the conduit through which the god's power flows into the mortal world — harvester of souls, possessing the power and the right to slay in a god's name: to slay, to heal, to deliver justice.
+				Where the Mortal Sword is the god's weapon and the Shield Anvil the god's vessel of sorrow, the Destriant is the god's voice, drawing on divine power in times of need on behalf of the faithful.
+			</p>
+			<p>All Destriants are attuned to both Denul, the Warren of Healing, and Hood, the Warren of Death. This dual attunement shapes every aspect of their divine power.</p>
+			<p><strong><em>Well of Denul.</em></strong> All healing spells you cast restore an additional 1d12 hit points. Additionally, you can cast <em>Regenerate</em> once per long rest without expending a spell slot.</p>
+			<p><strong><em>Aspect of Hood.</em></strong> You can transmute any healing spell you cast, inverting its power through Hood's Warren to deal necrotic damage instead of restoring hit points. If the original spell targets a creature directly, the transmuted version deals its damage (including the 1d12 bonus) to a target of your choice within range. If the original spell affects an area or requires no attack roll, affected creatures must instead make a Constitution saving throw against your spell save DC, taking the damage on a failed save or half on a success.</p>
+			<p><strong><em>Justice of Tyr.</em></strong> After conversing with an intelligent creature for more than 10 minutes, you instinctively know whether they are an oathbreaker. This requires no action or check — Tyr's judgment is not sought, it simply is.</p>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_REGENERATE"/>
+			</div>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+		<rules>
+			<grant type="Spell" id="ID_PHB_SPELL_REGENERATE"/>
+		</rules>
 	</element>
 
 	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->
