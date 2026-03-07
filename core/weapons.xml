@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Weapons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.9">
+		<update version="1.0.11">
 			<file name="botf-custom-weapons.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/weapons.xml"/>
 		</update>
 	</info>
@@ -105,6 +105,9 @@
 				<strong><em>Spectral Phalanx:</em></strong>You can use an action while holding this glaive to expend 3 of its charges and point it forward commandingly. Four spectral, glaive-wielding warriors appear in line with you and march in a 25-foot-by-50(max)-foot  line in a direction you choose. You can choose to traverse less than 50 feet. During the attack you become spectral as well, and you can select how many of the four spectral warriors stand to the left and your right, essentially determining you position in the phalanx.  This movement does not count towards your allotted movement in a given round, and can only be initiated if an enemy will be affected during the march. As a spectral entity you can pass through enemies, but not stop in their occupied area, and solid objects spanning less that a continuous 3 feet. This restriction does not apply for the summoned spectral warriors.<br/>
 	  Any creature within that line’s area must make a DC 16 Intelligence saving throw. On a failed save, a creature takes 3d10 necrotic damage and 3d10 psychic damage and is affected by the weapon’s spectral warrior property. On a success, the creature takes half as much damage and isn’t affected by the spectral warriors.
 	  Spectral Phalanx counts as a Level 1 spell for the purposes of the players turn, but does not consume a spell slot and cannot be countered or stopped by the normal means applying for a spell of that level.
+			</p>
+			<p>
+				<strong><em>Herald of Death.</em></strong> Each time a creature dies within 60 feet of you while you wield this glaive, its soul is drawn into the blade and you gain one Soul charge. Each Soul charge adds 1d4 to your damage rolls with this weapon. Soul charges are not expended on use — they accumulate for the duration of the encounter. When the encounter ends, the souls are released to Hood, Lord of Death, and all charges are lost.
 			</p>
 			<p>
 				<br/><strong>Lore:</strong>
@@ -451,6 +454,7 @@
 					<li>You gain a +3 bonus to attack and damage rolls made with this magic weapon.</li>
 					<li>The weapon deals 2d10 slashing damage.</li>
 					<li><strong><em>Aura of Fate.</em></strong> While you wield Fatum, an aura of destined purpose radiates from you in a 10-foot radius. You and all friendly creatures within the aura gain a +1 bonus to AC and a +1d10 bonus to damage rolls on weapon attacks.</li>
+					<li><strong><em>Inevitable Strike.</em></strong> Your attacks with this weapon score a critical hit on a roll of 19 or 20.</li>
 				</ul>
 			</p>
 		</description>

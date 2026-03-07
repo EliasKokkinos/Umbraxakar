@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Feats created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.7">
+		<update version="1.0.8">
 			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml"/>
 		</update>
 	</info>
@@ -114,12 +114,14 @@
 
 <element name="Soul Inspiration" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_FEAT_SOUL_INSPIRATION">
 	<description>
-		<p>Prerequisite: Proficiency Persuasion, Medicine higher than 3</p>
-		<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally. When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your 
-			level + your Wisdom modifier. Additionally, when you use a bonus action to make a persuasion check on a creature that is frightened, it is no longer frightened. 
-			Additionally, once per long rest, you can use an action to grant all creatures within a 60-foot radius of you advantage on saving throws against fear for 1 hour. Empowering Presence: Imogen has a natural aura of confidence and resolve. 
-			As an action, Imogen can grant a number of creatures within 30 feet of her equal to her Wisdom modifier (minimum 1) advantage on all attack rolls, saving throws, and skill checks for the next turn. These creatures must be able to see or 
-			hear Imogen. Once per long rest.</p>
+		<p><em>Prerequisite: Proficiency in Persuasion and Medicine higher than 3</em></p>
+		<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally.</p>
+		<ul>
+			<li>When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your level + your Wisdom modifier.</li>
+			<li>When you use a bonus action to make a Persuasion check on a creature that is frightened, it is no longer frightened.</li>
+			<li>Once per long rest, you can use an action to grant all creatures within a 60-foot radius of you advantage on saving throws against fear for 1 hour.</li>
+		</ul>
+		<p><strong><em>Empowering Presence.</em></strong> You emanate a natural aura of confidence and resolve. As an action, you can grant a number of creatures within 30 feet of you equal to your Wisdom modifier (minimum 1) advantage on all attack rolls, saving throws, and skill checks until the start of your next turn. These creatures must be able to see or hear you. Once per long rest.</p>
 	</description>
 </element>
 
