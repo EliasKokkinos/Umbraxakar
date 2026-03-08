@@ -90,7 +90,7 @@
 
 	<element name="Channel Divinity: Fated Death" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CD_FATED_DEATH">
 		<description>
-			<p>As an action, you mark a creature you can see within 60 feet as your fated quarry. For 1 minute, you and the target may attack each other with advantage. The target may only attack creatures other than you with disadvantage. If the killing blow against the target is dealt by anyone other than you, Fate intervenes in an unexpected way to alter the outcome.</p>
+			<p>As a bonus action, you mark a creature you can see within 60 feet as your fated quarry. For 1 minute, you and the target may attack each other with advantage. The target may only attack creatures other than you with disadvantage. If the killing blow against the target is dealt by anyone other than you, Fate intervenes in an unexpected way to alter the outcome.</p>
 		</description>
 		<sheet alt="Fated Death" usage="Channel Divinity">
 			<description>Mark a creature within 60 feet as your fated quarry for 1 minute. You and the target attack each other with advantage. The target attacks all other creatures with disadvantage. If anyone other than you delivers the killing blow, Fate intervenes to alter the outcome.</description>
