@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Supernatural Gifts and Boons created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.10">
+		<update version="1.0.21">
 			<file name="botf-custom-supernatural-gifts.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/supernatural-gifts.xml"/>
 		</update>
 	</info>
@@ -27,7 +27,7 @@
 			<set name="slot">gift</set>
 		</setters>
 	</element>
-	
+
 	<element name="Night Kin" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_NIGHT_KIN">
 		<description>
 			<p>Most creatures connected to the Kurald Galain and Elder Darkness realm will have a more positive disposition towards you. You gain a +2 to any Persuasion checks when conversing with one of these creatures. <br />Notable races are all Tiste Andii, certain groups of Tiste Edur, certain groups of Tiste Liosan, Dark Elves and Vampires.<br />
@@ -113,19 +113,20 @@
 		</rules>
 	</element>
 	
-	<element name="Shield Anvil: Hood" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_SHIELD_ANVIL">
+	<element name="Shield Anvil" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_SHIELD_ANVIL">
 		<description>
 			<p>
-				A Shield Anvil was "the mortal repository for the fallen (dead), sworn to a particular god." Also described as a mortal soul, to assume the sorrow of the world on behalf of a god.
-				The Shield Anvil of Hood has traditionally taken command of a third of the Avowed, an order of immortal warriors, bound to Prince K'azz D'Avore and subsequently the Lord of Death himself.
-				As part of Hoods Triumvirate the Shield Anvil can cast one of three votes for matters of significance involving the operations of the God in the mortal realm, with the Prince's vote breaking ties. 
-				The Shield Anvil serves as the spiritual mediator between the people and the Hood, the Lord of Death, and is also responsible for the protection of the people and the land, 
-				often called upon to act as an arbiter in disputes between the various factions and peoples of the Malazan world. 
-				The Shield Anvil is considered to be one of the most powerful and respected figures on Edar. 
+				A Shield Anvil is the mortal repository for the fallen, sworn to a particular god — a mortal soul chosen to assume the sorrow of the world on that god's behalf.
+				Every god may have a Shield Anvil, a living vessel who carries the spiritual weight of the deity's domain and acts as mediator between the divine and the mortal world.
+				The Shield Anvil serves as the spiritual voice of their god among the living, responsible for the protection of the faithful and the land,
+				and is often called upon to act as an arbiter in matters of great significance.
+				The Shield Anvil is considered one of the most powerful and respected figures in service to their god.
 			</p>
 			<p>
 				Shield Anvil is granted the Soul Inspiration Feat.
 			</p>
+			<p><strong><em>Assumption of Sorrow.</em></strong> Once per long rest, you can touch a willing creature to voluntarily absorb a curse, disease, or magical condition afflicting them, taking it onto yourself. While you bear the condition, you gain a boon tied to its nature — the burden becomes power (examples: absorbing blindness grants you truesight; absorbing a fear effect renders you immune to fear and causes enemies who can see you to make a Wisdom saving throw or become frightened). The GM determines the boon for each condition absorbed.</p>
+			<p class="indent">If you are a spellcaster, you can expend an action to transfer the absorbed condition from yourself to another creature you touch, without expending a spell slot.</p>
 		</description>
 		<setters>
 			<set name="category">Supernatural Gifts</set>
@@ -135,6 +136,66 @@
 		<rules>
 			<grant type="Archetype Feature" id="ID_BOTF_FEAT_SOUL_INSPIRATION" level="9"/>
 		</rules>
+	</element>
+
+	<element name="Mortal Sword" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_MORTAL_SWORD">
+		<description>
+			<p>
+				A Mortal Sword is a god's mortal defender — a living manifestation of the god's own sword, chosen to act as their champion in the mortal world.
+				Alongside the Shield Anvil and the Destriant, the Mortal Sword forms the mortal triumvirate that represents a particular faith.
+				The Mortal Sword assumes military and overall command of a god's reve, leading the faithful in battle as the direct extension of their god's will.
+			</p>
+			<p><strong><em>God's Blade.</em></strong> Your attacks are imbued with the power of your god's Warren. You deal an additional 1d10 damage on each attack, of a type determined by the Warren of the god you serve. The damage type is assigned by the GM to reflect the god's domain (examples: necrotic for Hood, radiant for Tyr, psychic for Shadow).</p>
+			<p><strong><em>God's Own Sword.</em></strong> Your weapon is a manifestation of your god's will and cannot be disarmed, stolen, or destroyed by any means. If you are ever separated from it, it reappears in your hand at the start of your next turn.</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+	</element>
+
+	<element name="Destriant" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_DESTRIANT">
+		<description>
+			<p>
+				The Destriant — Destrai Anant, God Chosen, the Well of the Spirit — is the mortal representative of a particular faith.
+				Alongside the Shield Anvil and the Mortal Sword, the Destriant forms the triumvirate which represents a particular faith.
+				The Destriant is the conduit through which the god's power flows into the mortal world — harvester of souls, possessing the power and the right to slay in a god's name: to slay, to heal, to deliver justice.
+				Where the Mortal Sword is the god's weapon and the Shield Anvil the god's vessel of sorrow, the Destriant is the god's voice, drawing on divine power in times of need on behalf of the faithful.
+			</p>
+			<p>All Destriants are attuned to both Denul, the Warren of Healing, and Hood, the Warren of Death. This dual attunement shapes every aspect of their divine power.</p>
+			<p><strong><em>Well of Denul.</em></strong> All healing spells you cast restore an additional 1d12 hit points. Additionally, you can cast <em>Regenerate</em> once per long rest without expending a spell slot.</p>
+			<p><strong><em>Aspect of Hood.</em></strong> You can transmute any healing spell you cast, inverting its power through Hood's Warren to deal necrotic damage instead of restoring hit points. If the original spell targets a creature directly, the transmuted version deals its damage (including the 1d12 bonus) to a target of your choice within range. If the original spell affects an area or requires no attack roll, affected creatures must instead make a Constitution saving throw against your spell save DC, taking the damage on a failed save or half on a success.</p>
+			<p><strong><em>Justice of Tyr.</em></strong> After conversing with an intelligent creature for more than 10 minutes, you instinctively know whether they are an oathbreaker. This requires no action or check — Tyr's judgment is not sought, it simply is.</p>
+			<div class="reference">
+				<div element="ID_PHB_SPELL_REGENERATE"/>
+			</div>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
+		<rules>
+			<grant type="Spell" id="ID_PHB_SPELL_REGENERATE"/>
+		</rules>
+	</element>
+
+	<element name="High Priest" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_SUPERNATURAL_GIFT_HIGH_PRIEST">
+		<description>
+			<p>
+				A High Priest's connection to their god is not one of devotion alone — it is immediate, visceral, and mutual. Where others pray, a High Priest commands. Where others hope for divine attention, a High Priest can compel it.
+				This intimacy with the divine is a double-edged gift. A god's strength flows into their High Priest directly, but a weak or wounded god may not sustain the full weight of their servant's power.
+				The GM may reduce the High Priest's effective class levels to reflect the current strength or disposition of their god — the more diminished the god, the greater the cost to their mortal vessel.
+			</p>
+			<p><strong><em>Dual Invocation.</em></strong> Once per long rest, you can concentrate on two spells simultaneously. Both spells must be cast within the same turn. If you take damage while maintaining dual concentration, you must make two separate Constitution saving throws. The first is the standard concentration check (DC 10 or half the damage taken, whichever is higher). The second, to maintain the additional spell, uses the same DC + 5. Failing the first check causes you to lose concentration on both spells. Failing only the second causes you to lose concentration on the additional spell while the first persists normally.</p>
+			<p><strong><em>Warren's Trademark.</em></strong> You gain access to your god's Warren trademark spell. This spell is always prepared and does not count against your number of prepared spells.</p>
+		</description>
+		<setters>
+			<set name="category">Supernatural Gifts</set>
+			<set name="type">Epic Boon</set>
+			<set name="slot">gift</set>
+		</setters>
 	</element>
 
 	<!--End:: Custom Supernatural Gifts and Boons for Book of the fallen -->

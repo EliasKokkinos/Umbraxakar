@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Feats created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.7">
+		<update version="1.0.10">
 			<file name="botf-custom-items.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/feats.xml"/>
 		</update>
 	</info>
@@ -114,23 +114,26 @@
 
 <element name="Soul Inspiration" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_FEAT_SOUL_INSPIRATION">
 	<description>
-		<p>Prerequisite: Proficiency Persuasion, Medicine higher than 3</p>
-		<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally. When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your 
-			level + your Wisdom modifier. Additionally, when you use a bonus action to make a persuasion check on a creature that is frightened, it is no longer frightened. 
-			Additionally, once per long rest, you can use an action to grant all creatures within a 60-foot radius of you advantage on saving throws against fear for 1 hour. Empowering Presence: Imogen has a natural aura of confidence and resolve. 
-			As an action, Imogen can grant a number of creatures within 30 feet of her equal to her Wisdom modifier (minimum 1) advantage on all attack rolls, saving throws, and skill checks for the next turn. These creatures must be able to see or 
-			hear Imogen. Once per long rest.</p>
+		<p><em>Prerequisite: Proficiency in Persuasion and Medicine higher than 3</em></p>
+		<p>You have the ability to inspire and heal those who are suffering, both physically and emotionally.</p>
+		<ul>
+			<li>When you use an action to administer first aid to a creature, that creature also gains temporary hit points equal to your level + your Wisdom modifier.</li>
+			<li>When you use a bonus action to make a Persuasion check on a creature that is frightened, it is no longer frightened.</li>
+			<li>Once per long rest, you can use an action to grant all creatures within a 60-foot radius of you advantage on saving throws against fear for 1 hour.</li>
+		</ul>
+		<p><strong><em>Empowering Presence.</em></strong> You emanate a natural aura of confidence and resolve. As an action, you can grant a number of creatures within 30 feet of you equal to your Wisdom modifier (minimum 1) advantage on all attack rolls, saving throws, and skill checks until the start of your next turn. These creatures must be able to see or hear you. Once per long rest.</p>
 	</description>
 </element>
 
 <element name="Allomantic Strike" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_FEAT_ARCHETYPE_FEATURE_MANEUVER_ALLOMANTIC_STRIKE">
 	<supports>Maneuver, Battle Master</supports>
 	<description>
-		<p>If you have at least 3 attacks available during your turn and are wielding a metallic weapon, you can expend one superiority die to sacrifice 3 attacks to make a single attack that is guided by your allomancy. The damage if this attack doubles the normal damage the weapon would do while wielding it. Additionally, after making the attack roll, you can choose whether to add superiority die to your Attack or Damage roll.</p>
-		<p>If the target is wearing metallic armour or wielding metallic weapons an ally Lurcher or Coinshot within 60 feet of the target can expend their reaction to assist the strike, by imbalancing the them. Gain a +5 to your attack roll.</p>
+		<p>If you have at least 3 attacks available during your turn and are wielding a metallic weapon, you can expend one superiority die to sacrifice 3 attacks to make a single attack guided by your Allomancy. After making the attack roll, you can choose whether to add the superiority die to your Attack or Damage roll. If the attack hits, it automatically counts as a critical hit.</p>
+		<p>If the target is wearing metallic armour or wielding metallic weapons, an ally Lurcher or Coinshot within 60 feet of the target can expend their reaction to assist the strike by imbalancing them, granting you a +5 to your attack roll.</p>
+		<p>At 16th level, you can manipulate the target's metallic armour or weapons yourself through your Allomancy, granting yourself the +5 bonus to your attack roll without requiring an ally.</p>
 	</description>
 	<sheet>
-		<description>Sacrifice 3 attacks and expend 1 superiority die on your turn to make a single attack. Roll your damage dice normally and double the totla damage if it hits. After the Attack roll, you can also decide if the superiority die is added to the Attack or Damage. Additionally, another Lurcher/Coinshot within 60ft can expend their Reaction to give you a +5 on your Attack.</description>
+		<description>Sacrifice 3 attacks and expend 1 superiority die on your turn to make a single attack. If the attack hits, it is an automatic critical. After the attack roll, add the superiority die to Attack or Damage. A Lurcher/Coinshot within 60ft can expend their Reaction to give you +5 to hit. At level 16, you can apply this +5 yourself through your own Allomancy.</description>
 	</sheet>
 </element>
 
