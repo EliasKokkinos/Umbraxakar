@@ -5,7 +5,7 @@
 		<description>
 		Contains Custom Armors created specifically for the campaign &quot;Book of the Fallen&quot;.
 		</description>
-		<update version="1.0.6">
+		<update version="1.0.7">
 			<file name="botf-custom-armors.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/armors.xml"/>
 		</update>
 	</info>
@@ -281,6 +281,32 @@
 		</setters>
 		<rules>
 			<stat name="ac:shield" value="3" bonus="enhancement"/>
+		</rules>
+	</element>
+
+	<element name="Dark Panoply" type="Magic Item" source="Book of the Fallen" id="ID_BOTF_CUSTOM_MAGIC_ITEM_ARMOR_DARK_PANOPLY">
+		<description>
+			<p>Forged from an unknown biometallic composite, Dark Panoply is unlike any armour known to the world. Its surface drinks in light rather than reflecting it, and its weight is deceptive — moving in it feels natural, almost effortless. It is said to have been worn by the championess of the goddess Fate herself.</p>
+			<p>You gain the following benefits while wearing Dark Panoply:</p>
+			<ul>
+				<li>You gain a +2 bonus to AC in addition to the armour's base AC.</li>
+				<li>Wearing this armour does not impose disadvantage on Stealth checks.</li>
+				<li>This armour has no Strength requirement.</li>
+			</ul>
+		</description>
+		<setters>
+			<set name="keywords">plate, armor</set>
+			<set name="category">Magic Armor</set>
+			<set name="cost" currency="gp">0</set>
+			<set name="type" addition="plate">Armor</set>
+			<set name="armor">Plate</set>
+			<set name="attunement">true</set>
+			<set name="rarity">Legendary</set>
+			<set name="enhancement">2</set>
+		</setters>
+		<rules>
+			<stat name="ac:armored:enhancement" value="2" bonus="enhancement"/>
+			<grant type="Grants" id="ID_INTERNAL_GRANTS_STEALTH_DISADVANTAGE" disabled="true"/>
 		</rules>
 	</element>
 

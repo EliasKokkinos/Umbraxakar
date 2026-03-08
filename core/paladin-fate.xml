@@ -5,7 +5,7 @@
 		<description>
 		Contains the Oath of Fate Sacred Oath created specifically for the campaign "Book of the Fallen".
 		</description>
-		<update version="1.0.3">
+		<update version="1.0.4">
 			<file name="botf-paladin-fate.xml" url="https://raw.githubusercontent.com/EliasKokkinos/umbraxakar/master/core/paladin-fate.xml"/>
 		</update>
 	</info>
@@ -77,6 +77,10 @@
 			<p class="indent"><strong><em>Fated Death.</em></strong> As an action, you mark a creature you can see within 60 feet as your fated quarry. For 1 minute, you and the target may attack each other with advantage. The target may only attack creatures other than you with disadvantage. If the killing blow against the target is dealt by anyone other than you, Fate intervenes in an unexpected way to alter the outcome.</p>
 		</description>
 		<sheet display="false" />
+		<rules>
+			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CD_PREDESTINATION" />
+			<grant type="Archetype Feature" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CD_FATED_DEATH" />
+		</rules>
 	</element>
 
 	<element name="Channel Divinity: Predestination" type="Archetype Feature" source="Book of the Fallen" id="ID_BOTF_ARCHETYPE_FEATURE_FATE_CD_PREDESTINATION">
