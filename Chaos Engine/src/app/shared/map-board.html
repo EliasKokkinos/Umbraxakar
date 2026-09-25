@@ -35,7 +35,10 @@
       <!-- A crescent: the dark moon of Kurald Galain. -->
       <path class="crescent" [attr.d]="'M 0 -' + r + ' A ' + r + ' ' + r + ' 0 1 0 0 ' + r + ' A ' + r * 0.7 + ' ' + r + ' 0 1 1 0 -' + r" />
       @if (t.assigned.length) {
-        <text class="count" [attr.y]="r + 14">{{ t.assigned.length }}</text>
+        <g class="badge" [attr.transform]="'translate(' + r + ' ' + r + ')'">
+          <circle r="5.5" />
+          <text dy="0.3em">{{ t.assigned.length }}</text>
+        </g>
       }
     </g>
   }
@@ -43,7 +46,7 @@
   @for (p of visiblePortals(); track p.id) {
     <g
       class="portal"
-      [class.deep]="p.corruption >= 3"
+      [style.--heat]="heat(p.corruption)"
       [class.legendary]="p.legendary"
       [class.hidden]="p.hidden"
       [class.selected]="p.id === selectedId()"
@@ -67,9 +70,14 @@
         <path class="notch" [class.lit]="$index < p.corruption" [attr.d]="d" />
       }
       <circle class="rift" [attr.r]="r" />
-      <text class="difficulty" dy="0.35em">{{ p.difficulty }}</text>
+      <!-- Lining digits carry ink from 0 to 0.60em above the baseline: 0.30em centres it. -->
+      <text class="difficulty" dy="0.3em">{{ p.difficulty }}</text>
+      <!-- Cards sent here: a brass badge, so it never reads as a second difficulty. -->
       @if (p.assigned.length) {
-        <text class="count" [attr.y]="r + 20">{{ p.assigned.length }}</text>
+        <g class="badge" [attr.transform]="'translate(' + r + ' ' + r + ')'">
+          <circle r="5.5" />
+          <text dy="0.3em">{{ p.assigned.length }}</text>
+        </g>
       }
     </g>
   }

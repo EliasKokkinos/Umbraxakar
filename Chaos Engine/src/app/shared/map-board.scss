@@ -54,48 +54,49 @@ g[role='button'] {
   stroke-width: 3.5;
 }
 
-.count {
-  fill: var(--ce-brass);
-  font: 700 11px var(--ce-sans);
-  text-anchor: middle;
-  paint-order: stroke;
-  stroke: #10141f;
-  stroke-width: 3px;
+.badge {
+  circle {
+    fill: var(--ce-brass);
+    stroke: #10141f;
+    stroke-width: 1.5;
+  }
+
+  text {
+    fill: #10141f;
+    font: 700 7.5px var(--ce-sans);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
+    text-anchor: middle;
+  }
 }
 
-// Chaos portals: cold rifts with a ring of corruption.
+// Chaos portals: embers that burn redder as corruption deepens (--heat, set per portal).
 .portal {
   .rift {
-    fill: #0d1a22;
-    stroke: var(--ce-rime);
+    fill: #1c110d;
+    stroke: var(--heat);
     stroke-width: 2;
   }
 
   .notch {
     fill: none;
-    stroke: rgba(168, 236, 242, 0.18);
+    stroke: color-mix(in srgb, var(--heat) 22%, transparent);
     stroke-width: 3.2;
     stroke-linecap: round;
 
     &.lit {
-      stroke: var(--ce-rime);
+      stroke: var(--heat);
     }
   }
 
+  // Lining figures: Alegreya's default old-style digits (3, 4, 5, 7, 9 dip below the
+  // baseline; 6 and 8 rise) never sit centred. A lightened tint of the heat stays legible.
   .difficulty {
-    fill: var(--ce-rime);
+    fill: color-mix(in srgb, var(--heat) 45%, #fff4e8);
     font: 700 11px var(--ce-sans);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
     text-anchor: middle;
-  }
-
-  &.deep {
-    .notch.lit {
-      stroke: var(--ce-oxblood);
-    }
-
-    .rift {
-      stroke: var(--ce-oxblood);
-    }
   }
 
   &.hidden {
@@ -110,7 +111,7 @@ g[role='button'] {
 // A legendary spawn: the one thing on the board allowed to move.
 .legend {
   fill: none;
-  stroke: var(--ce-oxblood);
+  stroke: var(--heat);
   stroke-width: 1.5;
   stroke-dasharray: 4 3;
   animation: turn 12s linear infinite;

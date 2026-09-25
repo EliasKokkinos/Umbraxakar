@@ -110,6 +110,11 @@ export class MapBoard {
     this.dropped.emit({ eventId, resourceId });
   }
 
+  /** The ember colour for a portal's corruption, 1 (amber) to 5 (red). */
+  protected heat(corruption: number): string {
+    return `var(--ce-chaos-${Math.min(5, Math.max(1, corruption))})`;
+  }
+
   protected title(p: PortalState): string {
     return `${p.name}: difficulty ${p.difficulty}, corruption ${p.corruption}, impact ${p.impact}`;
   }
