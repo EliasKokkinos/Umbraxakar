@@ -1,0 +1,29 @@
+{
+  "activeMapId": "world-atlas-2019",
+  "maps": [
+    {
+      "id": "world-atlas-2019",
+      "name": "The World of Edar",
+      "source": "F:\\OneDrive\\Dungeons & Dragons\\Book of the Fallen Flight of Dragons\\Maps\\01-World\\world-atlas-2019.png",
+      "asset": "maps/world-atlas-2019-3000.png",
+      "width": 6936,
+      "height": 3864,
+      "landDetection": { "mode": "color", "seaColor": "#C4DFFF", "tolerance": 40, "sampleRadiusPx": 6, "minLandRatio": 0.8 },
+      "noSpawnZones": [
+        { "id": "southern-ice", "x": 0, "y": 0.86, "w": 1, "h": 0.14 },
+        { "id": "title-block", "x": 0, "y": 0.08, "w": 0.31, "h": 0.14 }
+      ],
+      "regions": [
+        { "id": "lether", "name": "Lether", "x": 0.08, "y": 0.50, "w": 0.12, "h": 0.30 },
+        { "id": "kolanse", "name": "Kolanse", "x": 0.18, "y": 0.58, "w": 0.17, "h": 0.23 },
+        { "id": "seven-cities", "name": "Seven Cities", "x": 0.28, "y": 0.10, "w": 0.30, "h": 0.44 },
+        { "id": "quon-tali", "name": "Quon Tali", "x": 0.49, "y": 0.31, "w": 0.09, "h": 0.22 },
+        { "id": "genabackis", "name": "Genabackis", "x": 0.65, "y": 0.12, "w": 0.14, "h": 0.30 },
+        { "id": "genostel", "name": "Genostel", "x": 0.80, "y": 0.08, "w": 0.12, "h": 0.24 },
+        { "id": "korelri", "name": "Korelri and Stratem", "x": 0.53, "y": 0.50, "w": 0.13, "h": 0.30 },
+        { "id": "jacuruku", "name": "Jacuruku", "x": 0.42, "y": 0.58, "w": 0.07, "h": 0.14 },
+        { "id": "assail-bael", "name": "Assail and Bael", "x": 0.71, "y": 0.45, "w": 0.09, "h": 0.31 }
+      ]
+    }
+  ]
+}

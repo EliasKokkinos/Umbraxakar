@@ -1,0 +1,111 @@
+import { assign } from './assignment';
+import { updatePortal, updateResource, updateTemple } from './dm-edits';
+import { GameState, Result, newGame } from './game-state';
+import { NO_REVEAL, tableView } from './table-view';
+import { endTurn, resolveAll } from './turn';
+import { RULES, SEED } from './testing';
+
+const unwrap = (r: Result): GameState => {
+  if (!r.ok) throw new Error(r.error);
+  return r.state;
+};
+const commanders = SEED.commanders;
+
+/** A session salted with secrets the table must never see. */
+function secretive(): GameState {
+  let s = newGame(SEED, RULES, 99);
+  const [hiddenPortal, visiblePortal] = s.events.portals;
+  s = unwrap(updatePortal(s, hiddenPortal.id, { hidden: true, dmNotes: 'SECRET-PORTAL-NOTE' }, RULES));
+  s = unwrap(updatePortal(s, visiblePortal.id, { dmNotes: 'SECRET-VISIBLE-NOTE' }, RULES));
+  s = unwrap(updateTemple(s, 'temple-jhag-odhan', { dmNotes: 'SECRET-TEMPLE-NOTE' }, RULES));
+  s = unwrap(assign(s, 'uruk', hiddenPortal.id, RULES));
+  s = unwrap(updateResource(s, 'karsa-orlong', { fallen: true }));
+  return s;
+}
+
+describe('tableView: nothing DM-only reaches the table', () => {
+  const s = secretive();
+  const view = tableView(s, RULES, commanders);
+  const json = JSON.stringify(view);
+
+  it('omits hidden events and undiscovered temples', () => {
+    const hidden = s.events.portals[0];
+    expect(view.portals.some((p) => p.id === hidden.id)).toBe(false);
+    expect(json).not.toContain(hidden.name);
+    for (const t of s.events.temples.filter((t) => !t.discovered)) expect(json).not.toContain(t.name);
+    expect(view.temples.every((t) => t.discovered)).toBe(true);
+  });
+
+  it('strips every DM note', () => {
+    expect(json).not.toMatch(/SECRET-/);
+  });
+
+  it('omits locked resources and the fallen', () => {
+    for (const name of ['Anomander Rake', 'Tiamat', "Hood's Gathered Host", 'Avowed: Avernus Contingent', 'The Seguleh']) {
+      expect(json).not.toContain(name);
+    }
+    expect(view.resources.some((r) => r.id === 'karsa-orlong')).toBe(false);
+    expect(json).not.toMatch(/lockReason|Not yet resurrected/);
+  });
+
+  it('shows a card at a hidden event as away at the castle, not where it went', () => {
+    expect(view.resources.find((r) => r.id === 'uruk')!.location).toEqual({ kind: 'castle' });
+  });
+
+  it('never carries the local path of the source map', () => {
+    expect(json).not.toContain('OneDrive');
+    expect('source' in view.map).toBe(false);
+  });
+
+  it('hides the treasury when the DM says so', () => {
+    expect(view.treasury).toBe(200000);
+    const quiet = { ...s, castle: { ...s.castle, showTreasuryOnTable: false } };
+    expect(tableView(quiet, RULES, commanders).treasury).toBeNull();
+  });
+});
+
+describe('tableView: reveals', () => {
+  it('shows only the battles the DM has revealed, and no harm', () => {
+    let s = newGame(SEED, RULES, 12);
+    const [a, b] = s.events.portals;
+    s = unwrap(assign(s, 'karsa-orlong', a.id, RULES));
+    s = unwrap(assign(s, 'uruk', b.id, RULES));
+    const pending = resolveAll(s, RULES);
+
+    expect(tableView(s, RULES, commanders, NO_REVEAL).reckoning).toBeNull();
+    const none = tableView(s, RULES, commanders, { pending, revealed: [], showReport: false });
+    expect(none.reckoning).toEqual([]);
+
+    const one = tableView(s, RULES, commanders, { pending, revealed: [a.id], showReport: false });
+    expect(one.reckoning).toEqual([
+      expect.objectContaining({ eventId: a.id, eventName: a.name, d20: pending.battles[a.id].d20, cards: ['Karsa Orlong'] }),
+    ]);
+    expect(JSON.stringify(one.reckoning)).not.toMatch(/harm|threat|chance/);
+  });
+
+  it('never reveals a battle at a hidden event, nor names the fallen on a card', () => {
+    let s = newGame(SEED, RULES, 12);
+    const hidden = s.events.portals[0];
+    s = unwrap(assign(s, 'uruk', hidden.id, RULES));
+    s = unwrap(updatePortal(s, hidden.id, { hidden: true }, RULES));
+    const pending = resolveAll(s, RULES);
+    const view = tableView(s, RULES, commanders, { pending, revealed: [hidden.id], showReport: false });
+    expect(view.reckoning).toEqual([]);
+    expect(JSON.stringify(view)).not.toContain(hidden.name);
+
+    let t = newGame(SEED, RULES, 12);
+    t = { ...t, resources: t.resources.map((r) => (r.id === 'blues' ? { ...r, attachedTo: 'avowed-prince', fallen: true } : r)) };
+    expect(tableView(t, RULES, commanders).resources.find((r) => r.id === 'avowed-prince')!.attached).toEqual([]);
+  });
+
+  it('shows the turn report only when the DM does', () => {
+    const s = endTurn(newGame(SEED, RULES, 3), RULES);
+    expect(tableView(s, RULES, commanders).report).toBeNull();
+    expect(tableView(s, RULES, commanders, { ...NO_REVEAL, showReport: true }).report?.turn).toBe(1);
+  });
+
+  it('names the commander and their player', () => {
+    const s = { ...newGame(SEED, RULES, 3), commanderId: 'imogen' };
+    expect(tableView(s, RULES, commanders).commander).toEqual({ name: 'Imogen Ashborn', player: 'marios.p (Marios)' });
+  });
+});

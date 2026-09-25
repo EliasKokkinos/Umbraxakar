@@ -1,0 +1,49 @@
+<div class="ledger">
+  <input
+    class="search"
+    type="search"
+    placeholder="Find a resource or faction"
+    aria-label="Find a resource"
+    [value]="filter()"
+    (input)="filter.set($any($event.target).value)"
+  />
+
+  @for (section of sections(); track section.title) {
+    <section>
+      <h2>{{ section.title }} <span class="count num">{{ section.rows.length }}</span></h2>
+      <ul>
+        @for (v of section.rows; track v.id) {
+          <li>
+            <button type="button" class="row" [class.selected]="v.id === selectedId()" (click)="select.emit(v.id)">
+              <span class="name">{{ v.name }}</span>
+              <span class="power num" [title]="'Effective Power'">{{ v.power.total }}</span>
+              <span class="meta">
+                <span class="strength num">{{ strength(v) }}</span>
+                <ce-morale-marks [morale]="v.morale" />
+              </span>
+              @if (v.status || v.location.kind === 'event') {
+                <span class="where" [class.warn]="!!v.status">
+                  {{ v.status ?? (v.location.kind === 'event' ? v.location.name : '') }}
+                </span>
+              }
+            </button>
+            @if (attachedNames().get(v.id); as heroes) {
+              <ul class="attached">
+                @for (h of heroes; track h.id) {
+                  <li>
+                    <button type="button" class="row sub" [class.selected]="h.id === selectedId()" (click)="select.emit(h.id)">
+                      <span class="name">{{ h.name }}</span>
+                      <ce-morale-marks [morale]="h.morale" />
+                    </button>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ul>
+    </section>
+  } @empty {
+    <p class="none">No resource matches “{{ filter() }}”.</p>
+  }
+</div>

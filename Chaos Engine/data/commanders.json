@@ -1,0 +1,50 @@
+[
+  {
+    "id": "morgran",
+    "name": "Morgran Lightforge",
+    "player": "sogosu (Yianno)",
+    "raceClass": "Dwarf Forge Cleric",
+    "level": 17,
+    "divineRole": "Mortal Sword of Thyr (Noor); High Priest pending"
+  },
+  {
+    "id": "imogen",
+    "name": "Imogen Ashborn",
+    "player": "marios.p (Marios)",
+    "raceClass": "Human Ranger (Fey Wanderer)",
+    "level": 17,
+    "divineRole": "Shield Anvil of Hood"
+  },
+  {
+    "id": "darwin",
+    "name": "Darwin (as Melvin)",
+    "player": "Eldorian",
+    "raceClass": "Human Wizard",
+    "level": 17,
+    "divineRole": "Mortal Sword and High Priest of Liara / Oppon"
+  },
+  {
+    "id": "neldor-andarist",
+    "name": "Neldor / Andarist",
+    "player": "Andreas",
+    "raceClass": "Tiste Andii Bladesinger",
+    "level": 17,
+    "divineRole": "Mortal Sword of Meanas; bearer of Dragnipur"
+  },
+  {
+    "id": "onos-toolan",
+    "name": "Onos T'oolan",
+    "player": "Nikos the Cretan",
+    "raceClass": "T'lan Imass Battle Master Fighter, Allomancer",
+    "level": 17,
+    "divineRole": "Bound to Hood"
+  },
+  {
+    "id": "col",
+    "name": "Col (911)",
+    "player": "Kyriakos",
+    "raceClass": "Warforged Paladin",
+    "level": 17,
+    "divineRole": "Champion of Edar / Moraine"
+  }
+]

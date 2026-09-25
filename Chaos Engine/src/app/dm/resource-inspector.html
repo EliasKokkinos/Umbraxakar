@@ -1,0 +1,145 @@
+@if (view(); as v) {
+  @let r = resource()!;
+  <header>
+    <h2>{{ v.name }}</h2>
+    <p class="sub">{{ v.faction }}, {{ v.kind === 'group' ? 'group' : v.kind }}{{ v.canCleanse ? ', can cleanse corruption' : '' }}</p>
+    @if (v.status) {
+      <p class="status">{{ v.status }}</p>
+    }
+  </header>
+
+  <section>
+    <h3>Standing</h3>
+    <table class="breakdown num">
+      @for (p of v.power.parts; track p.label) {
+        <tr>
+          <td>{{ p.label }}</td>
+          <td>{{ $first ? p.value : signed(p.value) }}</td>
+        </tr>
+      }
+      <tr class="total">
+        <td>Effective Power</td>
+        <td>{{ v.power.total }}</td>
+      </tr>
+    </table>
+    <p class="line">Morale <ce-morale-marks [morale]="v.morale" /></p>
+    @if (r.kind === 'group') {
+      <p class="line num">
+        {{ fmt(r.number) }} of {{ fmt(r.maxNumber) }}, {{ fmt(r.injured) }} injured.
+        {{ r.replenishable ? '' : 'Losses are permanent.' }}
+      </p>
+    } @else if (v.injuries.length) {
+      <p class="line warn">Injuries: {{ v.injuries.join(', ') }}</p>
+    }
+    @if (v.location.kind === 'event') {
+      <p class="line">
+        In the field at
+        <button type="button" class="link" (click)="selectEvent.emit($any(v.location).id)">{{ v.location.name }}</button>
+      </p>
+    }
+  </section>
+
+  @if (!v.locked) {
+    <section>
+      <h3>Orders</h3>
+      @if (v.attachedTo) {
+        <p class="line">
+          Attached to
+          <button type="button" class="link" (click)="selectResource.emit(v.attachedTo)">{{ nameOf(v.attachedTo) }}</button>
+        </p>
+        <button type="button" (click)="store.detach(v.id)">Detach</button>
+      } @else if (home()) {
+        <div class="field-row">
+          <select aria-label="Send to" [value]="target()" (change)="target.set($any($event.target).value)">
+            <option value="">Send to the most dangerous open event</option>
+            @for (o of eventOptions(); track o.id) {
+              <option [value]="o.id" [disabled]="!o.ok">{{ o.name }} (difficulty {{ o.value }}){{ o.ok ? '' : ': ' + o.reason }}</option>
+            }
+          </select>
+          <button type="button" class="primary" (click)="send()">Send</button>
+        </div>
+        @if (r.kind !== 'group' && !v.attached.length) {
+          <div class="field-row">
+            <select aria-label="Attach to" [value]="hostTarget()" (change)="hostTarget.set($any($event.target).value)">
+              <option value="">Attach to a card…</option>
+              @for (h of hostOptions(); track h.id) {
+                <option [value]="h.id">{{ h.name }}</option>
+              }
+            </select>
+            <button type="button" [disabled]="!hostTarget()" (click)="attachTo()">Attach</button>
+          </div>
+        }
+      } @else {
+        <button type="button" (click)="store.unassign(v.id)">Recall to the castle</button>
+      }
+
+      @if (v.attached.length) {
+        <p class="line">With them:</p>
+        <ul class="plain">
+          @for (h of v.attached; track h.id) {
+            <li>
+              <button type="button" class="link" (click)="selectResource.emit(h.id)">{{ h.name }}</button>
+              @if (home()) {
+                <button type="button" (click)="store.detach(h.id)">Detach</button>
+              }
+            </li>
+          }
+        </ul>
+      }
+    </section>
+
+    @if (home()) {
+      <section>
+        <h3>At the castle</h3>
+        <div class="actions">
+          <button type="button" (click)="train()">Train ({{ fmt(costs().train.cost) }} gp, costs 1 morale)</button>
+          @if (r.kind !== 'group' && (v.injuries.includes('serious') || v.injuries.includes('grievous'))) {
+            <button type="button" (click)="heal()">
+              Heal ({{ fmt(v.injuries.includes('grievous') ? costs().heal.costs.grievous : costs().heal.costs.serious) }} gp)
+            </button>
+          }
+          <button type="button" (click)="wine()">Serve Tom's wine ({{ fmt(costs().wine.cost) }} gp)</button>
+          @if (r.kind === 'group' && r.replenishable && recruitRoom() > 0) {
+            <button type="button" (click)="recruit()">
+              Recruit {{ recruitRoom() }} ({{ fmt(recruitRoom() * costs().recruit.costPerSoldier) }} gp)
+            </button>
+          }
+          @if (r.kind === 'group' && !r.forged) {
+            <button type="button" (click)="forge()">Forge arms ({{ fmt(costs().forgeArms.cost) }} gp)</button>
+          }
+        </div>
+      </section>
+    }
+  }
+
+  <details class="dm-edit">
+    <summary>Change by hand</summary>
+    <div class="grid">
+      <label>Power <input type="number" min="1" max="10" [value]="r.power" (change)="edit({ power: num($event) }, 'Set power')" /></label>
+      <label>Morale <input type="number" min="1" max="5" [value]="r.morale" (change)="edit({ morale: num($event) }, 'Set morale')" /></label>
+      @if (r.kind === 'group') {
+        <label>Number <input type="number" min="0" [value]="r.number" (change)="edit({ number: num($event) }, 'Set numbers')" /></label>
+        <label>Of <input type="number" min="1" [value]="r.maxNumber" (change)="edit({ maxNumber: num($event) }, 'Set full strength')" /></label>
+        <label>Injured <input type="number" min="0" [value]="r.injured" (change)="edit({ injured: num($event) }, 'Set injured')" /></label>
+      } @else {
+        <label>Injury resistance <input type="number" min="1" max="5" [value]="r.injuryResistance" (change)="edit({ injuryResistance: num($event) }, 'Set injury resistance')" /></label>
+      }
+    </div>
+    <div class="actions">
+      @if (r.locked) {
+        <button type="button" (click)="edit({ locked: false }, 'Unlock')">Unlock and bring into play</button>
+      } @else {
+        <button type="button" (click)="edit({ locked: true, lockReason: 'Held back by the DM' }, 'Lock')">Lock away</button>
+      }
+      @if (r.kind !== 'group' && r.injuries.length) {
+        <button type="button" (click)="edit({ injuries: [] }, 'Heal every injury')">Heal every injury</button>
+      }
+      @if (r.kind !== 'group' && r.fallen) {
+        <button type="button" (click)="edit({ fallen: false }, 'Spare from death')">They live</button>
+      }
+    </div>
+    @if (r.locked && r.lockReason) {
+      <p class="line">Locked: {{ r.lockReason }}</p>
+    }
+  </details>
+}

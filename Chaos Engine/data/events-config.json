@@ -1,0 +1,35 @@
+{
+  "portal": {
+    "startingCorruption": 1,
+    "maxCorruption": 5,
+    "corruptionPerRound": 1,
+    "wonBattleHaltsCorruption": true,
+    "deepCorruptionThreshold": 3,
+    "legendaryAtCorruption": 5,
+    "difficultySeedRange": [1, 5],
+    "maxDifficulty": 9,
+    "maxDifficultyLegendary": 10,
+    "impactSeedRange": [1, 10],
+    "maxImpact": 10,
+    "civiliansPerImpact": 100,
+    "casualtyVariance": [0.5, 1.5],
+    "lostBattleCasualtyFactor": 0.5,
+    "initialSeed": "deployableResources + 1d6",
+    "newPortalsPerRound": "1d3",
+    "minSpacing": 0.02
+  },
+  "temple": {
+    "total": 17,
+    "auraRadius": 0.06,
+    "corruptionCapInAura": 2,
+    "tisteAndiiPowerBonus": 3,
+    "bonusTag": "tiste-andii"
+  },
+  "turn": {
+    "daysPerTurn": 3
+  },
+  "portalNames": {
+    "descriptors": ["The Weeping", "The Hungering", "The Shattered", "The Screaming", "The Bleeding", "The Hollow", "The Burning", "The Silent", "The Writhing", "The Blind"],
+    "nouns": ["Rift", "Wound", "Maw", "Breach", "Scar", "Gate", "Tear", "Eye"]
+  }
+}

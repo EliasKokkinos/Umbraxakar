@@ -1,0 +1,131 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--ce-iron);
+  border-radius: var(--ce-radius);
+}
+
+.when {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+
+  h1 {
+    font-size: var(--ce-h2);
+  }
+
+  .day {
+    color: var(--ce-ash);
+  }
+}
+
+.commander {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ce-ash);
+
+  select {
+    font-family: var(--ce-serif);
+    font-size: var(--ce-h3);
+  }
+}
+
+.tallies {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0;
+
+  div {
+    display: grid;
+  }
+
+  dt {
+    color: var(--ce-ash);
+    font-size: var(--ce-small);
+  }
+
+  dd {
+    margin: 0;
+    font-size: var(--ce-h3);
+    font-weight: 700;
+  }
+
+  .deaths {
+    color: var(--ce-oxblood);
+  }
+
+  .gold {
+    color: var(--ce-brass);
+  }
+}
+
+.history,
+.portals,
+.files {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.history button:first-child {
+  max-width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portals input {
+  width: 3.5rem;
+}
+
+.load {
+  position: relative;
+  padding: 0.3rem 0.7rem;
+  background: var(--ce-iron-raised);
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--ce-brass);
+  }
+}
+
+.table-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.link-state {
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+
+  &.on {
+    color: var(--ce-verdigris);
+  }
+}
+
+.confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ce-oxblood);
+}
+
+.end {
+  margin-left: auto;
+  font-size: var(--ce-h3);
+  padding: 0.45rem 1.1rem;
+}

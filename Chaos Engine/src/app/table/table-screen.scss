@@ -1,0 +1,412 @@
+:host {
+  display: grid;
+  grid-template-columns: 22rem minmax(0, 1fr);
+  gap: 0.8rem;
+  height: 100vh;
+  padding: 0.8rem;
+  overflow: hidden;
+}
+
+// ---------------------------------------------------------------- left: castle over the slider
+
+.side {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  min-height: 0;
+}
+
+.castle {
+  background: var(--ce-iron);
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+  padding: 0.6rem 0.8rem;
+
+  &.dropping {
+    border-color: var(--ce-brass);
+  }
+}
+
+.castle-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  text-align: left;
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+.gold {
+  color: var(--ce-brass);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.facilities {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.15rem 0;
+  }
+}
+
+.level {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+
+  i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    border: 1px solid var(--ce-brass);
+  }
+
+  i.on {
+    background: var(--ce-brass);
+  }
+}
+
+.work {
+  margin: 0.5rem 0 0;
+  padding-left: 1rem;
+  color: var(--ce-ash);
+  font-size: 0.85rem;
+}
+
+.drop-hint {
+  margin: 0.4rem 0 0;
+  color: var(--ce-ash);
+  font-size: 0.8rem;
+}
+
+.slider {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+}
+
+.section {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  color: var(--ce-ash);
+}
+
+// ---------------------------------------------------------------- right: the field
+
+.field {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  min-height: 0;
+}
+
+.tally {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--ce-iron);
+  border-radius: var(--ce-radius);
+
+  .when {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+
+    h1 {
+      font-size: 1.9rem;
+    }
+
+    span {
+      color: var(--ce-ash);
+    }
+  }
+
+  .commander {
+    display: grid;
+
+    .label {
+      color: var(--ce-ash);
+      font-size: 0.8rem;
+    }
+
+    strong {
+      font-family: var(--ce-serif);
+      font-size: 1.3rem;
+    }
+  }
+
+  dl {
+    display: flex;
+    gap: 2rem;
+    margin: 0 0 0 auto;
+
+    div {
+      display: grid;
+      text-align: right;
+    }
+
+    dt {
+      color: var(--ce-ash);
+      font-size: 0.8rem;
+    }
+
+    dd {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+  }
+
+  .deaths {
+    color: var(--ce-oxblood);
+  }
+}
+
+.board {
+  position: relative;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+
+  ce-map-board {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+// ---------------------------------------------------------------- overlays
+
+.panel {
+  position: absolute;
+  background: rgba(37, 43, 60, 0.96);
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+  padding: 0.9rem 1.1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  h3 {
+    margin-top: 0.7rem;
+    font-size: 1rem;
+    color: var(--ce-ash);
+  }
+}
+
+.sub {
+  margin: 0.2rem 0 0.6rem;
+  color: var(--ce-ash);
+}
+
+.warn {
+  color: var(--ce-oxblood);
+}
+
+.galain {
+  color: var(--ce-galain);
+}
+
+.hint {
+  color: var(--ce-ash);
+}
+
+.close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  padding: 0 0.5rem;
+  font-size: 1.3rem;
+  background: none;
+  border: none;
+}
+
+.detail {
+  left: 1rem;
+  bottom: 1rem;
+  width: min(26rem, 45%);
+}
+
+.stats {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  dt {
+    color: var(--ce-ash);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .deep {
+    color: var(--ce-oxblood);
+  }
+
+  .total {
+    border-top: 1px solid var(--ce-rule);
+    padding-top: 0.2rem;
+    font-size: 1.15rem;
+  }
+}
+
+.sent {
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0;
+
+  li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--ce-rule);
+  }
+}
+
+.reckoning {
+  top: 1rem;
+  right: 1rem;
+  width: min(24rem, 40%);
+  max-height: calc(100% - 2rem);
+  overflow-y: auto;
+}
+
+.battle {
+  margin-top: 0.6rem;
+  padding-left: 0.8rem;
+  border-left: 4px solid var(--ce-rule);
+
+  &.won {
+    border-left-color: var(--ce-verdigris);
+
+    .outcome {
+      color: var(--ce-verdigris);
+    }
+  }
+
+  &.lost {
+    border-left-color: var(--ce-oxblood);
+
+    .outcome {
+      color: var(--ce-oxblood);
+    }
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--ce-bone);
+    font-size: 1.2rem;
+  }
+
+  .cards {
+    margin: 0.2rem 0;
+    color: var(--ce-ash);
+  }
+}
+
+.roll {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+}
+
+.d20 {
+  font-family: var(--ce-serif);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.needs {
+  color: var(--ce-ash);
+  font-size: 1.1rem;
+}
+
+.outcome {
+  display: block;
+  font-family: var(--ce-serif);
+  font-size: 1.6rem;
+}
+
+.earlier {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0 0;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--ce-rule);
+
+  &.won span:last-child {
+    color: var(--ce-verdigris);
+  }
+
+  &.lost span:last-child {
+    color: var(--ce-oxblood);
+  }
+}
+
+.report {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(34rem, 80%);
+  max-height: 80%;
+  overflow-y: auto;
+
+  .deaths {
+    font-family: var(--ce-serif);
+    font-size: 2rem;
+    color: var(--ce-oxblood);
+    margin: 0.4rem 0;
+  }
+}
+
+.toast {
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-color: var(--ce-oxblood);
+}
+
+.waiting {
+  grid-column: 1 / -1;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  p {
+    color: var(--ce-ash);
+    font-size: 1.3rem;
+  }
+}

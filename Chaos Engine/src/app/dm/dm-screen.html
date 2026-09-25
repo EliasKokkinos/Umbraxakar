@@ -1,0 +1,59 @@
+@if (state(); as s) {
+  <ce-top-bar
+    class="top"
+    [placing]="placing()?.kind === 'portal'"
+    (placePortal)="placing.set($event ? { kind: 'portal' } : null)"
+    (resolve)="reckoning.set(true)"
+  />
+
+  <ce-resource-ledger class="ledger" [selectedId]="selectedResourceId()" (select)="selectResource($event)" />
+
+  <section class="board" aria-label="Map of Edar">
+    <ce-map-board
+      [map]="map()"
+      [portals]="s.events.portals"
+      [temples]="s.events.temples"
+      [auraRadius]="auraRadius()"
+      [selectedId]="selectedEventId()"
+      [dmView]="true"
+      [placing]="!!placing()"
+      (select)="selectEvent($event)"
+      (place)="onPlace($event)"
+    />
+    @if (placing(); as p) {
+      <p class="hint" role="status">
+        {{ p.kind === 'portal' ? 'Click the map to open a portal there.' : 'Click the map to move the event there.' }}
+        Press Esc to cancel.
+      </p>
+    }
+  </section>
+
+  <aside class="inspector" aria-label="Details">
+    @if (reckoning()) {
+      <ce-reckoning (done)="reckoning.set(false)" (selectEvent)="selectEvent($event)" />
+    } @else if (selectedEventId(); as id) {
+      <ce-event-inspector
+        [eventId]="id"
+        (selectResource)="selectResource($event)"
+        (move)="placing.set({ kind: 'move', id })"
+        (removed)="selection.set(null)"
+      />
+    } @else if (selectedResourceId(); as id) {
+      <ce-resource-inspector [resourceId]="id" (selectEvent)="selectEvent($event)" (selectResource)="selectResource($event)" />
+    } @else {
+      <div class="empty">
+        <h2>Nothing selected</h2>
+        <p>Choose a portal or temple on the map, or a resource from the ledger, to see and change it.</p>
+      </div>
+    }
+  </aside>
+
+  <ce-castle-panel class="castle" />
+
+  @if (store.error(); as e) {
+    <div class="error" role="alert">
+      <span>{{ e }}</span>
+      <button type="button" (click)="store.clearError()">Dismiss</button>
+    </div>
+  }
+}

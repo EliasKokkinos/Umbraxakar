@@ -1,0 +1,50 @@
+@let c = castle();
+<section class="castle" aria-label="The castle">
+  <div class="head">
+    <h2>The castle</h2>
+    <label>Treasury <input class="num" type="number" min="0" step="100" [value]="c.treasury" (change)="setTreasury($event)" /> gp</label>
+    <label class="check"><input type="checkbox" [checked]="c.showTreasuryOnTable" (change)="setVisibility($event)" /> Show on the table</label>
+    <label>Income <input class="num" type="number" step="100" [value]="c.incomePerTurn" (change)="setIncome($event)" /> gp a turn</label>
+  </div>
+
+  <ul class="facilities">
+    @for (f of facilities(); track f.id) {
+      <li>
+        <span class="fname">{{ f.name }}</span>
+        <span class="level num" [attr.aria-label]="'Level ' + f.level + ' of 3'">
+          @for (i of [1, 2, 3]; track i) {
+            <i [class.on]="i <= f.level"></i>
+          }
+        </span>
+        @if (f.building !== null) {
+          <span class="building">Building, {{ f.building }} to go</span>
+        } @else if (f.cost !== null) {
+          <button type="button" (click)="upgrade(f.id, f.name)">Upgrade ({{ fmt(f.cost) }})</button>
+        }
+      </li>
+    }
+  </ul>
+
+  <div class="foot">
+    <dl class="slots num">
+      <div><dt>Healing</dt><dd>{{ slots().healing }}</dd></div>
+      <div><dt>Training</dt><dd>{{ slots().training }}</dd></div>
+      <div><dt>Casks</dt><dd>{{ slots().casks }}</dd></div>
+    </dl>
+    <div class="actions">
+      <button type="button" [disabled]="c.entertainersTurnsLeft > 0" (click)="entertainers()">
+        Hire entertainers for a week ({{ fmt(entertainerCost()) }} gp)
+      </button>
+      <button type="button" [disabled]="!militiaReady()" [title]="militiaReady() ? '' : 'Needs a level 2 Barracks'" (click)="militia()">
+        Muster militia ({{ fmt(militiaCost()) }} gp)
+      </button>
+    </div>
+    @if (projects().length) {
+      <ul class="projects">
+        @for (p of projects(); track p) {
+          <li>{{ p }}</li>
+        }
+      </ul>
+    }
+  </div>
+</section>

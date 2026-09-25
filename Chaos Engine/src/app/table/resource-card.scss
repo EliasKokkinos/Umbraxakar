@@ -1,0 +1,104 @@
+.card {
+  display: grid;
+  grid-template-columns: 4.2rem 1fr;
+  gap: 0.2rem 0.8rem;
+  padding: 0.55rem;
+  background: var(--ce-iron);
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+  cursor: grab;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &.selected {
+    border-color: var(--ce-brass);
+  }
+
+  &.dropping {
+    border-color: var(--ce-brass);
+    box-shadow: inset 0 0 0 1px var(--ce-brass);
+  }
+
+  &.blocked {
+    cursor: default;
+    opacity: 0.6;
+  }
+}
+
+// No portraits exist yet: a monogram on the faction's quiet colour stands in.
+.portrait {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: hsl(var(--hue) 22% 26%);
+  border: 1px solid hsl(var(--hue) 25% 38%);
+  font-family: var(--ce-serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: hsl(var(--hue) 30% 82%);
+}
+
+.title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  h3 {
+    font-size: 1.15rem;
+    line-height: 1.15;
+  }
+}
+
+.power {
+  font-family: var(--ce-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--ce-ash);
+  font-size: 0.85rem;
+}
+
+.status,
+.where {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+}
+
+.status {
+  color: var(--ce-oxblood);
+}
+
+.where {
+  color: var(--ce-rime);
+}
+
+.attached {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0.35rem 0 0;
+  border-top: 1px solid var(--ce-rule);
+
+  li {
+    padding: 0.05rem 0.5rem;
+    border: 1px solid var(--ce-rule);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: var(--ce-ash);
+  }
+}

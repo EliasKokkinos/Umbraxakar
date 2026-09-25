@@ -1,0 +1,106 @@
+@if (event(); as e) {
+  <header>
+    <h2>{{ e.name }}</h2>
+    <p class="sub">
+      {{ e.type === 'chaos-portal' ? 'Chaos portal' : 'Temple of Mother Dark' }} in {{ region() }}{{ e.hidden ? '. Hidden from the table.' : '' }}
+    </p>
+    @if (e.type === 'chaos-portal' && e.legendary) {
+      <p class="status">A legendary spawn has emerged.</p>
+    }
+  </header>
+
+  <section>
+    <h3>{{ e.type === 'chaos-portal' ? 'The breach' : 'The temple' }}</h3>
+    @if (e.type === 'chaos-portal') {
+      <table class="breakdown num">
+        <tr><td>Difficulty</td><td>{{ e.difficulty }}</td></tr>
+        <tr><td>Corruption</td><td [class.warn]="e.corruption >= 3">{{ e.corruption }} of 5</td></tr>
+        <tr><td>Impact</td><td>up to {{ fmt(maxLoss(e.impact)) }} civilians a turn</td></tr>
+        <tr><td>Opened</td><td>turn {{ e.createdTurn }}</td></tr>
+        @if (e.lastOutcome) {
+          <tr><td>Last turn</td><td>{{ e.lastOutcome }}</td></tr>
+        }
+      </table>
+      @if (e.corruption >= 3) {
+        <p class="line warn">Only a resource that can cleanse corruption will close it. Otherwise a victory holds it for a turn.</p>
+      }
+    } @else {
+      <table class="breakdown num">
+        <tr><td>State</td><td>{{ e.active ? 'Active' : e.discovered ? 'Dormant' : 'Undiscovered' }}</td></tr>
+        <tr><td>Activation difficulty</td><td>{{ e.activationDifficulty }}</td></tr>
+        <tr><td>Known through</td><td>{{ e.origin === 'story' ? 'the story' : e.origin === 'ally' ? 'an ally' : 'not yet known' }}</td></tr>
+      </table>
+    }
+    @if (warded().length) {
+      <p class="line">Warded by {{ warded()[0].name }}: corruption cannot rise above 2, and Tiste Andii fight at +3.</p>
+    }
+  </section>
+
+  @if (contestable()) {
+    <section>
+      <h3>Sent here</h3>
+      @if (cards().length) {
+        <ul class="plain">
+          @for (c of cards(); track c.id) {
+            <li>
+              <button type="button" class="link" (click)="selectResource.emit(c.id)">
+                {{ c.name }}{{ c.attached.length ? ' with ' + c.attached.length + (c.attached.length === 1 ? ' hero' : ' heroes') : '' }}
+              </button>
+              <span class="num">Power {{ c.power.total }}</span>
+              @if (pinned().has(c.id)) {
+                <span class="warn">Held by last turn's loss</span>
+              } @else {
+                <button type="button" (click)="store.unassign(c.id)">Recall</button>
+              }
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="line">No one. Left alone, it will cost lives this turn.</p>
+      }
+      <div class="field-row">
+        <select aria-label="Resource to send" [value]="toAdd()" (change)="toAdd.set($any($event.target).value)">
+          <option value="">The strongest available card</option>
+          @for (o of options(); track o.id) {
+            <option [value]="o.id" [disabled]="!o.ok">{{ o.name }} (Power {{ o.value }}){{ o.ok ? '' : ': ' + o.reason }}</option>
+          }
+        </select>
+        <button type="button" class="primary" (click)="add()">Send</button>
+      </div>
+    </section>
+  }
+
+  <details class="dm-edit">
+    <summary>Change by hand</summary>
+    <div class="grid">
+      <label class="wide">Name <input type="text" [value]="e.name" (change)="e.type === 'chaos-portal' ? editPortal({ name: text($event) }, 'Rename') : editTemple({ name: text($event) }, 'Rename')" /></label>
+      @if (e.type === 'chaos-portal') {
+        <label>Difficulty <input type="number" min="1" max="10" [value]="e.difficulty" (change)="editPortal({ difficulty: num($event) }, 'Set difficulty')" /></label>
+        <label>Corruption <input type="number" min="1" max="5" [value]="e.corruption" (change)="editPortal({ corruption: num($event) }, 'Set corruption')" /></label>
+        <label>Impact <input type="number" min="0" max="10" [value]="e.impact" (change)="editPortal({ impact: num($event) }, 'Set impact')" /></label>
+        <label class="check"><input type="checkbox" [checked]="e.legendary" (change)="editPortal({ legendary: checked($event) }, 'Set legendary')" /> Legendary spawn</label>
+      } @else {
+        <label>Activation difficulty <input type="number" min="1" max="9" [value]="e.activationDifficulty" (change)="editTemple({ activationDifficulty: num($event) }, 'Set activation difficulty')" /></label>
+        <label class="check"><input type="checkbox" [checked]="e.discovered" (change)="editTemple({ discovered: checked($event) }, 'Set discovered')" /> Discovered</label>
+        <label class="check"><input type="checkbox" [checked]="e.active" (change)="editTemple({ active: checked($event) }, 'Set active')" /> Active</label>
+      }
+      <label class="check wide">
+        <input type="checkbox" [checked]="e.hidden" (change)="e.type === 'chaos-portal' ? editPortal({ hidden: checked($event) }, 'Set hidden') : editTemple({ hidden: checked($event) }, 'Set hidden')" />
+        Hidden from the table
+      </label>
+      <label class="wide">DM notes <textarea rows="3" [value]="e.dmNotes" (change)="e.type === 'chaos-portal' ? editPortal({ dmNotes: text($event) }, 'Note') : editTemple({ dmNotes: text($event) }, 'Note')"></textarea></label>
+    </div>
+    <div class="actions">
+      <button type="button" (click)="move.emit()">Move on the map</button>
+      @if (e.type === 'chaos-portal') {
+        <button type="button" (click)="editPortal({ status: 'closed' }, 'Close')">Close it</button>
+      }
+      @if (confirmRemove()) {
+        <button type="button" class="danger" (click)="remove()">Remove for good</button>
+        <button type="button" (click)="confirmRemove.set(false)">Keep it</button>
+      } @else {
+        <button type="button" class="danger" (click)="confirmRemove.set(true)">Remove</button>
+      }
+    </div>
+  </details>
+}

@@ -1,0 +1,40 @@
+@let r = resource();
+<article
+  class="card"
+  [class.selected]="selected()"
+  [class.blocked]="!draggable()"
+  [class.dropping]="dropping()"
+  [attr.draggable]="draggable()"
+  tabindex="0"
+  [attr.aria-label]="r.name + ', power ' + r.power.total"
+  (dragstart)="onDragStart($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="dropping.set(false)"
+  (drop)="onDrop($event)"
+  (click)="inspect.emit(r.id)"
+  (keydown.enter)="inspect.emit(r.id)"
+>
+  <div class="portrait" [style.--hue]="hue()" aria-hidden="true">{{ monogram() }}</div>
+  <div class="standing">
+    <div class="title">
+      <h3>{{ r.name }}</h3>
+      <span class="power num">{{ r.power.total }}</span>
+    </div>
+    <div class="meta">
+      <ce-morale-marks [morale]="r.morale" />
+      <span class="num">{{ strength() }}</span>
+    </div>
+    @if (r.status) {
+      <p class="status">{{ r.status }}</p>
+    } @else if (r.location.kind === 'event') {
+      <p class="where">{{ r.location.name }}</p>
+    }
+  </div>
+  @if (r.attached.length) {
+    <ul class="attached">
+      @for (h of r.attached; track h.id) {
+        <li>{{ h.name }}</li>
+      }
+    </ul>
+  }
+</article>

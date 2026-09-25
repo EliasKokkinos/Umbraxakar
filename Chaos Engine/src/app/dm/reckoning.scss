@@ -1,0 +1,155 @@
+header {
+  margin-bottom: 0.75rem;
+
+  h2 {
+    font-size: var(--ce-h2);
+  }
+}
+
+.sub {
+  margin: 0.2rem 0 0;
+  color: var(--ce-ash);
+}
+
+.battle {
+  padding: 0.7rem 0 0.7rem 0.75rem;
+  border-top: 1px solid var(--ce-rule);
+  border-left: 3px solid var(--ce-rule);
+  margin-bottom: 0.25rem;
+
+  &.won {
+    border-left-color: var(--ce-verdigris);
+
+    .outcome {
+      color: var(--ce-verdigris);
+    }
+  }
+
+  &.lost {
+    border-left-color: var(--ce-oxblood);
+
+    .outcome {
+      color: var(--ce-oxblood);
+    }
+  }
+}
+
+.event {
+  font-family: var(--ce-serif);
+  font-size: var(--ce-h3);
+  text-align: left;
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--ce-bone);
+
+  &:hover {
+    color: var(--ce-brass);
+  }
+}
+
+.roll {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0.35rem 0;
+}
+
+.d20 {
+  font-family: var(--ce-serif);
+  font-size: var(--ce-h1);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.vs {
+  color: var(--ce-ash);
+}
+
+.outcome {
+  margin-left: auto;
+  font-family: var(--ce-serif);
+  font-size: var(--ce-h3);
+}
+
+.cards {
+  margin: 0.2rem 0;
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+}
+
+.harm {
+  margin: 0.4rem 0;
+  padding-left: 1.1rem;
+  color: var(--ce-oxblood);
+
+  li {
+    margin-bottom: 0.2rem;
+  }
+}
+
+.small {
+  font-size: var(--ce-small);
+  padding: 0.05rem 0.45rem;
+  margin-left: 0.4rem;
+}
+
+.actions,
+.commit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.shown {
+  align-self: center;
+  color: var(--ce-verdigris);
+  font-size: var(--ce-small);
+  margin-right: 0.3rem;
+}
+
+.unopposed {
+  color: var(--ce-oxblood);
+  border-top: 1px solid var(--ce-rule);
+  padding-top: 0.75rem;
+}
+
+.commit {
+  position: sticky;
+  bottom: -1rem;
+  padding: 0.75rem 0;
+  background: var(--ce-iron);
+  border-top: 1px solid var(--ce-rule);
+}
+
+.deaths {
+  font-family: var(--ce-serif);
+  font-size: var(--ce-h2);
+  color: var(--ce-oxblood);
+  margin: 0 0 0.75rem;
+}
+
+.report {
+  margin: 0 0 1rem;
+
+  dt {
+    color: var(--ce-ash);
+    margin-top: 0.6rem;
+  }
+
+  dd {
+    margin: 0.1rem 0 0;
+  }
+
+  .warn {
+    color: var(--ce-oxblood);
+  }
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}

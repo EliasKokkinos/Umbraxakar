@@ -1,0 +1,122 @@
+@use '@fontsource/alegreya/latin-500.css' as serif-500;
+@use '@fontsource/alegreya/latin-700.css' as serif-700;
+@use '@fontsource/alegreya-sans/latin-400.css' as sans-400;
+@use '@fontsource/alegreya-sans/latin-500.css' as sans-500;
+@use '@fontsource/alegreya-sans/latin-700.css' as sans-700;
+
+// A war table at night: blue slate, bone ink, and colour only where it means something.
+:root {
+  color-scheme: dark;
+
+  --ce-slate: #1b2030; // the table
+  --ce-iron: #252b3c; // panels
+  --ce-iron-raised: #30374b; // hover, inputs
+  --ce-rule: #3d455c; // borders
+  --ce-bone: #e7e1d2; // ink
+  --ce-ash: #a39e92; // secondary ink
+
+  --ce-brass: #c9a55a; // actions, gold, selection
+  --ce-rime: #a8ecf2; // Chaos: the unnatural ice
+  --ce-galain: #9d8ae6; // Mother Dark
+  --ce-oxblood: #c4524f; // loss, death, deep corruption
+  --ce-verdigris: #72b58e; // victory
+
+  --ce-serif: 'Alegreya', Georgia, serif;
+  --ce-sans: 'Alegreya Sans', 'Segoe UI', sans-serif;
+
+  // Type scale (1.25): 0.8, 1, 1.25, 1.563, 1.953rem
+  --ce-small: 0.8rem;
+  --ce-body: 1rem;
+  --ce-h3: 1.25rem;
+  --ce-h2: 1.563rem;
+  --ce-h1: 1.953rem;
+
+  --ce-radius: 4px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--ce-slate);
+  color: var(--ce-bone);
+  font-family: var(--ce-sans);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--ce-serif);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+// Numbers line up in columns everywhere.
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+button {
+  font: inherit;
+  color: var(--ce-bone);
+  background: var(--ce-iron-raised);
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: var(--ce-ash);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  &.primary {
+    background: var(--ce-brass);
+    border-color: var(--ce-brass);
+    color: var(--ce-slate);
+    font-weight: 700;
+  }
+
+  &.danger {
+    border-color: var(--ce-oxblood);
+    color: var(--ce-oxblood);
+  }
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: var(--ce-bone);
+  background: var(--ce-slate);
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+  padding: 0.25rem 0.45rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ce-brass);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

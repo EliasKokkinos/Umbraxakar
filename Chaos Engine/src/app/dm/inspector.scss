@@ -1,0 +1,140 @@
+// Shared by the event and resource inspectors.
+header {
+  margin-bottom: 0.75rem;
+
+  h2 {
+    font-size: var(--ce-h2);
+  }
+}
+
+.sub {
+  margin: 0.2rem 0 0;
+  color: var(--ce-ash);
+}
+
+.status,
+.warn {
+  color: var(--ce-oxblood);
+}
+
+.status {
+  margin: 0.4rem 0 0;
+  font-weight: 700;
+}
+
+section {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--ce-rule);
+
+  h3 {
+    font-size: var(--ce-body);
+    color: var(--ce-ash);
+    margin-bottom: 0.5rem;
+  }
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.35rem 0;
+}
+
+.breakdown {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    padding: 0.15rem 0;
+  }
+
+  td:last-child {
+    text-align: right;
+  }
+
+  .total td {
+    border-top: 1px solid var(--ce-rule);
+    font-weight: 700;
+    font-size: var(--ce-h3);
+    padding-top: 0.3rem;
+  }
+}
+
+.field-row {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.4rem 0;
+
+  select {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--ce-brass);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.plain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+  }
+}
+
+.dm-edit {
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--ce-rule);
+  padding-top: 0.75rem;
+
+  summary {
+    cursor: pointer;
+    color: var(--ce-ash);
+    margin-bottom: 0.5rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.15rem;
+    font-size: var(--ce-small);
+    color: var(--ce-ash);
+  }
+
+  .wide {
+    grid-column: 1 / -1;
+  }
+
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--ce-body);
+    color: var(--ce-bone);
+  }
+}

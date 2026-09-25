@@ -1,0 +1,90 @@
+:host {
+  display: grid;
+  grid-template-columns: 19rem minmax(0, 1fr) 23rem;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    'top top top'
+    'ledger board inspector'
+    'ledger castle inspector';
+  gap: 0.75rem;
+  height: 100vh;
+  padding: 0.75rem;
+}
+
+.top {
+  grid-area: top;
+}
+
+.ledger {
+  grid-area: ledger;
+  min-height: 0;
+}
+
+.board {
+  grid-area: board;
+  position: relative;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+
+  ce-map-board {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.hint {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  background: var(--ce-iron);
+  border: 1px solid var(--ce-brass);
+  border-radius: var(--ce-radius);
+}
+
+.inspector {
+  grid-area: inspector;
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--ce-iron);
+  border-radius: var(--ce-radius);
+  padding: 1rem;
+}
+
+.empty p {
+  color: var(--ce-ash);
+  max-width: 34ch;
+}
+
+.castle {
+  grid-area: castle;
+}
+
+.error {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.6rem 0.9rem;
+  background: var(--ce-iron);
+  border: 1px solid var(--ce-oxblood);
+  border-radius: var(--ce-radius);
+  color: var(--ce-bone);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+// Laptops narrower than the war table: stack the side panels under the map.
+@media (max-width: 1200px) {
+  :host {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas: 'top' 'board' 'inspector' 'castle' 'ledger';
+    height: auto;
+  }
+}

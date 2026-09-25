@@ -1,0 +1,76 @@
+<img class="atlas" [src]="map().asset" [alt]="map().name" draggable="false" />
+<svg
+  class="overlay"
+  [class.placing]="placing()"
+  [attr.viewBox]="viewBox()"
+  preserveAspectRatio="none"
+  (click)="onBoardClick($event)"
+>
+  <!-- Mother Dark: auras first, so markers sit above them. -->
+  @for (t of visibleTemples(); track t.id) {
+    @if (t.active) {
+      <circle class="aura" [attr.cx]="x(t.position)" [attr.cy]="y(t.position)" [attr.r]="auraR()" />
+    }
+  }
+
+  @for (t of visibleTemples(); track t.id) {
+    <g
+      class="temple"
+      [class.active]="t.active"
+      [class.hidden]="t.hidden"
+      [class.selected]="t.id === selectedId()"
+      [class.drop]="t.id === dropTarget()"
+      (dragover)="onDragOver($event, t.id)"
+      (dragleave)="onDragLeave(t.id)"
+      (drop)="onDrop($event, t.id)"
+      [attr.transform]="'translate(' + x(t.position) + ' ' + y(t.position) + ')'"
+      tabindex="0"
+      role="button"
+      [attr.aria-label]="t.name"
+      (click)="onMarker($event, t.id)"
+      (keydown.enter)="onMarker($event, t.id)"
+    >
+      <title>{{ t.name }}{{ t.active ? '' : ' (dormant)' }}</title>
+      <circle class="ring" [attr.r]="r + 4" />
+      <!-- A crescent: the dark moon of Kurald Galain. -->
+      <path class="crescent" [attr.d]="'M 0 -' + r + ' A ' + r + ' ' + r + ' 0 1 0 0 ' + r + ' A ' + r * 0.7 + ' ' + r + ' 0 1 1 0 -' + r" />
+      @if (t.assigned.length) {
+        <text class="count" [attr.y]="r + 14">{{ t.assigned.length }}</text>
+      }
+    </g>
+  }
+
+  @for (p of visiblePortals(); track p.id) {
+    <g
+      class="portal"
+      [class.deep]="p.corruption >= 3"
+      [class.legendary]="p.legendary"
+      [class.hidden]="p.hidden"
+      [class.selected]="p.id === selectedId()"
+      [class.drop]="p.id === dropTarget()"
+      (dragover)="onDragOver($event, p.id)"
+      (dragleave)="onDragLeave(p.id)"
+      (drop)="onDrop($event, p.id)"
+      [attr.transform]="'translate(' + x(p.position) + ' ' + y(p.position) + ')'"
+      tabindex="0"
+      role="button"
+      [attr.aria-label]="title(p)"
+      (click)="onMarker($event, p.id)"
+      (keydown.enter)="onMarker($event, p.id)"
+    >
+      <title>{{ title(p) }}</title>
+      @if (p.legendary) {
+        <circle class="legend" [attr.r]="r + 9" />
+      }
+      <circle class="ring" [attr.r]="r + 7" />
+      @for (d of notches; track $index) {
+        <path class="notch" [class.lit]="$index < p.corruption" [attr.d]="d" />
+      }
+      <circle class="rift" [attr.r]="r" />
+      <text class="difficulty" dy="0.35em">{{ p.difficulty }}</text>
+      @if (p.assigned.length) {
+        <text class="count" [attr.y]="r + 20">{{ p.assigned.length }}</text>
+      }
+    </g>
+  }
+</svg>

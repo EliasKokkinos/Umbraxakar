@@ -1,0 +1,122 @@
+.castle {
+  background: var(--ce-iron);
+  border-radius: var(--ce-radius);
+  padding: 0.75rem 1rem;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin-bottom: 0.6rem;
+
+  h2 {
+    font-size: var(--ce-h3);
+    margin-right: auto;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--ce-ash);
+  }
+
+  input {
+    width: 7.5rem;
+    color: var(--ce-brass);
+  }
+
+  .check input {
+    width: auto;
+  }
+}
+
+.facilities {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 0.25rem 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--ce-rule);
+  }
+
+  .fname {
+    font-family: var(--ce-serif);
+    flex: 1;
+  }
+
+  button {
+    font-size: var(--ce-small);
+    padding: 0.15rem 0.5rem;
+  }
+}
+
+.level {
+  display: inline-flex;
+  gap: 3px;
+
+  i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--ce-brass);
+  }
+
+  i.on {
+    background: var(--ce-brass);
+  }
+}
+
+.building {
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem 1.5rem;
+  margin-top: 0.7rem;
+}
+
+.slots {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+
+  div {
+    display: grid;
+  }
+
+  dt {
+    color: var(--ce-ash);
+    font-size: var(--ce-small);
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.projects {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+}

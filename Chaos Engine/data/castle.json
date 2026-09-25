@@ -1,0 +1,35 @@
+{
+  "_note": "All gold values are placeholders; the DM tunes them in the app.",
+  "name": "The Iron Company Castle, Einhart Island",
+  "position": { "x": 0.12, "y": 0.66, "placeholder": true },
+  "treasury": 200000,
+  "treasuryEstimated": true,
+  "incomePerTurn": 0,
+  "showTreasuryOnTable": true,
+  "upgrade": { "turnsToBuild": 2, "costs": { "2": 20000, "3": 50000 }, "operatesAtOldLevelWhileBuilding": true },
+  "facilities": [
+    { "id": "great-hall", "name": "Great Hall", "level": 1,
+      "levels": { "1": { "moraleRecovery": 1 }, "2": { "moraleRecovery": 1, "entertainerCostFactor": 0.5 }, "3": { "moraleRecovery": 2 } } },
+    { "id": "healers-hall", "name": "Healers' Hall", "level": 1,
+      "levels": { "1": { "healSlots": 1, "injuredRecovery": 0.5 }, "2": { "healSlots": 2, "injuredRecovery": 0.75 }, "3": { "healSlots": 3, "injuredRecovery": 1.0 } } },
+    { "id": "training-grounds", "name": "Training Grounds", "level": 1,
+      "levels": { "1": { "trainSlots": 1, "powerBonus": 1 }, "2": { "trainSlots": 2, "powerBonus": 1 }, "3": { "trainSlots": 3, "powerBonus": 2, "militiaPower": 3 } } },
+    { "id": "barracks", "name": "Barracks", "level": 1,
+      "levels": { "1": { "recruitMultiplier": 1.0, "militia": false }, "2": { "recruitMultiplier": 1.5, "militia": true }, "3": { "recruitMultiplier": 2.0, "militia": true } } },
+    { "id": "forge", "name": "Draconus's Forge", "level": 1, "keeper": "Sam Yellin",
+      "levels": { "1": { "forgeSlots": 1, "forgeTurns": 2 }, "2": { "forgeSlots": 2, "forgeTurns": 2 }, "3": { "forgeSlots": 2, "forgeTurns": 1 } } },
+    { "id": "winery", "name": "Tom's Winery", "level": 1,
+      "levels": { "1": { "casksPerTurn": 1 }, "2": { "casksPerTurn": 2 }, "3": { "casksPerTurn": 3 } } }
+  ],
+  "actions": {
+    "entertainers": { "cost": 2000, "durationTurns": 2, "moraleBonus": 1 },
+    "train": { "cost": 500, "durationTurns": 2, "moraleCost": 1, "minMorale": 3 },
+    "heal": { "costs": { "serious": 1000, "grievous": 5000 }, "grievousTurnsInSlot": 2, "grievousHealsTo": "serious" },
+    "recruit": { "costPerSoldier": 20, "defaultRecruitRate": 0.10 },
+    "militia": { "cost": 5000, "turns": 2, "template": { "name": "Militia of Lether", "faction": "Letheri Empire", "power": 2, "morale": 3, "number": 100, "maxNumber": 100, "replenishable": true, "decimationResistance": 1, "tags": ["human", "militia"] } },
+    "forgeArms": { "cost": 25000, "powerBonus": 1, "oncePerGroup": true },
+    "wine": { "cost": 1000, "moraleBonus": 1, "liftsRefusal": true }
+  },
+  "rest": { "minorTurns": 1, "seriousTurns": 3, "grievousHealsByRest": false },
+  "healerHeroSlotBonus": 1
+}

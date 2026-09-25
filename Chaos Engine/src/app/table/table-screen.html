@@ -1,0 +1,235 @@
+@if (view(); as v) {
+  <aside class="side">
+    <section
+      class="castle"
+      [class.open]="castleOpen()"
+      [class.dropping]="castleDropping()"
+      (dragover)="onCastleDragOver($event)"
+      (dragleave)="castleDropping.set(false)"
+      (drop)="onCastleDrop($event)"
+    >
+      <button type="button" class="castle-head" [attr.aria-expanded]="castleOpen()" (click)="castleOpen.set(!castleOpen())">
+        <h2>{{ v.castle.name }}</h2>
+        @if (v.treasury !== null) {
+          <span class="gold num">{{ fmt(v.treasury) }} gp</span>
+        }
+      </button>
+      @if (castleOpen()) {
+        <ul class="facilities">
+          @for (f of v.castle.facilities; track f.id) {
+            <li>
+              <span>{{ f.name }}</span>
+              <span class="level" [attr.aria-label]="'Level ' + f.level + ' of 3'">
+                @for (i of [1, 2, 3]; track i) {
+                  <i [class.on]="i <= f.level"></i>
+                }
+              </span>
+            </li>
+          }
+        </ul>
+      }
+      @if (v.castle.work.length) {
+        <ul class="work">
+          @for (w of v.castle.work; track w) {
+            <li>{{ w }}</li>
+          }
+        </ul>
+      }
+      <p class="drop-hint">Drop a card here to call it home.</p>
+    </section>
+
+    <div class="slider" aria-label="Resources">
+      @for (s of sections(); track s.title) {
+        <h2 class="section">{{ s.title }}</h2>
+        @for (r of s.rows; track r.id) {
+          <ce-resource-card
+            [resource]="r"
+            [selected]="r.id === selectedResourceId()"
+            (inspect)="inspectResource($event)"
+            (attachHere)="attach($event.heroId, $event.hostId)"
+          />
+        }
+      }
+    </div>
+  </aside>
+
+  <main class="field">
+    <header class="tally">
+      <div class="when">
+        <h1>Turn {{ v.turn }}</h1>
+        <span>Day {{ v.day }}</span>
+      </div>
+      <div class="commander">
+        @if (v.commander; as c) {
+          <span class="label">Commander</span>
+          <strong>{{ c.name }}</strong>
+        } @else {
+          <span class="label">No commander chosen yet</span>
+        }
+      </div>
+      <dl>
+        <div>
+          <dt>Civilians lost</dt>
+          <dd class="num deaths">{{ fmt(v.civilianDeaths) }}</dd>
+        </div>
+        <div>
+          <dt>Open portals</dt>
+          <dd class="num">{{ v.openPortals }}</dd>
+        </div>
+      </dl>
+    </header>
+
+    <div class="board">
+      <ce-map-board
+        [map]="$any(v.map)"
+        [portals]="v.portals"
+        [temples]="v.temples"
+        [auraRadius]="v.auraRadius"
+        [selectedId]="selectedEventId()"
+        [droppable]="true"
+        (select)="selectEvent($event)"
+        (dropped)="send($event.resourceId, $event.eventId)"
+      />
+
+      @if (selectedEvent(); as e) {
+        <section class="panel detail" aria-live="polite">
+          <button type="button" class="close" aria-label="Close" (click)="selectedEventId.set(null)">×</button>
+          <h2>{{ e.name }}</h2>
+          @if (e.type === 'chaos-portal') {
+            <p class="sub">A breach of Chaos in {{ regionName(e.regionId) }}</p>
+            <dl class="stats num">
+              <div><dt>Difficulty</dt><dd>{{ e.difficulty }}</dd></div>
+              <div><dt>Corruption</dt><dd [class.deep]="e.corruption >= 3">{{ e.corruption }} of 5</dd></div>
+              <div><dt>Threat to the people</dt><dd>{{ e.impact }} of 10</dd></div>
+            </dl>
+            @if (e.legendary) {
+              <p class="warn">Something legendary has come through.</p>
+            } @else if (e.corruption >= 3) {
+              <p class="warn">Too deep for steel alone: only one who can cleanse corruption will close it.</p>
+            }
+          } @else {
+            <p class="sub">{{ e.active ? 'A temple of Mother Dark, awake' : 'A temple of Mother Dark, dormant' }}</p>
+            @if (!e.active) {
+              <dl class="stats num">
+                <div><dt>To awaken it</dt><dd>difficulty {{ e.activationDifficulty }}</dd></div>
+              </dl>
+            } @else {
+              <p>Chaos cannot deepen past 2 within its reach, and the Tiste Andii fight the harder for it.</p>
+            }
+          }
+          @if (selectedEventCards().length) {
+            <h3>Sent here</h3>
+            <ul class="sent">
+              @for (c of selectedEventCards(); track c.id) {
+                <li>
+                  <span>{{ c.name }}</span>
+                  <span class="num">{{ c.power.total }}</span>
+                  <button type="button" (click)="recall(c.id)">Call home</button>
+                </li>
+              }
+            </ul>
+          } @else if (e.type === 'chaos-portal' || !e.active) {
+            <p class="hint">Drag a card onto it to send them.</p>
+          }
+        </section>
+      } @else if (selectedResource(); as r) {
+        <section class="panel detail">
+          <button type="button" class="close" aria-label="Close" (click)="selectedResourceId.set(null)">×</button>
+          <h2>{{ r.name }}</h2>
+          <p class="sub">{{ r.faction }}</p>
+          <dl class="stats num">
+            @for (p of r.power.parts; track p.label) {
+              <div><dt>{{ p.label }}</dt><dd>{{ $first ? p.value : (p.value > 0 ? '+' + p.value : p.value) }}</dd></div>
+            }
+            <div class="total"><dt>Power</dt><dd>{{ r.power.total }}</dd></div>
+          </dl>
+          @if (r.injuries.length) {
+            <p class="warn">Wounded: {{ r.injuries.join(', ') }}</p>
+          }
+          @if (r.attached.length) {
+            <h3>With them</h3>
+            <ul class="sent">
+              @for (h of r.attached; track h.id) {
+                <li>
+                  <span>{{ h.name }}</span>
+                  @if (r.location.kind === 'castle') {
+                    <button type="button" (click)="detach(h.id)">Part ways</button>
+                  }
+                </li>
+              }
+            </ul>
+          }
+          @if (r.location.kind === 'event') {
+            <button type="button" (click)="recall(r.id)">Call home from {{ r.location.name }}</button>
+          }
+        </section>
+      }
+
+      @if (v.reckoning; as battles) {
+        <section class="panel reckoning" aria-live="assertive">
+          <h2>The reckoning</h2>
+          @if (latestBattle(); as b) {
+            <article class="battle latest" [class.won]="b.outcome === 'won'" [class.lost]="b.outcome === 'lost'">
+              <h3>{{ b.eventName }}</h3>
+              <p class="cards">{{ b.cards.join(', ') }}</p>
+              <div class="roll">
+                <span class="d20 num">{{ b.d20 }}</span>
+                <span class="needs num">needed {{ b.target }}</span>
+              </div>
+              <strong class="outcome">
+                {{ b.heroicVictory ? 'A heroic victory' : b.rout ? 'A rout' : b.outcome === 'won' ? 'Victory' : 'Defeat' }}
+              </strong>
+            </article>
+            @for (b of earlierBattles(); track b.eventId) {
+              <p class="earlier" [class.won]="b.outcome === 'won'" [class.lost]="b.outcome === 'lost'">
+                <span>{{ b.eventName }}</span>
+                <span class="num">{{ b.d20 }} of {{ b.target }}</span>
+              </p>
+            }
+          } @else {
+            <p class="sub">The dice are cast. The DM reveals each battle in turn.</p>
+          }
+        </section>
+      }
+
+      @if (v.report; as r) {
+        <section class="panel report" aria-live="assertive">
+          <h2>Three days pass</h2>
+          <p class="deaths num">{{ fmt(r.deaths) }} civilians died.</p>
+          @if (r.closed.length) {
+            <p>Closed: {{ r.closed.join(', ') }}.</p>
+          }
+          @if (r.contained.length) {
+            <p>Held, but still open: {{ r.contained.join(', ') }}.</p>
+          }
+          @if (r.temples.length) {
+            <p class="galain">Mother Dark stirs: {{ r.temples.join(', ') }}.</p>
+          }
+          @if (r.legendary.length) {
+            <p class="warn">Legendary horrors emerge at {{ r.legendary.join(', ') }}.</p>
+          }
+          @if (r.harm.length) {
+            <ul>
+              @for (h of r.harm; track $index) {
+                <li>{{ h }}</li>
+              }
+            </ul>
+          }
+          <p class="sub">{{ r.newPortals }} new portal{{ r.newPortals === 1 ? '' : 's' }} tore open.</p>
+        </section>
+      }
+
+      @if (error(); as e) {
+        <div class="panel toast" role="alert">
+          <span>{{ e }}</span>
+          <button type="button" (click)="dismissError()">Understood</button>
+        </div>
+      }
+    </div>
+  </main>
+} @else {
+  <main class="waiting">
+    <h1>Chaos Engine</h1>
+    <p>Waiting for the DM's laptop. Open the table screen from the DM screen.</p>
+  </main>
+}

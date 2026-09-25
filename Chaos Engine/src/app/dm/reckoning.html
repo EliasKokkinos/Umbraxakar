@@ -1,0 +1,111 @@
+@if (phase() === 'review') {
+  <header>
+    <h2>The reckoning of turn {{ store.state()!.events.turn }}</h2>
+    <p class="sub">Every battle has been rolled. Nothing is final until you end the turn, and the table sees only what you show it.</p>
+    @if (battles().length) {
+      <button type="button" (click)="revealAll()">Show every battle on the table</button>
+    }
+  </header>
+
+  @for (b of battles(); track b.id) {
+    <article class="battle" [class.won]="b.battle.outcome === 'won'" [class.lost]="b.battle.outcome === 'lost'">
+      <button type="button" class="event link" (click)="selectEvent.emit(b.id)">{{ b.name }}</button>
+      <div class="roll">
+        <span class="d20 num" [attr.aria-label]="'Rolled ' + b.battle.d20">{{ b.battle.d20 }}</span>
+        <span class="vs num">needs {{ b.battle.target }}+</span>
+        <strong class="outcome">
+          {{ b.battle.heroicVictory ? 'Heroic victory' : b.battle.rout ? 'Rout' : b.battle.outcome === 'won' ? 'Victory' : 'Defeat' }}
+        </strong>
+      </div>
+      <p class="cards num">Power {{ b.battle.eventPower }}: {{ b.cards }}</p>
+      @if (b.harm.length) {
+        <ul class="harm">
+          @for (line of b.harm; track $index) {
+            <li>
+              {{ line }}
+              <button type="button" class="small" (click)="spare(b.id, b.battle, $index)">Spare</button>
+            </li>
+          }
+        </ul>
+      }
+      <div class="actions">
+        @if (isRevealed(b.id)) {
+          <span class="shown">On the table</span>
+        } @else {
+          <button type="button" class="primary" (click)="table.reveal(b.id)">Show on the table</button>
+        }
+        <button type="button" (click)="store.reroll(b.id)">Reroll</button>
+        <button type="button" [disabled]="b.battle.outcome === 'won'" (click)="force(b.id, 'won')">Make it a victory</button>
+        <button type="button" [disabled]="b.battle.outcome === 'lost'" (click)="force(b.id, 'lost')">Make it a defeat</button>
+      </div>
+    </article>
+  } @empty {
+    <p>No one has been sent anywhere this turn.</p>
+  }
+
+  @if (unopposed().length) {
+    <p class="unopposed">
+      {{ unopposed().length }} portal{{ unopposed().length === 1 ? '' : 's' }} left unopposed. They will take their toll of civilians.
+    </p>
+  }
+
+  <div class="commit">
+    <button type="button" class="primary" (click)="commit()">End turn {{ store.state()!.events.turn }}</button>
+    <button type="button" (click)="cancel()">Back to planning</button>
+  </div>
+} @else if (report(); as r) {
+  <header>
+    <h2>Turn {{ r.turn }} is over</h2>
+    <p class="sub">Three days have passed. You can still undo the whole turn.</p>
+  </header>
+
+  <p class="deaths num">{{ fmt(r.deaths) }} civilians died.</p>
+
+  <dl class="report">
+    @if (r.closed.length) {
+      <dt>Portals closed</dt>
+      <dd>{{ r.closed.join(', ') }}</dd>
+    }
+    @if (r.contained.length) {
+      <dt>Held, but still open</dt>
+      <dd>{{ r.contained.join(', ') }}</dd>
+    }
+    @if (r.temples.length) {
+      <dt>Temples awakened</dt>
+      <dd>{{ r.temples.join(', ') }}</dd>
+    }
+    @if (r.legendary.length) {
+      <dt class="warn">Legendary spawns</dt>
+      <dd class="warn">{{ r.legendary.join(', ') }}</dd>
+    }
+    @if (r.harm.length) {
+      <dt>Wounds and losses</dt>
+      <dd>
+        <ul class="plain-list">
+          @for (h of r.harm; track $index) {
+            <li>{{ h }}</li>
+          }
+        </ul>
+      </dd>
+    }
+    @if (r.routed.length) {
+      <dt>Routed to the castle</dt>
+      <dd>{{ r.routed.join(', ') }}</dd>
+    }
+    @if (r.completed.length) {
+      <dt>At the castle</dt>
+      <dd>
+        <ul class="plain-list">
+          @for (c of r.completed; track c) {
+            <li>{{ c }}</li>
+          }
+        </ul>
+      </dd>
+    }
+    <dt>New portals</dt>
+    <dd>{{ r.newPortals }} opened{{ r.unplaced ? ', ' + r.unplaced + ' found no room on the map' : '' }}</dd>
+  </dl>
+
+  <p class="sub">The table is showing this report.</p>
+  <button type="button" class="primary" (click)="finish()">Plan turn {{ store.state()!.events.turn }}</button>
+}

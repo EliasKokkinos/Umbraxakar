@@ -1,0 +1,71 @@
+@let s = state()!;
+<header class="bar">
+  <div class="when">
+    <h1>Turn {{ s.events.turn }}</h1>
+    <span class="day">Day {{ day() }}</span>
+  </div>
+
+  <label class="commander">
+    <span>Commander</span>
+    <select [value]="s.commanderId ?? ''" (change)="setCommander($any($event.target).value)">
+      <option value="">Not chosen</option>
+      @for (c of commanders(); track c.id) {
+        <option [value]="c.id">{{ c.name }}</option>
+      }
+    </select>
+  </label>
+
+  <dl class="tallies">
+    <div>
+      <dt>Civilians lost</dt>
+      <dd class="num deaths">{{ fmt(s.events.civilianDeaths) }}</dd>
+    </div>
+    <div>
+      <dt>Open portals</dt>
+      <dd class="num">{{ openPortals() }}</dd>
+    </div>
+    <div>
+      <dt>Treasury</dt>
+      <dd class="num gold">{{ fmt(s.castle.treasury) }} gp</dd>
+    </div>
+  </dl>
+
+  <div class="history">
+    <button type="button" [disabled]="!store.canUndo()" (click)="store.undo()" [title]="'Ctrl+Z'">
+      Undo{{ store.undoLabel() ? ': ' + store.undoLabel() : '' }}
+    </button>
+    <button type="button" [disabled]="!store.canRedo()" (click)="store.redo()" [title]="'Ctrl+Y'">Redo</button>
+  </div>
+
+  <div class="portals">
+    <button type="button" [class.primary]="placing()" (click)="placePortal.emit(!placing())">
+      {{ placing() ? 'Cancel placing' : 'Place a portal' }}
+    </button>
+    <input type="number" min="1" max="20" aria-label="Portals to seed" [value]="seedCount()" (input)="seedCount.set(+$any($event.target).value)" />
+    <button type="button" (click)="seedPortals()">Seed at random</button>
+  </div>
+
+  <div class="table-link">
+    <button type="button" (click)="table.openTableWindow()">Open the table screen</button>
+    <span class="link-state" [class.on]="table.connected()">{{ table.connected() ? 'Table connected' : 'No table yet' }}</span>
+  </div>
+
+  <div class="files">
+    <button type="button" (click)="save()">Save</button>
+    <label class="load">
+      <span>Load</span>
+      <input type="file" accept=".json,application/json" (change)="load($event)" />
+    </label>
+    @if (confirmingNew()) {
+      <span class="confirm">
+        Start over? The current session is replaced.
+        <button type="button" class="danger" (click)="newSession()">Start a new session</button>
+        <button type="button" (click)="confirmingNew.set(false)">Keep playing</button>
+      </span>
+    } @else {
+      <button type="button" (click)="confirmingNew.set(true)">New session</button>
+    }
+  </div>
+
+  <button type="button" class="primary end" (click)="resolve.emit()">Resolve turn {{ s.events.turn }}</button>
+</header>
