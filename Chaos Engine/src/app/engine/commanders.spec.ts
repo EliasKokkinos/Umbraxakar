@@ -15,13 +15,12 @@ describe('commandImpact', () => {
     const s = game();
     const impact = commandImpact(s, 'imogen', RULES);
     expect(impact.map((i) => [i.resourceId, i.delta])).toEqual([
-      ['avowed-prince', 1],
-      ['avowed-avernus', 1],
       ['cowl', 1],
       ['kazz-davore', -1],
     ]);
-    expect(impact.find((i) => i.resourceId === 'cowl')).toMatchObject({ from: 3, to: 4 });
-    expect(impact.find((i) => i.resourceId === 'avowed-avernus')!.locked).toBe(true);
+    expect(impact.find((i) => i.resourceId === 'cowl')).toMatchObject({ from: 3, to: 4, locked: false });
+    // Locked resources are still swayed, ready for when they return.
+    expect(commandImpact(s, 'neldor-andarist', RULES).find((i) => i.resourceId === 'anomander-rake')!.locked).toBe(true);
     expect(morale(s, 'cowl')).toBe(3);
   });
 

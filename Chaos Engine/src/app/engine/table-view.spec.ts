@@ -111,11 +111,13 @@ describe('tableView: reveals', () => {
     expect(c.name).toBe('Imogen Ashborn');
     expect(c.player).toBe('marios.p (Marios)');
     expect(c.impact.map((i) => [i.name, i.delta])).toEqual([
-      ["Avowed: The Prince's Company", 1],
       ['Cowl', 1],
       ["Kazz D'avore", -1],
     ]);
-    expect(JSON.stringify(c)).not.toContain('Avernus');
+    // Neldor sways Anomander, who is locked: the table must not learn of him.
+    const n = tableView(unwrap(chooseCommander(newGame(SEED, RULES, 3), 'neldor-andarist', RULES)), RULES, commanders).commander!;
+    expect(n.impact.some((i) => i.name === 'Silchas Ruin')).toBe(true);
+    expect(JSON.stringify(n)).not.toMatch(/Anomander|Tiamat|Seguleh/);
   });
 
   it('shows no commander from a previous turn', () => {

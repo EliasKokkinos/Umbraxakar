@@ -20,8 +20,6 @@
     "level": 17,
     "divineRole": "Shield Anvil of Hood",
     "influence": [
-      { "resourceId": "avowed-prince", "morale": 1, "reason": "The Shield Anvil commands a third of the Avowed, and she honours their dead." },
-      { "resourceId": "avowed-avernus", "morale": 1, "reason": "The Shield Anvil commands a third of the Avowed, and she honours their dead." },
       { "resourceId": "cowl", "morale": 1, "reason": "Hood's High Priest stands in her divine chain." },
       { "resourceId": "kazz-davore", "morale": -1, "reason": "He told her to her face that she had failed the Avowed." }
     ]
