@@ -7,9 +7,11 @@ import { hasCommanderThisTurn } from '../engine/commanders';
 import { seedMorePortals } from '../engine/dm-edits';
 import { dayOfTurn } from '../engine/views';
 import { fmt } from '../shared/format';
+import { TurnHistory } from './turn-history';
 
 @Component({
   selector: 'ce-top-bar',
+  imports: [TurnHistory],
   templateUrl: './top-bar.html',
   styleUrl: './top-bar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

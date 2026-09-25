@@ -51,6 +51,8 @@ export class ResourceCard {
   readonly selected = input(false);
   readonly inspect = output<string>();
   readonly attachHere = output<{ heroId: string; hostId: string }>();
+  /** The card's id when picked up, null when put down. */
+  readonly held = output<string | null>();
 
   protected readonly dropping = signal(false);
   protected readonly dragging = signal(false);
@@ -84,6 +86,12 @@ export class ResourceCard {
     ev.dataTransfer?.setData(RESOURCE_DRAG_TYPE, this.resource().id);
     if (ev.dataTransfer) ev.dataTransfer.effectAllowed = 'move';
     this.dragging.set(true);
+    this.held.emit(this.resource().id);
+  }
+
+  protected onDragEnd(): void {
+    this.dragging.set(false);
+    this.held.emit(null);
   }
 
   /** Heroes may be dropped onto a card to join it. */

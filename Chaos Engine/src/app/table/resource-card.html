@@ -11,7 +11,7 @@
   tabindex="0"
   [attr.aria-label]="r.name + ', power ' + r.power.total + (r.status ? ', ' + r.status : '')"
   (dragstart)="onDragStart($event)"
-  (dragend)="dragging.set(false)"
+  (dragend)="onDragEnd()"
   (dragover)="onDragOver($event)"
   (dragleave)="dropping.set(false)"
   (drop)="onDrop($event)"

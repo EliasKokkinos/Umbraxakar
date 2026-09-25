@@ -50,6 +50,7 @@
                 [selected]="r.id === selectedResourceId()"
                 (inspect)="inspectResource($event)"
                 (attachHere)="attach($event.heroId, $event.hostId)"
+                (held)="onHeld($event)"
               />
             }
           } @empty {
@@ -109,6 +110,7 @@
         [markerScale]="markerScale"
         (select)="selectEvent($event)"
         (dropped)="send($event.resourceId, $event.eventId)"
+        (dragOver)="hoverEventId.set($event)"
       />
 
       @if (selectedEvent(); as e) {
@@ -122,6 +124,9 @@
               <div><dt>Corruption</dt><dd [class.deep]="e.corruption >= 3">{{ e.corruption }} of 5</dd></div>
               <div><dt>Threat to the people</dt><dd>{{ e.impact }} of 10</dd></div>
             </dl>
+            @if (selectedEventOdds(); as o) {
+              <p class="chance-line num">Chance to win now: <strong>{{ pct(o.chance) }}</strong>, needs {{ o.target }} or more</p>
+            }
             @if (e.legendary) {
               <p class="warn">Something legendary has come through.</p>
             } @else if (e.corruption >= 3) {
@@ -183,6 +188,22 @@
             <button type="button" (click)="recall(r.id)">Call home from {{ r.location.name }}</button>
           }
         </section>
+      }
+
+      @if (dragOdds(); as d) {
+        <div class="odds-bar" role="status" aria-live="polite">
+          @if (d.odds.ok) {
+            <span class="who">{{ d.card }} at {{ d.event }}</span>
+            <strong class="chance num" [class.good]="d.odds.chance >= 0.65" [class.poor]="d.odds.chance < 0.45">{{ pct(d.odds.chance) }}</strong>
+            <span class="needs num">needs {{ d.odds.target }} or more</span>
+            @if (d.now) {
+              <span class="now num">now {{ pct(d.now.chance) }}</span>
+            }
+          } @else {
+            <span class="who">{{ d.card }} will not go to {{ d.event }}:</span>
+            <strong class="refuse">{{ d.odds.reason }}</strong>
+          }
+        </div>
       }
 
       @if (staged(); as b) {

@@ -50,6 +50,8 @@ export class MapBoard {
   readonly select = output<string>();
   readonly place = output<Point>();
   readonly dropped = output<{ eventId: string; resourceId: string }>();
+  /** The event a dragged card is over, or null when it leaves. */
+  readonly dragOver = output<string | null>();
 
   protected readonly dropTarget = signal<string | null>(null);
 
@@ -95,16 +97,23 @@ export class MapBoard {
     if (!this.droppable() || !ev.dataTransfer?.types.includes(RESOURCE_DRAG_TYPE)) return;
     ev.preventDefault();
     ev.dataTransfer.dropEffect = 'move';
-    this.dropTarget.set(id);
+    if (this.dropTarget() !== id) {
+      this.dropTarget.set(id);
+      this.dragOver.emit(id);
+    }
   }
 
   protected onDragLeave(id: string): void {
-    if (this.dropTarget() === id) this.dropTarget.set(null);
+    if (this.dropTarget() === id) {
+      this.dropTarget.set(null);
+      this.dragOver.emit(null);
+    }
   }
 
   protected onDrop(ev: DragEvent, eventId: string): void {
     const resourceId = ev.dataTransfer?.getData(RESOURCE_DRAG_TYPE);
     this.dropTarget.set(null);
+    this.dragOver.emit(null);
     if (!this.droppable() || !resourceId) return;
     ev.preventDefault();
     this.dropped.emit({ eventId, resourceId });

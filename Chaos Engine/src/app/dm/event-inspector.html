@@ -39,6 +39,9 @@
   @if (contestable()) {
     <section>
       <h3>Sent here</h3>
+      @if (odds(); as o) {
+        <p class="line num">Chance to win: <strong>{{ (o.chance * 100).toFixed(0) }}%</strong>, needs {{ o.target }} or more at Power {{ o.eventPower }}</p>
+      }
       @if (cards().length) {
         <ul class="plain">
           @for (c of cards(); track c.id) {

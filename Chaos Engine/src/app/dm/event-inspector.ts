@@ -3,6 +3,7 @@ import { GameStore } from '../data/game-store';
 import { eventDifficulty } from '../engine/assignment';
 import { PortalPatch, TemplePatch, removeEvent, updatePortal, updateTemple } from '../engine/dm-edits';
 import { activeTemplesCovering } from '../engine/events';
+import { currentOdds } from '../engine/odds';
 import { eventById, resourceById } from '../engine/game-state';
 import { hostOptionsFor, resourceView } from '../engine/views';
 import { fmt } from '../shared/format';
@@ -48,6 +49,7 @@ export class EventInspector {
     });
   });
   protected readonly options = computed(() => hostOptionsFor(this.store.state()!, this.eventId(), this.store.rules));
+  protected readonly odds = computed(() => currentOdds(this.store.state()!, this.eventId(), this.store.rules));
   protected readonly contestable = computed(() => {
     const e = this.event();
     return !!e && (e.type === 'chaos-portal' ? e.status === 'open' : !e.active && e.discovered);

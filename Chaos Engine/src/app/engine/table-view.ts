@@ -2,6 +2,7 @@
 // so DM-only information cannot leak by construction: it is simply never put in.
 import { BattleResult } from './battle';
 import { hasCommanderThisTurn } from './commanders';
+import { Odds, SendOdds, currentOdds, oddsIfSent } from './odds';
 import { facilityLevel } from './castle';
 import { PortalState, TempleState } from './event-state';
 import { GameState, Rules, resourceById } from './game-state';
@@ -44,6 +45,11 @@ export interface TableView {
   reckoning: TableBattle[] | null;
   /** The turn report, while the DM is showing it. */
   report: TurnReport | null;
+  /**
+   * Chances to win, worked out on the DM side: `current` for events with cards already sent,
+   * `send` for every card the table can see against every event it could go to.
+   */
+  odds: { current: Record<string, Odds>; send: Record<string, Record<string, SendOdds>> };
 }
 
 /** What the DM has chosen to show at this moment. */
@@ -68,6 +74,19 @@ function tableTemple(t: TempleState): TempleState {
 function tableMap(map: MapDef): TableMap {
   const { source: _source, ...rest } = map;
   return rest;
+}
+
+function tableOdds(state: GameState, rules: Rules, portals: PortalState[], temples: TempleState[], resources: ResourceView[]): TableView['odds'] {
+  const contestable = [...portals, ...temples.filter((t) => !t.active)];
+  const cards = resources.filter((r) => !r.attachedTo);
+  const current: Record<string, Odds> = {};
+  const send: Record<string, Record<string, SendOdds>> = {};
+  for (const e of contestable) {
+    const now = currentOdds(state, e.id, rules);
+    if (now) current[e.id] = now;
+    send[e.id] = Object.fromEntries(cards.map((c) => [c.id, oddsIfSent(state, c.id, e.id, rules)]));
+  }
+  return { current, send };
 }
 
 export function tableView(state: GameState, rules: Rules, commanders: Commander[], reveal: Reveal = NO_REVEAL): TableView {
@@ -141,5 +160,6 @@ export function tableView(state: GameState, rules: Rules, commanders: Commander[
     },
     reckoning,
     report: reveal.showReport ? lastTurnReport(state, rules) : null,
+    odds: tableOdds(state, rules, portals, temples, resources),
   };
 }

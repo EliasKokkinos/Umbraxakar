@@ -52,6 +52,7 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 ### Stack and commands
 - **Angular 22** (standalone, zoneless, signals) with **Vitest**. It needs Node ≥ 24.15.
 - `npm start` runs the dev server. `npm test` runs `ng test` (add `--watch=false` for a single run). `npm run build` builds for production.
+- **Game night:** double-click `Start Chaos Engine.bat`. It builds the app, serves it with `tools/serve.mjs` (no dependencies) and opens `/dm`. It stays on port 4200 on purpose, because the browser's autosave and turn snapshots belong to `localhost:4200`. The `.bat` must keep CRLF line endings (`.gitattributes` enforces it). Launching it from a console-less shell can hang, so test it with a real double-click (`Start-Process`).
 - The phased plan is `docs/roadmap.md`. All nine phases (0–8) are done. What comes next is playtesting and content: real names, numbers and story links.
 
 ### Layout
@@ -68,6 +69,7 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
   - `SeedService` loads `/data`.
   - `GameStore` is the single signals store. Each change runs `act(label, op)` over an engine op. It covers undo and redo, the resolve → override → commit flow, and save/load. It also autosaves to localStorage.
   - `LandService` builds the land test from the map image on a downscaled canvas.
+  - `TurnSnapshots` keeps the state at the start of each of the last 10 turns in localStorage: at a new session, on every ended turn, and once for a resumed session. The DM restores them from **Earlier turns** in the top bar. Undo covers 10 actions; this covers 10 turns.
   - `SessionService` boots the session: seed → land test → rules → autosave or a new game.
 - `src/app/dm/` is the DM screen (`/dm`): top bar, resource ledger, map, event and resource inspectors, the castle panel, and the reckoning (review the rolls, commit, turn report).
 - `src/app/table/` is the table screen (`/table`), shown on the TV: the castle over two card columns, Groups then Heroes (heroes are usually dragged onto groups), each banded Ready, In the field and Resting, plus the map with drag-and-drop. Card banner colours for story factions are in `FACTION_HUES` in `table/resource-card.ts`. Its root font is scaled for reading across the room.
@@ -86,6 +88,7 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 - `src/app/shared/` holds UI shared by both screens: `MapBoard` (atlas plus an SVG overlay; `dmView` shows hidden events), `MoraleMarks`, and `format`.
 - **UI tokens** are in `src/styles.scss`. The look is a war table at night: slate and bone, with colour only where it means something (brass for actions and gold; Chaos portals as embers, `--ce-chaos-1`..`5`, amber to red with corruption; violet for Mother Dark; oxblood for loss; verdigris for victory; rime for cold light and locations). Type is Alegreya and Alegreya Sans, bundled offline via `@fontsource`. Don't use all-caps labels. Numbers drawn in SVG must set lining figures (`font-variant-numeric: lining-nums`), because Alegreya's default old-style digits never sit centred.
 - Engine read models for the screens are in `engine/views.ts`: `resourceView`, `eventOptionsFor` and `hostOptionsFor`.
+- `engine/odds.ts` works out the public chance to win (`currentOdds`, `oddsIfSent`). The table view carries a precomputed odds matrix, so the TV shows "Karsa Orlong at …: 70%" while a card is held over an event.
 - **Windows dev server:** stopping the background task can leave `node` listening on port 4200. Kill the process that owns the port.
 - `data/*.json` is the seed data. `angular.json` serves it as `data/`. Specs import the same files directly, so the tests always run against the real roster and config.
 - `public/maps/` holds the map images, copied from the Maps archive.

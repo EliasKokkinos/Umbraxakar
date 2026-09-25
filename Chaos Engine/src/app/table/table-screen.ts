@@ -42,6 +42,36 @@ export class TableScreen {
   protected readonly selectedResourceId = signal<string | null>(null);
   protected readonly castleOpen = signal(false);
   protected readonly castleDropping = signal(false);
+  /** The card being dragged, and the event it is over. */
+  protected readonly heldId = signal<string | null>(null);
+  protected readonly hoverEventId = signal<string | null>(null);
+
+  /** While a card is held over an event: what its chances would be. */
+  protected readonly dragOdds = computed(() => {
+    const v = this.view();
+    const cardId = this.heldId();
+    const eventId = this.hoverEventId();
+    if (!v || !cardId || !eventId) return null;
+    const odds = v.odds.send[eventId]?.[cardId];
+    if (!odds) return null;
+    const card = v.resources.find((r) => r.id === cardId)?.name ?? '';
+    const event = [...v.portals, ...v.temples].find((e) => e.id === eventId)?.name ?? '';
+    return { card, event, odds, now: v.odds.current[eventId] ?? null };
+  });
+
+  protected readonly selectedEventOdds = computed(() => {
+    const id = this.selectedEventId();
+    return id ? (this.view()?.odds.current[id] ?? null) : null;
+  });
+
+  protected pct(chance: number): string {
+    return `${Math.round(chance * 100)}%`;
+  }
+
+  protected onHeld(id: string | null): void {
+    this.heldId.set(id);
+    if (!id) this.hoverEventId.set(null);
+  }
 
   constructor() {
     const root = document.documentElement;

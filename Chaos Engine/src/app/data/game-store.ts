@@ -1,4 +1,4 @@
-import { Injectable, computed, effect, signal } from '@angular/core';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { assign, attach, detach, unassign } from '../engine/assignment';
 import { Harm, Outcome } from '../engine/battle';
 import { chooseCommander, resolveBlocker } from '../engine/commanders';
@@ -7,6 +7,7 @@ import { History, createHistory, push, redo, undo } from '../engine/history';
 import { deserialize, serialize } from '../engine/save';
 import { Seed } from '../engine/seed-types';
 import { PendingResolution, commitTurn, rerollBattle, resolveAll } from '../engine/turn';
+import { TurnSnapshots } from './turn-snapshots';
 
 export const AUTOSAVE_KEY = 'chaos-engine:autosave';
 
@@ -22,6 +23,7 @@ export class GameStore {
   private readonly _pending = signal<PendingResolution | null>(null);
   private readonly _error = signal<string | null>(null);
   private rulesRef: Rules | null = null;
+  private readonly snapshots = inject(TurnSnapshots);
 
   readonly state = computed(() => this.history()?.present.state ?? null);
   readonly lastAction = computed(() => this.history()?.present.label ?? null);
@@ -55,12 +57,28 @@ export class GameStore {
   start(seed: Seed, rules: Rules, rngSeed = Math.floor(Math.random() * 2 ** 32)): void {
     this.rulesRef = rules;
     this.reset(newGame(seed, rules, rngSeed), 'New session');
+    this.snapshots.record(this.state()!, 'Start of turn 1, new session');
+  }
+
+  /** Rewinds to the start of an earlier turn. The history starts afresh from there. */
+  restoreSnapshot(id: string): boolean {
+    const state = this.snapshots.load(id);
+    if (!state) {
+      this._error.set('That turn could not be restored.');
+      return false;
+    }
+    this.reset(state, `Rewound to the start of turn ${state.events.turn}`);
+    return true;
   }
 
   /** Continues from an existing state (a loaded save or the autosave). */
   resume(state: GameState, rules: Rules, label = 'Session resumed'): void {
     this.rulesRef = rules;
     this.reset(state, label);
+    // A session carried over from elsewhere gets a snapshot of where it stands, once per turn.
+    if (!this.snapshots.list().some((s) => s.turn === state.events.turn)) {
+      this.snapshots.record(state, `Turn ${state.events.turn}, as resumed`);
+    }
   }
 
   private reset(state: GameState, label: string): void {
@@ -186,7 +204,9 @@ export class GameStore {
       return false;
     }
     const p = this._pending() ?? resolveAll(s, this.rules);
-    return this.act(`End turn ${s.events.turn}`, (state, rules) => ({ ok: true, state: commitTurn(state, p, rules) }));
+    const done = this.act(`End turn ${s.events.turn}`, (state, rules) => ({ ok: true, state: commitTurn(state, p, rules) }));
+    if (done) this.snapshots.record(this.state()!, `Start of turn ${this.state()!.events.turn}`);
+    return done;
   }
 
   // ------------------------------------------------------------ persistence

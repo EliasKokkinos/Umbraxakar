@@ -73,6 +73,27 @@ describe('TableScreen', () => {
     expect(el(f).querySelector('ce-reveal-stage')?.textContent).toContain(b.name);
   });
 
+  it('shows the odds while a card is held over an event', async () => {
+    const s = newGame(SEED, RULES, 8);
+    const f = mount();
+    view.set(tableView(s, RULES, SEED.commanders, NO_REVEAL));
+    await f.whenStable();
+    const target = s.events.portals[0];
+    const expected = view()!.odds.send[target.id]['karsa-orlong'];
+
+    const screen = f.componentInstance as unknown as { onHeld(id: string | null): void; hoverEventId: { set(v: string | null): void } };
+    screen.onHeld('karsa-orlong');
+    screen.hoverEventId.set(target.id);
+    await f.whenStable();
+    const bar = el(f).querySelector('.odds-bar')!;
+    expect(bar.textContent).toContain(`Karsa Orlong at ${target.name}`);
+    expect(expected.ok && bar.textContent).toContain(`${Math.round(expected.ok ? expected.chance * 100 : 0)}%`);
+
+    screen.onHeld(null);
+    await f.whenStable();
+    expect(el(f).querySelector('.odds-bar')).toBeNull();
+  });
+
   it('announces a commander taking command, but not on first load', async () => {
     const base = newGame(SEED, RULES, 8);
     const f = mount();

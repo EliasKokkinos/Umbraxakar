@@ -445,6 +445,61 @@
   }
 }
 
+// Held over an event, a card's chances show across the top of the map.
+.odds-bar {
+  position: absolute;
+  top: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.5rem 1.2rem;
+  background: rgba(37, 43, 60, 0.97);
+  border: 1px solid var(--ce-brass);
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  white-space: nowrap;
+
+  .who {
+    font-family: var(--ce-serif);
+    font-size: 1.1rem;
+  }
+
+  .chance {
+    font-family: var(--ce-serif);
+    font-size: 1.9rem;
+    line-height: 1;
+
+    &.good {
+      color: var(--ce-verdigris);
+    }
+
+    &.poor {
+      color: var(--ce-oxblood);
+    }
+  }
+
+  .needs,
+  .now {
+    color: var(--ce-ash);
+  }
+
+  .refuse {
+    color: var(--ce-oxblood);
+  }
+}
+
+.chance-line {
+  margin: 0.5rem 0 0;
+
+  strong {
+    font-size: 1.15rem;
+  }
+}
+
 .command-banner {
   position: absolute;
   top: 1rem;

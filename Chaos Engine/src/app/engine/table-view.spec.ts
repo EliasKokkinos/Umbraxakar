@@ -53,6 +53,19 @@ describe('tableView: nothing DM-only reaches the table', () => {
     expect(view.resources.find((r) => r.id === 'uruk')!.location).toEqual({ kind: 'castle' });
   });
 
+  it('gives odds only for events and cards the table can see', () => {
+    const hidden = s.events.portals[0];
+    expect(Object.keys(view.odds.send)).not.toContain(hidden.id);
+    expect(Object.keys(view.odds.current)).not.toContain(hidden.id);
+    const shownIds = new Set(view.resources.map((r) => r.id));
+    for (const byCard of Object.values(view.odds.send)) {
+      expect(Object.keys(byCard).every((id) => shownIds.has(id))).toBe(true);
+      expect(Object.keys(byCard)).not.toContain('anomander-rake');
+    }
+    const any = Object.values(view.odds.send)[0]['uruk'];
+    expect(any.ok).toBe(true);
+  });
+
   it('never carries the local path of the source map', () => {
     expect(json).not.toContain('OneDrive');
     expect('source' in view.map).toBe(false);
