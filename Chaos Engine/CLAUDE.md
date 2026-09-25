@@ -84,6 +84,11 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 - `data/*.json` is the seed data. `angular.json` serves it as `data/`. Specs import the same files directly, so the tests always run against the real roster and config.
 - `public/maps/` holds the map images, copied from the Maps archive.
 
+### Git
+- The Chaos Engine lives in the Umbraxakar campaign repo, which collects everything for the campaign. Its work goes on the `feature/chaos-engine` branch.
+- Commit messages are short and descriptive, matching the repo (`Update Dragnipur`).
+- Stage only `Chaos Engine/` unless asked otherwise. The Aurora XML elsewhere in the repo has its own versioning rules, and the Chaos Engine never touches it.
+
 ### Principles
 Follow these unless the user decides otherwise:
 
