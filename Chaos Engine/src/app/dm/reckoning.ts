@@ -70,6 +70,13 @@ export class Reckoning implements OnInit {
     return this.table.revealed().includes(id);
   }
 
+  protected readonly nextUnrevealed = computed(() => this.battles().find((b) => !this.table.revealed().includes(b.id)) ?? null);
+
+  protected revealNext(): void {
+    const next = this.nextUnrevealed();
+    if (next) this.table.reveal(next.id);
+  }
+
   protected revealAll(): void {
     this.table.revealAll(this.battles().map((b) => b.id));
   }

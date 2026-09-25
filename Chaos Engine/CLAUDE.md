@@ -52,7 +52,7 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 ### Stack and commands
 - **Angular 22** (standalone, zoneless, signals) with **Vitest**. It needs Node ≥ 24.15.
 - `npm start` runs the dev server. `npm test` runs `ng test` (add `--watch=false` for a single run). `npm run build` builds for production.
-- The phased plan is `docs/roadmap.md`. Phases 0–6 and 8 are done; Phase 7 (drama and polish) remains.
+- The phased plan is `docs/roadmap.md`. All nine phases (0–8) are done. What comes next is playtesting and content: real names, numbers and story links.
 
 ### Layout
 - `src/app/engine/` is the **pure rules engine**. **Nothing in it may import Angular.**
@@ -77,6 +77,12 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
   - The table can only request assign, unassign, attach or detach (`TableHost` in `data/table-sync.ts`, over `BroadcastChannel`). The DM window runs these as undoable actions.
   - Anything new shown on the TV goes into `tableView` and needs a leak test.
 - `DmGate` boots the session for `/dm` only.
+- **Drama on the TV** has one orchestrated moment:
+  - The reveal stage (`table/reveal-stage.ts`): the d20 tumbles, slowing, lands on the real roll, then the verdict is struck.
+  - A revealed battle joins the side list only after it lands, so the list never spoils the throw.
+  - Around it, restraint: a command banner when someone takes command, and a single red flare on a report with a legendary spawn.
+  - Sound is synthesised in the browser (`table/table-sound.ts`, no files). It's off until someone clicks "Sound" in the TV window, because browsers require a click first.
+  - All motion respects `prefers-reduced-motion`.
 - `src/app/shared/` holds UI shared by both screens: `MapBoard` (atlas plus an SVG overlay; `dmView` shows hidden events), `MoraleMarks`, and `format`.
 - **UI tokens** are in `src/styles.scss`. The look is a war table at night: slate and bone, with colour only where it means something (brass for actions and gold, rime for Chaos, violet for Mother Dark, oxblood for loss, verdigris for victory). Type is Alegreya and Alegreya Sans, bundled offline via `@fontsource`. Don't use all-caps labels.
 - Engine read models for the screens are in `engine/views.ts`: `resourceView`, `eventOptionsFor` and `hostOptionsFor`.

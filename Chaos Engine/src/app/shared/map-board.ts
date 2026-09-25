@@ -41,6 +41,9 @@ export class MapBoard {
   /** When true, a click on the map reports a position instead of selecting. */
   readonly placing = input(false);
 
+  /** Marker size multiplier; the TV draws them larger to read across the room. */
+  readonly markerScale = input(1);
+
   /** Accept resource cards dropped onto events (the table screen). */
   readonly droppable = input(false);
 
@@ -66,6 +69,10 @@ export class MapBoard {
 
   protected y(p: Point): number {
     return p.y * this.viewH();
+  }
+
+  protected markerAt(p: Point): string {
+    return `translate(${this.x(p)} ${this.y(p)}) scale(${this.markerScale()})`;
   }
 
   protected auraR(): number {

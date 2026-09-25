@@ -76,6 +76,9 @@
           }
         </ul>
       }
+      <button type="button" class="sound" [class.on]="sound.enabled()" [attr.aria-pressed]="sound.enabled()" (click)="sound.toggle()">
+        {{ sound.enabled() ? 'Sound on' : 'Sound off' }}
+      </button>
       <dl>
         <div>
           <dt>Civilians lost</dt>
@@ -96,6 +99,7 @@
         [auraRadius]="v.auraRadius"
         [selectedId]="selectedEventId()"
         [droppable]="true"
+        [markerScale]="markerScale"
         (select)="selectEvent($event)"
         (dropped)="send($event.resourceId, $event.eventId)"
       />
@@ -174,6 +178,25 @@
         </section>
       }
 
+      @if (staged(); as b) {
+        <ce-reveal-stage [battle]="b" (done)="staged.set(null)" />
+      }
+
+      @if (banner(); as c) {
+        <section class="command-banner" role="status" aria-live="polite">
+          <h2>{{ c.name }} takes command</h2>
+          @if (c.impact.length) {
+            <ul class="sway">
+              @for (i of c.impact; track i.name) {
+                <li [class.up]="i.delta > 0" [class.down]="i.delta < 0">
+                  <span class="num">{{ i.delta > 0 ? '+' + i.delta : i.delta }}</span> {{ i.name }}
+                </li>
+              }
+            </ul>
+          }
+        </section>
+      }
+
       @if (v.reckoning; as battles) {
         <section class="panel reckoning" aria-live="assertive">
           <h2>The reckoning</h2>
@@ -202,7 +225,7 @@
       }
 
       @if (v.report; as r) {
-        <section class="panel report" aria-live="assertive">
+        <section class="panel report" [class.legendary]="r.legendary.length > 0" aria-live="assertive">
           <h2>Three days pass</h2>
           <p class="deaths num">{{ fmt(r.deaths) }} civilians died.</p>
           @if (r.closed.length) {

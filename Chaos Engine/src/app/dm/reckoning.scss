@@ -104,6 +104,13 @@ header {
   gap: 0.4rem;
 }
 
+.reveal-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
 .shown {
   align-self: center;
   color: var(--ce-verdigris);

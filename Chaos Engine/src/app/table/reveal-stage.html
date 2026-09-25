@@ -1,0 +1,29 @@
+@let b = battle();
+<section
+  class="stage"
+  [class.landed]="landed()"
+  [class.won]="landed() && b.outcome === 'won'"
+  [class.lost]="landed() && b.outcome === 'lost'"
+  role="status"
+  aria-live="assertive"
+  [attr.aria-label]="landed() ? b.eventName + ': rolled ' + b.d20 + ', ' + verdict(b) : b.eventName + ': rolling'"
+>
+  <h2>{{ b.eventName }}</h2>
+  <p class="cards">{{ b.cards.join(', ') }}</p>
+
+  <div class="throw">
+    <!-- An icosahedron in outline: the d20 the number rides on. -->
+    <svg class="die" viewBox="-50 -50 100 100" aria-hidden="true">
+      <polygon points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23" />
+      <polyline points="0,-46 -24,14 24,14 0,-46" />
+      <polyline points="-40,-23 -24,14 0,46 24,14 40,-23" />
+      <path d="M -40 23 L -24 14 M 40 23 L 24 14" />
+    </svg>
+    <span class="face num">{{ face() }}</span>
+  </div>
+
+  <p class="needs num">Needs {{ b.target }} or more</p>
+  @if (landed()) {
+    <strong class="verdict">{{ verdict(b) }}</strong>
+  }
+</section>

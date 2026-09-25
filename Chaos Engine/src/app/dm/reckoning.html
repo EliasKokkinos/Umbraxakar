@@ -3,7 +3,14 @@
     <h2>The reckoning of turn {{ store.state()!.events.turn }}</h2>
     <p class="sub">Every battle has been rolled. Nothing is final until you end the turn, and the table sees only what you show it.</p>
     @if (battles().length) {
-      <button type="button" (click)="revealAll()">Show every battle on the table</button>
+      <div class="reveal-controls">
+        @if (nextUnrevealed(); as n) {
+          <button type="button" class="primary" (click)="revealNext()">Show the next battle: {{ n.name }}</button>
+          <button type="button" (click)="revealAll()">Show them all at once</button>
+        } @else {
+          <span class="shown">Every battle is on the table</span>
+        }
+      </div>
     }
   </header>
 
