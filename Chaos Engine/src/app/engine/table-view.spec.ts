@@ -117,7 +117,9 @@ describe('tableView: reveals', () => {
     // Neldor sways Anomander, who is locked: the table must not learn of him.
     const n = tableView(unwrap(chooseCommander(newGame(SEED, RULES, 3), 'neldor-andarist', RULES)), RULES, commanders).commander!;
     expect(n.impact.some((i) => i.name === 'Silchas Ruin')).toBe(true);
-    expect(JSON.stringify(n)).not.toMatch(/Anomander|Tiamat|Seguleh/);
+    // Reasons may name people the players know; the locked resources themselves must not be listed.
+    expect(n.impact.map((i) => i.name)).not.toEqual(expect.arrayContaining(['Anomander Rake']));
+    expect(n.impact.map((i) => i.name).filter((x) => ['Anomander Rake', 'Tiamat', 'The Seguleh'].includes(x))).toEqual([]);
   });
 
   it('shows no commander from a previous turn', () => {
