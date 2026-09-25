@@ -94,7 +94,7 @@ export class TableScreen {
     });
   }
 
-  /** Heroes beside groups; each column runs ready, then in the field, then resting. */
+  /** Groups beside heroes; each column runs ready, then in the field, then resting. */
   protected readonly columns = computed(() => {
     const rs = this.view()?.resources.filter((r) => !r.attachedTo) ?? [];
     const byPower = (a: ResourceView, b: ResourceView) => b.power.total - a.power.total;
@@ -106,9 +106,10 @@ export class TableScreen {
       ].filter((b) => b.rows.length);
     const heroes = rs.filter((r) => r.kind !== 'group');
     const groups = rs.filter((r) => r.kind === 'group');
+    // Groups on the left, heroes beside the map: heroes are usually dragged onto groups.
     return [
-      { title: 'Heroes', count: heroes.length, bands: bands(heroes) },
       { title: 'Groups', count: groups.length, bands: bands(groups) },
+      { title: 'Heroes', count: heroes.length, bands: bands(heroes) },
     ];
   });
 
