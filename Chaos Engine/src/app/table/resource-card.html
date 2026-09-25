@@ -4,34 +4,52 @@
   [class.selected]="selected()"
   [class.blocked]="!draggable()"
   [class.dropping]="dropping()"
+  [class.dragging]="dragging()"
+  [class.away]="r.location.kind === 'event'"
+  [style.--hue]="hue()"
   [attr.draggable]="draggable()"
   tabindex="0"
-  [attr.aria-label]="r.name + ', power ' + r.power.total"
+  [attr.aria-label]="r.name + ', power ' + r.power.total + (r.status ? ', ' + r.status : '')"
   (dragstart)="onDragStart($event)"
+  (dragend)="dragging.set(false)"
   (dragover)="onDragOver($event)"
   (dragleave)="dropping.set(false)"
   (drop)="onDrop($event)"
   (click)="inspect.emit(r.id)"
   (keydown.enter)="inspect.emit(r.id)"
 >
-  <div class="portrait" [style.--hue]="hue()" aria-hidden="true">{{ monogram() }}</div>
-  <div class="standing">
-    <div class="title">
-      <h3>{{ r.name }}</h3>
-      <span class="power num">{{ r.power.total }}</span>
-    </div>
+  <div class="portrait" aria-hidden="true">{{ monogram() }}</div>
+
+  <div class="body">
+    <h3>{{ r.name }}</h3>
     <div class="meta">
       <ce-morale-marks [morale]="r.morale" />
-      <span class="num">{{ strength() }}</span>
+      @if (kindLabel(); as k) {
+        <span class="kind">{{ k }}</span>
+      }
     </div>
-    @if (r.status) {
-      <p class="status">{{ r.status }}</p>
-    } @else if (r.location.kind === 'event') {
-      <p class="where">{{ r.location.name }}</p>
-    }
   </div>
+
+  <span class="power num" [title]="'Power ' + r.power.total">{{ r.power.total }}</span>
+
+  @if (strength(); as s) {
+    <div class="strength" [attr.aria-label]="s.fighting + ' of ' + s.max + ' ready to fight, ' + s.injured + ' injured'">
+      <div class="bar">
+        <i class="fighting" [style.width.%]="s.fightingPct"></i>
+        <i class="injured" [style.width.%]="s.injuredPct"></i>
+      </div>
+      <span class="count num">{{ s.fighting }}<span class="of">/{{ s.max }}</span></span>
+    </div>
+  }
+
+  @if (r.status) {
+    <p class="note status">{{ r.status }}</p>
+  } @else if (r.location.kind === 'event') {
+    <p class="note where"><i aria-hidden="true"></i>{{ r.location.name }}</p>
+  }
+
   @if (r.attached.length) {
-    <ul class="attached">
+    <ul class="attached" aria-label="Heroes with them">
       @for (h of r.attached; track h.id) {
         <li>{{ h.name }}</li>
       }

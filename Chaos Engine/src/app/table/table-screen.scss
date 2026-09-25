@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 22rem minmax(0, 1fr);
+  grid-template-columns: 31rem minmax(0, 1fr);
   gap: 0.8rem;
   height: 100vh;
   padding: 0.8rem;
@@ -90,18 +90,68 @@
   font-size: 0.85rem;
 }
 
+// Two columns, heroes beside groups, scrolling together.
 .slider {
   display: grid;
-  align-content: start;
-  gap: 0.45rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 0.6rem;
   overflow-y: auto;
-  padding-right: 0.3rem;
+  padding: 0 0.3rem 0.6rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ce-rule) transparent;
 }
 
-.section {
-  margin: 0.5rem 0 0;
-  font-size: 1rem;
+.column {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.column-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.35rem 0.2rem 0.4rem;
+  background: var(--ce-slate);
+  border-bottom: 1px solid var(--ce-rule);
+  font-size: 1.15rem;
+
+  .num {
+    font-family: var(--ce-sans);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--ce-ash);
+  }
+}
+
+// Quiet bands within a column: a label on a hairline.
+.band {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.35rem 0 0;
+  font-family: var(--ce-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
   color: var(--ce-ash);
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ce-rule);
+  }
+}
+
+.none {
+  margin: 0.4rem 0.2rem;
+  color: var(--ce-ash);
+  font-size: 0.85rem;
 }
 
 // ---------------------------------------------------------------- right: the field

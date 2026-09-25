@@ -1,13 +1,37 @@
+// A compact card, two to a row: faction stripe, portrait, name, power medallion.
 .card {
+  position: relative;
   display: grid;
-  grid-template-columns: 4.2rem 1fr;
-  gap: 0.2rem 0.8rem;
-  padding: 0.55rem;
-  background: var(--ce-iron);
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  gap: 0.25rem 0.6rem;
+  align-items: center;
+  padding: 0.5rem 0.55rem 0.5rem 0.8rem;
+  background: linear-gradient(90deg, hsl(var(--hue) 18% 21%) 0%, var(--ce-iron) 38%);
   border: 1px solid var(--ce-rule);
-  border-radius: var(--ce-radius);
+  border-radius: 6px;
   cursor: grab;
   user-select: none;
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease,
+    opacity 120ms ease;
+
+  // The faction's banner, down the left edge.
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 6px 0 0 6px;
+    background: hsl(var(--hue) 35% 52%);
+  }
+
+  &:hover:not(.blocked) {
+    transform: translateY(-1px);
+    border-color: var(--ce-ash);
+  }
 
   &:active {
     cursor: grabbing;
@@ -19,86 +43,163 @@
 
   &.dropping {
     border-color: var(--ce-brass);
-    box-shadow: inset 0 0 0 1px var(--ce-brass);
+    box-shadow: 0 0 0 2px var(--ce-brass);
+  }
+
+  &.dragging {
+    opacity: 0.4;
   }
 
   &.blocked {
     cursor: default;
-    opacity: 0.6;
+    filter: saturate(0.4);
+    opacity: 0.65;
   }
 }
 
-// No portraits exist yet: a monogram on the faction's quiet colour stands in.
 .portrait {
-  grid-row: span 2;
   display: grid;
   place-items: center;
   aspect-ratio: 1;
-  border-radius: 3px;
-  background: hsl(var(--hue) 22% 26%);
-  border: 1px solid hsl(var(--hue) 25% 38%);
+  border-radius: 4px;
+  background: hsl(var(--hue) 22% 27%);
+  border: 1px solid hsl(var(--hue) 28% 40%);
   font-family: var(--ce-serif);
-  font-size: 1.7rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: hsl(var(--hue) 30% 82%);
+  color: hsl(var(--hue) 35% 84%);
 }
 
-.title {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem;
+.body {
+  min-width: 0;
 
   h3 {
-    font-size: 1.15rem;
+    font-size: 0.95rem;
     line-height: 1.15;
+    // Long group names wrap to two lines, never more.
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-}
-
-.power {
-  font-family: var(--ce-serif);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1;
 }
 
 .meta {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  color: var(--ce-ash);
-  font-size: 0.9rem;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
+  min-width: 0;
 }
 
-.status,
-.where {
-  margin: 0.15rem 0 0;
-  font-size: 0.85rem;
+.kind {
+  color: var(--ce-ash);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Power, struck on a medallion.
+.power {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--ce-slate);
+  border: 1.5px solid var(--ce-rule);
+  font-family: var(--ce-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.selected .power {
+  border-color: var(--ce-brass);
+}
+
+// Groups: fighting strength in bone, the injured in oxblood, the dead as empty track.
+.strength {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bar {
+  flex: 1;
+  display: flex;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(231, 225, 210, 0.1);
+  overflow: hidden;
+
+  .fighting {
+    background: var(--ce-bone);
+    opacity: 0.8;
+  }
+
+  .injured {
+    background: var(--ce-oxblood);
+  }
+}
+
+.count {
+  font-size: 0.72rem;
+  color: var(--ce-bone);
+
+  .of {
+    color: var(--ce-ash);
+  }
+}
+
+.note {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .status {
+  justify-self: start;
+  padding: 0 0.45rem;
+  border: 1px solid var(--ce-oxblood);
+  border-radius: 999px;
   color: var(--ce-oxblood);
 }
 
 .where {
   color: var(--ce-rime);
+
+  i {
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.35rem;
+    border-radius: 50%;
+    background: var(--ce-rime);
+    vertical-align: 0.05rem;
+  }
 }
 
 .attached {
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.25rem;
   list-style: none;
-  margin: 0.3rem 0 0;
-  padding: 0.35rem 0 0;
-  border-top: 1px solid var(--ce-rule);
+  margin: 0.1rem 0 0;
+  padding: 0;
 
   li {
-    padding: 0.05rem 0.5rem;
+    padding: 0 0.45rem;
     border: 1px solid var(--ce-rule);
     border-radius: 999px;
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     color: var(--ce-ash);
+    background: rgba(0, 0, 0, 0.18);
   }
 }

@@ -39,16 +39,23 @@
     </section>
 
     <div class="slider" aria-label="Resources">
-      @for (s of sections(); track s.title) {
-        <h2 class="section">{{ s.title }}</h2>
-        @for (r of s.rows; track r.id) {
-          <ce-resource-card
-            [resource]="r"
-            [selected]="r.id === selectedResourceId()"
-            (inspect)="inspectResource($event)"
-            (attachHere)="attach($event.heroId, $event.hostId)"
-          />
-        }
+      @for (col of columns(); track col.title) {
+        <section class="column" [attr.aria-label]="col.title">
+          <h2 class="column-head">{{ col.title }} <span class="num">{{ col.count }}</span></h2>
+          @for (band of col.bands; track band.label) {
+            <h3 class="band">{{ band.label }}</h3>
+            @for (r of band.rows; track r.id) {
+              <ce-resource-card
+                [resource]="r"
+                [selected]="r.id === selectedResourceId()"
+                (inspect)="inspectResource($event)"
+                (attachHere)="attach($event.heroId, $event.hostId)"
+              />
+            }
+          } @empty {
+            <p class="none">None to call on.</p>
+          }
+        </section>
       }
     </div>
   </aside>

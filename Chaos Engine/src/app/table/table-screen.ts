@@ -94,14 +94,22 @@ export class TableScreen {
     });
   }
 
-  protected readonly sections = computed(() => {
+  /** Heroes beside groups; each column runs ready, then in the field, then resting. */
+  protected readonly columns = computed(() => {
     const rs = this.view()?.resources.filter((r) => !r.attachedTo) ?? [];
     const byPower = (a: ResourceView, b: ResourceView) => b.power.total - a.power.total;
+    const bands = (rows: ResourceView[]) =>
+      [
+        { label: 'Ready', rows: rows.filter((r) => r.location.kind === 'castle' && !r.status).sort(byPower) },
+        { label: 'In the field', rows: rows.filter((r) => r.location.kind === 'event').sort(byPower) },
+        { label: 'Resting', rows: rows.filter((r) => r.location.kind === 'castle' && !!r.status).sort(byPower) },
+      ].filter((b) => b.rows.length);
+    const heroes = rs.filter((r) => r.kind !== 'group');
+    const groups = rs.filter((r) => r.kind === 'group');
     return [
-      { title: 'Ready at the castle', rows: rs.filter((r) => r.location.kind === 'castle' && !r.status).sort(byPower) },
-      { title: 'In the field', rows: rs.filter((r) => r.location.kind === 'event').sort(byPower) },
-      { title: 'Resting', rows: rs.filter((r) => r.location.kind === 'castle' && !!r.status).sort(byPower) },
-    ].filter((s) => s.rows.length);
+      { title: 'Heroes', count: heroes.length, bands: bands(heroes) },
+      { title: 'Groups', count: groups.length, bands: bands(groups) },
+    ];
   });
 
   protected readonly selectedEvent = computed(() => {

@@ -70,7 +70,7 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
   - `LandService` builds the land test from the map image on a downscaled canvas.
   - `SessionService` boots the session: seed → land test → rules → autosave or a new game.
 - `src/app/dm/` is the DM screen (`/dm`): top bar, resource ledger, map, event and resource inspectors, the castle panel, and the reckoning (review the rolls, commit, turn report).
-- `src/app/table/` is the table screen (`/table`), shown on the TV: the castle over a resource slider, and the map with drag-and-drop. Its root font is scaled for reading across the room.
+- `src/app/table/` is the table screen (`/table`), shown on the TV: the castle over two card columns, Heroes beside Groups, each banded Ready, In the field and Resting, plus the map with drag-and-drop. Card banner colours for story factions are in `FACTION_HUES` in `table/resource-card.ts`. Its root font is scaled for reading across the room.
 - **The table sync is a security boundary.**
   - The DM window sends only `tableView(...)`, which is `engine/table-view.ts` and is tested for leaks.
   - The TV window never boots a session and never sees `GameState`.
