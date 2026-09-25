@@ -64,9 +64,18 @@
           <span class="label">Commander</span>
           <strong>{{ c.name }}</strong>
         } @else {
-          <span class="label">No commander chosen yet</span>
+          <span class="label">Awaiting a commander</span>
         }
       </div>
+      @if (v.commander?.impact?.length) {
+        <ul class="sway" aria-label="Morale under this commander">
+          @for (i of v.commander!.impact; track i.name) {
+            <li [class.up]="i.delta > 0" [class.down]="i.delta < 0" [title]="i.reason">
+              <span class="num">{{ i.delta > 0 ? '+' + i.delta : i.delta }}</span> {{ i.name }}
+            </li>
+          }
+        </ul>
+      }
       <dl>
         <div>
           <dt>Civilians lost</dt>

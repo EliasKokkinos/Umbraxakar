@@ -24,8 +24,14 @@ export function validateSeed(seed: Seed): string[] {
     seen.add(id);
   }
 
+  const resourceIds = new Set(allResources.map((r) => r.id));
   for (const c of seed.commanders) {
     check(inRange(c.level, 1, 20), `Commander ${c.id}: level ${c.level} out of 1-20`);
+    for (const i of c.influence ?? []) {
+      check(resourceIds.has(i.resourceId), `Commander ${c.id}: influence on unknown resource ${i.resourceId}`);
+      check(inRange(i.morale, -2, 2) && i.morale !== 0, `Commander ${c.id}: influence on ${i.resourceId} must be -2..2 and not 0`);
+      check(!!i.reason?.trim(), `Commander ${c.id}: influence on ${i.resourceId} needs a reason`);
+    }
   }
 
   const checkCommon = (r: HeroSeed | GroupSeed) => {

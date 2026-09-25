@@ -1,4 +1,5 @@
 import { assign } from './assignment';
+import { chooseCommander } from './commanders';
 import { updatePortal, updateResource, updateTemple } from './dm-edits';
 import { GameState, Result, newGame } from './game-state';
 import { NO_REVEAL, tableView } from './table-view';
@@ -104,8 +105,21 @@ describe('tableView: reveals', () => {
     expect(tableView(s, RULES, commanders, { ...NO_REVEAL, showReport: true }).report?.turn).toBe(1);
   });
 
-  it('names the commander and their player', () => {
-    const s = { ...newGame(SEED, RULES, 3), commanderId: 'imogen' };
-    expect(tableView(s, RULES, commanders).commander).toEqual({ name: 'Imogen Ashborn', player: 'marios.p (Marios)' });
+  it('names the commander once they take command, with their sway, but never over locked resources', () => {
+    const s = unwrap(chooseCommander(newGame(SEED, RULES, 3), 'imogen', RULES));
+    const c = tableView(s, RULES, commanders).commander!;
+    expect(c.name).toBe('Imogen Ashborn');
+    expect(c.player).toBe('marios.p (Marios)');
+    expect(c.impact.map((i) => [i.name, i.delta])).toEqual([
+      ["Avowed: The Prince's Company", 1],
+      ['Cowl', 1],
+      ["Kazz D'avore", -1],
+    ]);
+    expect(JSON.stringify(c)).not.toContain('Avernus');
+  });
+
+  it('shows no commander from a previous turn', () => {
+    const s = endTurn(unwrap(chooseCommander(newGame(SEED, RULES, 3), 'imogen', RULES)), RULES);
+    expect(tableView(s, RULES, commanders).commander).toBeNull();
   });
 });

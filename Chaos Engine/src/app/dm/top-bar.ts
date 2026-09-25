@@ -3,7 +3,8 @@ import { GameStore } from '../data/game-store';
 import { SeedService } from '../data/seed.service';
 import { SessionService } from '../data/session.service';
 import { TableHost } from '../data/table-sync';
-import { seedMorePortals, setCommander } from '../engine/dm-edits';
+import { hasCommanderThisTurn } from '../engine/commanders';
+import { seedMorePortals } from '../engine/dm-edits';
 import { dayOfTurn } from '../engine/views';
 import { fmt } from '../shared/format';
 
@@ -25,16 +26,14 @@ export class TopBar {
 
   protected readonly fmt = fmt;
   protected readonly state = this.store.state;
-  protected readonly commanders = computed(() => this.seeds.seed()?.commanders ?? []);
+  protected readonly commander = computed(() => {
+    const s = this.state()!;
+    return hasCommanderThisTurn(s) ? (this.seeds.seed()?.commanders.find((c) => c.id === s.commanderId) ?? null) : null;
+  });
   protected readonly day = computed(() => dayOfTurn(this.state()!.events.turn, this.store.rules.events.turn.daysPerTurn));
   protected readonly openPortals = computed(() => this.state()!.events.portals.filter((p) => p.status === 'open').length);
   protected readonly confirmingNew = signal(false);
   protected readonly seedCount = signal(3);
-
-  protected setCommander(id: string): void {
-    const name = this.commanders().find((c) => c.id === id)?.name ?? 'no one';
-    this.store.act(`Choose ${name} as commander`, (s) => setCommander(s, id || null));
-  }
 
   protected seedPortals(): void {
     const n = Math.max(1, Math.min(20, this.seedCount()));

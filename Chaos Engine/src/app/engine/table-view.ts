@@ -1,6 +1,7 @@
 // What the table (the TV) may know. This is the only data that ever leaves the DM window,
 // so DM-only information cannot leak by construction: it is simply never put in.
 import { BattleResult } from './battle';
+import { hasCommanderThisTurn } from './commanders';
 import { facilityLevel } from './castle';
 import { PortalState, TempleState } from './event-state';
 import { GameState, Rules, resourceById } from './game-state';
@@ -28,7 +29,7 @@ export interface TableView {
   version: number;
   turn: number;
   day: number;
-  commander: { name: string; player: string } | null;
+  commander: { name: string; player: string; impact: { name: string; delta: number; reason: string }[] } | null;
   civilianDeaths: number;
   openPortals: number;
   /** Null when the DM keeps the Company's finances off the table. */
@@ -70,7 +71,8 @@ function tableMap(map: MapDef): TableMap {
 }
 
 export function tableView(state: GameState, rules: Rules, commanders: Commander[], reveal: Reveal = NO_REVEAL): TableView {
-  const commander = commanders.find((c) => c.id === state.commanderId);
+  // The commander is shown only once they have taken command of this turn.
+  const commander = hasCommanderThisTurn(state) ? commanders.find((c) => c.id === state.commanderId) : undefined;
   const portals = state.events.portals.filter((p) => p.status === 'open' && !p.hidden).map(tablePortal);
   const temples = state.events.temples.filter((t) => !t.hidden).map(tableTemple);
   const shownEvents = new Set([...portals, ...temples].map((e) => e.id));
@@ -114,7 +116,16 @@ export function tableView(state: GameState, rules: Rules, commanders: Commander[
     version: TABLE_VIEW_VERSION,
     turn: state.events.turn,
     day: dayOfTurn(state.events.turn, rules.events.turn.daysPerTurn),
-    commander: commander ? { name: commander.name, player: commander.player } : null,
+    commander: commander
+      ? {
+          name: commander.name,
+          player: commander.player,
+          // The sway as it was when they took command; locked resources stay secret.
+          impact: (commander.influence ?? [])
+            .filter((i) => shownIds.has(i.resourceId))
+            .map((i) => ({ name: resources.find((r) => r.id === i.resourceId)!.name, delta: i.morale, reason: i.reason })),
+        }
+      : null,
     civilianDeaths: state.events.civilianDeaths,
     openPortals: portals.length,
     treasury: state.castle.showTreasuryOnTable ? state.castle.treasury : null,

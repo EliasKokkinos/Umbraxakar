@@ -14,7 +14,10 @@ export interface SaveFile {
  * Upgrades a raw saved state from version n to n + 1. Add an entry here whenever
  * GameState changes shape, and bump GAME_STATE_VERSION.
  */
-export const MIGRATIONS: Record<number, (state: Record<string, unknown>) => Record<string, unknown>> = {};
+export const MIGRATIONS: Record<number, (state: Record<string, unknown>) => Record<string, unknown>> = {
+  // v2: commanders take command once per turn.
+  1: (s) => ({ ...s, commanderTurn: null }),
+};
 
 export function toSaveFile(state: GameState, label: string, now = new Date()): SaveFile {
   return { format: SAVE_FORMAT, version: state.version, savedAt: now.toISOString(), label, state };

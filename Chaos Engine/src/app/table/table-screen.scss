@@ -149,6 +149,33 @@
     }
   }
 
+  .sway {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 42rem;
+
+    li {
+      padding: 0.05rem 0.55rem;
+      border: 1px solid var(--ce-rule);
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .up span {
+      color: var(--ce-verdigris);
+      font-weight: 700;
+    }
+
+    .down span {
+      color: var(--ce-oxblood);
+      font-weight: 700;
+    }
+  }
+
   dl {
     display: flex;
     gap: 2rem;

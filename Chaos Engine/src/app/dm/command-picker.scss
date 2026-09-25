@@ -1,0 +1,91 @@
+header {
+  margin-bottom: 0.5rem;
+
+  h2 {
+    font-size: var(--ce-h2);
+  }
+}
+
+.sub {
+  margin: 0.25rem 0 0;
+  color: var(--ce-ash);
+}
+
+.commander {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--ce-rule);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.6rem;
+
+  h3 {
+    font-size: var(--ce-h3);
+  }
+}
+
+.role {
+  margin: 0.1rem 0 0;
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+}
+
+ul {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+li {
+  display: grid;
+  grid-template-columns: 1.8rem auto 1fr;
+  column-gap: 0.4rem;
+  align-items: baseline;
+  padding: 0.15rem 0;
+
+  &.up .delta {
+    color: var(--ce-verdigris);
+  }
+
+  &.down .delta {
+    color: var(--ce-oxblood);
+  }
+
+  &.locked {
+    opacity: 0.55;
+  }
+}
+
+.delta {
+  font-weight: 700;
+}
+
+.note {
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+  justify-self: end;
+}
+
+.reason {
+  grid-column: 2 / -1;
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--ce-bone);
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--ce-rule);
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: var(--ce-brass);
+  }
+}

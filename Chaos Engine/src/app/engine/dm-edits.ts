@@ -129,10 +129,6 @@ export function removeEvent(state: GameState, id: string): Result {
   });
 }
 
-export function setCommander(state: GameState, commanderId: string | null): Result {
-  return ok({ ...state, commanderId });
-}
-
 export function setTreasury(state: GameState, treasury: number, incomePerTurn = state.castle.incomePerTurn): Result {
   return ok({ ...state, castle: { ...state.castle, treasury: Math.max(0, Math.round(treasury)), incomePerTurn } });
 }

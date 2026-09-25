@@ -5,9 +5,9 @@ import { canDeploy } from './morale';
 import { effectivePower } from './power';
 import { HeroState, ResourceState, resourcesFromSeed } from './resource-state';
 import { Rng } from './rng';
-import { CastleSeed, EventsConfig, ResolutionConfig, Seed } from './seed-types';
+import { CastleSeed, Commander, EventsConfig, ResolutionConfig, Seed } from './seed-types';
 
-export const GAME_STATE_VERSION = 1;
+export const GAME_STATE_VERSION = 2;
 
 /** A hero in the Healers' Hall: occupies a slot and the hero until done. */
 export interface Treatment {
@@ -51,6 +51,8 @@ export interface GameState {
   version: number;
   rngState: number;
   commanderId: string | null;
+  /** The turn the current commander took command; null before anyone has. */
+  commanderTurn: number | null;
   resources: ResourceState[];
   events: EventsState;
   castle: CastleState;
@@ -62,11 +64,12 @@ export interface Rules {
   resolution: ResolutionConfig;
   events: EventsConfig;
   castle: CastleSeed;
+  commanders: Commander[];
   map: MapContext;
 }
 
 export function rulesFromSeed(seed: Seed, map: MapContext): Rules {
-  return { resolution: seed.resolutionConfig, events: seed.eventsConfig, castle: seed.castle, map };
+  return { resolution: seed.resolutionConfig, events: seed.eventsConfig, castle: seed.castle, commanders: seed.commanders, map };
 }
 
 export type Result<T = GameState> = { ok: true; state: T } | { ok: false; error: string };
@@ -148,6 +151,7 @@ export function newGame(seed: Seed, rules: Rules, rngSeed: number): GameState {
     version: GAME_STATE_VERSION,
     rngState: rng.state,
     commanderId: null,
+    commanderTurn: null,
     resources: resourcesFromSeed(seed.resources),
     events,
     castle: castleFromSeed(seed.castle),

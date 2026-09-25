@@ -5,15 +5,14 @@
     <span class="day">Day {{ day() }}</span>
   </div>
 
-  <label class="commander">
+  <div class="commander">
     <span>Commander</span>
-    <select [value]="s.commanderId ?? ''" (change)="setCommander($any($event.target).value)">
-      <option value="">Not chosen</option>
-      @for (c of commanders(); track c.id) {
-        <option [value]="c.id">{{ c.name }}</option>
-      }
-    </select>
-  </label>
+    @if (commander(); as c) {
+      <strong>{{ c.name }}</strong>
+    } @else {
+      <strong class="missing">Not yet chosen</strong>
+    }
+  </div>
 
   <dl class="tallies">
     <div>
@@ -67,5 +66,13 @@
     }
   </div>
 
-  <button type="button" class="primary end" (click)="resolve.emit()">Resolve turn {{ s.events.turn }}</button>
+  <button
+    type="button"
+    class="primary end"
+    [disabled]="!commander()"
+    [title]="commander() ? '' : 'Choose a commander for this turn first'"
+    (click)="resolve.emit()"
+  >
+    Resolve turn {{ s.events.turn }}
+  </button>
 </header>

@@ -13,6 +13,14 @@ export interface Rect {
   h: number;
 }
 
+/** How a commander's story sways one resource's morale when they take command. */
+export interface CommanderInfluence {
+  resourceId: string;
+  morale: number;
+  /** Player-facing: the table shows it. */
+  reason: string;
+}
+
 export interface Commander {
   id: string;
   name: string;
@@ -20,6 +28,7 @@ export interface Commander {
   raceClass: string;
   level: number;
   divineRole: string;
+  influence?: CommanderInfluence[];
 }
 
 export interface Trait {

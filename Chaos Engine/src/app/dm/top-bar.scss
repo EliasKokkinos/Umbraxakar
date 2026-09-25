@@ -24,13 +24,18 @@
 
 .commander {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
   color: var(--ce-ash);
 
-  select {
+  strong {
     font-family: var(--ce-serif);
     font-size: var(--ce-h3);
+    color: var(--ce-bone);
+  }
+
+  .missing {
+    color: var(--ce-oxblood);
   }
 }
 

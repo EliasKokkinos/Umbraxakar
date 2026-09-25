@@ -57,6 +57,14 @@ describe('table sync', () => {
     expect(client.view()?.portals.length).toBe(store.state()!.events.portals.filter((p) => !p.hidden).length);
   });
 
+  it('a DM window that starts after the table still finds it', async () => {
+    await settle();
+    const lateHost = runInInjectionContext(TestBed.inject(Injector), () => new TableHost());
+    expect(lateHost.connected()).toBe(false);
+    await settle();
+    expect(lateHost.connected()).toBe(true);
+  });
+
   it('pushes every change on the DM side to the table', async () => {
     await settle();
     const portal = store.state()!.events.portals[0].id;
@@ -93,6 +101,7 @@ describe('table sync', () => {
 
   it('reveals battles one at a time, then the report', async () => {
     const portal = store.state()!.events.portals[0].id;
+    store.takeCommand('col');
     store.assign('karsa-orlong', portal);
     store.resolve();
     await settle();

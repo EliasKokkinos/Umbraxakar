@@ -52,7 +52,7 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 ### Stack and commands
 - **Angular 22** (standalone, zoneless, signals) with **Vitest**. It needs Node ≥ 24.15.
 - `npm start` runs the dev server. `npm test` runs `ng test` (add `--watch=false` for a single run). `npm run build` builds for production.
-- The phased plan is `docs/roadmap.md`. Phases 0–6 are done.
+- The phased plan is `docs/roadmap.md`. Phases 0–6 and 8 are done; Phase 7 (drama and polish) remains.
 
 ### Layout
 - `src/app/engine/` is the **pure rules engine**. **Nothing in it may import Angular.**
@@ -102,6 +102,10 @@ Record the chosen stack, commands and layout here once the project is scaffolded
 
 ### Seed data (`data/`)
 - `commanders.json` lists the six player characters who can be chosen as commander. All are level 17. DM-controlled characters such as Johanna and Anuna are deliberately left out.
+  - Each commander's `influence` lists the resources whose morale they sway (±1) when they **take command**, with a player-facing `reason` (the table shows it).
+  - The choice applies at once and is locked for the turn. Undo reverses it.
+  - A turn can't be resolved without a commander. The rules are in `engine/commanders.ts`.
+  - The links were drafted from the archive and await DM correction.
 - `resources.json` holds the heroes, avatars and groups. Assets that aren't available yet are seeded with `locked: true` and a `lockReason`; the DM unlocks them in the app. Large armies are split into several units. The `tiste-andii` tag marks "Anomander's resources" for the Mother Dark temple +3 Power bonus. `canCleanse` marks who can clear corruption of 3 or more. Where `numberEstimated: true`, the unit size is a placeholder that isn't in the archive.
 - `events-config.json` holds every tunable number for events. `map.json` defines the maps, the active map, land detection, no-spawn zones and regions. `temples.json` holds the 17 Mother Dark temples (5 active). All are placeholders except Jhag Odhan.
 - The events rules spec is `docs/events-model.md`. Items marked **[P]** are proposals awaiting DM confirmation.

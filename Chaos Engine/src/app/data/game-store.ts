@@ -1,6 +1,7 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
 import { assign, attach, detach, unassign } from '../engine/assignment';
 import { Harm, Outcome } from '../engine/battle';
+import { chooseCommander, resolveBlocker } from '../engine/commanders';
 import { GameState, Result, Rules, eventById, newGame, resourceById } from '../engine/game-state';
 import { History, createHistory, push, redo, undo } from '../engine/history';
 import { deserialize, serialize } from '../engine/save';
@@ -110,6 +111,11 @@ export class GameStore {
     return this.act(`Detach ${this.nameOf(heroId)}`, (s) => detach(s, heroId));
   }
 
+  takeCommand(commanderId: string): boolean {
+    const name = this.rules.commanders.find((c) => c.id === commanderId)?.name ?? commanderId;
+    return this.act(`${name} takes command`, (s, r) => chooseCommander(s, commanderId, r));
+  }
+
   undo(): void {
     const h = this.history();
     if (h) this.history.set(undo(h));
@@ -128,6 +134,11 @@ export class GameStore {
   resolve(): PendingResolution | null {
     const s = this.state();
     if (!s) return null;
+    const blocked = resolveBlocker(s);
+    if (blocked) {
+      this._error.set(blocked);
+      return null;
+    }
     const pending = resolveAll(s, this.rules);
     this._pending.set(pending);
     return pending;
@@ -168,8 +179,13 @@ export class GameStore {
   /** Applies the reviewed battles and advances the turn: one undoable step. */
   commit(): boolean {
     const s = this.state();
-    const p = this._pending() ?? (s ? resolveAll(s, this.rules) : null);
-    if (!s || !p) return false;
+    if (!s) return false;
+    const blocked = resolveBlocker(s);
+    if (blocked) {
+      this._error.set(blocked);
+      return false;
+    }
+    const p = this._pending() ?? resolveAll(s, this.rules);
     return this.act(`End turn ${s.events.turn}`, (state, rules) => ({ ok: true, state: commitTurn(state, p, rules) }));
   }
 

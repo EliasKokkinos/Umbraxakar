@@ -6,6 +6,7 @@ import { eventById } from '../engine/game-state';
 import { Point } from '../engine/seed-types';
 import { MapBoard } from '../shared/map-board';
 import { CastlePanel } from './castle-panel';
+import { CommandPicker } from './command-picker';
 import { EventInspector } from './event-inspector';
 import { Reckoning } from './reckoning';
 import { ResourceInspector } from './resource-inspector';
@@ -17,7 +18,7 @@ export type Placing = { kind: 'portal' } | { kind: 'move'; id: string } | null;
 
 @Component({
   selector: 'ce-dm-screen',
-  imports: [TopBar, ResourceLedger, MapBoard, EventInspector, ResourceInspector, CastlePanel, Reckoning],
+  imports: [TopBar, ResourceLedger, MapBoard, EventInspector, ResourceInspector, CastlePanel, Reckoning, CommandPicker],
   templateUrl: './dm-screen.html',
   styleUrl: './dm-screen.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

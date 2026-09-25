@@ -5,7 +5,12 @@
     "player": "sogosu (Yianno)",
     "raceClass": "Dwarf Forge Cleric",
     "level": 17,
-    "divineRole": "Mortal Sword of Thyr (Noor); High Priest pending"
+    "divineRole": "Mortal Sword of Thyr (Noor); High Priest pending",
+    "influence": [
+      { "resourceId": "bridgeburners", "morale": 1, "reason": "He held the flank beside Helia's Bridgeburners at Goss." },
+      { "resourceId": "avatar-thyr", "morale": 1, "reason": "Her Mortal Sword, marked by her before the world ended." },
+      { "resourceId": "tiamat", "morale": 1, "reason": "He calmed her and saw her to her rooms at the Accords." }
+    ]
   },
   {
     "id": "imogen",
@@ -13,7 +18,13 @@
     "player": "marios.p (Marios)",
     "raceClass": "Human Ranger (Fey Wanderer)",
     "level": 17,
-    "divineRole": "Shield Anvil of Hood"
+    "divineRole": "Shield Anvil of Hood",
+    "influence": [
+      { "resourceId": "avowed-prince", "morale": 1, "reason": "The Shield Anvil commands a third of the Avowed, and she honours their dead." },
+      { "resourceId": "avowed-avernus", "morale": 1, "reason": "The Shield Anvil commands a third of the Avowed, and she honours their dead." },
+      { "resourceId": "cowl", "morale": 1, "reason": "Hood's High Priest stands in her divine chain." },
+      { "resourceId": "kazz-davore", "morale": -1, "reason": "He told her to her face that she had failed the Avowed." }
+    ]
   },
   {
     "id": "darwin",
@@ -21,7 +32,13 @@
     "player": "Eldorian",
     "raceClass": "Human Wizard",
     "level": 17,
-    "divineRole": "Mortal Sword and High Priest of Liara / Oppon"
+    "divineRole": "Mortal Sword and High Priest of Liara / Oppon",
+    "influence": [
+      { "resourceId": "letheri-fleet", "morale": 1, "reason": "Captain Luke's flying ships sail in Liara's name." },
+      { "resourceId": "avatar-liara", "morale": 1, "reason": "Her High Priest, her Mortal Sword, and more." },
+      { "resourceId": "trull-sengar", "morale": 1, "reason": "Darwin armed him from Draconus's forge at Goss." },
+      { "resourceId": "cowl", "morale": -1, "reason": "Hood does not look kindly on those who cheat death with clones." }
+    ]
   },
   {
     "id": "neldor-andarist",
@@ -29,7 +46,18 @@
     "player": "Andreas",
     "raceClass": "Tiste Andii Bladesinger",
     "level": 17,
-    "divineRole": "Mortal Sword of Meanas; bearer of Dragnipur"
+    "divineRole": "Mortal Sword of Meanas; bearer of Dragnipur",
+    "influence": [
+      { "resourceId": "silchas-ruin", "morale": 1, "reason": "His brother, who stood for him against Tiamat at the Accords." },
+      { "resourceId": "korlat", "morale": 1, "reason": "She taught him the bladesong variations he had never learned." },
+      { "resourceId": "bluerose-1", "morale": 1, "reason": "Anomander's people, following Anomander's brother and near-double." },
+      { "resourceId": "bluerose-2", "morale": 1, "reason": "Anomander's people, following Anomander's brother and near-double." },
+      { "resourceId": "kazz-davore", "morale": 1, "reason": "Neldor's forged orders won the war Kazz had been losing." },
+      { "resourceId": "anomander-rake", "morale": 1, "reason": "He has carried his brother's soul since the beginning." },
+      { "resourceId": "uruk", "morale": -1, "reason": "Neldor's forged orders sent the K'Chain horde to its slaughter." },
+      { "resourceId": "tiamat", "morale": -1, "reason": "He refused her command of the dragons he will raise." },
+      { "resourceId": "seguleh", "morale": -1, "reason": "He wears the face of the Seguleh Seventh who never claimed his mask." }
+    ]
   },
   {
     "id": "onos-toolan",
@@ -37,7 +65,14 @@
     "player": "Nikos the Cretan",
     "raceClass": "T'lan Imass Battle Master Fighter, Allomancer",
     "level": 17,
-    "divineRole": "Bound to Hood"
+    "divineRole": "Bound to Hood",
+    "influence": [
+      { "resourceId": "d-dhampir", "morale": 1, "reason": "Hood sent D to find him, long before the rest." },
+      { "resourceId": "avatar-hood-host", "morale": 1, "reason": "Hood's own bond runs through him." },
+      { "resourceId": "cowl", "morale": 1, "reason": "Hood's High Priest knows his god's mark on him." },
+      { "resourceId": "letheri-army-1", "morale": -1, "reason": "He let slip Erin's plans at the Accords, and Lether remembers." },
+      { "resourceId": "letheri-army-2", "morale": -1, "reason": "He let slip Erin's plans at the Accords, and Lether remembers." }
+    ]
   },
   {
     "id": "col",
@@ -45,6 +80,12 @@
     "player": "DrK (Kyriakos)",
     "raceClass": "Warforged Paladin",
     "level": 17,
-    "divineRole": "Champion of Edar / Moraine"
+    "divineRole": "Champion of Edar / Moraine",
+    "influence": [
+      { "resourceId": "malazan-legion-1", "morale": 1, "reason": "The Empress's own champion walks among them." },
+      { "resourceId": "malazan-legion-2", "morale": 1, "reason": "The Empress's own champion walks among them." },
+      { "resourceId": "malazan-legion-3", "morale": 1, "reason": "The Empress's own champion walks among them." },
+      { "resourceId": "bridgeburners", "morale": 1, "reason": "The Empress's own champion walks among them." }
+    ]
   }
 ]

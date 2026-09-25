@@ -41,10 +41,7 @@
     } @else if (selectedResourceId(); as id) {
       <ce-resource-inspector [resourceId]="id" (selectEvent)="selectEvent($event)" (selectResource)="selectResource($event)" />
     } @else {
-      <div class="empty">
-        <h2>Nothing selected</h2>
-        <p>Choose a portal or temple on the map, or a resource from the ledger, to see and change it.</p>
-      </div>
+      <ce-command-picker (selectResource)="selectResource($event)" />
     }
   </aside>
 

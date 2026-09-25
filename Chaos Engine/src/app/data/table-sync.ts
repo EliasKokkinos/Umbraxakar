@@ -24,7 +24,11 @@ export type TableIntent =
   | { kind: 'attach'; heroId: string; hostId: string }
   | { kind: 'detach'; heroId: string };
 
-export type ToTable = { type: 'view'; view: TableView } | { type: 'result'; requestId: number; ok: boolean; error?: string };
+export type ToTable =
+  | { type: 'view'; view: TableView }
+  | { type: 'result'; requestId: number; ok: boolean; error?: string }
+  /** Sent when the DM window starts, so a table already open announces itself. */
+  | { type: 'ping' };
 export type ToHost = { type: 'hello' } | { type: 'intent'; requestId: number; intent: TableIntent };
 
 /**
@@ -58,6 +62,7 @@ export class TableHost {
 
   constructor() {
     this.channel.onmessage = (ev) => this.receive(ev.data as ToHost);
+    this.post({ type: 'ping' });
     effect(() => {
       const view = this.view();
       if (view) this.post({ type: 'view', view });
@@ -142,7 +147,8 @@ export class TableClient {
   }
 
   private receive(msg: ToTable): void {
-    if (msg?.type === 'view') this._view.set(msg.view);
+    if (msg?.type === 'ping') this.channel.postMessage({ type: 'hello' } satisfies ToHost);
+    else if (msg?.type === 'view') this._view.set(msg.view);
     else if (msg?.type === 'result' && !msg.ok) this._error.set(msg.error ?? 'Not allowed');
   }
 }

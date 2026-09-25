@@ -1,0 +1,41 @@
+@if (!chosen()) {
+  <header>
+    <h2>Who commands turn {{ turn() }}?</h2>
+    <p class="sub">Taking command sways those who share the commander's story, at once. The choice holds for the turn; undo to change it.</p>
+  </header>
+} @else {
+  <header>
+    <h2>{{ options()[0].name }} commands turn {{ turn() }}</h2>
+    <p class="sub">Choose a portal, temple or resource to see and change it.</p>
+  </header>
+}
+
+@for (c of options(); track c.id) {
+  <article class="commander">
+    <div class="head">
+      <div>
+        <h3>{{ c.name }}</h3>
+        <p class="role">{{ c.role }}, played by {{ c.player }}</p>
+      </div>
+      @if (!chosen()) {
+        <button type="button" class="primary" (click)="take(c.id)">Take command</button>
+      }
+    </div>
+    @if (c.impact.length) {
+      <ul>
+        @for (i of c.impact; track i.resourceId) {
+          <li [class.up]="i.delta > 0" [class.down]="i.delta < 0" [class.locked]="i.locked">
+            <span class="delta num">{{ i.delta > 0 ? '+' + i.delta : i.delta }}</span>
+            <button type="button" class="link" (click)="selectResource.emit(i.resourceId)">{{ i.name }}</button>
+            @if (i.note) {
+              <span class="note num">{{ i.note }}</span>
+            }
+            <span class="reason">{{ i.reason }}{{ i.locked ? ' (not yet in play)' : '' }}</span>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="role">Sways no one in particular.</p>
+    }
+  </article>
+}

@@ -61,7 +61,17 @@ describe('GameStore', () => {
     expect(eventOf(store.state()!, 'korlat')).toBeUndefined();
   });
 
+  it('refuses to resolve until someone takes command of the turn', () => {
+    expect(store.resolve()).toBeNull();
+    expect(store.error()).toBe('Choose a commander for turn 1 first.');
+    expect(store.commit()).toBe(false);
+    expect(store.takeCommand('col')).toBe(true);
+    expect(store.undoLabel()).toBe('Col (911) takes command');
+    expect(store.resolve()).not.toBeNull();
+  });
+
   it('resolves for review, then commits the turn as one undoable step', () => {
+    store.takeCommand('col');
     store.assign('karsa-orlong', firstPortal());
     const pending = store.resolve()!;
     expect(Object.keys(pending.battles)).toEqual([firstPortal()]);
@@ -74,6 +84,7 @@ describe('GameStore', () => {
   });
 
   it('undoing a turn restores the dice: resolving again gives the same rolls', () => {
+    store.takeCommand('col');
     store.assign('karsa-orlong', firstPortal());
     store.assign('malazan-legion-1', store.state()!.events.portals[1].id);
     const first = store.resolve()!;
@@ -87,6 +98,7 @@ describe('GameStore', () => {
 
   it('lets the DM force an outcome before committing', () => {
     const id = firstPortal();
+    store.takeCommand('col');
     store.assign('trull-sengar', id);
     store.resolve();
     store.overrideBattle(id, { outcome: 'won', harm: [] });
@@ -98,6 +110,7 @@ describe('GameStore', () => {
   });
 
   it('exports and imports saves; the import is a fresh history', () => {
+    store.takeCommand('col');
     store.assign('karsa-orlong', firstPortal());
     store.commit();
     const json = store.exportSave('Before the storm')!;

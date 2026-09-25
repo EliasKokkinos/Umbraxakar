@@ -35,10 +35,19 @@ describe('save files', () => {
   });
 
   it('migrates older saves forward, step by step', () => {
-    const v1 = serialize(state, 'old');
-    const migrations = { 1: (s: Record<string, unknown>) => ({ ...s, addedInV2: true }) };
-    const loaded = deserialize(v1, migrations, 2);
-    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 2, addedInV2: true });
-    expect(deserialize(v1, {}, 2)).toEqual({ ok: false, error: 'No migration from save version 1' });
+    const v2 = serialize(state, 'old');
+    const migrations = { 2: (s: Record<string, unknown>) => ({ ...s, addedInV3: true }) };
+    const loaded = deserialize(v2, migrations, 3);
+    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 3, addedInV3: true });
+    expect(deserialize(v2, {}, 3)).toEqual({ ok: false, error: 'No migration from save version 2' });
+  });
+
+  it('upgrades a real version 1 save (before commanders took command per turn)', () => {
+    const file = JSON.parse(serialize(state, 'from September'));
+    delete file.state.commanderTurn;
+    file.version = 1;
+    file.state.version = 1;
+    const loaded = deserialize(JSON.stringify(file));
+    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 2, commanderTurn: null });
   });
 });
