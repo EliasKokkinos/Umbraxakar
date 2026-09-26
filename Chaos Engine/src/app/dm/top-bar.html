@@ -49,6 +49,10 @@
     <span class="link-state" [class.on]="table.connected()">{{ table.connected() ? 'Table connected' : 'No table yet' }}</span>
   </div>
 
+  <span class="saved-in" [class.fault]="!!saveError()" [title]="saveError() ?? ''">
+    {{ saveError() ? 'Not saved: the Umbrel is unreachable' : storage.kind === 'server' ? 'Saved on the Umbrel' : 'Saved in this browser' }}
+  </span>
+
   <div class="files">
     <ce-turn-history />
     <button type="button" (click)="save()">Save</button>

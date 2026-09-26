@@ -7,9 +7,10 @@ import { History, createHistory, push, redo, undo } from '../engine/history';
 import { deserialize, serialize } from '../engine/save';
 import { Seed } from '../engine/seed-types';
 import { PendingResolution, commitTurn, rerollBattle, resolveAll } from '../engine/turn';
+import { PERSISTENCE } from './persistence';
 import { TurnSnapshots } from './turn-snapshots';
 
-export const AUTOSAVE_KEY = 'chaos-engine:autosave';
+export { AUTOSAVE_KEY } from './persistence';
 
 type Op = (state: GameState, rules: Rules) => Result;
 
@@ -24,6 +25,7 @@ export class GameStore {
   private readonly _error = signal<string | null>(null);
   private rulesRef: Rules | null = null;
   private readonly snapshots = inject(TurnSnapshots);
+  private readonly persistence = inject(PERSISTENCE);
 
   readonly state = computed(() => this.history()?.present.state ?? null);
   readonly lastAction = computed(() => this.history()?.present.label ?? null);
@@ -39,11 +41,7 @@ export class GameStore {
     effect(() => {
       const s = this.state();
       if (!s) return;
-      try {
-        localStorage.setItem(AUTOSAVE_KEY, serialize(s, 'Autosave'));
-      } catch {
-        // Storage may be full or blocked; the session carries on without autosave.
-      }
+      this.persistence.writeAutosave(serialize(s, 'Autosave'));
     });
   }
 
@@ -226,11 +224,8 @@ export class GameStore {
     return true;
   }
 
-  readAutosave(): string | null {
-    try {
-      return localStorage.getItem(AUTOSAVE_KEY);
-    } catch {
-      return null;
-    }
+  /** The last autosave, from the Umbrel or this browser. */
+  readAutosave(): Promise<string | null> {
+    return this.persistence.readAutosave().catch(() => null);
   }
 }

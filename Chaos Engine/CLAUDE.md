@@ -53,6 +53,12 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 - **Angular 22** (standalone, zoneless, signals) with **Vitest**. It needs Node ≥ 24.15.
 - `npm start` runs the dev server. `npm test` runs `ng test` (add `--watch=false` for a single run). `npm run build` builds for production.
 - **Game night:** double-click `Start Chaos Engine.bat`. It builds the app, serves it with `tools/serve.mjs` (no dependencies) and opens `/dm`. It stays on port 4200 on purpose, because the browser's autosave and turn snapshots belong to `localhost:4200`. The `.bat` must keep CRLF line endings (`.gitattributes` enforces it). Launching it from a console-less shell can hang, so test it with a real double-click (`Start-Process`).
+- **Hosting on Umbrel.** This is where sessions are played. The always-on umbrelOS box (an HP EliteDesk) serves the app and keeps the game data. The session laptop opens `http://<umbrel>:7400/dm` over Tailscale, with `/table` on the TV as a second window. The development PC may be off.
+  - Deploy from the dev PC with `Deploy to Umbrel.bat` (optionally `Deploy to Umbrel.bat umbrel@<host>`), which runs `deploy/deploy-umbrel.ps1`. It runs every test, builds the app and the `Dockerfile` image, `docker save`s it, copies it with the compose file over SSH to `~/chaos-engine` on the Umbrel, and runs `docker compose up -d` there. Nothing is published to a registry, because the continent maps are for private campaign use only.
+  - The container runs `serve.mjs` with `DATA_DIR=/data`, mounted from `~/chaos-engine/data` on the Umbrel (`autosave.json`, `snapshots.json`, `portraits.json`). With `DATA_DIR` set, the server exposes `/api/*` and the client stores everything there (`data/persistence.ts`, `choosePersistence`). Without it (`ng serve`, the local launcher), everything stays in browser storage. The DM top bar says which ("Saved on the Umbrel" or "Saved in this browser") and turns red if a write to the Umbrel fails.
+  - There's no login. It relies on the LAN and tailnet being trusted.
+  - Keep an occasional **Save** file as a backup. Umbrel's own backups don't cover this container.
+  - Server tests: `npm run test:server` (`node --test`).
 - The phased plan is `docs/roadmap.md`. All nine phases (0–8) are done. What comes next is playtesting and content: real names, numbers and story links.
 
 ### Layout

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, output, si
 import { GameStore } from '../data/game-store';
 import { SeedService } from '../data/seed.service';
 import { SessionService } from '../data/session.service';
+import { PERSISTENCE, serverWriteError } from '../data/persistence';
 import { PortraitStore } from '../data/portrait-store';
 import { TableHost } from '../data/table-sync';
 import { hasCommanderThisTurn } from '../engine/commanders';
@@ -23,6 +24,8 @@ export class TopBar {
   private readonly seeds = inject(SeedService);
   protected readonly table = inject(TableHost);
   private readonly portraits = inject(PortraitStore);
+  protected readonly storage = inject(PERSISTENCE);
+  protected readonly saveError = serverWriteError;
 
   readonly placing = input(false);
   readonly placePortal = output<boolean>();

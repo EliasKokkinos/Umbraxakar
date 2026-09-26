@@ -3,13 +3,14 @@ import { hireEntertainers } from '../engine/castle';
 import { eventOf } from '../engine/game-state';
 import { RULES, SEED } from '../engine/testing';
 import { AUTOSAVE_KEY, GameStore } from './game-store';
+import { PERSISTENCE, choosePersistence } from './persistence';
 
 describe('GameStore', () => {
   let store: GameStore;
 
   beforeEach(() => {
     localStorage.clear();
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ providers: [{ provide: PERSISTENCE, useFactory: () => choosePersistence(async () => false) }] });
     store = TestBed.inject(GameStore);
     store.start(SEED, RULES, 1111);
   });
@@ -126,12 +127,12 @@ describe('GameStore', () => {
     expect(store.error()).toBe('Not a Chaos Engine save file');
   });
 
-  it('autosaves every change to local storage', () => {
+  it('autosaves every change to local storage', async () => {
     store.assign('karsa-orlong', firstPortal());
     TestBed.tick();
     const auto = JSON.parse(localStorage.getItem(AUTOSAVE_KEY)!);
     expect(auto.label).toBe('Autosave');
     expect(auto.state).toEqual(store.state());
-    expect(store.readAutosave()).toBe(localStorage.getItem(AUTOSAVE_KEY));
+    expect(await store.readAutosave()).toBe(localStorage.getItem(AUTOSAVE_KEY));
   });
 });

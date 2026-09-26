@@ -1,0 +1,4 @@
+# Only the built app and the server go into the image.
+*
+!dist/chaos-engine/browser/**
+!tools/serve.mjs

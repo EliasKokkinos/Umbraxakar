@@ -122,6 +122,16 @@
   }
 }
 
+.saved-in {
+  color: var(--ce-ash);
+  font-size: var(--ce-small);
+
+  &.fault {
+    color: var(--ce-oxblood);
+    font-weight: 700;
+  }
+}
+
 .confirm {
   display: flex;
   align-items: center;

@@ -1,0 +1,11 @@
+# Runs on the Umbrel, from /home/umbrel/chaos-engine. "Deploy to Umbrel.bat" copies it there.
+services:
+  chaos-engine:
+    image: chaos-engine:latest
+    container_name: chaos-engine
+    restart: unless-stopped
+    ports:
+      - "7400:7400"
+    volumes:
+      # The game's data, on the Umbrel's disk: autosave.json, snapshots.json, portraits.json.
+      - ./data:/data

@@ -6,6 +6,7 @@ import { SEED } from '../engine/testing';
 import { serialize } from '../engine/save';
 import { AUTOSAVE_KEY, GameStore } from './game-store';
 import { LandService } from './land.service';
+import { PERSISTENCE, choosePersistence } from './persistence';
 import { SessionService } from './session.service';
 
 /** Serves the real seed files, optionally with one of them altered. */
@@ -15,6 +16,8 @@ function flushSeed(http: HttpTestingController, alter: Partial<Record<keyof type
     http.expectOne(`data/${file}`).flush(body as object);
   }
 }
+
+const settleBoot = () => new Promise((r) => setTimeout(r, 0));
 
 describe('SessionService', () => {
   let session: SessionService;
@@ -29,6 +32,7 @@ describe('SessionService', () => {
         provideHttpClientTesting(),
         // No canvas in tests: treat the named regions as land.
         { provide: LandService, useValue: { landTestFor: () => Promise.reject(new Error('no canvas')) } },
+        { provide: PERSISTENCE, useFactory: () => choosePersistence(async () => false) },
       ],
     });
     session = TestBed.inject(SessionService);
@@ -39,7 +43,7 @@ describe('SessionService', () => {
 
   it('boots a new session from the seed, falling back to regions for land', async () => {
     const booting = session.boot();
-    await Promise.resolve();
+    await settleBoot();
     flushSeed(http);
     await booting;
     expect(session.status()).toEqual({ state: 'ready' });
@@ -49,15 +53,17 @@ describe('SessionService', () => {
 
   it('resumes from the autosave when there is one', async () => {
     const booting = session.boot();
-    await Promise.resolve();
+    await settleBoot();
     flushSeed(http);
     await booting;
     const saved = store.state()!;
+    // Let the first session's own autosave land first, then plant the one to resume.
+    TestBed.tick();
     localStorage.setItem(AUTOSAVE_KEY, serialize({ ...saved, commanderId: 'imogen' }, 'Autosave'));
 
     const again = TestBed.inject(SessionService);
     const reboot = again.boot();
-    await Promise.resolve();
+    await settleBoot();
     flushSeed(http);
     await reboot;
     expect(store.lastAction()).toBe('Resumed from autosave');
@@ -68,7 +74,7 @@ describe('SessionService', () => {
     const broken = structuredClone(SEED.resources);
     broken.heroes[0].power = 12;
     const booting = session.boot();
-    await Promise.resolve();
+    await settleBoot();
     flushSeed(http, { resources: broken });
     await booting;
     const s = session.status();

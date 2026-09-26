@@ -5,7 +5,9 @@ import { LandTest } from '../engine/land';
 import { deserialize } from '../engine/save';
 import { MapDef, Seed } from '../engine/seed-types';
 import { GameStore } from './game-store';
+import { PERSISTENCE } from './persistence';
 import { PortraitStore } from './portrait-store';
+import { TurnSnapshots } from './turn-snapshots';
 import { LandService } from './land.service';
 import { SeedService } from './seed.service';
 
@@ -18,6 +20,8 @@ export class SessionService {
   private readonly land = inject(LandService);
   private readonly store = inject(GameStore);
   private readonly portraits = inject(PortraitStore);
+  private readonly persistence = inject(PERSISTENCE);
+  private readonly snapshots = inject(TurnSnapshots);
 
   private readonly _status = signal<SessionStatus>({ state: 'loading' });
   readonly status = this._status.asReadonly();
@@ -45,7 +49,10 @@ export class SessionService {
     this.seed = s.seed;
     this.rules = rulesFromSeed(s.seed, { map, isLand: await this.landTest(map) });
 
-    const auto = this.store.readAutosave();
+    // Where the data lives (the Umbrel or this browser) is settled before anything is read.
+    await this.persistence.ready;
+    await this.snapshots.reload();
+    const auto = await this.store.readAutosave();
     const saved = auto ? deserialize(auto) : null;
     if (saved?.ok) this.store.resume(saved.state.state, this.rules, 'Resumed from autosave');
     else this.store.start(this.seed, this.rules);

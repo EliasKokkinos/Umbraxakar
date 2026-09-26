@@ -1,8 +1,9 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { GameState } from '../engine/game-state';
 import { deserialize, serialize } from '../engine/save';
+import { PERSISTENCE } from './persistence';
 
-export const SNAPSHOTS_KEY = 'chaos-engine:turns';
+export { SNAPSHOTS_KEY } from './persistence';
 export const SNAPSHOT_LIMIT = 10;
 
 export interface TurnSnapshot {
@@ -16,14 +17,31 @@ export interface TurnSnapshot {
 }
 
 /**
- * The state at the start of each turn, the last ten kept in browser storage. Undo covers
- * ten actions; this covers ten turns.
+ * The state at the start of each turn, the last ten kept: on the Umbrel's disk, or in this
+ * browser. Undo covers ten actions; this covers ten turns.
  */
 @Injectable({ providedIn: 'root' })
 export class TurnSnapshots {
-  private readonly _list = signal<TurnSnapshot[]>(this.read());
+  private readonly persistence = inject(PERSISTENCE);
+  private readonly _list = signal<TurnSnapshot[]>([]);
+  /** Counts writes, so a slow read never overwrites a snapshot recorded after it began. */
+  private writes = 0;
   /** Newest first. */
   readonly list = this._list.asReadonly();
+  /** Resolves once the stored list has been read. */
+  readonly ready: Promise<void> = this.reload();
+
+  /** Reads the stored list again (a reload, or after storage moves to the server). */
+  async reload(): Promise<void> {
+    const before = this.writes;
+    let stored: TurnSnapshot[] = [];
+    try {
+      stored = await this.persistence.readSnapshots();
+    } catch {
+      // Unreadable storage: start from an empty list.
+    }
+    if (before === this.writes) this._list.set(stored);
+  }
 
   record(state: GameState, label: string, now = new Date()): void {
     const entry: TurnSnapshot = {
@@ -33,10 +51,10 @@ export class TurnSnapshots {
       label,
       save: serialize(state, label, now),
     };
-    let next = [entry, ...this._list()].slice(0, SNAPSHOT_LIMIT);
-    // Browser storage is small: if it is full, give up the oldest turns rather than the newest.
-    while (next.length && !this.write(next)) next = next.slice(0, -1);
+    const next = [entry, ...this._list()].slice(0, SNAPSHOT_LIMIT);
+    this.writes++;
     this._list.set(next);
+    void this.persist(next);
   }
 
   /** The saved state, migrated to the current version, or null if it cannot be read. */
@@ -47,25 +65,15 @@ export class TurnSnapshots {
   }
 
   clear(): void {
-    this.write([]);
+    this.writes++;
     this._list.set([]);
+    void this.persistence.writeSnapshots([]);
   }
 
-  private read(): TurnSnapshot[] {
-    try {
-      const raw = localStorage.getItem(SNAPSHOTS_KEY);
-      return raw ? (JSON.parse(raw) as TurnSnapshot[]) : [];
-    } catch {
-      return [];
-    }
-  }
-
-  private write(list: TurnSnapshot[]): boolean {
-    try {
-      localStorage.setItem(SNAPSHOTS_KEY, JSON.stringify(list));
-      return true;
-    } catch {
-      return false;
-    }
+  /** Browser storage is small: if it is full, give up the oldest turns rather than the newest. */
+  private async persist(list: TurnSnapshot[]): Promise<void> {
+    let kept = list;
+    while (kept.length && !(await this.persistence.writeSnapshots(kept))) kept = kept.slice(0, -1);
+    if (kept.length !== list.length) this._list.set(kept);
   }
 }

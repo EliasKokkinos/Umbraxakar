@@ -1,17 +1,22 @@
 import { TestBed } from '@angular/core/testing';
+import { Injector, runInInjectionContext } from '@angular/core';
 import { RULES, SEED } from '../engine/testing';
 import { GameStore } from './game-store';
+import { PERSISTENCE, choosePersistence } from './persistence';
 import { SNAPSHOTS_KEY, SNAPSHOT_LIMIT, TurnSnapshots } from './turn-snapshots';
+
+const settle = () => new Promise((r) => setTimeout(r, 0));
 
 describe('TurnSnapshots', () => {
   let store: GameStore;
   let snapshots: TurnSnapshots;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     localStorage.clear();
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ providers: [{ provide: PERSISTENCE, useFactory: () => choosePersistence(async () => false) }] });
     store = TestBed.inject(GameStore);
     snapshots = TestBed.inject(TurnSnapshots);
+    await snapshots.ready;
     store.start(SEED, RULES, 77);
   });
 
@@ -51,14 +56,16 @@ describe('TurnSnapshots', () => {
     expect(snapshots.list().map((s) => s.turn)).toEqual([4, 3, 2, 1]);
   });
 
-  it('survives a reload: the list is read back from storage', () => {
+  it('survives a reload: the list is read back from storage', async () => {
     playTurn();
-    const again = new TurnSnapshots();
+    await settle();
+    const again = runInInjectionContext(TestBed.inject(Injector), () => new TurnSnapshots());
+    await again.ready;
     expect(again.list().map((s) => s.turn)).toEqual([2, 1]);
     expect(JSON.parse(localStorage.getItem(SNAPSHOTS_KEY)!)).toHaveLength(2);
   });
 
-  it('gives up the oldest turns when storage is full', () => {
+  it('gives up the oldest turns when storage is full', async () => {
     playTurn();
     playTurn();
     const realSetItem = Storage.prototype.setItem;
@@ -68,6 +75,7 @@ describe('TurnSnapshots', () => {
       realSetItem.call(this, key, value);
     });
     playTurn();
+    await settle();
     spy.mockRestore();
     expect(snapshots.list().map((s) => s.turn)).toEqual([4, 3]);
   });

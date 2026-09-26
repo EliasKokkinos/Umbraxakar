@@ -4,19 +4,9 @@ import { cropSquare } from '../shared/portrait';
 import { newGame } from '../engine/game-state';
 import { deserialize, serialize } from '../engine/save';
 import { RULES, SEED } from '../engine/testing';
-import { PORTRAIT_BACKEND, PortraitBackend, PortraitStore } from './portrait-store';
+import { PERSISTENCE, memoryChosen } from './persistence';
+import { PortraitStore } from './portrait-store';
 import { CHANNEL_FACTORY, Channel } from './table-sync';
-
-/** One shared in-memory "IndexedDB", as two windows of one browser would share. */
-function memoryBackend(): PortraitBackend {
-  const db = new Map<string, string>();
-  return {
-    getAll: async () => Object.fromEntries(db),
-    put: async (id, url) => void db.set(id, url),
-    delete: async (id) => void db.delete(id),
-    clear: async () => db.clear(),
-  };
-}
 
 function channelHub() {
   const members = new Set<Channel>();
@@ -55,7 +45,8 @@ describe('PortraitStore', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: PORTRAIT_BACKEND, useValue: memoryBackend() },
+        // One shared store, as two windows of one browser (or one Umbrel) share.
+        { provide: PERSISTENCE, useValue: memoryChosen() },
         { provide: CHANNEL_FACTORY, useValue: channelHub() },
       ],
     });

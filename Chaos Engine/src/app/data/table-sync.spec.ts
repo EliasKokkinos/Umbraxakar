@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { PERSISTENCE, memoryChosen } from './persistence';
 import { Injector, runInInjectionContext } from '@angular/core';
 import { RULES, SEED } from '../engine/testing';
 import { eventOf } from '../engine/game-state';
@@ -41,6 +42,7 @@ describe('table sync', () => {
       providers: [
         { provide: CHANNEL_FACTORY, useValue: channelHub() },
         { provide: SeedService, useValue: { seed: () => SEED } },
+        { provide: PERSISTENCE, useFactory: memoryChosen },
       ],
     });
     store = TestBed.inject(GameStore);

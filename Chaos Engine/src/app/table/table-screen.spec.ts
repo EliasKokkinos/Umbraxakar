@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { PERSISTENCE, memoryChosen } from '../data/persistence';
 import { signal } from '@angular/core';
 import { chooseCommander } from '../engine/commanders';
 import { assign } from '../engine/assignment';
@@ -26,6 +27,7 @@ describe('TableScreen', () => {
       providers: [
         { provide: TableClient, useValue: { view, error: signal(null), send: vi.fn(), clearError: vi.fn() } },
         { provide: TableSound, useValue: sound },
+        { provide: PERSISTENCE, useFactory: memoryChosen },
       ],
     });
   });
