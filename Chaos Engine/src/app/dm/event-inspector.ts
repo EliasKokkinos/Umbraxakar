@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, output, si
 import { GameStore } from '../data/game-store';
 import { eventDifficulty } from '../engine/assignment';
 import { PortalPatch, TemplePatch, removeEvent, updatePortal, updateTemple } from '../engine/dm-edits';
-import { activeTemplesCovering } from '../engine/events';
+import { AURA_RADIUS_RANGE, activeTemplesCovering, auraRadiusOf } from '../engine/events';
 import { currentOdds } from '../engine/odds';
 import { eventById, resourceById } from '../engine/game-state';
 import { hostOptionsFor, resourceView } from '../engine/views';
@@ -34,10 +34,37 @@ export class EventInspector {
     const id = this.event()?.regionId;
     return this.store.rules.map.map.regions.find((r) => r.id === id)?.name ?? 'Beyond the named lands';
   });
+  /** The reach of every temple, in whole percent of the map's width. */
+  protected readonly reach = computed(() => {
+    const events = this.store.state()!.events;
+    const pct = (r: number) => Math.round(r * 100);
+    return {
+      pct: pct(auraRadiusOf(events, this.store.rules.events)),
+      config: pct(this.store.rules.events.temple.auraRadius),
+      edited: events.auraRadius !== null,
+      min: pct(AURA_RADIUS_RANGE[0]),
+      max: pct(AURA_RADIUS_RANGE[1]),
+    };
+  });
+
+  protected setReach(ev: Event): void {
+    this.store.setAuraRadius(Number((ev.target as HTMLInputElement).value) / 100);
+  }
+
+  protected resetReach(): void {
+    this.store.setAuraRadius(null);
+  }
+
   protected readonly warded = computed(() => {
     const e = this.event();
     if (!e) return [];
-    return activeTemplesCovering(e.position, this.store.state()!.events.temples, this.store.rules.events, this.store.rules.map.map).filter(
+    return activeTemplesCovering(
+      e.position,
+      this.store.state()!.events.temples,
+      this.store.rules.events,
+      this.store.rules.map.map,
+      auraRadiusOf(this.store.state()!.events, this.store.rules.events),
+    ).filter(
       (t) => t.id !== e.id,
     );
   });

@@ -3,7 +3,7 @@ import { PortraitStore } from '../data/portrait-store';
 import { PortalState, TempleState } from '../engine/event-state';
 import { Odds } from '../engine/odds';
 import { ResourceView } from '../engine/views';
-import { NOTCH_PATHS, RESOURCE_DRAG_TYPE } from '../shared/map-board';
+import { NOTCH_PATHS, RESOURCE_DRAG_TYPE, templeGlyph } from '../shared/map-board';
 import { factionHue, monogram } from './resource-card';
 
 /** A portal or temple on the TV: what it is, how bad it is, who is there, and the odds. */
@@ -39,6 +39,7 @@ export class EventDetail {
   protected readonly dropping = signal(false);
 
   protected readonly notches = NOTCH_PATHS;
+  protected readonly templePath = templeGlyph(10);
   protected readonly threatSegments = Array.from({ length: 10 }, (_, i) => i + 1);
 
   protected readonly portal = computed(() => {

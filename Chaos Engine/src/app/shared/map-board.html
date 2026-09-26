@@ -32,8 +32,9 @@
     >
       <title>{{ t.name }}{{ t.active ? '' : ' (dormant)' }}</title>
       <circle class="ring" [attr.r]="r + 4" />
-      <!-- A crescent: the dark moon of Kurald Galain. -->
-      <path class="crescent" [attr.d]="'M 0 -' + r + ' A ' + r + ' ' + r + ' 0 1 0 0 ' + r + ' A ' + r * 0.7 + ' ' + r + ' 0 1 1 0 -' + r" />
+      <!-- A temple of Mother Dark on a plate of night, so it reads on any land. -->
+      <circle class="plate" [attr.r]="r + 1" />
+      <path class="glyph" [attr.d]="templePath" />
       @if (t.assigned.length) {
         <g class="badge" [attr.transform]="'translate(' + r + ' ' + r + ')'">
           <circle r="5.5" />

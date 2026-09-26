@@ -1,6 +1,6 @@
 // DM-only corrections: the DM can alter anything, within the rule ranges.
 import { EventState, PortalState, TempleState } from './event-state';
-import { makePortal, seedPortals } from './events';
+import { AURA_RADIUS_RANGE, makePortal, seedPortals } from './events';
 import { GameState, Result, Rules, eventById, fail, ok, resourceById } from './game-state';
 import { regionAt } from './geometry';
 import { Injury, ResourceState } from './resource-state';
@@ -260,4 +260,11 @@ export function setTreasuryVisibility(state: GameState, showTreasuryOnTable: boo
 export function setFacilityLevel(state: GameState, id: string, level: number): Result {
   if (!(id in state.castle.facilities)) return fail(`No facility ${id}`);
   return ok({ ...state, castle: { ...state.castle, facilities: { ...state.castle.facilities, [id]: clamp(level, 1, 3) } } });
+}
+
+/** The reach of every Mother Dark temple, as a share of the map's width; null restores the config's. */
+export function setAuraRadius(state: GameState, radius: number | null): Result {
+  if (radius !== null && !Number.isFinite(radius)) return fail('The reach must be a number');
+  const next = radius === null ? null : clamp(Math.round(radius * 1000) / 1000, AURA_RADIUS_RANGE[0], AURA_RADIUS_RANGE[1]);
+  return ok({ ...state, events: { ...state.events, auraRadius: next } });
 }

@@ -51,6 +51,16 @@ header {
   box-shadow: 0 0 0.7rem var(--heat);
 }
 
+.temple-glyph {
+  width: 1.6rem;
+  height: 1.6rem;
+
+  path {
+    fill: var(--heat);
+    filter: drop-shadow(0 0 3px var(--heat));
+  }
+}
+
 .sub {
   margin: 0.15rem 0 0;
   color: var(--ce-ash);

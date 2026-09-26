@@ -62,6 +62,7 @@ export function eventsState(overrides: Partial<EventsState> = {}): EventsState {
     temples: (templesSeed as unknown as TempleSeed[]).map(templeFromSeed),
     civilianDeaths: 0,
     nextPortalSerial: 1,
+    auraRadius: null,
     ...overrides,
   };
 }

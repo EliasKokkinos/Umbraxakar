@@ -1,4 +1,4 @@
-import { newGame } from './game-state';
+import { GAME_STATE_VERSION as V, newGame } from './game-state';
 import { SAVE_FORMAT, deserialize, serialize } from './save';
 import { endTurn } from './turn';
 import { RULES, SEED } from './testing';
@@ -36,10 +36,10 @@ describe('save files', () => {
 
   it('migrates older saves forward, step by step', () => {
     const current = serialize(state, 'old');
-    const migrations = { 4: (s: Record<string, unknown>) => ({ ...s, addedInV5: true }) };
-    const loaded = deserialize(current, migrations, 5);
-    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 5, addedInV5: true });
-    expect(deserialize(current, {}, 5)).toEqual({ ok: false, error: 'No migration from save version 4' });
+    const migrations = { [V]: (s: Record<string, unknown>) => ({ ...s, addedNext: true }) };
+    const loaded = deserialize(current, migrations, V + 1);
+    expect(loaded.ok && loaded.state.state).toMatchObject({ version: V + 1, addedNext: true });
+    expect(deserialize(current, {}, V + 1)).toEqual({ ok: false, error: `No migration from save version ${V}` });
   });
 
   it('upgrades a real version 1 save (before commanders took command per turn)', () => {
@@ -48,7 +48,7 @@ describe('save files', () => {
     file.version = 1;
     file.state.version = 1;
     const loaded = deserialize(JSON.stringify(file));
-    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 4, commanderTurn: null, commandSway: null, commanderInfluence: {} });
+    expect(loaded.ok && loaded.state.state).toMatchObject({ version: V, commanderTurn: null, commandSway: null, commanderInfluence: {}, events: { auraRadius: null } });
   });
 
   it('upgrades a version 2 save: heroes alone in the field come home, hero-on-hero attachments end', () => {
@@ -65,7 +65,7 @@ describe('save files', () => {
     const loaded = deserialize(JSON.stringify(file));
     if (!loaded.ok) throw new Error(loaded.error);
     const s = loaded.state.state;
-    expect(s.version).toBe(4);
+    expect(s.version).toBe(V);
     expect(s.events.portals[0].assigned).toEqual(['bridgeburners']);
     expect(s.resources.find((r) => r.id === 'blues')!.attachedTo).toBeNull();
     expect(s.resources.find((r) => r.id === 'cowl')!.attachedTo).toBe('avowed-prince');

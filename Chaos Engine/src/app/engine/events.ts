@@ -15,18 +15,32 @@ const MAX_PLACEMENT_ATTEMPTS = 500;
 
 // ---------------------------------------------------------------- temple aura
 
-export function activeTemplesCovering(p: Point, temples: TempleState[], cfg: EventsConfig, map: MapDef): TempleState[] {
-  const aspect = aspectOf(map);
-  return temples.filter((t) => t.active && mapDistance(p, t.position, aspect) <= cfg.temple.auraRadius);
+/** The narrowest and widest reach the DM may give the temples, as shares of the map's width. */
+export const AURA_RADIUS_RANGE = [0.01, 0.25] as const;
+
+/** The reach of every temple: the DM's, if set, otherwise the config's. */
+export function auraRadiusOf(events: Pick<EventsState, 'auraRadius'>, cfg: EventsConfig): number {
+  return events.auraRadius ?? cfg.temple.auraRadius;
 }
 
-export function inTempleAura(p: Point, temples: TempleState[], cfg: EventsConfig, map: MapDef): boolean {
-  return activeTemplesCovering(p, temples, cfg, map).length > 0;
+export function activeTemplesCovering(
+  p: Point,
+  temples: TempleState[],
+  cfg: EventsConfig,
+  map: MapDef,
+  radius = cfg.temple.auraRadius,
+): TempleState[] {
+  const aspect = aspectOf(map);
+  return temples.filter((t) => t.active && mapDistance(p, t.position, aspect) <= radius);
+}
+
+export function inTempleAura(p: Point, temples: TempleState[], cfg: EventsConfig, map: MapDef, radius = cfg.temple.auraRadius): boolean {
+  return activeTemplesCovering(p, temples, cfg, map, radius).length > 0;
 }
 
 /** Highest corruption a portal at this position may reach. */
-export function corruptionCap(p: Point, temples: TempleState[], cfg: EventsConfig, map: MapDef): number {
-  return inTempleAura(p, temples, cfg, map) ? cfg.temple.corruptionCapInAura : cfg.portal.maxCorruption;
+export function corruptionCap(p: Point, temples: TempleState[], cfg: EventsConfig, map: MapDef, radius = cfg.temple.auraRadius): number {
+  return inTempleAura(p, temples, cfg, map, radius) ? cfg.temple.corruptionCapInAura : cfg.portal.maxCorruption;
 }
 
 // ---------------------------------------------------------------- seeding
@@ -74,7 +88,7 @@ export function makePortal(id: string, position: Point, state: EventsState, ctx:
     dmNotes: '',
     createdTurn: state.turn,
     lastOutcome: null,
-    corruption: Math.min(cfg.portal.startingCorruption, corruptionCap(position, state.temples, cfg, ctx.map)),
+    corruption: Math.min(cfg.portal.startingCorruption, corruptionCap(position, state.temples, cfg, ctx.map, auraRadiusOf(state, cfg))),
     difficulty: rng.int(dLo, dHi),
     impact: rng.int(iLo, iHi),
     legendary: false,
@@ -212,7 +226,7 @@ export function runEventPhase(
     if (lost > 0) report.casualtiesByPortal[p.id] = lost;
     civilianDeaths += lost;
 
-    const grown = growCorruption(p, outcome, corruptionCap(p.position, temples, cfg, ctx.map), cfg);
+    const grown = growCorruption(p, outcome, corruptionCap(p.position, temples, cfg, ctx.map, auraRadiusOf(state, cfg)), cfg);
     if (grown.legendary && !p.legendary) report.legendarySpawns.push(p.id);
     return { ...grown, assigned, lastOutcome: outcome };
   });

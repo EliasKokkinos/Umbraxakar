@@ -2,6 +2,7 @@
 // so DM-only information cannot leak by construction: it is simply never put in.
 import { BattleResult } from './battle';
 import { appliedSway, hasCommanderThisTurn } from './commanders';
+import { auraRadiusOf } from './events';
 import { Odds, SendOdds, currentOdds, oddsIfSent } from './odds';
 import { facilityLevel } from './castle';
 import { PortalState, TempleState } from './event-state';
@@ -149,7 +150,7 @@ export function tableView(state: GameState, rules: Rules, commanders: Commander[
     openPortals: portals.length,
     treasury: state.castle.showTreasuryOnTable ? state.castle.treasury : null,
     map: tableMap(rules.map.map),
-    auraRadius: rules.events.temple.auraRadius,
+    auraRadius: auraRadiusOf(state.events, rules.events),
     portals,
     temples,
     resources,

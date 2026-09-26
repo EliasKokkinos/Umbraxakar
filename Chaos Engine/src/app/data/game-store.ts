@@ -2,6 +2,7 @@ import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { assign, attach, detach, unassign } from '../engine/assignment';
 import { Harm, Outcome } from '../engine/battle';
 import { chooseCommander, removeInfluence, resetInfluence, resolveBlocker, setInfluence } from '../engine/commanders';
+import { setAuraRadius } from '../engine/dm-edits';
 import { GameState, Result, Rules, eventById, newGame, resourceById } from '../engine/game-state';
 import { History, createHistory, push, redo, undo } from '../engine/history';
 import { deserialize, serialize } from '../engine/save';
@@ -144,6 +145,12 @@ export class GameStore {
 
   resetSway(commanderId: string): boolean {
     return this.act(`Restore ${this.commanderName(commanderId)}'s sway from the archive`, (s) => resetInfluence(s, commanderId));
+  }
+
+  /** The reach of every temple, as a share of the map's width; null restores the config's. */
+  setAuraRadius(radius: number | null): boolean {
+    const label = radius === null ? "Restore the temples' reach" : `Set the temples' reach to ${Math.round(radius * 100)}%`;
+    return this.act(label, (s) => setAuraRadius(s, radius));
   }
 
   private commanderName(id: string): string {

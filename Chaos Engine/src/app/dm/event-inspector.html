@@ -30,6 +30,26 @@
         <tr><td>Activation difficulty</td><td>{{ e.activationDifficulty }}</td></tr>
         <tr><td>Known through</td><td>{{ e.origin === 'story' ? 'the story' : e.origin === 'ally' ? 'an ally' : 'not yet known' }}</td></tr>
       </table>
+      @let rc = reach();
+      <div class="reach">
+        <label for="temple-reach">Reach of every temple</label>
+        <span class="num value">{{ rc.pct }}% of the map</span>
+        <input
+          id="temple-reach"
+          type="range"
+          [min]="rc.min"
+          [max]="rc.max"
+          step="1"
+          [value]="rc.pct"
+          (change)="setReach($event)"
+        />
+        <p class="hint">
+          One reach for every temple, shown as the violet circles on the map.
+          @if (rc.edited) {
+            <button type="button" class="link" (click)="resetReach()">Back to {{ rc.config }}%</button>
+          }
+        </p>
+      </div>
     }
     @if (warded().length) {
       <p class="line">Warded by {{ warded()[0].name }}: corruption cannot rise above 2, and Tiste Andii fight at +3.</p>

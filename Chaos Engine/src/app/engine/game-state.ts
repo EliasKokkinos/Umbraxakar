@@ -7,7 +7,7 @@ import { HeroState, ResourceState, resourcesFromSeed } from './resource-state';
 import { Rng } from './rng';
 import { CastleSeed, Commander, CommanderInfluence, EventsConfig, ResolutionConfig, Seed } from './seed-types';
 
-export const GAME_STATE_VERSION = 4;
+export const GAME_STATE_VERSION = 5;
 
 /** A hero in the Healers' Hall: occupies a slot and the hero until done. */
 export interface Treatment {
@@ -150,6 +150,7 @@ export function newGame(seed: Seed, rules: Rules, rngSeed: number): GameState {
     temples: seed.temples.map(templeFromSeed),
     civilianDeaths: 0,
     nextPortalSerial: 1,
+    auraRadius: null,
   };
   const state: GameState = {
     version: GAME_STATE_VERSION,

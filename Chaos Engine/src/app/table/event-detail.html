@@ -3,7 +3,11 @@
   <button type="button" class="close" aria-label="Close" (click)="close.emit()">×</button>
 
   <header>
-    <span class="sigil" aria-hidden="true"></span>
+    @if (temple()) {
+      <svg class="temple-glyph" viewBox="-10 -10 20 20" aria-hidden="true"><path [attr.d]="templePath" /></svg>
+    } @else {
+      <span class="sigil" aria-hidden="true"></span>
+    }
     <div>
       <h2>{{ e.name }}</h2>
       <p class="sub">

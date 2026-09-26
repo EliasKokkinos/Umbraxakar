@@ -2,7 +2,7 @@ import { eventDifficulty } from './assignment';
 import { BattleInput, BattleResult, Card, resolveBattle } from './battle';
 import { runCastlePhase } from './castle';
 import { EventState } from './event-state';
-import { EventBattle, inTempleAura, runEventPhase } from './events';
+import { EventBattle, auraRadiusOf, inTempleAura, runEventPhase } from './events';
 import { GameState, Rules, allEvents, attachedTo, resourceById } from './game-state';
 import { applyBattleResult } from './morale';
 import { ResourceState } from './resource-state';
@@ -32,7 +32,7 @@ export function battleInputFor(state: GameState, event: EventState, rules: Rules
     difficulty: eventDifficulty(event),
     legendary: event.type === 'chaos-portal' && event.legendary,
     cards: cardsAt(state, event),
-    inTempleAura: inTempleAura(event.position, state.events.temples, rules.events, rules.map.map),
+    inTempleAura: inTempleAura(event.position, state.events.temples, rules.events, rules.map.map, auraRadiusOf(state.events, rules.events)),
     templeBonus: rules.events.temple.tisteAndiiPowerBonus,
     templeBonusTag: rules.events.temple.bonusTag,
   };

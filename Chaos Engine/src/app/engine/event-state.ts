@@ -43,6 +43,8 @@ export interface EventsState {
   temples: TempleState[];
   civilianDeaths: number;
   nextPortalSerial: number;
+  /** The DM's reach for every Mother Dark temple, as a share of the map's width; null keeps the config's. */
+  auraRadius: number | null;
 }
 
 export function templeFromSeed(t: TempleSeed): TempleState {

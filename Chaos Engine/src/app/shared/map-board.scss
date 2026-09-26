@@ -131,20 +131,33 @@ g[role='button'] {
 }
 
 .temple {
-  .crescent {
-    fill: none;
-    stroke: var(--ce-galain);
-    stroke-width: 1.8;
+  .plate {
+    fill: #1d1a2e;
+    stroke: color-mix(in srgb, var(--ce-galain) 45%, transparent);
+    stroke-width: 1.2;
   }
 
-  &.active .crescent {
-    fill: var(--ce-galain);
+  // Dormant: a faint outline of what could be woken.
+  .glyph {
+    fill: color-mix(in srgb, var(--ce-galain) 30%, transparent);
+  }
+
+  &.active {
+    .plate {
+      stroke: var(--ce-galain);
+      stroke-width: 1.6;
+    }
+
+    .glyph {
+      fill: var(--ce-galain);
+      filter: drop-shadow(0 0 2px rgba(157, 138, 230, 0.7));
+    }
   }
 
   &.hidden {
     opacity: 0.5;
 
-    .crescent {
+    .plate {
       stroke-dasharray: 2 2;
     }
   }

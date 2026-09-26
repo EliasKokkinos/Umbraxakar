@@ -19,7 +19,9 @@ import { PortalState, TempleState } from './event-state';
 import { RULES, SEED, group } from './testing';
 import { attach } from './assignment';
 import { train } from './castle';
-import { NewResourceSpec } from './dm-edits';
+import { NewResourceSpec, setAuraRadius } from './dm-edits';
+import { auraRadiusOf } from './events';
+import { resourceView } from './views';
 
 const unwrap = (r: Result): GameState => {
   if (!r.ok) throw new Error(r.error);
@@ -177,5 +179,31 @@ describe('DM edits: new and removed resources', () => {
     t = unwrap(removeResource(t, 'uruk'));
     expect(t.castle.training).toEqual([]);
     expect(removeResource(t, 'uruk').ok).toBe(false);
+  });
+});
+
+describe('setAuraRadius', () => {
+  it('sets one reach for every temple, within bounds, and restores the config one', () => {
+    const s = newGame(SEED, RULES, 3);
+    expect(auraRadiusOf(s.events, RULES.events)).toBe(RULES.events.temple.auraRadius);
+    const wide = unwrap(setAuraRadius(s, 0.12));
+    expect(auraRadiusOf(wide.events, RULES.events)).toBe(0.12);
+    expect(unwrap(setAuraRadius(s, 5)).events.auraRadius).toBe(0.25);
+    expect(unwrap(setAuraRadius(s, 0)).events.auraRadius).toBe(0.01);
+    expect(setAuraRadius(s, Number.NaN).ok).toBe(false);
+    expect(unwrap(setAuraRadius(wide, null)).events.auraRadius).toBeNull();
+  });
+
+  it('changes who fights inside the aura', () => {
+    // A portal just beyond Jhag Odhan's usual reach.
+    let s = newGame(SEED, RULES, 3);
+    const jhag = s.events.temples.find((t) => t.active && t.name.includes('Jhag'))!;
+    const near = { ...s.events.portals[0], id: 'near', position: { x: jhag.position.x + 0.09, y: jhag.position.y }, assigned: [] };
+    s = { ...s, events: { ...s.events, portals: [...s.events.portals, near] } };
+    s = unwrap(attach(s, 'korlat', 'bluerose-1'));
+    s = unwrap(assign(s, 'bluerose-1', 'near', RULES));
+    const motherDark = (st: GameState) => resourceView(st, resourceById(st, 'bluerose-1')!, RULES).power.parts.some((p) => p.label === 'Mother Dark');
+    expect(motherDark(s)).toBe(false);
+    expect(motherDark(unwrap(setAuraRadius(s, 0.12)))).toBe(true);
   });
 });

@@ -11,6 +11,24 @@ export const HERO_DRAG_TYPE = 'application/x-chaos-hero';
 const NOTCHES = 5;
 const R = 9; // marker radius in view units
 
+/**
+ * A temple in silhouette (pediment, four columns, two steps), drawn in a unit square
+ * about the origin and scaled to fit inside a marker of radius `r`.
+ */
+export function templeGlyph(r: number): string {
+  const k = r * 0.72;
+  const p = (x: number, y: number) => `${+(x * k).toFixed(2)} ${+(y * k).toFixed(2)}`;
+  const box = (x0: number, y0: number, x1: number, y1: number) => `M ${p(x0, y0)} L ${p(x1, y0)} L ${p(x1, y1)} L ${p(x0, y1)} Z`;
+  const columns = [-0.78, -0.33, 0.12, 0.57].map((x) => box(x, -0.18, x + 0.21, 0.58));
+  return [
+    `M ${p(-1.05, -0.4)} L ${p(0, -1)} L ${p(1.05, -0.4)} Z`, // pediment
+    box(-0.95, -0.34, 0.95, -0.2), // architrave
+    ...columns,
+    box(-0.98, 0.62, 0.98, 0.78), // stylobate
+    box(-1.12, 0.82, 1.12, 0.98), // lower step
+  ].join(' ');
+}
+
 /** One arc of the corruption ring, as an SVG path around (0, 0). */
 function notch(i: number, radius: number): string {
   const gap = 0.14;
@@ -62,6 +80,7 @@ export class MapBoard {
   protected readonly viewBox = computed(() => `0 0 ${VIEW_W} ${this.viewH()}`);
   protected readonly notches = NOTCH_PATHS;
   protected readonly r = R;
+  protected readonly templePath = templeGlyph(R);
 
   protected readonly visiblePortals = computed(() =>
     this.portals().filter((p) => p.status === 'open' && (this.dmView() || !p.hidden)),

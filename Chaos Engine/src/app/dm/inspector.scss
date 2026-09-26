@@ -233,3 +233,37 @@ section {
     border-color: var(--ce-oxblood);
   }
 }
+
+// The reach of every temple: one global setting, shown on each temple.
+.reach {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 0.2rem 0.5rem;
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--ce-galain) 45%, var(--ce-rule));
+  border-radius: var(--ce-radius);
+
+  .value {
+    color: var(--ce-galain);
+    font-weight: 700;
+  }
+
+  input {
+    grid-column: 1 / -1;
+    width: 100%;
+    accent-color: var(--ce-galain);
+  }
+
+  .hint {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--ce-ash);
+    font-size: var(--ce-small);
+  }
+
+  .link {
+    margin-left: 0.3rem;
+  }
+}

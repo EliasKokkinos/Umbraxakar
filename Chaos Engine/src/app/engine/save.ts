@@ -35,6 +35,8 @@ export const MIGRATIONS: Record<number, (state: Record<string, unknown>) => Reco
   },
   // v4: the DM can rewrite a commander's sway; the sway applied at command is recorded.
   3: (s) => ({ ...s, commandSway: null, commanderInfluence: {} }),
+  // v5: the DM sets the reach of the temples.
+  4: (s) => ({ ...s, events: { ...(s['events'] as object), auraRadius: null } }),
 };
 
 export function toSaveFile(state: GameState, label: string, now = new Date(), portraits?: Record<string, string>): SaveFile {

@@ -2,7 +2,7 @@
 import { eventDifficulty } from './assignment';
 import { BattleResult, Harm } from './battle';
 import { EventState } from './event-state';
-import { inTempleAura } from './events';
+import { auraRadiusOf, inTempleAura } from './events';
 import { GameState, Rules, allEvents, attachedTo, eventById, eventOf, isOccupied, resourceById } from './game-state';
 import { canDeploy } from './morale';
 import { PowerBreakdown, effectivePower } from './power';
@@ -36,7 +36,7 @@ export interface ResourceView {
 function powerInPlace(state: GameState, r: ResourceState, rules: Rules): PowerBreakdown {
   // A hero riding with a group fights where the group fights.
   const event = eventOf(state, r.attachedTo ?? r.id);
-  const inAura = !!event && inTempleAura(event.position, state.events.temples, rules.events, rules.map.map);
+  const inAura = !!event && inTempleAura(event.position, state.events.temples, rules.events, rules.map.map, auraRadiusOf(state.events, rules.events));
   return effectivePower(r, {
     cfg: rules.resolution,
     attached: r.attachedTo ? [] : attachedTo(state, r.id),
