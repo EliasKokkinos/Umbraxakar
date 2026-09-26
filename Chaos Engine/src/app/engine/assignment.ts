@@ -32,13 +32,16 @@ function withEvent(state: GameState, id: string, change: (e: EventState) => Even
   };
 }
 
-/** Sends a card (a host and its attached heroes) to an event. */
+/** The message when a hero is sent alone: heroes take the field only with a group. */
+export const heroesGoWithAGroup = (name: string) => `${name} takes the field with a group: attach them to one first`;
+
+/** Sends a group, and the heroes attached to it, to an event. Only groups go into the field. */
 export function assign(state: GameState, hostId: string, eventId: string, rules: Rules): Result {
   const host = resourceById(state, hostId);
   const event = eventById(state, eventId);
   if (!host) return fail(`No resource ${hostId}`);
   if (!event) return fail(`No event ${eventId}`);
-  if (host.attachedTo) return fail(`${host.name} is attached to another card`);
+  if (host.kind !== 'group') return fail(heroesGoWithAGroup(host.name));
   if (event.type === 'chaos-portal' && event.status === 'closed') return fail('That portal is closed');
   if (event.type === 'mother-dark-temple' && (event.active || !event.discovered)) return fail('That temple cannot be activated');
   if (isOccupied(state, hostId)) return fail(`${host.name} is occupied at the castle`);
@@ -47,9 +50,16 @@ export function assign(state: GameState, hostId: string, eventId: string, rules:
   if (current?.id === eventId) return ok(state);
   if (current) return fail(`${host.name} is already at ${current.name}`);
 
-  const power = effectivePower(host, { cfg: rules.resolution, attached: attachedTo(state, hostId) }).total;
+  const attached = attachedTo(state, hostId);
+  const power = effectivePower(host, { cfg: rules.resolution, attached }).total;
   const check = canDeploy(host, eventDifficulty(event), power, rules.resolution);
   if (!check.ok) return fail(`${host.name}: ${check.reason}`);
+  // Every hero with the group must be willing too: one who refuses holds the group back.
+  for (const hero of attached) {
+    const heroPower = effectivePower(hero, { cfg: rules.resolution }).total;
+    const heroCheck = canDeploy(hero, eventDifficulty(event), heroPower, rules.resolution);
+    if (!heroCheck.ok) return fail(`${hero.name}: ${heroCheck.reason}. Detach them to send ${host.name}.`);
+  }
 
   return ok(withEvent(state, eventId, (e) => ({ ...e, assigned: [...e.assigned, hostId] })));
 }
@@ -64,15 +74,13 @@ export function unassign(state: GameState, hostId: string): Result {
   return ok(withEvent(state, event.id, (e) => ({ ...e, assigned: e.assigned.filter((id) => id !== hostId) })));
 }
 
-/** Attaches a hero to a host card (a group or another hero), up to three per card. */
+/** Attaches a hero to a group, up to three per group. Heroes take the field only this way. */
 export function attach(state: GameState, heroId: string, hostId: string): Result {
   const hero = resourceById(state, heroId);
   const host = resourceById(state, hostId);
   if (!hero || hero.kind === 'group') return fail('Only heroes can be attached');
   if (!host) return fail(`No resource ${hostId}`);
-  if (heroId === hostId) return fail('A hero cannot attach to itself');
-  if (host.attachedTo) return fail(`${host.name} is itself attached`);
-  if (attachedTo(state, heroId).length) return fail(`${hero.name} leads a card of their own`);
+  if (host.kind !== 'group') return fail(`${hero.name} can only join a group`);
   if (attachedTo(state, hostId).length >= MAX_ATTACHED) return fail(`${host.name} already has ${MAX_ATTACHED} heroes`);
   if (eventOf(state, heroId) || eventOf(state, hostId)) return fail('Attach and detach at the castle');
   if (isOccupied(state, heroId)) return fail(`${hero.name} is occupied at the castle`);

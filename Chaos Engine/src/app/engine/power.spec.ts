@@ -46,11 +46,15 @@ describe('effectivePower', () => {
     expect(effectivePower(legion, { cfg: CFG }).total).toBe(2);
   });
 
-  it('adds +1 per attached hero, capped at +3', () => {
+  it('adds a third of each attached hero\'s power, rounded up, capped at +5', () => {
     const legion = group('malazan-legion-1');
-    const h = hero('shimmer');
-    expect(effectivePower(legion, { cfg: CFG, attached: [h] }).total).toBe(5);
-    expect(effectivePower(legion, { cfg: CFG, attached: [h, h, h, h] }).total).toBe(7);
+    expect(effectivePower(legion, { cfg: CFG, attached: [hero('karsa-orlong')] }).total).toBe(4 + 3);
+    expect(effectivePower(legion, { cfg: CFG, attached: [hero('trull-sengar')] }).total).toBe(4 + 2);
+    // A wounded hero lends less: Karsa at 8 - 2 = 6 adds only +2.
+    const hurt = hero('karsa-orlong', { injuries: [{ severity: 'serious', turnsTreated: 0 }] });
+    expect(effectivePower(legion, { cfg: CFG, attached: [hurt] }).total).toBe(4 + 2);
+    const three = [hero('karsa-orlong'), hero('silchas-ruin'), hero('uruk')];
+    expect(effectivePower(legion, { cfg: CFG, attached: three }).total).toBe(4 + 5);
   });
 
   it('grants the Mother Dark bonus only to tiste-andii inside an aura', () => {

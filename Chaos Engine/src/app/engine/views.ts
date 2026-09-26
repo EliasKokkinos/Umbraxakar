@@ -90,7 +90,7 @@ function isContestable(e: EventState): boolean {
 /** Events a card could be sent to, most dangerous first, with why not when blocked. */
 export function eventOptionsFor(state: GameState, hostId: string, rules: Rules): Option[] {
   const host = state.resources.find((r) => r.id === hostId);
-  if (!host) return [];
+  if (!host || host.kind !== 'group') return [];
   const power = effectivePower(host, { cfg: rules.resolution, attached: attachedTo(state, hostId) }).total;
   return allEvents(state)
     .filter(isContestable)
@@ -108,7 +108,7 @@ export function hostOptionsFor(state: GameState, eventId: string, rules: Rules):
   if (!event) return [];
   const d = eventDifficulty(event);
   return state.resources
-    .filter((r) => !r.attachedTo && !event.assigned.includes(r.id))
+    .filter((r) => r.kind === 'group' && !event.assigned.includes(r.id))
     .map((r) => {
       const power = effectivePower(r, { cfg: rules.resolution, attached: attachedTo(state, r.id) }).total;
       const elsewhere = eventOf(state, r.id);

@@ -3,7 +3,7 @@ import { TableClient } from '../data/table-sync';
 import { TableBattle } from '../engine/table-view';
 import { ResourceView } from '../engine/views';
 import { fmt } from '../shared/format';
-import { MapBoard, RESOURCE_DRAG_TYPE } from '../shared/map-board';
+import { HERO_DRAG_TYPE, MapBoard, RESOURCE_DRAG_TYPE } from '../shared/map-board';
 import { EventDetail } from './event-detail';
 import { ResourceCard } from './resource-card';
 import { RevealStage } from './reveal-stage';
@@ -68,6 +68,12 @@ export class TableScreen {
   protected pct(chance: number): string {
     return `${Math.round(chance * 100)}%`;
   }
+
+  /** A hero in hand: they can only join a group, so say so. */
+  protected readonly heldHero = computed(() => {
+    const r = this.view()?.resources.find((x) => x.id === this.heldId());
+    return r && r.kind !== 'group' ? r.name : null;
+  });
 
   protected onHeld(id: string | null): void {
     this.heldId.set(id);
@@ -206,14 +212,15 @@ export class TableScreen {
 
   // The castle is a drop zone too: dropping a card there calls it home.
   protected onCastleDragOver(ev: DragEvent): void {
-    if (!ev.dataTransfer?.types.includes(RESOURCE_DRAG_TYPE)) return;
+    const types = ev.dataTransfer?.types ?? [];
+    if (!types.includes(RESOURCE_DRAG_TYPE) && !types.includes(HERO_DRAG_TYPE)) return;
     ev.preventDefault();
     this.castleDropping.set(true);
   }
 
   protected onCastleDrop(ev: DragEvent): void {
     this.castleDropping.set(false);
-    const id = ev.dataTransfer?.getData(RESOURCE_DRAG_TYPE);
+    const id = ev.dataTransfer?.getData(RESOURCE_DRAG_TYPE) || ev.dataTransfer?.getData(HERO_DRAG_TYPE);
     if (!id) return;
     ev.preventDefault();
     this.recall(id);

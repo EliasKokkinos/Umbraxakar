@@ -70,26 +70,26 @@ describe('table sync', () => {
   it('pushes every change on the DM side to the table', async () => {
     await settle();
     const portal = store.state()!.events.portals[0].id;
-    store.assign('karsa-orlong', portal);
+    store.assign('bridgeburners', portal);
     await settle();
-    expect(client.view()!.resources.find((r) => r.id === 'karsa-orlong')!.location).toMatchObject({ kind: 'event', id: portal });
+    expect(client.view()!.resources.find((r) => r.id === 'bridgeburners')!.location).toMatchObject({ kind: 'event', id: portal });
   });
 
   it('carries out the table’s requests as undoable DM actions', async () => {
     await settle();
     const portal = store.state()!.events.portals[0].id;
-    client.send({ kind: 'assign', hostId: 'uruk', eventId: portal });
+    client.send({ kind: 'assign', hostId: 'bridgeburners', eventId: portal });
     await settle();
-    expect(eventOf(store.state()!, 'uruk')?.id).toBe(portal);
-    expect(store.undoLabel()).toMatch(/^Send Uruk to/);
-    expect(client.view()!.resources.find((r) => r.id === 'uruk')!.location.kind).toBe('event');
+    expect(eventOf(store.state()!, 'bridgeburners')?.id).toBe(portal);
+    expect(store.undoLabel()).toMatch(/^Send Bridgeburners to/);
+    expect(client.view()!.resources.find((r) => r.id === 'bridgeburners')!.location.kind).toBe('event');
   });
 
   it('tells the table when a request is refused', async () => {
     await settle();
-    client.send({ kind: 'assign', hostId: 'anomander-rake', eventId: store.state()!.events.portals[0].id });
+    client.send({ kind: 'assign', hostId: 'karsa-orlong', eventId: store.state()!.events.portals[0].id });
     await settle();
-    expect(client.error()).toBe('Anomander Rake: Not yet resurrected.');
+    expect(client.error()).toBe('Karsa Orlong takes the field with a group: attach them to one first');
   });
 
   it('ignores anything that is not a known request', async () => {
@@ -104,7 +104,7 @@ describe('table sync', () => {
   it('reveals battles one at a time, then the report', async () => {
     const portal = store.state()!.events.portals[0].id;
     store.takeCommand('col');
-    store.assign('karsa-orlong', portal);
+    store.assign('bridgeburners', portal);
     store.resolve();
     await settle();
     expect(client.view()!.reckoning).toEqual([]);

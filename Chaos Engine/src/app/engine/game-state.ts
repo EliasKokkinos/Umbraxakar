@@ -7,7 +7,7 @@ import { HeroState, ResourceState, resourcesFromSeed } from './resource-state';
 import { Rng } from './rng';
 import { CastleSeed, Commander, EventsConfig, ResolutionConfig, Seed } from './seed-types';
 
-export const GAME_STATE_VERSION = 2;
+export const GAME_STATE_VERSION = 3;
 
 /** A hero in the Healers' Hall: occupies a slot and the hero until done. */
 export interface Treatment {
@@ -110,10 +110,10 @@ export function isOccupied(state: GameState, resourceId: string): boolean {
   return state.castle.training.includes(resourceId) || state.castle.treatments.some((t) => t.resourceId === resourceId);
 }
 
-/** Hosts that could be sent to an event right now (used for the initial portal count). */
+/** Groups that could be sent to an event right now (used for the opening portal count). */
 export function deployableHosts(state: GameState, rules: Rules): ResourceState[] {
   return state.resources.filter((r) => {
-    if (r.attachedTo) return false;
+    if (r.kind !== 'group') return false;
     const power = effectivePower(r, { cfg: rules.resolution, attached: attachedTo(state, r.id) }).total;
     return canDeploy(r, 1, power, rules.resolution).ok && !isOccupied(state, r.id);
   });

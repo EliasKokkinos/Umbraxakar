@@ -39,9 +39,15 @@ export class ResourceInspector {
   protected readonly eventOptions = computed(() => eventOptionsFor(this.store.state()!, this.resourceId(), this.store.rules));
 
   /** Cards this hero could join: at the castle, not attached themselves, and not this hero. */
+  /** Groups at the castle this hero could join, with how many heroes each already has. */
   protected readonly hostOptions = computed(() => {
     const s = this.store.state()!;
-    return s.resources.filter((r) => r.id !== this.resourceId() && !r.attachedTo && !r.locked && isAtCastle(s, r.id));
+    return s.resources
+      .filter((r) => r.kind === 'group' && !r.locked && isAtCastle(s, r.id))
+      .map((g) => {
+        const heroes = s.resources.filter((h) => h.attachedTo === g.id).length;
+        return { id: g.id, name: g.name, heroes, full: heroes >= 3 };
+      });
   });
 
   protected readonly recruitRoom = computed(() => {

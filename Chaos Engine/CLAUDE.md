@@ -30,8 +30,8 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 
 ### Core loop (one turn = 3 in-game days)
 1. A **commander** (a player character) is chosen. Their story relationships change the morale of specific resources.
-2. New **Chaos Portals** appear (Main Resources + 1d6, adjustable by the DM) at random land positions.
-3. Players drag **resources** onto **events** and manage the **Castle** (heal, entertain, train, upgrade).
+2. New **Chaos Portals** appear (deployable groups + 1d6, so 13–18 at the start; adjustable by the DM) at random land positions.
+3. Players attach heroes to **groups**, drag groups onto **events**, and manage the **Castle** (heal, entertain, train, upgrade).
 4. End of turn: the system rolls. Success means **d20 ≥ 10 + (Difficulty − Power)**. The margin (Difficulty − Power − resistance) sets the chance of injury or losses.
 5. Updates: corruption +1 per portal, morale changes, civilian casualties from Impact, and so on.
 
@@ -39,7 +39,7 @@ The source of truth for requirements is **`Mission Statement.md`**. Read it befo
 - **Corruption** is capped at 5. At 3 or higher, only a cleric or paladin of level 12+ (or a DM-flagged hero such as an Angel or a God) can cleanse it. At 5 a legendary spawn appears: Difficulty is maxed and the cap becomes 10.
 - **Difficulty** starts at 1–5 (random) with a cap of 9, or 10 when a legendary spawn is present. **Impact** runs 0–10 civilians lost per turn and is DM-tunable.
 - **Mother Dark Temples** (17 total, 5 active at the start): nearby corruption can't rise above 2, and Anomander's resources get +3 Power in range. The DM sets the radius globally. Activating a temple has a difficulty like a portal's.
-- **Resources:** Heroes, Avatars and Groups. Power runs 1–10 and Morale 1–5. Morale goes +1 per round at the Castle, −1 per turn at an event, and −2 when a battle is lost (the resource then stays attached). Groups track Number, Decimation Resistance and Injured. Heroes track Injury Resistance and Injuries, and injuries need a healer. A group can have 1–3 heroes attached, and attached heroes leave the pool.
+- **Resources:** Heroes, Avatars and Groups. Power runs 1–10 and Morale 1–5. Morale goes +1 per round at the Castle, −1 per turn at an event, and −2 when a battle is lost (the resource then stays attached). Groups track Number, Decimation Resistance and Injured. Heroes track Injury Resistance and Injuries, and injuries need a healer. A group can have 1–3 heroes attached, and attached heroes leave the pool. **Only groups take the field**: a hero goes to an event by joining a group, and each attached hero adds ceil(own effective Power / 3) to the group, capped at +5 in total. Every attached hero must be fit to deploy, and harm is still rolled for each hero.
 - **Global counter:** Civilian Death Count. There is **no** end-of-world counter; that is the DM's call.
 - **The Castle** has a money cache (the DM edits it from the recaps), entertainers, training grounds, healing and militia training.
 - **System requirements:** the DM can override everything, there is a 10-step undo plus save/load, and state persists (JSON files or a DB).
@@ -112,7 +112,7 @@ Follow these unless the user decides otherwise:
 - **Single state store** (signals-based) holding an immutable `GameState`. Every change is a named action, which gives the 10-step undo history for free.
 - **Two routes/views over the same state:** `/dm` and `/table`. The table view must be synchronised to the DM view (for example two browser windows with `BroadcastChannel`, or a small local server with WebSocket if TV and laptop are separate devices). **The table view must never show DM-only data** such as hidden events, secret stats or roll internals the DM hasn't revealed.
 - **Persistence:** versioned JSON save files, so a save from an older version can be migrated.
-- **Table-first UX:** readable at 3 m, and the TV screen should read as a game rather than an admin panel. Resource cards have the portrait on the left, stats on the right, and attached heroes below. Drag-and-drop assigns resources to events.
+- **Table-first UX:** readable at 3 m, and the TV screen should read as a game rather than an admin panel. Resource cards have the portrait on the left, stats on the right, and attached heroes below. Drag-and-drop sends groups to events and attaches heroes to groups.
 
 Record the chosen stack, commands and layout here once the project is scaffolded.
 

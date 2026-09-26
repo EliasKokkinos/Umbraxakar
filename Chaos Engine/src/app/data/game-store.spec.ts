@@ -24,21 +24,21 @@ describe('GameStore', () => {
   });
 
   it('records named actions and undoes them', () => {
-    expect(store.assign('karsa-orlong', firstPortal())).toBe(true);
-    expect(store.undoLabel()).toMatch(/^Send Karsa Orlong to /);
-    expect(eventOf(store.state()!, 'karsa-orlong')).toBeDefined();
+    expect(store.assign('bridgeburners', firstPortal())).toBe(true);
+    expect(store.undoLabel()).toMatch(/^Send Bridgeburners to /);
+    expect(eventOf(store.state()!, 'bridgeburners')).toBeDefined();
 
     store.undo();
-    expect(eventOf(store.state()!, 'karsa-orlong')).toBeUndefined();
-    expect(store.redoLabel()).toMatch(/^Send Karsa Orlong/);
+    expect(eventOf(store.state()!, 'bridgeburners')).toBeUndefined();
+    expect(store.redoLabel()).toMatch(/^Send Bridgeburners/);
     store.redo();
-    expect(eventOf(store.state()!, 'karsa-orlong')).toBeDefined();
+    expect(eventOf(store.state()!, 'bridgeburners')).toBeDefined();
   });
 
   it('reports a refused action without changing anything', () => {
     const before = store.state();
-    expect(store.assign('anomander-rake', firstPortal())).toBe(false);
-    expect(store.error()).toBe('Anomander Rake: Not yet resurrected.');
+    expect(store.assign('karsa-orlong', firstPortal())).toBe(false);
+    expect(store.error()).toBe('Karsa Orlong takes the field with a group: attach them to one first');
     expect(store.state()).toBe(before);
     expect(store.canUndo()).toBe(false);
   });
@@ -50,16 +50,16 @@ describe('GameStore', () => {
 
   it('keeps ten undo steps', () => {
     const portals = store.state()!.events.portals;
-    const hosts = ['karsa-orlong', 'uruk', 'korlat', 'blues', 'cowl', 'shimmer', 'kazz-davore', 'sanjuro-sawa', 'john-ahl117', 'trull-sengar', 'silchas-ruin', 'bridgeburners'];
-    hosts.forEach((h, i) => store.assign(h, portals[i].id));
+    const hosts = ['avowed-prince', 'bluerose-1', 'bluerose-2', 'malazan-legion-1', 'malazan-legion-2', 'malazan-legion-3', 'bridgeburners', 'letheri-fleet', 'letheri-army-1', 'letheri-army-2', 'umbraxakar-1', 'umbraxakar-2'];
+    hosts.forEach((h, i) => expect(store.assign(h, portals[i].id)).toBe(true));
     let undos = 0;
     while (store.canUndo()) {
       store.undo();
       undos++;
     }
     expect(undos).toBe(10);
-    expect(eventOf(store.state()!, 'uruk')).toBeDefined(); // the first two assignments fell off
-    expect(eventOf(store.state()!, 'korlat')).toBeUndefined();
+    expect(eventOf(store.state()!, 'bluerose-1')).toBeDefined(); // the first two assignments fell off
+    expect(eventOf(store.state()!, 'bluerose-2')).toBeUndefined();
   });
 
   it('refuses to resolve until someone takes command of the turn', () => {
@@ -73,7 +73,7 @@ describe('GameStore', () => {
 
   it('resolves for review, then commits the turn as one undoable step', () => {
     store.takeCommand('col');
-    store.assign('karsa-orlong', firstPortal());
+    store.assign('bridgeburners', firstPortal());
     const pending = store.resolve()!;
     expect(Object.keys(pending.battles)).toEqual([firstPortal()]);
     expect(store.state()!.events.turn).toBe(1);
@@ -86,7 +86,7 @@ describe('GameStore', () => {
 
   it('undoing a turn restores the dice: resolving again gives the same rolls', () => {
     store.takeCommand('col');
-    store.assign('karsa-orlong', firstPortal());
+    store.assign('bridgeburners', firstPortal());
     store.assign('malazan-legion-1', store.state()!.events.portals[1].id);
     const first = store.resolve()!;
     store.commit();
@@ -100,7 +100,7 @@ describe('GameStore', () => {
   it('lets the DM force an outcome before committing', () => {
     const id = firstPortal();
     store.takeCommand('col');
-    store.assign('trull-sengar', id);
+    store.assign('letheri-army-1', id);
     store.resolve();
     store.overrideBattle(id, { outcome: 'won', harm: [] });
     expect(store.pending()!.battles[id]).toMatchObject({ outcome: 'won', rout: false, heroicVictory: false, harm: [] });
@@ -112,12 +112,12 @@ describe('GameStore', () => {
 
   it('exports and imports saves; the import is a fresh history', () => {
     store.takeCommand('col');
-    store.assign('karsa-orlong', firstPortal());
+    store.assign('bridgeburners', firstPortal());
     store.commit();
     const json = store.exportSave('Before the storm')!;
     const saved = store.state();
 
-    store.assign('uruk', store.state()!.events.portals.find((p) => p.status === 'open')!.id);
+    store.assign('letheri-fleet', store.state()!.events.portals.find((p) => p.status === 'open')!.id);
     expect(store.importSave(json, RULES)).toBe(true);
     expect(store.state()).toEqual(saved);
     expect(store.lastAction()).toBe('Loaded "Before the storm"');
@@ -128,7 +128,7 @@ describe('GameStore', () => {
   });
 
   it('autosaves every change to local storage', async () => {
-    store.assign('karsa-orlong', firstPortal());
+    store.assign('bridgeburners', firstPortal());
     TestBed.tick();
     const auto = JSON.parse(localStorage.getItem(AUTOSAVE_KEY)!);
     expect(auto.label).toBe('Autosave');

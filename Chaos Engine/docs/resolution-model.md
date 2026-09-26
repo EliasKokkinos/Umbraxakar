@@ -24,12 +24,13 @@ A *card* is one resource on the board, together with any heroes attached to it. 
 | Morale | Morale 2 gives **−1**. Morale 3–4 give **0**. Morale 5 gives **+1**. Morale 1 means the card can't be deployed (see §5). |
 | Hero injuries | The penalties of all injuries are added together (Minor −1, Serious −2, Grievous −3), to a maximum of **−4** |
 | Group strength | Active strength is `(number − injured) / maxNumber`. Below 75% gives **−1**, below 50% **−2**, below 25% **−3**. At 0 the group is destroyed. |
-| Attached heroes | **+1 per attached hero**, to a maximum of +3 |
+| Attached heroes | Each hero adds **a third of their own effective Power, rounded up** (Karsa 8 gives +3, Trull 5 gives +2), to a maximum of **+5** in total |
 | Mother Dark temple | **+3** if the card's base resource is tagged `tiste-andii` and the event is inside an active temple's aura |
 | Castle training | a temporary bonus, defined in the Castle step |
 
 The result is never below 1, and there is no upper cap.
 
+- **Only groups take the field.** Heroes and avatars go to an event by attaching to a group (up to 3 per group); a hero never goes alone. If any attached hero cannot deploy (Morale 1, grievously injured, a refusal trait), the group cannot be sent until they are detached.
 - Attached heroes also contribute their `canCleanse` ability to the card.
 
 ## 2. Event Power and the roll

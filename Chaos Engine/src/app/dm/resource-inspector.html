@@ -67,7 +67,7 @@
           <button type="button" class="link" (click)="selectResource.emit(v.attachedTo)">{{ nameOf(v.attachedTo) }}</button>
         </p>
         <button type="button" (click)="store.detach(v.id)">Detach</button>
-      } @else if (home()) {
+      } @else if (home() && r.kind === 'group') {
         <div class="field-row">
           <select aria-label="Send to" [value]="target()" (change)="target.set($any($event.target).value)">
             <option value="">Send to the most dangerous open event</option>
@@ -77,17 +77,17 @@
           </select>
           <button type="button" class="primary" (click)="send()">Send</button>
         </div>
-        @if (r.kind !== 'group' && !v.attached.length) {
-          <div class="field-row">
-            <select aria-label="Attach to" [value]="hostTarget()" (change)="hostTarget.set($any($event.target).value)">
-              <option value="">Attach to a card…</option>
-              @for (h of hostOptions(); track h.id) {
-                <option [value]="h.id">{{ h.name }}</option>
-              }
-            </select>
-            <button type="button" [disabled]="!hostTarget()" (click)="attachTo()">Attach</button>
-          </div>
-        }
+      } @else if (home()) {
+        <p class="line">Heroes take the field with a group.</p>
+        <div class="field-row">
+          <select aria-label="Attach to a group" [value]="hostTarget()" (change)="hostTarget.set($any($event.target).value)">
+            <option value="">Attach to a group…</option>
+            @for (h of hostOptions(); track h.id) {
+              <option [value]="h.id" [disabled]="h.full">{{ h.name }} ({{ h.heroes }} of 3 heroes)</option>
+            }
+          </select>
+          <button type="button" class="primary" [disabled]="!hostTarget()" (click)="attachTo()">Attach</button>
+        </div>
       } @else {
         <button type="button" (click)="store.unassign(v.id)">Recall to the castle</button>
       }

@@ -36,13 +36,14 @@ describe('DM edits: resources', () => {
 
   it('unlocks a resource (for example when D returns from Avernus)', () => {
     const s = unwrap(updateResource(game(), 'd-dhampir', { locked: false }));
-    expect(assign(s, 'd-dhampir', s.events.portals[0].id, RULES).ok).toBe(true);
+    const withD = unwrap(attach(s, 'd-dhampir', 'avowed-prince'));
+    expect(assign(withD, 'avowed-prince', s.events.portals[0].id, RULES).ok).toBe(true);
   });
 
   it('locking a deployed resource recalls it', () => {
-    let s = unwrap(assign(game(), 'uruk', game().events.portals[0].id, RULES));
-    s = unwrap(updateResource(s, 'uruk', { locked: true, lockReason: 'Summoned by the Matriarch’s ghost' }));
-    expect(eventOf(s, 'uruk')).toBeUndefined();
+    let s = unwrap(assign(game(), 'bridgeburners', game().events.portals[0].id, RULES));
+    s = unwrap(updateResource(s, 'bridgeburners', { locked: true, lockReason: 'Recalled to Malaz' }));
+    expect(eventOf(s, 'bridgeburners')).toBeUndefined();
   });
 
   it('adds new resources with unique ids', () => {
@@ -62,9 +63,9 @@ describe('DM edits: events', () => {
     s = unwrap(updatePortal(s, id, { legendary: true, difficulty: 12 }, RULES));
     expect((eventById(s, id) as PortalState).difficulty).toBe(10);
 
-    s = unwrap(assign(s, 'uruk', s.events.portals[1].id, RULES));
+    s = unwrap(assign(s, 'bridgeburners', s.events.portals[1].id, RULES));
     s = unwrap(updatePortal(s, s.events.portals[1].id, { status: 'closed' }, RULES));
-    expect(eventOf(s, 'uruk')).toBeUndefined();
+    expect(eventOf(s, 'bridgeburners')).toBeUndefined();
   });
 
   it('reveals and activates temples', () => {
@@ -95,10 +96,10 @@ describe('DM edits: events', () => {
   it('removes events, returning their cards to the castle', () => {
     let s = game();
     const id = s.events.portals[0].id;
-    s = unwrap(assign(s, 'uruk', id, RULES));
+    s = unwrap(assign(s, 'bridgeburners', id, RULES));
     s = unwrap(removeEvent(s, id));
     expect(eventById(s, id)).toBeUndefined();
-    expect(eventOf(s, 'uruk')).toBeUndefined();
+    expect(eventOf(s, 'bridgeburners')).toBeUndefined();
   });
 });
 
@@ -142,7 +143,8 @@ describe('DM edits: new and removed resources', () => {
     const luke = resourceById(s, 'captain-luke')!;
     expect(luke).toMatchObject({ kind: 'hero', name: 'Captain Luke', power: 6, morale: 4, canCleanse: true, locked: false, attachedTo: null });
     expect(luke.tags).toEqual(['tiste-andii', 'healer']);
-    expect(assign(s, 'captain-luke', s.events.portals[0].id, RULES).ok).toBe(true);
+    const withLuke = unwrap(attach(s, 'captain-luke', 'letheri-fleet'));
+    expect(assign(withLuke, 'letheri-fleet', s.events.portals[0].id, RULES).ok).toBe(true);
   });
 
   it('brings a new group in at full strength, within the rule ranges', () => {

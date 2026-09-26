@@ -32,7 +32,8 @@ describe('resourceView', () => {
     expect(v.location).toEqual({ kind: 'event', id: 'near', name: near.name });
     expect(v.attached).toEqual([{ id: 'korlat', name: 'Korlat' }]);
     expect(v.power.parts.map((p) => p.label)).toEqual(['Base', 'Attached heroes', 'Mother Dark']);
-    expect(v.power.total).toBe(10);
+    // Bluerose 6, Korlat (7 + 3 near the temple = 10) lends +4, Mother Dark +3.
+    expect(v.power.total).toBe(13);
   });
 
   it('reports the status that matters most', () => {
@@ -46,20 +47,22 @@ describe('resourceView', () => {
 describe('options', () => {
   it('lists open events for a card, hardest first, with reasons when blocked', () => {
     const s = game();
-    const opts = eventOptionsFor(s, 'uruk', RULES);
+    const opts = eventOptionsFor(s, 'bridgeburners', RULES);
     expect(opts.length).toBe(s.events.portals.length);
+    expect(eventOptionsFor(s, 'uruk', RULES)).toEqual([]); // heroes go with a group
     expect(opts[0].value).toBeGreaterThanOrEqual(opts[opts.length - 1].value);
-    expect(eventOptionsFor(s, 'anomander-rake', RULES).every((o) => !o.ok && o.reason === 'Not yet resurrected.')).toBe(true);
+    expect(eventOptionsFor(s, 'avowed-avernus', RULES).every((o) => !o.ok)).toBe(true);
   });
 
   it('lists cards for an event, available first, with where the others are', () => {
     let s = game();
     const [a, b] = s.events.portals;
-    s = unwrap(assign(s, 'uruk', a.id, RULES));
+    s = unwrap(assign(s, 'bridgeburners', a.id, RULES));
     const opts = hostOptionsFor(s, b.id, RULES);
     expect(opts[0].ok).toBe(true);
-    expect(opts.find((o) => o.id === 'uruk')).toMatchObject({ ok: false, reason: `At ${a.name}` });
-    expect(hostOptionsFor(s, a.id, RULES).some((o) => o.id === 'uruk')).toBe(false);
+    expect(opts.every((o) => s.resources.find((r) => r.id === o.id)!.kind === 'group')).toBe(true);
+    expect(opts.find((o) => o.id === 'bridgeburners')).toMatchObject({ ok: false, reason: `At ${a.name}` });
+    expect(hostOptionsFor(s, a.id, RULES).some((o) => o.id === 'bridgeburners')).toBe(false);
   });
 });
 

@@ -6,6 +6,8 @@ const VIEW_W = 1000;
 
 /** Drag-and-drop payload type for a resource card. */
 export const RESOURCE_DRAG_TYPE = 'application/x-chaos-resource';
+/** A hero being dragged: it can only join a group, never an event. */
+export const HERO_DRAG_TYPE = 'application/x-chaos-hero';
 const NOTCHES = 5;
 const R = 9; // marker radius in view units
 

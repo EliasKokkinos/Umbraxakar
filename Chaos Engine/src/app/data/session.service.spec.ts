@@ -48,7 +48,7 @@ describe('SessionService', () => {
     await booting;
     expect(session.status()).toEqual({ state: 'ready' });
     expect(store.lastAction()).toBe('New session');
-    expect(store.state()!.events.portals.length).toBeGreaterThan(20);
+    expect(store.state()!.events.portals.length).toBeGreaterThanOrEqual(13); // twelve groups + 1d6
   });
 
   it('resumes from the autosave when there is one', async () => {

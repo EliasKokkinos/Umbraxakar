@@ -166,7 +166,8 @@ export interface ResolutionConfig {
     minimum: number;
     supportBonusPerExtraCard: number;
     supportBonusMax: number;
-    attachedHeroBonus: number;
+    /** Each attached hero adds their effective Power divided by this, rounded up. */
+    attachedHeroShare: number;
     attachedHeroBonusMax: number;
     moraleModifier: Record<string, number | null>;
     injuryPenalty: Record<'minor' | 'serious' | 'grievous', number>;

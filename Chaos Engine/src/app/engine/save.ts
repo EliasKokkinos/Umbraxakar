@@ -19,6 +19,20 @@ export interface SaveFile {
 export const MIGRATIONS: Record<number, (state: Record<string, unknown>) => Record<string, unknown>> = {
   // v2: commanders take command once per turn.
   1: (s) => ({ ...s, commanderTurn: null }),
+  // v3: only groups take the field; heroes go with a group.
+  2: (s) => {
+    type R = { id: string; kind: string; attachedTo: string | null };
+    type E = { assigned: string[] };
+    const resources = s['resources'] as R[];
+    const events = s['events'] as { portals: E[]; temples: E[] } & Record<string, unknown>;
+    const groups = new Set(resources.filter((r) => r.kind === 'group').map((r) => r.id));
+    const onlyGroups = (e: E) => ({ ...e, assigned: e.assigned.filter((id) => groups.has(id)) });
+    return {
+      ...s,
+      resources: resources.map((r) => (r.attachedTo && !groups.has(r.attachedTo) ? { ...r, attachedTo: null } : r)),
+      events: { ...events, portals: events.portals.map(onlyGroups), temples: events.temples.map(onlyGroups) },
+    };
+  },
 };
 
 export function toSaveFile(state: GameState, label: string, now = new Date(), portraits?: Record<string, string>): SaveFile {

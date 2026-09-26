@@ -58,7 +58,7 @@ This is the Chaos Engine events specification. It turns the Events section of `M
 7. **Lost battle.** Assigned resources stay attached for the next turn. This follows the mission statement; the morale loss is handled in the Resources step.
 
 ### Seeding
-- **Session start:** `(number of deployable resources) + 1d6` portals. Attached heroes don't count separately. Locked resources don't count.
+- **Session start:** `(number of deployable groups) + 1d6` portals. Only groups take the field, so heroes don't count. Locked groups don't count either. With the current roster that is 12 + 1d6, so 13–18.
   - With today's roster that's roughly 25–30 portals, which is more than the players can cover. The resulting triage is intentional, but the DM may want to trim it.
 - **Each later round:** `newPortalsPerRound` (default `1d3`) **[P]**.
 - **The DM can seed more or remove any portal at any time.**

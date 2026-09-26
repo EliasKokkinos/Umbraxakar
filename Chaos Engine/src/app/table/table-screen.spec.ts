@@ -54,8 +54,8 @@ describe('TableScreen', () => {
   it('puts each newly revealed battle on the stage once', async () => {
     let s = unwrap(chooseCommander(newGame(SEED, RULES, 8), 'col', RULES));
     const [a, b] = s.events.portals;
-    s = unwrap(assign(s, 'karsa-orlong', a.id, RULES));
-    s = unwrap(assign(s, 'uruk', b.id, RULES));
+    s = unwrap(assign(s, 'bridgeburners', a.id, RULES));
+    s = unwrap(assign(s, 'malazan-legion-1', b.id, RULES));
     const pending = resolveAll(s, RULES);
     const f = mount();
 
@@ -81,14 +81,14 @@ describe('TableScreen', () => {
     view.set(tableView(s, RULES, SEED.commanders, NO_REVEAL));
     await f.whenStable();
     const target = s.events.portals[0];
-    const expected = view()!.odds.send[target.id]['karsa-orlong'];
+    const expected = view()!.odds.send[target.id]['bridgeburners'];
 
     const screen = f.componentInstance as unknown as { onHeld(id: string | null): void; hoverEventId: { set(v: string | null): void } };
-    screen.onHeld('karsa-orlong');
+    screen.onHeld('bridgeburners');
     screen.hoverEventId.set(target.id);
     await f.whenStable();
     const bar = el(f).querySelector('.odds-bar')!;
-    expect(bar.textContent).toContain(`Karsa Orlong at ${target.name}`);
+    expect(bar.textContent).toContain(`Bridgeburners at ${target.name}`);
     expect(expected.ok && bar.textContent).toContain(`${Math.round(expected.ok ? expected.chance * 100 : 0)}%`);
 
     screen.onHeld(null);

@@ -1,4 +1,4 @@
-import { assign } from './assignment';
+import { assign, attach } from './assignment';
 import {
   forgeArms,
   heal,
@@ -68,7 +68,7 @@ describe('training', () => {
     expect(hero(s, 'trull-sengar').morale).toBe(3);
     expect(s.castle.treasury).toBe(199500);
     expect(train(s, 'korlat', RULES)).toEqual({ ok: false, error: 'No free training slot' });
-    expect(assign(s, 'trull-sengar', s.events.portals[0].id, RULES).ok).toBe(false);
+    expect(attach(s, 'trull-sengar', 'bluerose-1').ok).toBe(false); // training keeps him home
 
     s = phase(s);
     expect(hero(s, 'trull-sengar')).toMatchObject({ trainingBonus: 1, trainingTurnsLeft: 2, morale: 3 });
@@ -80,7 +80,8 @@ describe('training', () => {
 
   it('refuses the dispirited and those away from the castle', () => {
     expect(train(patch(game(), 'uruk', { morale: 2 }), 'uruk', RULES).ok).toBe(false);
-    const away = unwrap(assign(game(), 'uruk', game().events.portals[0].id, RULES));
+    const withGroup = unwrap(attach(game(), 'uruk', 'bridgeburners'));
+    const away = unwrap(assign(withGroup, 'bridgeburners', withGroup.events.portals[0].id, RULES));
     expect(train(away, 'uruk', RULES).ok).toBe(false);
   });
 });
@@ -92,7 +93,7 @@ describe('healing', () => {
   it('has 1 hall slot plus one per healer hero at home (Cowl, Kazz)', () => {
     const s = game();
     expect(healSlots(s, RULES)).toBe(3);
-    const cowlAway = unwrap(assign(s, 'cowl', s.events.portals[0].id, RULES));
+    const cowlAway = unwrap(assign(unwrap(attach(s, 'cowl', 'avowed-prince')), 'avowed-prince', s.events.portals[0].id, RULES));
     expect(healSlots(cowlAway, RULES)).toBe(2);
   });
 
@@ -196,7 +197,7 @@ describe('Tom’s wine', () => {
   it('gives +1 morale at once, one cask per turn, and lifts a refusal', () => {
     let s = unwrap(serveWine(patch(game(), 'uruk', { morale: 1 }), 'uruk', RULES));
     expect(hero(s, 'uruk').morale).toBe(2);
-    expect(assign(s, 'uruk', s.events.portals[0].id, RULES).ok).toBe(true);
+    expect(assign(unwrap(attach(s, 'uruk', 'bridgeburners')), 'bridgeburners', s.events.portals[0].id, RULES).ok).toBe(true);
     expect(serveWine(s, 'korlat', RULES)).toEqual({ ok: false, error: 'No casks left this turn' });
     expect(serveWine(phase(s), 'uruk', RULES).ok).toBe(true); // casks reset each turn
   });

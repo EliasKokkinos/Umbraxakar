@@ -56,8 +56,12 @@ export function effectivePower(r: ResourceState, ctx: PowerContext): PowerBreakd
     add('Injuries', injuryPenalty(r, cfg));
   }
 
-  const attachedCount = ctx.attached?.length ?? 0;
-  add('Attached heroes', Math.min(attachedCount * cfg.power.attachedHeroBonus, cfg.power.attachedHeroBonusMax));
+  // Heroes fight within a group: each adds a share of their own effective Power (a third, rounded up).
+  const heroes = ctx.attached ?? [];
+  if (heroes.length) {
+    const share = heroes.reduce((acc, h) => acc + Math.ceil(effectivePower(h, { ...ctx, attached: [] }).total / cfg.power.attachedHeroShare), 0);
+    add('Attached heroes', Math.min(share, cfg.power.attachedHeroBonusMax));
+  }
 
   if (ctx.inTempleAura && ctx.templeBonusTag && r.tags.includes(ctx.templeBonusTag)) {
     add('Mother Dark', ctx.templeBonus ?? 0);

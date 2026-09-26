@@ -50,6 +50,7 @@ export function oddsIfSent(state: GameState, hostId: string, eventId: string, ru
   const host = resourceById(state, hostId);
   const event = eventById(state, eventId);
   if (!host || !event) return { ok: false, reason: 'Unknown' };
+  if (host.kind !== 'group') return { ok: false, reason: 'Heroes take the field with a group' };
   const power = effectivePower(host, { cfg: rules.resolution, attached: attachedTo(state, hostId) }).total;
   const check = canDeploy(host, eventDifficulty(event), power, rules.resolution);
   if (!check.ok) return check;

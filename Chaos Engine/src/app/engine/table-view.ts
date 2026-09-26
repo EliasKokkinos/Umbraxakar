@@ -78,7 +78,7 @@ function tableMap(map: MapDef): TableMap {
 
 function tableOdds(state: GameState, rules: Rules, portals: PortalState[], temples: TempleState[], resources: ResourceView[]): TableView['odds'] {
   const contestable = [...portals, ...temples.filter((t) => !t.active)];
-  const cards = resources.filter((r) => !r.attachedTo);
+  const cards = resources.filter((r) => r.kind === 'group');
   const current: Record<string, Odds> = {};
   const send: Record<string, Record<string, SendOdds>> = {};
   for (const e of contestable) {

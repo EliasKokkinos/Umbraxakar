@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 import { PortraitStore } from '../data/portrait-store';
 import { ResourceView } from '../engine/views';
-import { RESOURCE_DRAG_TYPE } from '../shared/map-board';
+import { HERO_DRAG_TYPE, RESOURCE_DRAG_TYPE } from '../shared/map-board';
 import { MoraleMarks } from '../shared/morale-marks';
 
 /** Banner colours with meaning in the story; any other faction gets a stable hashed hue. */
@@ -87,7 +87,8 @@ export class ResourceCard {
   });
 
   protected onDragStart(ev: DragEvent): void {
-    ev.dataTransfer?.setData(RESOURCE_DRAG_TYPE, this.resource().id);
+    // Groups go to events; heroes go to groups. The drag type says which, so drop zones can tell.
+    ev.dataTransfer?.setData(this.resource().kind === 'group' ? RESOURCE_DRAG_TYPE : HERO_DRAG_TYPE, this.resource().id);
     if (ev.dataTransfer) ev.dataTransfer.effectAllowed = 'move';
     this.dragging.set(true);
     this.held.emit(this.resource().id);
@@ -98,16 +99,16 @@ export class ResourceCard {
     this.held.emit(null);
   }
 
-  /** Heroes may be dropped onto a card to join it. */
+  /** A group card takes heroes dropped onto it. */
   protected onDragOver(ev: DragEvent): void {
-    if (this.dragging() || !ev.dataTransfer?.types.includes(RESOURCE_DRAG_TYPE)) return;
+    if (this.resource().kind !== 'group' || !ev.dataTransfer?.types.includes(HERO_DRAG_TYPE)) return;
     ev.preventDefault();
     this.dropping.set(true);
   }
 
   protected onDrop(ev: DragEvent): void {
     this.dropping.set(false);
-    const heroId = ev.dataTransfer?.getData(RESOURCE_DRAG_TYPE);
+    const heroId = ev.dataTransfer?.getData(HERO_DRAG_TYPE);
     if (!heroId || heroId === this.resource().id) return;
     ev.preventDefault();
     ev.stopPropagation();

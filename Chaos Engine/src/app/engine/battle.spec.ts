@@ -132,7 +132,8 @@ describe('resolveBattle', () => {
   it('attached heroes add power and roll their own harm', () => {
     const card = { host: group('avowed-prince'), attached: [hero('blues'), hero('cowl')] };
     const r = resolveBattle(input({ difficulty: 9, cards: [card] }), new Rng(3), CFG);
-    expect(r.eventPower).toBe(9);
+    // Avowed 7, Blues +3, Cowl +3 = +6, capped at +5.
+    expect(r.eventPower).toBe(12);
     expect(r.harm.map((h) => h.resourceId)).toEqual(['avowed-prince', 'blues', 'cowl']);
   });
 

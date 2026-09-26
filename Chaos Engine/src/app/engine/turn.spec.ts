@@ -1,4 +1,4 @@
-import { assign } from './assignment';
+import { assign, attach } from './assignment';
 import { heal, hireEntertainers, recruit, serveWine } from './castle';
 import { GameState, Result, deployableHosts, eventOf, newGame, resourceById } from './game-state';
 import { HeroState } from './resource-state';
@@ -12,9 +12,9 @@ describe('resolveAll / commitTurn', () => {
   const setup = () => {
     let s = newGame(SEED, RULES, 2024);
     const [a, b] = openPortals(s);
-    s = tryApply(s, assign(s, 'karsa-orlong', a.id, RULES));
+    s = tryApply(s, attach(s, 'karsa-orlong', 'malazan-legion-1'));
     s = tryApply(s, assign(s, 'malazan-legion-1', a.id, RULES));
-    s = tryApply(s, assign(s, 'trull-sengar', b.id, RULES));
+    s = tryApply(s, assign(s, 'letheri-army-1', b.id, RULES));
     return { s, a: a.id, b: b.id };
   };
 
@@ -22,7 +22,9 @@ describe('resolveAll / commitTurn', () => {
     const { s, a, b } = setup();
     const pending = resolveAll(s, RULES);
     expect(Object.keys(pending.battles).sort()).toEqual([a, b].sort());
-    expect(pending.battles[a].cardPowers.map((c) => c.resourceId)).toEqual(['karsa-orlong', 'malazan-legion-1']);
+    expect(pending.battles[a].cardPowers.map((c) => c.resourceId)).toEqual(['malazan-legion-1']);
+    // Karsa rides with the Legion: his own harm is rolled too.
+    expect(pending.battles[a].harm.map((h) => h.resourceId)).toEqual(['malazan-legion-1', 'karsa-orlong']);
     expect(pending.rngState).not.toBe(s.rngState);
   });
 
@@ -60,14 +62,14 @@ describe('resolveAll / commitTurn', () => {
   it('routs a card that falls to morale 1 on a lost event', () => {
     let s = newGame(SEED, RULES, 5);
     const target = openPortals(s)[0];
-    s = { ...s, resources: s.resources.map((r) => (r.id === 'trull-sengar' ? { ...r, morale: 3 } : r)) };
-    s = tryApply(s, assign(s, 'trull-sengar', target.id, RULES));
+    s = { ...s, resources: s.resources.map((r) => (r.id === 'letheri-army-1' ? { ...r, morale: 3 } : r)) };
+    s = tryApply(s, assign(s, 'letheri-army-1', target.id, RULES));
     const pending = resolveAll(s, RULES);
     const lost = { ...pending, battles: { [target.id]: { ...pending.battles[target.id], outcome: 'lost' as const, heroicVictory: false, harm: [] } } };
     const next = commitTurn(s, lost, RULES);
-    expect(resourceById(next, 'trull-sengar')!.morale).toBe(1);
-    expect(next.log[0].routed).toEqual(['trull-sengar']);
-    expect(eventOf(next, 'trull-sengar')).toBeUndefined();
+    expect(resourceById(next, 'letheri-army-1')!.morale).toBe(1);
+    expect(next.log[0].routed).toEqual(['letheri-army-1']);
+    expect(eventOf(next, 'letheri-army-1')).toBeUndefined();
   });
 });
 
@@ -85,6 +87,13 @@ function playTurn(state: GameState): GameState {
   const lowest = [...s.resources].filter((r) => !r.locked).sort((a, b) => a.morale - b.morale)[0];
   s = tryApply(s, serveWine(s, lowest.id, RULES));
 
+  // Heroes join the groups with the fewest heroes, then the groups go out.
+  for (const h of s.resources.filter((r) => r.kind !== 'group' && !r.attachedTo && !r.locked)) {
+    const host = s.resources
+      .filter((g) => g.kind === 'group' && !g.locked)
+      .sort((a, b) => s.resources.filter((x) => x.attachedTo === a.id).length - s.resources.filter((x) => x.attachedTo === b.id).length)[0];
+    if (host) s = tryApply(s, attach(s, h.id, host.id));
+  }
   const portals = openPortals(s).sort((a, b) => b.impact - a.impact);
   const hosts = deployableHosts(s, RULES)
     .filter((r) => !eventOf(s, r.id))

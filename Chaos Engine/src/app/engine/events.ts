@@ -105,8 +105,8 @@ export function seedPortals(state: EventsState, count: number, ctx: MapContext, 
   };
 }
 
-export function initialPortalCount(deployableResources: number, rng: Rng, cfg: EventsConfig): number {
-  return Math.max(0, rollExpression(cfg.portal.initialSeed, rng, { deployableResources }));
+export function initialPortalCount(deployableGroups: number, rng: Rng, cfg: EventsConfig): number {
+  return Math.max(0, rollExpression(cfg.portal.initialSeed, rng, { deployableGroups }));
 }
 
 export function newPortalsThisRound(rng: Rng, cfg: EventsConfig): number {

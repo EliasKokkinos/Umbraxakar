@@ -25,7 +25,7 @@ F:\OneDrive\Dungeons & Dragons\Book of the Fallen Flight of Dragons\AI Assisted 
 - Every commander changes the morale score of a resource, depending on their in game interactions so far in the storyline.
 - The player screen consists of a Map of Edar, and to the left on a slider the resources. 
 The resources can be inspected for details and several actions can be taken.
-  - The resource can be dragged and assigned to an Event
+  - A group can be dragged and assigned to an Event. Heroes never go alone: they are attached to a group and take the field with it
   - Resources can diminish in strength (Lessen in Numbers, injuries, this implies resource tyype, downtime, healing, supplies etc)
 - Events are mainly Chaos Portals which appear randomly (there also other types of events on the map to be expanded later)
 - This Events carry corruption scores and difficulty, as well as local impact.
@@ -37,7 +37,7 @@ The resources can be inspected for details and several actions can be taken.
 ## Mechanics
 ### Events
 - Chaos Portals
-  - Number: Main Resources +1 d6 roll (adjustable by DM - allow to seed more or remove)
+  - Number: deployable groups +1 d6 roll (adjustable by DM - allow to seed more or remove)
   - Seed randomly on Land
   - Corruption: Max level 5. When level 3 is reached the area can only be uncorrupted by a cleric or a palladin on level 12 and above. (can include heroes such as Angels, Gods, etc)
 This is an attribute that can be given to a resource by the DM. At level 5 a legendary spawn appears. Maxing Difficulty and adds +1 to the normal max
@@ -67,7 +67,7 @@ Lose 1 per turn at an event. 2 lost if event battle is not won (if a battle is n
 
 Heroes can be grouped. Groups can be assigned 1 to 3 Heroes.
 This alters the stats. How I think of resources is a rectangle, with an image to the left and stats to the right.
-attached heroes are bellow the stats. They can be remove or added. If they are added to a group or another hero they are removed from the resource pool.
+attached heroes are bellow the stats. They can be remove or added. If they are added to a group they are removed from the resource pool. Each attached hero adds a third of their power (rounded up) to the group, up to +5 in total.
 
 ### Castle
 - The players have a money cache. (the amount is in the recaps, can be altered by the DM based on in game actions)

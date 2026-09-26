@@ -11,7 +11,7 @@ describe('rollExpression', () => {
 
   it('adds variables, constants and subtraction', () => {
     const rng = new ScriptedRng([face(5, 6)]);
-    expect(rollExpression('deployableResources + 1d6', rng, { deployableResources: 24 })).toBe(29);
+    expect(rollExpression('deployableGroups + 1d6', rng, { deployableGroups: 12 })).toBe(17);
     expect(rollExpression('10 - 2 + x', new Rng(1), { x: 3 })).toBe(11);
   });
 

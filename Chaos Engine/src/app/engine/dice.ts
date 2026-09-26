@@ -1,7 +1,7 @@
 import { Rng } from './rng';
 
 /**
- * Evaluates config dice expressions such as "1d3" or "deployableResources + 1d6".
+ * Evaluates config dice expressions such as "1d3" or "deployableGroups + 1d6".
  * Terms: NdM dice, integers, or variable names; joined by + or -.
  */
 export function rollExpression(expr: string, rng: Rng, vars: Record<string, number> = {}): number {

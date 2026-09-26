@@ -14,7 +14,7 @@
     "civiliansPerImpact": 100,
     "casualtyVariance": [0.5, 1.5],
     "lostBattleCasualtyFactor": 0.5,
-    "initialSeed": "deployableResources + 1d6",
+    "initialSeed": "deployableGroups + 1d6",
     "newPortalsPerRound": "1d3",
     "minSpacing": 0.02
   },

@@ -1,4 +1,4 @@
-import { assign } from './assignment';
+import { assign, attach } from './assignment';
 import { chooseCommander } from './commanders';
 import { updatePortal, updateResource, updateTemple } from './dm-edits';
 import { GameState, Result, newGame } from './game-state';
@@ -19,7 +19,7 @@ function secretive(): GameState {
   s = unwrap(updatePortal(s, hiddenPortal.id, { hidden: true, dmNotes: 'SECRET-PORTAL-NOTE' }, RULES));
   s = unwrap(updatePortal(s, visiblePortal.id, { dmNotes: 'SECRET-VISIBLE-NOTE' }, RULES));
   s = unwrap(updateTemple(s, 'temple-jhag-odhan', { dmNotes: 'SECRET-TEMPLE-NOTE' }, RULES));
-  s = unwrap(assign(s, 'uruk', hiddenPortal.id, RULES));
+  s = unwrap(assign(s, 'bridgeburners', hiddenPortal.id, RULES));
   s = unwrap(updateResource(s, 'karsa-orlong', { fallen: true }));
   return s;
 }
@@ -50,7 +50,7 @@ describe('tableView: nothing DM-only reaches the table', () => {
   });
 
   it('shows a card at a hidden event as away at the castle, not where it went', () => {
-    expect(view.resources.find((r) => r.id === 'uruk')!.location).toEqual({ kind: 'castle' });
+    expect(view.resources.find((r) => r.id === 'bridgeburners')!.location).toEqual({ kind: 'castle' });
   });
 
   it('gives odds only for events and cards the table can see', () => {
@@ -62,8 +62,10 @@ describe('tableView: nothing DM-only reaches the table', () => {
       expect(Object.keys(byCard).every((id) => shownIds.has(id))).toBe(true);
       expect(Object.keys(byCard)).not.toContain('anomander-rake');
     }
-    const any = Object.values(view.odds.send)[0]['uruk'];
+    const any = Object.values(view.odds.send)[0]['malazan-legion-1'];
     expect(any.ok).toBe(true);
+    // Only groups are sent, so only groups have odds.
+    expect(Object.values(view.odds.send)[0]['uruk']).toBeUndefined();
   });
 
   it('never carries the local path of the source map', () => {
@@ -82,8 +84,9 @@ describe('tableView: reveals', () => {
   it('shows only the battles the DM has revealed, and no harm', () => {
     let s = newGame(SEED, RULES, 12);
     const [a, b] = s.events.portals;
-    s = unwrap(assign(s, 'karsa-orlong', a.id, RULES));
-    s = unwrap(assign(s, 'uruk', b.id, RULES));
+    s = unwrap(attach(s, 'karsa-orlong', 'malazan-legion-1'));
+    s = unwrap(assign(s, 'malazan-legion-1', a.id, RULES));
+    s = unwrap(assign(s, 'bridgeburners', b.id, RULES));
     const pending = resolveAll(s, RULES);
 
     expect(tableView(s, RULES, commanders, NO_REVEAL).reckoning).toBeNull();
@@ -92,7 +95,7 @@ describe('tableView: reveals', () => {
 
     const one = tableView(s, RULES, commanders, { pending, revealed: [a.id], showReport: false });
     expect(one.reckoning).toEqual([
-      expect.objectContaining({ eventId: a.id, eventName: a.name, d20: pending.battles[a.id].d20, cards: ['Karsa Orlong'] }),
+      expect.objectContaining({ eventId: a.id, eventName: a.name, d20: pending.battles[a.id].d20, cards: ['Malazan First Legion'] }),
     ]);
     expect(JSON.stringify(one.reckoning)).not.toMatch(/harm|threat|chance/);
   });
@@ -100,7 +103,7 @@ describe('tableView: reveals', () => {
   it('never reveals a battle at a hidden event, nor names the fallen on a card', () => {
     let s = newGame(SEED, RULES, 12);
     const hidden = s.events.portals[0];
-    s = unwrap(assign(s, 'uruk', hidden.id, RULES));
+    s = unwrap(assign(s, 'bridgeburners', hidden.id, RULES));
     s = unwrap(updatePortal(s, hidden.id, { hidden: true }, RULES));
     const pending = resolveAll(s, RULES);
     const view = tableView(s, RULES, commanders, { pending, revealed: [hidden.id], showReport: false });

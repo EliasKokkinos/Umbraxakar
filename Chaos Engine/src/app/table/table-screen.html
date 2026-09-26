@@ -157,6 +157,12 @@
         </section>
       }
 
+      @if (heldHero(); as name) {
+        <div class="odds-bar" role="status" aria-live="polite">
+          <span class="who">Drop {{ name }} on a group to take the field together</span>
+        </div>
+      }
+
       @if (dragOdds(); as d) {
         <div class="odds-bar" role="status" aria-live="polite">
           @if (d.odds.ok) {
