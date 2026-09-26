@@ -6,6 +6,11 @@
       "name": "The World of Edar",
       "source": "F:\\OneDrive\\Dungeons & Dragons\\Book of the Fallen Flight of Dragons\\Maps\\01-World\\world-atlas-2019.png",
       "asset": "maps/world-atlas-2019-3000.png",
+      "styles": [
+        { "id": "atlas", "name": "The atlas", "asset": "maps/world-atlas-2019-3000.png" },
+        { "id": "deserts-and-ice", "name": "Deserts and ice", "asset": "maps/malazan-world-map-2019-deserts-and-ice-2.png" },
+        { "id": "malazan-empire", "name": "The Malazan Empire", "asset": "maps/world-of-the-malazan-empire.png" }
+      ],
       "width": 6936,
       "height": 3864,
       "landDetection": { "mode": "color", "seaColor": "#C4DFFF", "tolerance": 40, "sampleRadiusPx": 6, "minLandRatio": 0.8 },

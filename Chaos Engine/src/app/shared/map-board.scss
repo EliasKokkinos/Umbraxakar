@@ -62,6 +62,17 @@
   font-size: 0.85rem;
 }
 
+select {
+  height: 2.1em;
+  padding: 0 0.4em;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ce-bone);
+  background: var(--ce-iron);
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+}
+
 // Three buttons joined into one: − value +.
 .stepper {
   display: flex;

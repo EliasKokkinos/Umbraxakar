@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, output, signal, untracked } from '@angular/core';
 import { PortalState, TempleState } from '../engine/event-state';
-import { MapDef, Point } from '../engine/seed-types';
+import { MapDef, MapStyle, Point } from '../engine/seed-types';
 
 const VIEW_W = 1000;
 
@@ -99,6 +99,11 @@ export class MapBoard {
    */
   readonly iconSizeKey = input<string | null>(null);
 
+  /** Other drawings of this map to offer (the DM screen); the choice is reported, not kept here. */
+  readonly styles = input<MapStyle[]>([]);
+  readonly styleId = input<string | null>(null);
+  readonly styleChange = output<string | null>();
+
   readonly select = output<string>();
   readonly place = output<Point>();
   readonly dropped = output<{ eventId: string; resourceId: string }>();
@@ -108,6 +113,7 @@ export class MapBoard {
   protected readonly dropTarget = signal<string | null>(null);
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly mapId = computed(() => this.map().id);
 
   /** 1 shows the whole map. The pan is the map's offset, as a share of the board (1 - zoom to 0). */
   readonly zoom = signal(1);
@@ -144,10 +150,11 @@ export class MapBoard {
       const n = Number(stored);
       this.iconSize.set(stored !== null && Number.isFinite(n) ? clamp(n, ICON_SIZE_RANGE[0], ICON_SIZE_RANGE[1]) : 1);
     });
-    // A new map starts whole.
+    // A new map starts whole. Keyed on its id: the table receives a fresh map object with
+    // every update, and a new drawing of the same map keeps the view where it is.
     effect(() => {
-      this.map();
-      this.resetZoom();
+      this.mapId();
+      untracked(() => this.resetZoom());
     });
   }
 
@@ -187,6 +194,11 @@ export class MapBoard {
     } catch {
       // Not remembered, but still applied.
     }
+  }
+
+  protected onStyle(ev: Event): void {
+    const id = (ev.target as HTMLSelectElement).value;
+    this.styleChange.emit(id === '' ? null : id);
   }
 
   protected smallerIcons(): void {

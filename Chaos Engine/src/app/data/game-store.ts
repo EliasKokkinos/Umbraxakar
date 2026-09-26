@@ -2,7 +2,7 @@ import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { assign, attach, detach, unassign } from '../engine/assignment';
 import { Harm, Outcome } from '../engine/battle';
 import { chooseCommander, removeInfluence, resetInfluence, resolveBlocker, setInfluence } from '../engine/commanders';
-import { setAuraRadius } from '../engine/dm-edits';
+import { setAuraRadius, setMapStyle } from '../engine/dm-edits';
 import { GameState, Result, Rules, eventById, newGame, resourceById } from '../engine/game-state';
 import { History, createHistory, push, redo, undo } from '../engine/history';
 import { deserialize, serialize } from '../engine/save';
@@ -151,6 +151,12 @@ export class GameStore {
   setAuraRadius(radius: number | null): boolean {
     const label = radius === null ? "Restore the temples' reach" : `Set the temples' reach to ${Math.round(radius * 100)}%`;
     return this.act(label, (s) => setAuraRadius(s, radius));
+  }
+
+  /** Which drawing of the map both screens show; null is the map's own. */
+  setMapStyle(styleId: string | null): boolean {
+    const name = this.rules.map.map.styles?.find((st) => st.id === styleId)?.name ?? 'the usual map';
+    return this.act(`Show ${name}`, (s, r) => setMapStyle(s, styleId, r));
   }
 
   private commanderName(id: string): string {

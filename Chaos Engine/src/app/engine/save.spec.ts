@@ -48,7 +48,7 @@ describe('save files', () => {
     file.version = 1;
     file.state.version = 1;
     const loaded = deserialize(JSON.stringify(file));
-    expect(loaded.ok && loaded.state.state).toMatchObject({ version: V, commanderTurn: null, commandSway: null, commanderInfluence: {}, events: { auraRadius: null } });
+    expect(loaded.ok && loaded.state.state).toMatchObject({ version: V, commanderTurn: null, commandSway: null, commanderInfluence: {}, mapStyle: null, events: { auraRadius: null } });
   });
 
   it('upgrades a version 2 save: heroes alone in the field come home, hero-on-hero attachments end', () => {

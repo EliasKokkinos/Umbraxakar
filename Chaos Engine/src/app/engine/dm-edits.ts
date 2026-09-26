@@ -268,3 +268,9 @@ export function setAuraRadius(state: GameState, radius: number | null): Result {
   const next = radius === null ? null : clamp(Math.round(radius * 1000) / 1000, AURA_RADIUS_RANGE[0], AURA_RADIUS_RANGE[1]);
   return ok({ ...state, events: { ...state.events, auraRadius: next } });
 }
+
+/** Shows another drawing of the map on both screens; null returns to the map's own. */
+export function setMapStyle(state: GameState, styleId: string | null, rules: Rules): Result {
+  if (styleId !== null && !rules.map.map.styles?.some((st) => st.id === styleId)) return fail(`No map style ${styleId}`);
+  return ok({ ...state, mapStyle: styleId });
+}

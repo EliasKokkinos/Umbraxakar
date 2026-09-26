@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { GameStore } from '../data/game-store';
 import { auraRadiusOf } from '../engine/events';
+import { shownMap } from '../engine/game-state';
 import { TableHost } from '../data/table-sync';
 import { addPortal, moveEvent } from '../engine/dm-edits';
 import { eventById } from '../engine/game-state';
@@ -30,7 +31,8 @@ export class DmScreen {
   protected readonly store = inject(GameStore);
   protected readonly table = inject(TableHost);
   protected readonly state = this.store.state;
-  protected readonly map = computed(() => this.store.rules.map.map);
+  protected readonly map = computed(() => shownMap(this.store.state()!, this.store.rules.map.map));
+  protected readonly mapStyles = this.store.rules.map.map.styles ?? [];
   protected readonly auraRadius = computed(() => auraRadiusOf(this.store.state()!.events, this.store.rules.events));
 
   protected readonly selection = signal<Selection>(null);

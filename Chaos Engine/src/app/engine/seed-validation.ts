@@ -64,6 +64,9 @@ export function validateSeed(seed: Seed): string[] {
     for (const r of [...m.regions, ...m.noSpawnZones]) {
       check(r.x >= 0 && r.y >= 0 && r.x + r.w <= 1.0001 && r.y + r.h <= 1.0001, `${m.id}/${r.id}: rect leaves the map`);
     }
+    const styleIds = (m.styles ?? []).map((st) => st.id);
+    check(new Set(styleIds).size === styleIds.length, `${m.id}: map style ids repeat`);
+    for (const st of m.styles ?? []) check(!!st.asset && !!st.name, `${m.id}/${st.id}: a map style needs a name and an image`);
   }
 
   check(onMap(seed.castle.position), 'Castle position off map');

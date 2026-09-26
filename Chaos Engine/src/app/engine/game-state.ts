@@ -5,9 +5,9 @@ import { canDeploy } from './morale';
 import { effectivePower } from './power';
 import { HeroState, ResourceState, resourcesFromSeed } from './resource-state';
 import { Rng } from './rng';
-import { CastleSeed, Commander, CommanderInfluence, EventsConfig, ResolutionConfig, Seed } from './seed-types';
+import { CastleSeed, Commander, CommanderInfluence, EventsConfig, MapDef, ResolutionConfig, Seed } from './seed-types';
 
-export const GAME_STATE_VERSION = 5;
+export const GAME_STATE_VERSION = 6;
 
 /** A hero in the Healers' Hall: occupies a slot and the hero until done. */
 export interface Treatment {
@@ -57,6 +57,8 @@ export interface GameState {
   commandSway: CommanderInfluence[] | null;
   /** The DM's own sway for a commander, replacing the archive's (the seed) for that commander. */
   commanderInfluence: Record<string, CommanderInfluence[]>;
+  /** Which drawing of the map both screens show; null is the map's own. */
+  mapStyle: string | null;
   resources: ResourceState[];
   events: EventsState;
   castle: CastleState;
@@ -159,6 +161,7 @@ export function newGame(seed: Seed, rules: Rules, rngSeed: number): GameState {
     commanderTurn: null,
     commandSway: null,
     commanderInfluence: {},
+    mapStyle: null,
     resources: resourcesFromSeed(seed.resources),
     events,
     castle: castleFromSeed(seed.castle),
@@ -167,4 +170,10 @@ export function newGame(seed: Seed, rules: Rules, rngSeed: number): GameState {
   const count = initialPortalCount(deployableHosts(state, rules).length, rng, rules.events);
   const seeded = seedPortals(events, count, rules.map, rng, rules.events);
   return { ...state, events: seeded.state, rngState: rng.state };
+}
+
+/** The map as the screens draw it: the DM's chosen style, or the map's own drawing. */
+export function shownMap(state: Pick<GameState, 'mapStyle'>, map: MapDef): MapDef {
+  const style = map.styles?.find((st) => st.id === state.mapStyle);
+  return style ? { ...map, asset: style.asset } : map;
 }

@@ -133,6 +133,35 @@ describe('MapBoard zoom', () => {
     expect(again.componentInstance.iconSize()).toBe(1);
   });
 
+  it('keeps the view when the same map arrives anew, or in another drawing', async () => {
+    const { f, board } = await mount();
+    board.zoomTo(3);
+    // The table receives a fresh map object with every update.
+    f.componentRef.setInput('map', { ...MAP, asset: 'maps/world-of-the-malazan-empire.png' });
+    await f.whenStable();
+    expect(board.zoom()).toBe(3);
+    f.componentRef.setInput('map', { ...MAP, id: 'another-world' });
+    await f.whenStable();
+    expect(board.zoom()).toBe(1);
+  });
+
+  it('offers the other drawings of the map and reports the choice', async () => {
+    const { f, host, board } = await mount();
+    const styles = [
+      { id: 'atlas', name: 'The atlas', asset: MAP.asset },
+      { id: 'malazan-empire', name: 'The Malazan Empire', asset: 'maps/world-of-the-malazan-empire.png' },
+    ];
+    f.componentRef.setInput('styles', styles);
+    await f.whenStable();
+    const select = host.querySelector<HTMLSelectElement>('#map-style')!;
+    expect(select.value).toBe('atlas');
+    const chosen: (string | null)[] = [];
+    board.styleChange.subscribe((id) => chosen.push(id));
+    select.value = 'malazan-empire';
+    select.dispatchEvent(new Event('change'));
+    expect(chosen).toEqual(['malazan-empire']);
+  });
+
   it('lets markers grow more gently than the land', async () => {
     const { f, host, board } = await mount();
     board.zoomTo(4);

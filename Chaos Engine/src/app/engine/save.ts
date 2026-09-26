@@ -37,6 +37,8 @@ export const MIGRATIONS: Record<number, (state: Record<string, unknown>) => Reco
   3: (s) => ({ ...s, commandSway: null, commanderInfluence: {} }),
   // v5: the DM sets the reach of the temples.
   4: (s) => ({ ...s, events: { ...(s['events'] as object), auraRadius: null } }),
+  // v6: the DM chooses which drawing of the map is shown.
+  5: (s) => ({ ...s, mapStyle: null }),
 };
 
 export function toSaveFile(state: GameState, label: string, now = new Date(), portraits?: Record<string, string>): SaveFile {

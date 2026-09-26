@@ -6,7 +6,7 @@ import { auraRadiusOf } from './events';
 import { Odds, SendOdds, currentOdds, oddsIfSent } from './odds';
 import { facilityLevel } from './castle';
 import { PortalState, TempleState } from './event-state';
-import { GameState, Rules, resourceById } from './game-state';
+import { GameState, resourceById, Rules, shownMap } from './game-state';
 import { Commander, MapDef } from './seed-types';
 import { PendingResolution } from './turn';
 import { ResourceView, TurnReport, castleWork, dayOfTurn, lastTurnReport, resourceView } from './views';
@@ -73,7 +73,7 @@ function tableTemple(t: TempleState): TempleState {
 }
 
 function tableMap(map: MapDef): TableMap {
-  const { source: _source, ...rest } = map;
+  const { source: _source, styles: _styles, ...rest } = map;
   return rest;
 }
 
@@ -149,7 +149,7 @@ export function tableView(state: GameState, rules: Rules, commanders: Commander[
     civilianDeaths: state.events.civilianDeaths,
     openPortals: portals.length,
     treasury: state.castle.showTreasuryOnTable ? state.castle.treasury : null,
-    map: tableMap(rules.map.map),
+    map: tableMap(shownMap(state, rules.map.map)),
     auraRadius: auraRadiusOf(state.events, rules.events),
     portals,
     temples,

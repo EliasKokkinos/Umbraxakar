@@ -1,6 +1,6 @@
 import { assign, attach } from './assignment';
 import { chooseCommander } from './commanders';
-import { updatePortal, updateResource, updateTemple } from './dm-edits';
+import { setMapStyle, updatePortal, updateResource, updateTemple } from './dm-edits';
 import { GameState, Result, newGame } from './game-state';
 import { NO_REVEAL, tableView } from './table-view';
 import { endTurn, resolveAll } from './turn';
@@ -141,5 +141,26 @@ describe('tableView: reveals', () => {
   it('shows no commander from a previous turn', () => {
     const s = endTurn(unwrap(chooseCommander(newGame(SEED, RULES, 3), 'imogen', RULES)), RULES);
     expect(tableView(s, RULES, commanders).commander).toBeNull();
+  });
+});
+
+describe('tableView: the drawing of the map', () => {
+  it('shows the style the DM picked, and never the archive path or the style list', () => {
+    const s = newGame(SEED, RULES, 9);
+    expect(tableView(s, RULES, RULES.commanders).map.asset).toBe(RULES.map.map.asset);
+    const empire = unwrap(setMapStyle(s, 'malazan-empire', RULES));
+    const view = tableView(empire, RULES, RULES.commanders);
+    expect(view.map.asset).toBe('maps/world-of-the-malazan-empire.png');
+    expect(view.map).not.toHaveProperty('styles');
+    expect(view.map).not.toHaveProperty('source');
+    // The same framing: regions and positions are untouched.
+    expect(view.map.regions).toEqual(RULES.map.map.regions);
+  });
+
+  it('refuses a style the map does not have, and returns to the usual drawing', () => {
+    const s = newGame(SEED, RULES, 9);
+    expect(setMapStyle(s, 'the-moon', RULES)).toEqual({ ok: false, error: 'No map style the-moon' });
+    const back = unwrap(setMapStyle(unwrap(setMapStyle(s, 'deserts-and-ice', RULES)), null, RULES));
+    expect(back.mapStyle).toBeNull();
   });
 });

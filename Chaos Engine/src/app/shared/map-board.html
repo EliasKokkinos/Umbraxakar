@@ -86,9 +86,19 @@
 </svg>
 </div>
 
-@if (zoomable() || iconSizeKey()) {
+@if (zoomable() || iconSizeKey() || styles().length) {
   <!-- One quiet bar: each control reads "label − value +", and the value resets it. -->
   <div class="tools">
+    @if (styles().length) {
+      <div class="control" role="group" aria-label="Map drawing">
+        <label class="label" for="map-style">Map</label>
+        <select id="map-style" (change)="onStyle($event)">
+          @for (st of styles(); track st.id) {
+            <option [value]="st.id" [selected]="st.id === styleId() || (!styleId() && st.asset === map().asset)">{{ st.name }}</option>
+          }
+        </select>
+      </div>
+    }
     @if (iconSizeKey()) {
       <div class="control" role="group" aria-label="Icon size">
         <span class="label">Icons</span>

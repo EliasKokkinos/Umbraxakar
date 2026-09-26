@@ -99,11 +99,21 @@ export interface Region extends Rect {
   name: string;
 }
 
+/** Another drawing of the same map: same framing, so every position still holds. */
+export interface MapStyle {
+  id: string;
+  name: string;
+  asset: string;
+}
+
 export interface MapDef {
   id: string;
   name: string;
   source: string;
+  /** The drawing land detection reads, and the one shown unless the DM picks a style. */
   asset: string;
+  /** Other drawings the DM may show instead. */
+  styles?: MapStyle[];
   width: number;
   height: number;
   landDetection: LandDetection;
