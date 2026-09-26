@@ -1,3 +1,4 @@
+<div class="stage" [style.transform]="stageTransform()">
 <img class="atlas" [src]="map().asset" [alt]="map().name" draggable="false" />
 <svg
   class="overlay"
@@ -83,3 +84,14 @@
     </g>
   }
 </svg>
+</div>
+
+@if (zoomable()) {
+  <div class="zoom" role="group" aria-label="Zoom the map">
+    <button type="button" aria-label="Zoom in" [disabled]="zoom() >= maxZoom" (click)="zoomIn()">+</button>
+    <button type="button" aria-label="Zoom out" [disabled]="zoom() <= 1" (click)="zoomOut()">−</button>
+    @if (zoom() > 1) {
+      <button type="button" class="whole" (click)="resetZoom()">Whole map</button>
+    }
+  </div>
+}

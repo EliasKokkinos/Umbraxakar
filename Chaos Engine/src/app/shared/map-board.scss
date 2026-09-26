@@ -8,6 +8,64 @@
 }
 
 // The atlas is pale; dimmed, it becomes a war table at night and the markers carry the light.
+// The atlas and its markers move together when the map is zoomed and panned.
+.stage {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  transition: transform 140ms ease-out;
+}
+
+:host(.panning) .stage {
+  transition: none;
+}
+
+:host(.zoomed) {
+  cursor: grab;
+  touch-action: none;
+}
+
+:host(.panning) {
+  cursor: grabbing;
+}
+
+.zoom {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  display: flex;
+  gap: 0.3rem;
+
+  button {
+    min-width: 2.4em;
+    height: 2.4em;
+    padding: 0 0.6em;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    background: rgba(27, 32, 48, 0.88);
+    border: 1px solid var(--ce-rule);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+
+  .whole {
+    font-weight: 400;
+    color: var(--ce-brass);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    transition: none;
+  }
+}
+
 .atlas {
   position: absolute;
   inset: 0;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, output, signal } from '@angular/core';
 import { PortalState, TempleState } from '../engine/event-state';
 import { MapDef, Point } from '../engine/seed-types';
 
@@ -10,6 +10,14 @@ export const RESOURCE_DRAG_TYPE = 'application/x-chaos-resource';
 export const HERO_DRAG_TYPE = 'application/x-chaos-hero';
 const NOTCHES = 5;
 const R = 9; // marker radius in view units
+
+/** How far the map can be zoomed in, and how much one button press changes it. */
+export const MAX_ZOOM = 5;
+const ZOOM_STEP = 1.5;
+/** Pointer travel, in pixels, before a press on the map becomes a pan rather than a click. */
+const PAN_THRESHOLD = 5;
+
+const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
 /**
  * A temple in silhouette (pediment, four columns, two steps), drawn in a unit square
@@ -50,7 +58,16 @@ export const NOTCH_PATHS = Array.from({ length: NOTCHES }, (_, i) => notch(i, R 
   templateUrl: './map-board.html',
   styleUrl: './map-board.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[style.aspect-ratio]': 'map().width + " / " + map().height' },
+  host: {
+    '[style.aspect-ratio]': 'map().width + " / " + map().height',
+    '[class.zoomed]': 'zoom() > 1',
+    '[class.panning]': 'panning()',
+    '(wheel)': 'onWheel($event)',
+    '(pointerdown)': 'onPointerDown($event)',
+    '(pointermove)': 'onPointerMove($event)',
+    '(pointerup)': 'onPointerUp($event)',
+    '(pointercancel)': 'onPointerUp($event)',
+  },
 })
 export class MapBoard {
   readonly map = input.required<MapDef>();
@@ -68,6 +85,9 @@ export class MapBoard {
   /** Accept resource cards dropped onto events (the table screen). */
   readonly droppable = input(false);
 
+  /** Let the map be zoomed (wheel, pinch, buttons) and panned (drag). */
+  readonly zoomable = input(false);
+
   readonly select = output<string>();
   readonly place = output<Point>();
   readonly dropped = output<{ eventId: string; resourceId: string }>();
@@ -75,6 +95,31 @@ export class MapBoard {
   readonly dragOver = output<string | null>();
 
   protected readonly dropTarget = signal<string | null>(null);
+
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+
+  /** 1 shows the whole map. The pan is the map's offset, as a share of the board (1 - zoom to 0). */
+  readonly zoom = signal(1);
+  readonly pan = signal({ x: 0, y: 0 });
+  protected readonly panning = signal(false);
+  protected readonly maxZoom = MAX_ZOOM;
+  protected readonly stageTransform = computed(() => {
+    const { x, y } = this.pan();
+    return `translate(${x * 100}%, ${y * 100}%) scale(${this.zoom()})`;
+  });
+
+  private press: { id: number; x: number; y: number; pan: { x: number; y: number } } | null = null;
+  private suppressClick = false;
+
+  constructor() {
+    // The click that ends a pan selects nothing: stop it before any marker sees it.
+    this.host.addEventListener('click', (ev) => this.swallowPanClick(ev), { capture: true });
+    // A new map starts whole.
+    effect(() => {
+      this.map();
+      this.resetZoom();
+    });
+  }
 
   protected readonly viewH = computed(() => (VIEW_W * this.map().height) / this.map().width);
   protected readonly viewBox = computed(() => `0 0 ${VIEW_W} ${this.viewH()}`);
@@ -95,8 +140,89 @@ export class MapBoard {
     return p.y * this.viewH();
   }
 
+  /** Markers grow more gently than the land as the map zooms, so a close view is not all markers. */
   protected markerAt(p: Point): string {
-    return `translate(${this.x(p)} ${this.y(p)}) scale(${this.markerScale()})`;
+    return `translate(${this.x(p)} ${this.y(p)}) scale(${this.markerScale() / Math.sqrt(this.zoom())})`;
+  }
+
+  // ---------------------------------------------------------------- zoom and pan
+
+  /** Zooms to `next`, keeping the map point under `at` (a share of the board) where it is. */
+  zoomTo(next: number, at = { x: 0.5, y: 0.5 }): void {
+    const z = this.zoom();
+    const z2 = clamp(next, 1, MAX_ZOOM);
+    const { x, y } = this.pan();
+    this.zoom.set(z2);
+    this.setPan({ x: at.x - ((at.x - x) / z) * z2, y: at.y - ((at.y - y) / z) * z2 });
+  }
+
+  zoomIn(): void {
+    this.zoomTo(this.zoom() * ZOOM_STEP);
+  }
+
+  zoomOut(): void {
+    this.zoomTo(this.zoom() / ZOOM_STEP);
+  }
+
+  resetZoom(): void {
+    this.zoom.set(1);
+    this.pan.set({ x: 0, y: 0 });
+  }
+
+  /** The map always covers the board: no dragging it off into the void. */
+  private setPan(p: { x: number; y: number }): void {
+    const lo = 1 - this.zoom();
+    this.pan.set({ x: clamp(p.x, lo, 0), y: clamp(p.y, lo, 0) });
+  }
+
+  private boardPoint(ev: { clientX: number; clientY: number }): { x: number; y: number } {
+    const box = this.host.getBoundingClientRect();
+    return { x: (ev.clientX - box.left) / (box.width || 1), y: (ev.clientY - box.top) / (box.height || 1) };
+  }
+
+  protected onWheel(ev: WheelEvent): void {
+    if (!this.zoomable()) return;
+    ev.preventDefault();
+    // A trackpad pinch arrives as a wheel with ctrlKey and small deltas; a mouse notch as a large one.
+    const factor = Math.exp(-clamp(ev.deltaY, -100, 100) / (ev.ctrlKey ? 60 : 250));
+    this.zoomTo(this.zoom() * factor, this.boardPoint(ev));
+  }
+
+  protected onPointerDown(ev: PointerEvent): void {
+    if (!this.zoomable() || this.zoom() === 1 || ev.button !== 0) return;
+    if ((ev.target as Element).closest?.('.zoom')) return;
+    this.press = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, pan: this.pan() };
+  }
+
+  protected onPointerMove(ev: PointerEvent): void {
+    const p = this.press;
+    if (!p || p.id !== ev.pointerId) return;
+    const dx = ev.clientX - p.x;
+    const dy = ev.clientY - p.y;
+    if (!this.panning()) {
+      if (Math.hypot(dx, dy) < PAN_THRESHOLD) return;
+      this.panning.set(true);
+      this.host.setPointerCapture?.(ev.pointerId);
+    }
+    const box = this.host.getBoundingClientRect();
+    this.setPan({ x: p.pan.x + dx / (box.width || 1), y: p.pan.y + dy / (box.height || 1) });
+  }
+
+  protected onPointerUp(ev: PointerEvent): void {
+    if (!this.press || this.press.id !== ev.pointerId) return;
+    this.press = null;
+    if (this.panning()) {
+      this.panning.set(false);
+      this.suppressClick = true;
+      this.host.releasePointerCapture?.(ev.pointerId);
+    }
+  }
+
+  private swallowPanClick(ev: MouseEvent): void {
+    if (!this.suppressClick) return;
+    this.suppressClick = false;
+    ev.stopPropagation();
+    ev.preventDefault();
   }
 
   protected auraR(): number {

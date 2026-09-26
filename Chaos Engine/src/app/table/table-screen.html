@@ -107,6 +107,7 @@
         [auraRadius]="v.auraRadius"
         [selectedId]="selectedEventId()"
         [droppable]="true"
+        [zoomable]="true"
         [markerScale]="markerScale"
         (select)="selectEvent($event)"
         (dropped)="send($event.resourceId, $event.eventId)"
