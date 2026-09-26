@@ -194,3 +194,42 @@ section {
 .small {
   font-size: var(--ce-small);
 }
+
+.remove-row {
+  margin-top: 0.6rem;
+  align-items: center;
+}
+
+// The new-ally form.
+.kinds {
+  display: flex;
+  gap: 1rem;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  border: none;
+
+  legend {
+    color: var(--ce-ash);
+    margin-bottom: 0.3rem;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+}
+
+.form-grid {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+
+  .warn {
+    font-size: var(--ce-small);
+  }
+
+  input.ng-invalid.ng-touched {
+    border-color: var(--ce-oxblood);
+  }
+}

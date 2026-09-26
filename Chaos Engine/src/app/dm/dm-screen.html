@@ -6,7 +6,7 @@
     (resolve)="reckoning.set(true)"
   />
 
-  <ce-resource-ledger class="ledger" [selectedId]="selectedResourceId()" (select)="selectResource($event)" />
+  <ce-resource-ledger class="ledger" [selectedId]="selectedResourceId()" (select)="selectResource($event)" (create)="selection.set({ kind: 'new' })" />
 
   <section class="board" aria-label="Map of Edar">
     <ce-map-board
@@ -31,6 +31,8 @@
   <aside class="inspector" aria-label="Details">
     @if (reckoning()) {
       <ce-reckoning (done)="reckoning.set(false)" (selectEvent)="selectEvent($event)" />
+    } @else if (creating()) {
+      <ce-new-resource-form (created)="selectResource($event)" (cancelled)="selection.set(null)" />
     } @else if (selectedEventId(); as id) {
       <ce-event-inspector
         [eventId]="id"

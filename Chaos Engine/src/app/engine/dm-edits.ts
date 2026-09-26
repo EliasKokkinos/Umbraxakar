@@ -41,6 +41,122 @@ export function addResource(state: GameState, resource: ResourceState): Result {
   return ok({ ...state, resources: [...state.resources, resource] });
 }
 
+/** What the DM fills in to bring a new hero, avatar or group into the game. */
+export interface NewResourceSpec {
+  kind: 'hero' | 'avatar' | 'group';
+  name: string;
+  faction: string;
+  power: number;
+  morale: number;
+  /** Heroes and avatars. */
+  injuryResistance?: number;
+  /** Groups. */
+  number?: number;
+  decimationResistance?: number;
+  replenishable?: boolean;
+  canCleanse: boolean;
+  tisteAndii: boolean;
+  healer: boolean;
+  /** Kept off the table until the DM unlocks it. */
+  hidden: boolean;
+  notes: string;
+}
+
+/**
+ * A readable, unique id from a name ("Captain Luke" -> "captain-luke"). It is safe as a
+ * portrait key and never clashes with a resource, event or commander.
+ */
+export function newResourceId(state: GameState, name: string, rules: Rules): string {
+  const slug =
+    name
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60) || 'resource';
+  const taken = new Set([
+    ...state.resources.map((r) => r.id),
+    ...state.events.portals.map((p) => p.id),
+    ...state.events.temples.map((t) => t.id),
+    ...rules.commanders.map((c) => c.id),
+  ]);
+  if (!taken.has(slug)) return slug;
+  let n = 2;
+  while (taken.has(`${slug}-${n}`)) n++;
+  return `${slug}-${n}`;
+}
+
+/** Brings a new resource into the game, at the castle. */
+export function createResource(state: GameState, spec: NewResourceSpec, rules: Rules): Result {
+  const name = spec.name.trim();
+  if (!name) return fail('A new resource needs a name');
+  const tags = [
+    ...(spec.tisteAndii ? [rules.events.temple.bonusTag] : []),
+    ...(spec.healer && spec.kind !== 'group' ? ['healer'] : []),
+  ];
+  const base = {
+    id: newResourceId(state, name, rules),
+    name,
+    faction: spec.faction.trim() || 'Iron Company',
+    power: clamp(Math.round(spec.power), 1, 10),
+    morale: clamp(Math.round(spec.morale), 1, 5),
+    tags,
+    canCleanse: spec.canCleanse,
+    locked: spec.hidden,
+    lockReason: spec.hidden ? 'Not yet revealed to the table' : undefined,
+    traits: [],
+    notes: spec.notes.trim(),
+    attachedTo: null,
+    trainingBonus: 0,
+    trainingTurnsLeft: 0,
+  };
+  let resource: ResourceState;
+  if (spec.kind === 'group') {
+    const number = Math.max(1, Math.round(spec.number ?? 100));
+    resource = {
+      ...base,
+      kind: 'group',
+      number,
+      maxNumber: number,
+      injured: 0,
+      replenishable: spec.replenishable ?? true,
+      decimationResistance: clamp(Math.round(spec.decimationResistance ?? 3), 1, 5),
+      forged: false,
+    };
+  } else {
+    resource = {
+      ...base,
+      kind: spec.kind,
+      injuryResistance: clamp(Math.round(spec.injuryResistance ?? 3), 1, 5),
+      injuries: [],
+      fallen: false,
+    };
+  }
+  return addResource(state, resource);
+}
+
+/**
+ * Takes a resource out of the game entirely: called home from any event, its attached heroes
+ * freed, and any castle work on it dropped.
+ */
+export function removeResource(state: GameState, id: string): Result {
+  if (!resourceById(state, id)) return fail(`No resource ${id}`);
+  const s = withoutAssignment(state, id);
+  const c = s.castle;
+  const { [id]: _recruits, ...recruits } = c.recruits;
+  return ok({
+    ...s,
+    resources: s.resources.filter((r) => r.id !== id).map((r) => (r.attachedTo === id ? { ...r, attachedTo: null } : r)),
+    castle: {
+      ...c,
+      training: c.training.filter((t) => t !== id),
+      treatments: c.treatments.filter((t) => t.resourceId !== id),
+      recruits,
+      projects: c.projects.filter((p) => !(p.kind === 'forge' && p.groupId === id)),
+    },
+  });
+}
+
 function withoutAssignment(state: GameState, hostId: string): GameState {
   const drop = <T extends EventState>(e: T): T => ({ ...e, assigned: e.assigned.filter((id) => id !== hostId) });
   return { ...state, events: { ...state.events, portals: state.events.portals.map(drop), temples: state.events.temples.map(drop) } };

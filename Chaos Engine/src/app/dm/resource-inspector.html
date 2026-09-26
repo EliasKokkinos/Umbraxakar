@@ -157,6 +157,15 @@
         <button type="button" (click)="edit({ fallen: false }, 'Spare from death')">They live</button>
       }
     </div>
+    <div class="actions remove-row">
+      @if (confirmingRemove()) {
+        <span class="warn">Remove {{ r.name }} from the game? Undo brings them back.</span>
+        <button type="button" class="danger" (click)="remove()">Remove for good</button>
+        <button type="button" (click)="confirmingRemove.set(false)">Keep them</button>
+      } @else {
+        <button type="button" class="danger" (click)="confirmingRemove.set(true)">Remove from the game</button>
+      }
+    </div>
     @if (r.locked && r.lockReason) {
       <p class="line">Locked: {{ r.lockReason }}</p>
     }

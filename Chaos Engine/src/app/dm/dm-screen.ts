@@ -8,17 +8,18 @@ import { MapBoard } from '../shared/map-board';
 import { CastlePanel } from './castle-panel';
 import { CommandPicker } from './command-picker';
 import { EventInspector } from './event-inspector';
+import { NewResourceForm } from './new-resource-form';
 import { Reckoning } from './reckoning';
 import { ResourceInspector } from './resource-inspector';
 import { ResourceLedger } from './resource-ledger';
 import { TopBar } from './top-bar';
 
-export type Selection = { kind: 'event' | 'resource'; id: string } | null;
+export type Selection = { kind: 'event' | 'resource'; id: string } | { kind: 'new' } | null;
 export type Placing = { kind: 'portal' } | { kind: 'move'; id: string } | null;
 
 @Component({
   selector: 'ce-dm-screen',
-  imports: [TopBar, ResourceLedger, MapBoard, EventInspector, ResourceInspector, CastlePanel, Reckoning, CommandPicker],
+  imports: [TopBar, ResourceLedger, MapBoard, EventInspector, ResourceInspector, CastlePanel, Reckoning, CommandPicker, NewResourceForm],
   templateUrl: './dm-screen.html',
   styleUrl: './dm-screen.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,8 +43,9 @@ export class DmScreen {
   });
   protected readonly selectedResourceId = computed(() => {
     const s = this.selection();
-    return s?.kind === 'resource' ? s.id : null;
+    return s?.kind === 'resource' && this.state()!.resources.some((r) => r.id === s.id) ? s.id : null;
   });
+  protected readonly creating = computed(() => this.selection()?.kind === 'new');
 
   protected selectEvent(id: string): void {
     this.selection.set({ kind: 'event', id });

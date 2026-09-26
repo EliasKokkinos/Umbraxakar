@@ -2,6 +2,9 @@ import { assign } from './assignment';
 import {
   addPortal,
   addResource,
+  createResource,
+  newResourceId,
+  removeResource,
   moveEvent,
   removeEvent,
   seedMorePortals,
@@ -14,6 +17,9 @@ import {
 import { GameState, Result, eventById, eventOf, newGame, resourceById } from './game-state';
 import { PortalState, TempleState } from './event-state';
 import { RULES, SEED, group } from './testing';
+import { attach } from './assignment';
+import { train } from './castle';
+import { NewResourceSpec } from './dm-edits';
 
 const unwrap = (r: Result): GameState => {
   if (!r.ok) throw new Error(r.error);
@@ -103,5 +109,71 @@ describe('DM edits: castle', () => {
     s = unwrap(setFacilityLevel(s, 'barracks', 7));
     expect(s.castle.facilities['barracks']).toBe(3);
     expect(setFacilityLevel(s, 'moat', 2).ok).toBe(false);
+  });
+});
+
+describe('DM edits: new and removed resources', () => {
+  const spec = (over: Partial<NewResourceSpec> = {}): NewResourceSpec => ({
+    kind: 'hero',
+    name: 'Captain Luke',
+    faction: 'Letheri Empire',
+    power: 6,
+    morale: 4,
+    injuryResistance: 3,
+    canCleanse: false,
+    tisteAndii: false,
+    healer: false,
+    hidden: false,
+    notes: '',
+    ...over,
+  });
+
+  it('makes readable ids that never clash', () => {
+    const s = game();
+    expect(newResourceId(s, 'Captain Luke', RULES)).toBe('captain-luke');
+    expect(newResourceId(s, 'Karsa Orlong', RULES)).toBe('karsa-orlong-2');
+    expect(newResourceId(s, 'Col', RULES)).toBe('col-2'); // a commander's id
+    expect(newResourceId(s, "D'rek's Chosen!", RULES)).toBe('d-rek-s-chosen');
+    expect(newResourceId(s, '???', RULES)).toBe('resource');
+  });
+
+  it('brings a new hero into play at the castle, ready to be sent', () => {
+    const s = unwrap(createResource(game(), spec({ tisteAndii: true, healer: true, canCleanse: true }), RULES));
+    const luke = resourceById(s, 'captain-luke')!;
+    expect(luke).toMatchObject({ kind: 'hero', name: 'Captain Luke', power: 6, morale: 4, canCleanse: true, locked: false, attachedTo: null });
+    expect(luke.tags).toEqual(['tiste-andii', 'healer']);
+    expect(assign(s, 'captain-luke', s.events.portals[0].id, RULES).ok).toBe(true);
+  });
+
+  it('brings a new group in at full strength, within the rule ranges', () => {
+    const s = unwrap(
+      createResource(game(), spec({ kind: 'group', name: 'Moranth Blacks', power: 14, morale: 0, number: 120, decimationResistance: 9, replenishable: false }), RULES),
+    );
+    expect(resourceById(s, 'moranth-blacks')).toMatchObject({
+      kind: 'group', power: 10, morale: 1, number: 120, maxNumber: 120, injured: 0, decimationResistance: 5, replenishable: false,
+    });
+  });
+
+  it('can keep a new resource off the table until it is revealed', () => {
+    const s = unwrap(createResource(game(), spec({ hidden: true }), RULES));
+    expect(resourceById(s, 'captain-luke')).toMatchObject({ locked: true, lockReason: 'Not yet revealed to the table' });
+  });
+
+  it('needs a name', () => {
+    expect(createResource(game(), spec({ name: '   ' }), RULES)).toEqual({ ok: false, error: 'A new resource needs a name' });
+  });
+
+  it('removes a resource cleanly: out of the field, attached heroes freed, castle work dropped', () => {
+    let s = unwrap(attach(game(), 'blues', 'avowed-prince'));
+    s = unwrap(assign(s, 'avowed-prince', s.events.portals[0].id, RULES));
+    s = unwrap(removeResource(s, 'avowed-prince'));
+    expect(resourceById(s, 'avowed-prince')).toBeUndefined();
+    expect(s.events.portals[0].assigned).not.toContain('avowed-prince');
+    expect(resourceById(s, 'blues')!.attachedTo).toBeNull();
+
+    let t = unwrap(train(game(), 'uruk', RULES));
+    t = unwrap(removeResource(t, 'uruk'));
+    expect(t.castle.training).toEqual([]);
+    expect(removeResource(t, 'uruk').ok).toBe(false);
   });
 });

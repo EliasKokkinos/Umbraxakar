@@ -1,0 +1,56 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <header>
+    <h2>A new ally</h2>
+    <p class="sub">They join at the castle, ready to be sent. You can add a portrait once they are in play.</p>
+  </header>
+
+  <section>
+    <fieldset class="kinds">
+      <legend>What they are</legend>
+      <label><input type="radio" formControlName="kind" value="hero" /> Hero</label>
+      <label><input type="radio" formControlName="kind" value="group" /> Group</label>
+      <label><input type="radio" formControlName="kind" value="avatar" /> Avatar</label>
+    </fieldset>
+
+    <div class="dm-edit form-grid">
+      <div class="grid">
+        <label class="wide">
+          Name
+          <input type="text" formControlName="name" autocomplete="off" placeholder="{{ isGroup() ? 'Moranth Blacks' : 'Captain Luke' }}" />
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            <span class="warn">Give them a name.</span>
+          }
+        </label>
+        <label class="wide">
+          Faction
+          <input type="text" formControlName="faction" list="ce-factions" autocomplete="off" />
+          <datalist id="ce-factions">
+            @for (f of factions(); track f) {
+              <option [value]="f"></option>
+            }
+          </datalist>
+        </label>
+        <label>Power <input type="number" min="1" max="10" formControlName="power" /></label>
+        <label>Morale <input type="number" min="1" max="5" formControlName="morale" /></label>
+        @if (isGroup()) {
+          <label>Number <input type="number" min="1" formControlName="number" /></label>
+          <label>Decimation resistance <input type="number" min="1" max="5" formControlName="decimationResistance" /></label>
+          <label class="check wide"><input type="checkbox" formControlName="replenishable" /> Losses can be replaced by recruiting</label>
+        } @else {
+          <label>Injury resistance <input type="number" min="1" max="5" formControlName="injuryResistance" /></label>
+        }
+        <label class="check wide"><input type="checkbox" formControlName="canCleanse" /> Can cleanse deep corruption (a cleric or paladin of 12th level or more, an angel, a god)</label>
+        <label class="check wide"><input type="checkbox" formControlName="tisteAndii" /> Tiste Andii: fights at +3 near an awakened temple of Mother Dark</label>
+        @if (!isGroup()) {
+          <label class="check wide"><input type="checkbox" formControlName="healer" /> A healer: adds a healing slot while at the castle</label>
+        }
+        <label class="check wide"><input type="checkbox" formControlName="hidden" /> Keep them off the table for now (unlock them when they are revealed)</label>
+        <label class="wide">Notes <textarea rows="2" formControlName="notes"></textarea></label>
+      </div>
+      <div class="actions">
+        <button type="submit" class="primary">Bring into play</button>
+        <button type="button" (click)="cancelled.emit()">Cancel</button>
+      </div>
+    </div>
+  </section>
+</form>

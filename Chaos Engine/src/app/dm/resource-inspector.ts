@@ -3,7 +3,7 @@ import { GameStore } from '../data/game-store';
 import { PortraitStore } from '../data/portrait-store';
 import { makePortrait } from '../shared/portrait';
 import { forgeArms, heal, recruit, recruitCapacity, serveWine, train } from '../engine/castle';
-import { ResourcePatch, updateResource } from '../engine/dm-edits';
+import { ResourcePatch, removeResource, updateResource } from '../engine/dm-edits';
 import { isAtCastle, resourceById } from '../engine/game-state';
 import { eventOptionsFor, resourceView } from '../engine/views';
 import { fmt, signed } from '../shared/format';
@@ -20,6 +20,7 @@ export class ResourceInspector {
   protected readonly store = inject(GameStore);
   protected readonly portraits = inject(PortraitStore);
   protected readonly portraitError = signal<string | null>(null);
+  protected readonly confirmingRemove = signal(false);
   readonly resourceId = input.required<string>();
   readonly selectEvent = output<string>();
   readonly selectResource = output<string>();
@@ -108,6 +109,14 @@ export class ResourceInspector {
 
   protected removePortrait(): void {
     void this.portraits.remove(this.resourceId());
+  }
+
+  protected remove(): void {
+    const id = this.resourceId();
+    if (this.store.act(`Remove ${this.name} from the game`, (s) => removeResource(s, id))) {
+      void this.portraits.remove(id);
+      this.confirmingRemove.set(false);
+    }
   }
 
   protected nameOf(id: string): string {

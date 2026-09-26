@@ -20,6 +20,8 @@ export class ResourceLedger {
   private readonly store = inject(GameStore);
   readonly selectedId = input<string | null>(null);
   readonly select = output<string>();
+  /** The DM wants to bring a new hero or group into the game. */
+  readonly create = output<void>();
 
   protected readonly filter = signal('');
 
