@@ -29,13 +29,31 @@
   cursor: grabbing;
 }
 
-.zoom {
+.tools {
   position: absolute;
   top: 0.6rem;
   right: 0.6rem;
   z-index: 1;
   display: flex;
+  gap: 0.6rem;
+}
+
+.group {
+  display: flex;
+  align-items: center;
   gap: 0.3rem;
+
+  .label {
+    padding: 0 0.2em 0 0.5em;
+    color: var(--ce-ash);
+    font-size: 0.85rem;
+    text-shadow: 0 1px 3px #000;
+  }
+
+  .pct {
+    min-width: 3.6em;
+    font-weight: 400;
+  }
 
   button {
     min-width: 2.4em;
@@ -58,6 +76,12 @@
     font-weight: 400;
     color: var(--ce-brass);
   }
+}
+
+.icons {
+  padding-left: 0.2rem;
+  border-radius: var(--ce-radius);
+  background: rgba(16, 20, 31, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {

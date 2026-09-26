@@ -85,6 +85,50 @@ describe('MapBoard zoom', () => {
     expect(selected).toEqual(['p']);
   });
 
+  it('sizes the icons from half to double, remembered per screen in this browser', async () => {
+    localStorage.clear();
+    const f = TestBed.createComponent(MapBoard);
+    f.componentRef.setInput('map', MAP);
+    f.componentRef.setInput('portals', [portal({ id: 'p', position: { x: 0.5, y: 0.5 } })]);
+    f.componentRef.setInput('temples', []);
+    f.componentRef.setInput('iconSizeKey', 'table');
+    await f.whenStable();
+    const host = f.nativeElement as HTMLElement;
+    const board = f.componentInstance;
+    const scale = () => host.querySelector('g.portal')!.getAttribute('transform')!.match(/scale\(([\d.]+)\)/)![1];
+    const [smaller, pct, larger] = host.querySelectorAll<HTMLButtonElement>('.icons button');
+    expect(pct.textContent!.trim()).toBe('100%');
+    // Without zoom, no zoom buttons.
+    expect(host.querySelector('.zoom')).toBeNull();
+
+    larger.click();
+    larger.click();
+    await f.whenStable();
+    expect(pct.textContent!.trim()).toBe('120%');
+    expect(scale()).toBe('1.2');
+    expect(localStorage.getItem('chaos-engine.icon-size.table')).toBe('1.2');
+
+    for (let i = 0; i < 20; i++) board.setIconSize(board.iconSize() - 0.1);
+    await f.whenStable();
+    expect(board.iconSize()).toBe(0.5);
+    expect(smaller.disabled).toBe(true);
+    pct.click();
+    expect(board.iconSize()).toBe(1);
+
+    // Another board under the same name picks the choice up; another name does not.
+    board.setIconSize(1.5);
+    const again = TestBed.createComponent(MapBoard);
+    again.componentRef.setInput('map', MAP);
+    again.componentRef.setInput('portals', []);
+    again.componentRef.setInput('temples', []);
+    again.componentRef.setInput('iconSizeKey', 'table');
+    await again.whenStable();
+    expect(again.componentInstance.iconSize()).toBe(1.5);
+    again.componentRef.setInput('iconSizeKey', 'dm');
+    await again.whenStable();
+    expect(again.componentInstance.iconSize()).toBe(1);
+  });
+
   it('lets markers grow more gently than the land', async () => {
     const { f, host, board } = await mount();
     board.zoomTo(4);

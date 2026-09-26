@@ -19,6 +19,11 @@ const PAN_THRESHOLD = 5;
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
+/** The event icons can be shrunk to half or grown to double, a tenth at a time. */
+export const ICON_SIZE_RANGE = [0.5, 2] as const;
+const ICON_SIZE_STEP = 0.1;
+const ICON_SIZE_KEY = 'chaos-engine.icon-size.';
+
 /**
  * A temple in silhouette (pediment, four columns, two steps), drawn in a unit square
  * about the origin and scaled to fit inside a marker of radius `r`.
@@ -88,6 +93,12 @@ export class MapBoard {
   /** Let the map be zoomed (wheel, pinch, buttons) and panned (drag). */
   readonly zoomable = input(false);
 
+  /**
+   * Shows the icon-size control and remembers the choice under this name, in this browser.
+   * A display preference only: it is not part of the game, its saves or its undo.
+   */
+  readonly iconSizeKey = input<string | null>(null);
+
   readonly select = output<string>();
   readonly place = output<Point>();
   readonly dropped = output<{ eventId: string; resourceId: string }>();
@@ -100,6 +111,10 @@ export class MapBoard {
 
   /** 1 shows the whole map. The pan is the map's offset, as a share of the board (1 - zoom to 0). */
   readonly zoom = signal(1);
+  /** The DM's icon size, on top of `markerScale`. */
+  readonly iconSize = signal(1);
+  protected readonly iconSizeRange = ICON_SIZE_RANGE;
+  protected readonly iconPct = computed(() => Math.round(this.iconSize() * 100));
   readonly pan = signal({ x: 0, y: 0 });
   protected readonly panning = signal(false);
   protected readonly maxZoom = MAX_ZOOM;
@@ -114,6 +129,19 @@ export class MapBoard {
   constructor() {
     // The click that ends a pan selects nothing: stop it before any marker sees it.
     this.host.addEventListener('click', (ev) => this.swallowPanClick(ev), { capture: true });
+    // The remembered icon size for this screen.
+    effect(() => {
+      const key = this.iconSizeKey();
+      if (!key) return;
+      let stored: string | null = null;
+      try {
+        stored = localStorage.getItem(ICON_SIZE_KEY + key);
+      } catch {
+        // Storage can be blocked; the default size will do.
+      }
+      const n = Number(stored);
+      this.iconSize.set(stored !== null && Number.isFinite(n) ? clamp(n, ICON_SIZE_RANGE[0], ICON_SIZE_RANGE[1]) : 1);
+    });
     // A new map starts whole.
     effect(() => {
       this.map();
@@ -142,7 +170,29 @@ export class MapBoard {
 
   /** Markers grow more gently than the land as the map zooms, so a close view is not all markers. */
   protected markerAt(p: Point): string {
-    return `translate(${this.x(p)} ${this.y(p)}) scale(${this.markerScale() / Math.sqrt(this.zoom())})`;
+    return `translate(${this.x(p)} ${this.y(p)}) scale(${(this.markerScale() * this.iconSize()) / Math.sqrt(this.zoom())})`;
+  }
+
+  // ---------------------------------------------------------------- icon size
+
+  setIconSize(size: number): void {
+    const next = clamp(Math.round(size * 10) / 10, ICON_SIZE_RANGE[0], ICON_SIZE_RANGE[1]);
+    this.iconSize.set(next);
+    const key = this.iconSizeKey();
+    if (!key) return;
+    try {
+      localStorage.setItem(ICON_SIZE_KEY + key, String(next));
+    } catch {
+      // Not remembered, but still applied.
+    }
+  }
+
+  protected smallerIcons(): void {
+    this.setIconSize(this.iconSize() - ICON_SIZE_STEP);
+  }
+
+  protected largerIcons(): void {
+    this.setIconSize(this.iconSize() + ICON_SIZE_STEP);
   }
 
   // ---------------------------------------------------------------- zoom and pan
@@ -190,7 +240,7 @@ export class MapBoard {
 
   protected onPointerDown(ev: PointerEvent): void {
     if (!this.zoomable() || this.zoom() === 1 || ev.button !== 0) return;
-    if ((ev.target as Element).closest?.('.zoom')) return;
+    if ((ev.target as Element).closest?.('.tools')) return;
     this.press = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, pan: this.pan() };
   }
 

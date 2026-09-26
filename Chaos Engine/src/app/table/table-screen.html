@@ -108,6 +108,7 @@
         [selectedId]="selectedEventId()"
         [droppable]="true"
         [zoomable]="true"
+        iconSizeKey="table"
         [markerScale]="markerScale"
         (select)="selectEvent($event)"
         (dropped)="send($event.resourceId, $event.eventId)"

@@ -86,12 +86,24 @@
 </svg>
 </div>
 
-@if (zoomable()) {
-  <div class="zoom" role="group" aria-label="Zoom the map">
-    <button type="button" aria-label="Zoom in" [disabled]="zoom() >= maxZoom" (click)="zoomIn()">+</button>
-    <button type="button" aria-label="Zoom out" [disabled]="zoom() <= 1" (click)="zoomOut()">−</button>
-    @if (zoom() > 1) {
-      <button type="button" class="whole" (click)="resetZoom()">Whole map</button>
+@if (zoomable() || iconSizeKey()) {
+  <div class="tools">
+    @if (iconSizeKey()) {
+      <div class="group icons" role="group" aria-label="Icon size">
+        <span class="label">Icons</span>
+        <button type="button" aria-label="Smaller icons" [disabled]="iconSize() <= iconSizeRange[0]" (click)="smallerIcons()">−</button>
+        <button type="button" class="pct num" title="Back to the usual size" (click)="setIconSize(1)">{{ iconPct() }}%</button>
+        <button type="button" aria-label="Larger icons" [disabled]="iconSize() >= iconSizeRange[1]" (click)="largerIcons()">+</button>
+      </div>
+    }
+    @if (zoomable()) {
+      <div class="group zoom" role="group" aria-label="Zoom the map">
+        <button type="button" aria-label="Zoom in" [disabled]="zoom() >= maxZoom" (click)="zoomIn()">+</button>
+        <button type="button" aria-label="Zoom out" [disabled]="zoom() <= 1" (click)="zoomOut()">−</button>
+        @if (zoom() > 1) {
+          <button type="button" class="whole" (click)="resetZoom()">Whole map</button>
+        }
+      </div>
     }
   </div>
 }
