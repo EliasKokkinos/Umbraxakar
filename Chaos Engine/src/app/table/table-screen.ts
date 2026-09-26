@@ -4,6 +4,7 @@ import { TableBattle } from '../engine/table-view';
 import { ResourceView } from '../engine/views';
 import { fmt } from '../shared/format';
 import { MapBoard, RESOURCE_DRAG_TYPE } from '../shared/map-board';
+import { EventDetail } from './event-detail';
 import { ResourceCard } from './resource-card';
 import { RevealStage } from './reveal-stage';
 import { TableSound } from './table-sound';
@@ -16,7 +17,7 @@ const BANNER_MS = 5000;
 
 @Component({
   selector: 'ce-table-screen',
-  imports: [MapBoard, ResourceCard, RevealStage],
+  imports: [MapBoard, ResourceCard, RevealStage, EventDetail],
   templateUrl: './table-screen.html',
   styleUrl: './table-screen.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

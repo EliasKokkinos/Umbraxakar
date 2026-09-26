@@ -1,0 +1,318 @@
+// The panel takes the event's own colour: its ember for a portal, violet for a temple.
+:host {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  width: min(29rem, 48%);
+}
+
+.detail {
+  position: relative;
+  padding: 1rem 1.2rem 1.1rem;
+  background: rgba(37, 43, 60, 0.97);
+  border: 1px solid var(--ce-rule);
+  border-top: 3px solid var(--heat);
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+.close {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.55rem;
+  padding: 0 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--ce-ash);
+}
+
+header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding-right: 1.5rem;
+
+  h2 {
+    font-size: 1.45rem;
+    line-height: 1.1;
+  }
+}
+
+// A small glowing mark: the rift itself.
+.sigil {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1c110d 35%, transparent 36%), var(--heat);
+  box-shadow: 0 0 0.7rem var(--heat);
+}
+
+.sub {
+  margin: 0.15rem 0 0;
+  color: var(--ce-ash);
+  font-size: 0.9rem;
+}
+
+// ------------------------------------------------------------ stats as tiles
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.tile {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.3rem;
+  padding: 0.55rem 0.4rem 0.6rem;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--ce-rule);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.label {
+  color: var(--ce-ash);
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.big {
+  font-family: var(--ce-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+
+  .of {
+    font-family: var(--ce-sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--ce-ash);
+  }
+}
+
+// The same five-notch ring as the marker on the map.
+.ring {
+  width: 3.1rem;
+  height: 3.1rem;
+  margin-top: -0.25rem;
+
+  path {
+    fill: none;
+    stroke: color-mix(in srgb, var(--heat) 22%, transparent);
+    stroke-width: 3.2;
+    stroke-linecap: round;
+
+    &.lit {
+      stroke: var(--heat);
+    }
+  }
+
+  text {
+    fill: var(--ce-bone);
+    font: 700 11px var(--ce-sans);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
+    text-anchor: middle;
+  }
+}
+
+.meter {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  width: 100%;
+  max-width: 6rem;
+
+  i {
+    height: 5px;
+    border-radius: 1px;
+    background: rgba(231, 225, 210, 0.12);
+
+    &.on {
+      background: var(--ce-bone);
+    }
+  }
+}
+
+.threat.high {
+  border-color: color-mix(in srgb, var(--ce-oxblood) 55%, var(--ce-rule));
+
+  .big {
+    color: var(--ce-oxblood);
+  }
+
+  .meter i.on {
+    background: var(--ce-oxblood);
+  }
+}
+
+.warning,
+.blessing {
+  margin: 0.8rem 0 0;
+  padding: 0.35rem 0 0.35rem 0.7rem;
+  font-size: 0.95rem;
+}
+
+.warning {
+  border-left: 3px solid var(--ce-oxblood);
+  color: #e3a19e;
+}
+
+.blessing {
+  border-left: 3px solid var(--ce-galain);
+  color: var(--ce-bone);
+}
+
+// ------------------------------------------------------------ the odds, as the focus
+
+.chance {
+  margin-top: 0.9rem;
+  padding: 0.6rem 0.75rem 0.65rem;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.22);
+  --tone: var(--ce-brass);
+
+  &.good {
+    --tone: var(--ce-verdigris);
+  }
+
+  &.poor {
+    --tone: var(--ce-oxblood);
+  }
+
+  .line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .label {
+    font-size: 0.95rem;
+    color: var(--ce-bone);
+  }
+
+  .pct {
+    font-family: var(--ce-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--tone);
+  }
+
+  .bar {
+    display: block;
+    height: 6px;
+    margin: 0.4rem 0 0.3rem;
+    border-radius: 3px;
+    background: rgba(231, 225, 210, 0.1);
+    overflow: hidden;
+
+    i {
+      display: block;
+      height: 100%;
+      background: var(--tone);
+      transition: width 300ms ease;
+    }
+  }
+
+  .needs {
+    color: var(--ce-ash);
+    font-size: 0.85rem;
+  }
+}
+
+// ------------------------------------------------------------ who is there
+
+.sent {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+
+  li {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr auto auto;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.35rem 0.45rem 0.35rem 0.6rem;
+    border: 1px solid var(--ce-rule);
+    border-left: 3px solid hsl(var(--hue) 35% 52%);
+    border-radius: 5px;
+    background: linear-gradient(90deg, hsl(var(--hue) 18% 21%) 0%, transparent 45%);
+  }
+}
+
+.portrait {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background: hsl(var(--hue) 22% 27%);
+  border: 1px solid hsl(var(--hue) 28% 40%);
+  font-family: var(--ce-serif);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: hsl(var(--hue) 35% 84%);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.name {
+  font-family: var(--ce-serif);
+  font-size: 1.02rem;
+  line-height: 1.15;
+
+  small {
+    display: block;
+    font-family: var(--ce-sans);
+    font-size: 0.75rem;
+    color: var(--ce-ash);
+  }
+}
+
+.power {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--ce-slate);
+  border: 1.5px solid var(--ce-rule);
+  font-family: var(--ce-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.home {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  background: transparent;
+  color: var(--ce-ash);
+
+  &:hover {
+    color: var(--ce-bone);
+  }
+}
+
+.empty {
+  margin: 0.9rem 0 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px dashed var(--ce-rule);
+  border-radius: 5px;
+  color: var(--ce-ash);
+  text-align: center;
+}

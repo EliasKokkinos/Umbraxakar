@@ -1,0 +1,103 @@
+@let e = event();
+<section class="detail" aria-live="polite" [attr.aria-label]="e.name">
+  <button type="button" class="close" aria-label="Close" (click)="close.emit()">×</button>
+
+  <header>
+    <span class="sigil" aria-hidden="true"></span>
+    <div>
+      <h2>{{ e.name }}</h2>
+      <p class="sub">
+        @if (portal()) {
+          A breach of Chaos in {{ region() }}
+        } @else if (temple()?.active) {
+          A temple of Mother Dark, awake, in {{ region() }}
+        } @else {
+          A temple of Mother Dark, dormant, in {{ region() }}
+        }
+      </p>
+    </div>
+  </header>
+
+  @if (portal(); as p) {
+    <div class="tiles">
+      <div class="tile">
+        <span class="label">Difficulty</span>
+        <span class="big num">{{ p.difficulty }}</span>
+      </div>
+
+      <div class="tile">
+        <span class="label">Corruption</span>
+        <svg class="ring" viewBox="-17 -17 34 34" role="img" [attr.aria-label]="p.corruption + ' of 5'">
+          @for (d of notches; track $index) {
+            <path [attr.d]="d" [class.lit]="$index < p.corruption" />
+          }
+          <text dy="0.3em" class="num">{{ p.corruption }}</text>
+        </svg>
+      </div>
+
+      <div class="tile threat" [class.high]="p.impact >= 7">
+        <span class="label">Threat to the people</span>
+        <span class="big num">{{ p.impact }}<span class="of">/10</span></span>
+        <span class="meter" aria-hidden="true">
+          @for (i of threatSegments; track i) {
+            <i [class.on]="i <= p.impact"></i>
+          }
+        </span>
+      </div>
+    </div>
+
+    @if (p.legendary) {
+      <p class="warning">Something legendary has come through.</p>
+    } @else if (p.corruption >= 3) {
+      <p class="warning">Too deep for steel alone: only one who can cleanse corruption will close it.</p>
+    }
+  } @else if (temple(); as t) {
+    @if (t.active) {
+      <p class="blessing">Chaos cannot deepen past 2 within its reach, and the Tiste Andii fight the harder for it.</p>
+    } @else {
+      <div class="tiles">
+        <div class="tile">
+          <span class="label">To awaken it</span>
+          <span class="big num">{{ t.activationDifficulty }}</span>
+        </div>
+      </div>
+    }
+  }
+
+  @if (chance(); as c) {
+    <div [class]="'chance ' + c.tone">
+      <div class="line">
+        <span class="label">Chance to win</span>
+        <span class="pct num">{{ c.pct }}%</span>
+      </div>
+      <span class="bar" aria-hidden="true"><i [style.width.%]="c.pct"></i></span>
+      <span class="needs num">needs {{ c.target }} or more on the d20</span>
+    </div>
+  }
+
+  @if (rows().length) {
+    <ul class="sent" aria-label="Sent here">
+      @for (c of rows(); track c.id) {
+        <li [style.--hue]="c.hue">
+          <span class="portrait" aria-hidden="true">
+            @if (c.portrait; as src) {
+              <img [src]="src" alt="" />
+            } @else {
+              {{ c.monogram }}
+            }
+          </span>
+          <span class="name">
+            {{ c.name }}
+            @if (c.attached.length) {
+              <small>with {{ c.attached.length === 1 ? c.attached[0].name : c.attached.length + ' heroes' }}</small>
+            }
+          </span>
+          <span class="power num">{{ c.power.total }}</span>
+          <button type="button" class="home" (click)="recall.emit(c.id)">Call home</button>
+        </li>
+      }
+    </ul>
+  } @else if (open()) {
+    <p class="empty">No one stands here yet. Drag a card onto it to send them.</p>
+  }
+</section>

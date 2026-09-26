@@ -114,49 +114,14 @@
       />
 
       @if (selectedEvent(); as e) {
-        <section class="panel detail" aria-live="polite">
-          <button type="button" class="close" aria-label="Close" (click)="selectedEventId.set(null)">×</button>
-          <h2>{{ e.name }}</h2>
-          @if (e.type === 'chaos-portal') {
-            <p class="sub">A breach of Chaos in {{ regionName(e.regionId) }}</p>
-            <dl class="stats num">
-              <div><dt>Difficulty</dt><dd>{{ e.difficulty }}</dd></div>
-              <div><dt>Corruption</dt><dd [class.deep]="e.corruption >= 3">{{ e.corruption }} of 5</dd></div>
-              <div><dt>Threat to the people</dt><dd>{{ e.impact }} of 10</dd></div>
-            </dl>
-            @if (selectedEventOdds(); as o) {
-              <p class="chance-line num">Chance to win now: <strong>{{ pct(o.chance) }}</strong>, needs {{ o.target }} or more</p>
-            }
-            @if (e.legendary) {
-              <p class="warn">Something legendary has come through.</p>
-            } @else if (e.corruption >= 3) {
-              <p class="warn">Too deep for steel alone: only one who can cleanse corruption will close it.</p>
-            }
-          } @else {
-            <p class="sub">{{ e.active ? 'A temple of Mother Dark, awake' : 'A temple of Mother Dark, dormant' }}</p>
-            @if (!e.active) {
-              <dl class="stats num">
-                <div><dt>To awaken it</dt><dd>difficulty {{ e.activationDifficulty }}</dd></div>
-              </dl>
-            } @else {
-              <p>Chaos cannot deepen past 2 within its reach, and the Tiste Andii fight the harder for it.</p>
-            }
-          }
-          @if (selectedEventCards().length) {
-            <h3>Sent here</h3>
-            <ul class="sent">
-              @for (c of selectedEventCards(); track c.id) {
-                <li>
-                  <span>{{ c.name }}</span>
-                  <span class="num">{{ c.power.total }}</span>
-                  <button type="button" (click)="recall(c.id)">Call home</button>
-                </li>
-              }
-            </ul>
-          } @else if (e.type === 'chaos-portal' || !e.active) {
-            <p class="hint">Drag a card onto it to send them.</p>
-          }
-        </section>
+        <ce-event-detail
+          [event]="e"
+          [region]="regionName(e.regionId)"
+          [cards]="selectedEventCards()"
+          [odds]="selectedEventOdds()"
+          (recall)="recall($event)"
+          (close)="selectedEventId.set(null)"
+        />
       } @else if (selectedResource(); as r) {
         <section class="panel detail">
           <button type="button" class="close" aria-label="Close" (click)="selectedResourceId.set(null)">×</button>

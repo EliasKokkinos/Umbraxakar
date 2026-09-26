@@ -18,7 +18,8 @@ function notch(i: number, radius: number): string {
   return `M ${p(a0)} A ${radius} ${radius} 0 0 1 ${p(a1)}`;
 }
 
-const NOTCH_PATHS = Array.from({ length: NOTCHES }, (_, i) => notch(i, R + 3.5));
+/** The five arcs of a portal's corruption ring; the TV's event panel draws the same ring. */
+export const NOTCH_PATHS = Array.from({ length: NOTCHES }, (_, i) => notch(i, R + 3.5));
 
 /**
  * The map of Edar with its events. Shared by the DM and table screens; the DM view
