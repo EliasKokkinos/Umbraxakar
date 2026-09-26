@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 import { GameStore } from '../data/game-store';
+import { PortraitStore } from '../data/portrait-store';
+import { makePortrait } from '../shared/portrait';
 import { forgeArms, heal, recruit, recruitCapacity, serveWine, train } from '../engine/castle';
 import { ResourcePatch, updateResource } from '../engine/dm-edits';
 import { isAtCastle, resourceById } from '../engine/game-state';
@@ -16,6 +18,8 @@ import { MoraleMarks } from '../shared/morale-marks';
 })
 export class ResourceInspector {
   protected readonly store = inject(GameStore);
+  protected readonly portraits = inject(PortraitStore);
+  protected readonly portraitError = signal<string | null>(null);
   readonly resourceId = input.required<string>();
   readonly selectEvent = output<string>();
   readonly selectResource = output<string>();
@@ -81,6 +85,29 @@ export class ResourceInspector {
 
   protected edit(patch: ResourcePatch, what: string): void {
     this.store.act(`${what}: ${this.name}`, (s) => updateResource(s, this.resourceId(), patch));
+  }
+
+  protected readonly portrait = computed(() => {
+    const r = this.resource();
+    return r ? this.portraits.urlFor(r.id, r.image) : null;
+  });
+  protected readonly uploaded = computed(() => !!this.portraits.urls()[this.resourceId()]);
+
+  protected async choosePortrait(ev: Event): Promise<void> {
+    const input = ev.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    if (!file) return;
+    this.portraitError.set(null);
+    try {
+      await this.portraits.set(this.resourceId(), await makePortrait(file));
+    } catch (e) {
+      this.portraitError.set(e instanceof Error ? e.message : 'That image could not be used.');
+    }
+  }
+
+  protected removePortrait(): void {
+    void this.portraits.remove(this.resourceId());
   }
 
   protected nameOf(id: string): string {

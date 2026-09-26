@@ -20,6 +20,8 @@ interface ResourceStateBase {
   lockReason?: string;
   traits: Trait[];
   notes: string;
+  /** Optional shipped portrait path; uploaded portraits live apart, in the portrait store. */
+  image?: string;
   /** Id of the card this resource is attached to, or null when it is its own card. */
   attachedTo: string | null;
   trainingBonus: number;
@@ -59,6 +61,7 @@ const base = (s: HeroSeed | GroupSeed) => ({
   lockReason: s.lockReason,
   traits: s.traits ? [...s.traits] : [],
   notes: s.notes,
+  image: s.image,
   attachedTo: null,
   trainingBonus: 0,
   trainingTurnsLeft: 0,

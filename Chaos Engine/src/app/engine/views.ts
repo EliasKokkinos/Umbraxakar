@@ -28,6 +28,7 @@ export interface ResourceView {
   injured?: number;
   canCleanse: boolean;
   locked: boolean;
+  image?: string;
 }
 
 function powerInPlace(state: GameState, r: ResourceState, rules: Rules): PowerBreakdown {
@@ -68,6 +69,7 @@ export function resourceView(state: GameState, r: ResourceState, rules: Rules): 
     injuries: r.kind === 'group' ? [] : r.injuries.map((i) => i.severity),
     canCleanse: r.canCleanse,
     locked: r.locked,
+    image: r.image,
   };
   if (r.kind === 'group') Object.assign(view, { number: r.number, maxNumber: r.maxNumber, injured: r.injured });
   return view;

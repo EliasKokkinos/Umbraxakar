@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, output, si
 import { GameStore } from '../data/game-store';
 import { SeedService } from '../data/seed.service';
 import { SessionService } from '../data/session.service';
+import { PortraitStore } from '../data/portrait-store';
 import { TableHost } from '../data/table-sync';
 import { hasCommanderThisTurn } from '../engine/commanders';
 import { seedMorePortals } from '../engine/dm-edits';
@@ -21,6 +22,7 @@ export class TopBar {
   private readonly session = inject(SessionService);
   private readonly seeds = inject(SeedService);
   protected readonly table = inject(TableHost);
+  private readonly portraits = inject(PortraitStore);
 
   readonly placing = input(false);
   readonly placePortal = output<boolean>();
@@ -49,7 +51,7 @@ export class TopBar {
 
   protected save(): void {
     const turn = this.state()!.events.turn;
-    const json = this.store.exportSave(`Turn ${turn}`);
+    const json = this.store.exportSave(`Turn ${turn}`, this.portraits.urls());
     if (!json) return;
     const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
     const a = document.createElement('a');

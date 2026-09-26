@@ -8,6 +8,8 @@ export interface SaveFile {
   savedAt: string;
   label: string;
   state: GameState;
+  /** Uploaded portraits by resource id, in exported files only (never autosaves or snapshots). */
+  portraits?: Record<string, string>;
 }
 
 /**
@@ -19,12 +21,14 @@ export const MIGRATIONS: Record<number, (state: Record<string, unknown>) => Reco
   1: (s) => ({ ...s, commanderTurn: null }),
 };
 
-export function toSaveFile(state: GameState, label: string, now = new Date()): SaveFile {
-  return { format: SAVE_FORMAT, version: state.version, savedAt: now.toISOString(), label, state };
+export function toSaveFile(state: GameState, label: string, now = new Date(), portraits?: Record<string, string>): SaveFile {
+  const file: SaveFile = { format: SAVE_FORMAT, version: state.version, savedAt: now.toISOString(), label, state };
+  if (portraits && Object.keys(portraits).length) file.portraits = portraits;
+  return file;
 }
 
-export function serialize(state: GameState, label: string, now = new Date()): string {
-  return JSON.stringify(toSaveFile(state, label, now), null, 2);
+export function serialize(state: GameState, label: string, now = new Date(), portraits?: Record<string, string>): string {
+  return JSON.stringify(toSaveFile(state, label, now, portraits), null, 2);
 }
 
 export function migrate(

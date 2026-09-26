@@ -138,3 +138,59 @@ section {
     color: var(--ce-bone);
   }
 }
+
+// A resource's portrait, with the control to add or change it.
+.with-portrait {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.portrait-slot {
+  display: grid;
+  gap: 0.25rem;
+  justify-items: center;
+
+  img,
+  .empty-portrait {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--ce-rule);
+    object-fit: cover;
+  }
+
+  .empty-portrait {
+    display: grid;
+    place-items: center;
+    background: var(--ce-slate);
+    color: var(--ce-ash);
+    font-family: var(--ce-serif);
+    font-size: 2rem;
+  }
+}
+
+.portrait-pick {
+  position: relative;
+  font-size: var(--ce-small);
+  color: var(--ce-brass);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--ce-brass);
+  }
+}
+
+.small {
+  font-size: var(--ce-small);
+}

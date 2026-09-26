@@ -1,11 +1,30 @@
 @if (view(); as v) {
   @let r = resource()!;
-  <header>
+  <header class="with-portrait">
+    <div class="portrait-slot">
+      @if (portrait(); as src) {
+        <img [src]="src" [alt]="'Portrait of ' + v.name" />
+      } @else {
+        <span class="empty-portrait" aria-hidden="true">{{ v.name.charAt(0) }}</span>
+      }
+      <label class="portrait-pick">
+        <span>{{ portrait() ? 'Change' : 'Add portrait' }}</span>
+        <input type="file" accept="image/*" (change)="choosePortrait($event)" />
+      </label>
+      @if (uploaded()) {
+        <button type="button" class="link small" (click)="removePortrait()">Remove</button>
+      }
+    </div>
+    <div>
     <h2>{{ v.name }}</h2>
     <p class="sub">{{ v.faction }}, {{ v.kind === 'group' ? 'group' : v.kind }}{{ v.canCleanse ? ', can cleanse corruption' : '' }}</p>
     @if (v.status) {
       <p class="status">{{ v.status }}</p>
     }
+    @if (portraitError(); as e) {
+      <p class="status">{{ e }}</p>
+    }
+    </div>
   </header>
 
   <section>

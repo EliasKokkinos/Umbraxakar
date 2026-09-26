@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
+import { PortraitStore } from '../data/portrait-store';
 import { ResourceView } from '../engine/views';
 import { RESOURCE_DRAG_TYPE } from '../shared/map-board';
 import { MoraleMarks } from '../shared/morale-marks';
@@ -53,6 +54,9 @@ export class ResourceCard {
   readonly attachHere = output<{ heroId: string; hostId: string }>();
   /** The card's id when picked up, null when put down. */
   readonly held = output<string | null>();
+
+  private readonly portraits = inject(PortraitStore);
+  protected readonly portrait = computed(() => this.portraits.urlFor(this.resource().id, this.resource().image));
 
   protected readonly dropping = signal(false);
   protected readonly dragging = signal(false);

@@ -5,6 +5,7 @@ import { LandTest } from '../engine/land';
 import { deserialize } from '../engine/save';
 import { MapDef, Seed } from '../engine/seed-types';
 import { GameStore } from './game-store';
+import { PortraitStore } from './portrait-store';
 import { LandService } from './land.service';
 import { SeedService } from './seed.service';
 
@@ -16,6 +17,7 @@ export class SessionService {
   private readonly seeds = inject(SeedService);
   private readonly land = inject(LandService);
   private readonly store = inject(GameStore);
+  private readonly portraits = inject(PortraitStore);
 
   private readonly _status = signal<SessionStatus>({ state: 'loading' });
   readonly status = this._status.asReadonly();
@@ -56,7 +58,10 @@ export class SessionService {
   }
 
   loadSave(json: string): boolean {
-    return !!this.rules && this.store.importSave(json, this.rules);
+    if (!this.rules || !this.store.importSave(json, this.rules)) return false;
+    const file = deserialize(json);
+    if (file.ok && file.state.portraits) void this.portraits.replaceAll(file.state.portraits);
+    return true;
   }
 
   private async landTest(map: MapDef): Promise<LandTest> {

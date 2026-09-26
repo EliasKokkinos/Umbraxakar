@@ -48,6 +48,8 @@ interface ResourceBase {
   lockReason?: string;
   traits?: Trait[];
   notes: string;
+  /** Optional portrait shipped with the campaign, relative to public/ (e.g. "portraits/karsa.jpg"). */
+  image?: string;
 }
 
 export interface HeroSeed extends ResourceBase {

@@ -211,9 +211,9 @@ export class GameStore {
 
   // ------------------------------------------------------------ persistence
 
-  exportSave(label = 'Manual save'): string | null {
+  exportSave(label = 'Manual save', portraits?: Record<string, string>): string | null {
     const s = this.state();
-    return s ? serialize(s, label) : null;
+    return s ? serialize(s, label, new Date(), portraits) : null;
   }
 
   importSave(json: string, rules: Rules): boolean {

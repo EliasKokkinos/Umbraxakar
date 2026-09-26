@@ -18,7 +18,13 @@
   (click)="inspect.emit(r.id)"
   (keydown.enter)="inspect.emit(r.id)"
 >
-  <div class="portrait" aria-hidden="true">{{ monogram() }}</div>
+  <div class="portrait" aria-hidden="true">
+    @if (portrait(); as src) {
+      <img [src]="src" alt="" draggable="false" />
+    } @else {
+      {{ monogram() }}
+    }
+  </div>
 
   <div class="body">
     <h3>{{ r.name }}</h3>
