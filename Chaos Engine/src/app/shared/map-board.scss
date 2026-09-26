@@ -35,53 +35,80 @@
   right: 0.6rem;
   z-index: 1;
   display: flex;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.3rem 0.35rem 0.3rem 0.75rem;
+  background: rgba(16, 20, 31, 0.82);
+  border: 1px solid var(--ce-rule);
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
 }
 
-.group {
+.control {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
 
-  .label {
-    padding: 0 0.2em 0 0.5em;
-    color: var(--ce-ash);
-    font-size: 0.85rem;
-    text-shadow: 0 1px 3px #000;
+  // A hairline between the two controls.
+  & + & {
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--ce-rule);
   }
+}
 
-  .pct {
-    min-width: 3.6em;
-    font-weight: 400;
-  }
+.label {
+  color: var(--ce-ash);
+  font-size: 0.85rem;
+}
+
+// Three buttons joined into one: − value +.
+.stepper {
+  display: flex;
+  border: 1px solid var(--ce-rule);
+  border-radius: var(--ce-radius);
+  overflow: hidden;
 
   button {
-    min-width: 2.4em;
-    height: 2.4em;
-    padding: 0 0.6em;
+    min-width: 2.2em;
+    height: 2.1em;
+    padding: 0 0.55em;
     font-size: 1rem;
     font-weight: 700;
     line-height: 1;
-    background: rgba(27, 32, 48, 0.88);
-    border: 1px solid var(--ce-rule);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    background: var(--ce-iron);
+    border: none;
+    border-radius: 0;
+
+    & + button {
+      border-left: 1px solid var(--ce-rule);
+    }
+
+    &:hover:not(:disabled) {
+      background: var(--ce-iron-raised);
+    }
 
     &:disabled {
-      opacity: 0.4;
+      color: color-mix(in srgb, var(--ce-bone) 30%, transparent);
       cursor: default;
     }
   }
 
-  .whole {
+  .value {
+    min-width: 3.6em;
     font-weight: 400;
-    color: var(--ce-brass);
-  }
-}
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.25);
 
-.icons {
-  padding-left: 0.2rem;
-  border-radius: var(--ce-radius);
-  background: rgba(16, 20, 31, 0.55);
+    &:disabled {
+      color: var(--ce-ash);
+    }
+
+    // Anything off its usual setting is marked in brass: click it to go back.
+    &.changed {
+      color: var(--ce-brass);
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

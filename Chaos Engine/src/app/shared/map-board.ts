@@ -115,6 +115,8 @@ export class MapBoard {
   readonly iconSize = signal(1);
   protected readonly iconSizeRange = ICON_SIZE_RANGE;
   protected readonly iconPct = computed(() => Math.round(this.iconSize() * 100));
+  /** 1× is the whole map; closer views read to one decimal. */
+  protected readonly zoomLabel = computed(() => `${+this.zoom().toFixed(1)}×`);
   readonly pan = signal({ x: 0, y: 0 });
   protected readonly panning = signal(false);
   protected readonly maxZoom = MAX_ZOOM;

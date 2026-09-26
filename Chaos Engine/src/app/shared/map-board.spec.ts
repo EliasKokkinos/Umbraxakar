@@ -29,9 +29,10 @@ describe('MapBoard zoom', () => {
   it('starts whole, and zooms in and out with the buttons, never past its limits', async () => {
     const { f, host, board } = await mount();
     expect(board.zoom()).toBe(1);
-    expect(host.querySelector('.whole')).toBeNull();
-    const [zoomIn, zoomOut] = host.querySelectorAll<HTMLButtonElement>('.zoom button');
+    const [zoomOut, whole, zoomIn] = host.querySelectorAll<HTMLButtonElement>('.zoom button');
     expect(zoomOut.disabled).toBe(true);
+    expect(whole.disabled).toBe(true);
+    expect(whole.textContent!.trim()).toBe('1×');
 
     zoomIn.click();
     await f.whenStable();
@@ -39,10 +40,13 @@ describe('MapBoard zoom', () => {
     // Zooming on the centre keeps the centre in place.
     expect(board.pan()).toEqual({ x: -0.25, y: -0.25 });
     expect(stage(host).style.transform).toBe('translate(-25%, -25%) scale(1.5)');
+    expect(whole.textContent!.trim()).toBe('1.5×');
+    expect(whole.classList).toContain('changed');
 
     for (let i = 0; i < 10; i++) board.zoomIn();
     expect(board.zoom()).toBe(MAX_ZOOM);
-    host.querySelector<HTMLButtonElement>('.whole')!.click();
+    await f.whenStable();
+    whole.click();
     expect(board.zoom()).toBe(1);
     expect(board.pan()).toEqual({ x: 0, y: 0 });
   });
@@ -96,7 +100,7 @@ describe('MapBoard zoom', () => {
     const host = f.nativeElement as HTMLElement;
     const board = f.componentInstance;
     const scale = () => host.querySelector('g.portal')!.getAttribute('transform')!.match(/scale\(([\d.]+)\)/)![1];
-    const [smaller, pct, larger] = host.querySelectorAll<HTMLButtonElement>('.icons button');
+    const [smaller, pct, larger] = host.querySelectorAll<HTMLButtonElement>('[aria-label="Icon size"] button');
     expect(pct.textContent!.trim()).toBe('100%');
     // Without zoom, no zoom buttons.
     expect(host.querySelector('.zoom')).toBeNull();

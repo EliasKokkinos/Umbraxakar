@@ -87,22 +87,26 @@
 </div>
 
 @if (zoomable() || iconSizeKey()) {
+  <!-- One quiet bar: each control reads "label − value +", and the value resets it. -->
   <div class="tools">
     @if (iconSizeKey()) {
-      <div class="group icons" role="group" aria-label="Icon size">
+      <div class="control" role="group" aria-label="Icon size">
         <span class="label">Icons</span>
-        <button type="button" aria-label="Smaller icons" [disabled]="iconSize() <= iconSizeRange[0]" (click)="smallerIcons()">−</button>
-        <button type="button" class="pct num" title="Back to the usual size" (click)="setIconSize(1)">{{ iconPct() }}%</button>
-        <button type="button" aria-label="Larger icons" [disabled]="iconSize() >= iconSizeRange[1]" (click)="largerIcons()">+</button>
+        <div class="stepper">
+          <button type="button" aria-label="Smaller icons" [disabled]="iconSize() <= iconSizeRange[0]" (click)="smallerIcons()">−</button>
+          <button type="button" class="value num" [class.changed]="iconSize() !== 1" title="Back to the usual size" (click)="setIconSize(1)">{{ iconPct() }}%</button>
+          <button type="button" aria-label="Larger icons" [disabled]="iconSize() >= iconSizeRange[1]" (click)="largerIcons()">+</button>
+        </div>
       </div>
     }
     @if (zoomable()) {
-      <div class="group zoom" role="group" aria-label="Zoom the map">
-        <button type="button" aria-label="Zoom in" [disabled]="zoom() >= maxZoom" (click)="zoomIn()">+</button>
-        <button type="button" aria-label="Zoom out" [disabled]="zoom() <= 1" (click)="zoomOut()">−</button>
-        @if (zoom() > 1) {
-          <button type="button" class="whole" (click)="resetZoom()">Whole map</button>
-        }
+      <div class="control zoom" role="group" aria-label="Zoom the map">
+        <span class="label">Zoom</span>
+        <div class="stepper">
+          <button type="button" aria-label="Zoom out" [disabled]="zoom() <= 1" (click)="zoomOut()">−</button>
+          <button type="button" class="value num whole" [class.changed]="zoom() > 1" [disabled]="zoom() <= 1" title="Whole map" (click)="resetZoom()">{{ zoomLabel() }}</button>
+          <button type="button" aria-label="Zoom in" [disabled]="zoom() >= maxZoom" (click)="zoomIn()">+</button>
+        </div>
       </div>
     }
   </div>
