@@ -1,0 +1,419 @@
+// The panel takes the resource's banner colour, the same hue as its card.
+:host {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  width: min(29rem, 48%);
+  max-height: calc(100% - 2rem);
+  display: flex;
+}
+
+.detail {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem 1.2rem 1.1rem;
+  background: rgba(37, 43, 60, 0.97);
+  border: 1px solid var(--ce-rule);
+  border-top: 3px solid hsl(var(--hue) 40% 55%);
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+.close {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.55rem;
+  padding: 0 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--ce-ash);
+}
+
+header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: center;
+  padding-right: 1.5rem;
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+}
+
+.sub {
+  margin: 0.2rem 0 0;
+  color: var(--ce-ash);
+  font-size: 0.9rem;
+}
+
+.portrait {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background: hsl(var(--hue) 22% 27%);
+  border: 1px solid hsl(var(--hue) 28% 40%);
+  font-family: var(--ce-serif);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: hsl(var(--hue) 35% 84%);
+
+  &.large {
+    width: 4.2rem;
+    font-size: 1.5rem;
+    border-width: 1.5px;
+    box-shadow: 0 0 0 3px hsl(var(--hue) 20% 18%);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// ------------------------------------------------------------ where they stand
+
+.where {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.85rem 0 0;
+  padding: 0.4rem 0.7rem;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.22);
+  font-size: 0.95rem;
+  --tone: var(--ce-verdigris);
+
+  i {
+    flex: none;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 0.45rem var(--tone);
+  }
+
+  &.field {
+    --tone: var(--ce-rime);
+  }
+
+  &.held {
+    --tone: var(--ce-oxblood);
+    color: #e3a19e;
+  }
+}
+
+// ------------------------------------------------------------ stats as tiles
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.tile {
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.3rem;
+  padding: 0.55rem 0.4rem 0.6rem;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--ce-rule);
+  border-radius: 5px;
+  text-align: center;
+
+  &.low {
+    border-color: color-mix(in srgb, var(--ce-oxblood) 55%, var(--ce-rule));
+
+    .word,
+    .big {
+      color: var(--ce-oxblood);
+    }
+  }
+}
+
+.power-tile {
+  border-color: color-mix(in srgb, var(--ce-brass) 45%, var(--ce-rule));
+
+  .big {
+    color: var(--ce-brass);
+  }
+}
+
+.label {
+  color: var(--ce-ash);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.big {
+  font-family: var(--ce-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+
+  .of {
+    font-family: var(--ce-sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--ce-ash);
+  }
+
+  &.unhurt {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--ce-verdigris);
+  }
+}
+
+.small {
+  color: var(--ce-ash);
+  font-size: 0.8rem;
+  line-height: 1.2;
+
+  strong {
+    color: var(--ce-bone);
+  }
+}
+
+// The same marks as the card, at a size the room can read.
+.marks {
+  margin-top: 0.35rem;
+  gap: 3px;
+
+  ::ng-deep i {
+    width: 9px;
+    height: 16px;
+  }
+}
+
+.word {
+  font-family: var(--ce-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.bar {
+  display: flex;
+  width: 100%;
+  max-width: 6.5rem;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(231, 225, 210, 0.1);
+  overflow: hidden;
+
+  .fighting {
+    background: var(--ce-bone);
+  }
+
+  .injured {
+    background: var(--ce-oxblood);
+  }
+}
+
+// ------------------------------------------------------------ how the power is reckoned
+
+.parts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.6rem 0 0;
+  padding: 0;
+
+  li {
+    padding: 0.12rem 0.5rem;
+    border: 1px solid var(--ce-rule);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    span {
+      font-weight: 400;
+      color: var(--ce-ash);
+    }
+
+    &.up {
+      border-color: color-mix(in srgb, var(--ce-verdigris) 50%, var(--ce-rule));
+      color: var(--ce-verdigris);
+    }
+
+    &.down {
+      border-color: color-mix(in srgb, var(--ce-oxblood) 50%, var(--ce-rule));
+      color: #e3a19e;
+    }
+  }
+}
+
+.gift {
+  margin: 0.7rem 0 0;
+  padding: 0.3rem 0 0.3rem 0.7rem;
+  border-left: 3px solid var(--ce-rime);
+  font-size: 0.92rem;
+}
+
+// ------------------------------------------------------------ the heroes riding with a group
+
+.heroes-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.95rem 0 0;
+  font-size: 1rem;
+
+  > .num {
+    color: var(--ce-ash);
+    font-family: var(--ce-sans);
+    font-size: 0.82rem;
+    font-weight: 400;
+  }
+
+  .bonus {
+    margin-left: auto;
+    color: var(--ce-verdigris);
+    font-size: 1.05rem;
+
+    small {
+      margin-left: 0.3rem;
+      color: var(--ce-ash);
+      font-family: var(--ce-sans);
+      font-size: 0.75rem;
+      font-weight: 400;
+    }
+  }
+}
+
+.heroes {
+  list-style: none;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+
+  li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.9rem;
+    padding: 0.3rem 0.45rem 0.3rem 0.5rem;
+    border: 1px solid var(--ce-rule);
+    border-left: 3px solid hsl(var(--hue) 35% 52%);
+    border-radius: 5px;
+    background: linear-gradient(90deg, hsl(var(--hue) 18% 21%) 0%, transparent 45%);
+  }
+
+  .slot {
+    display: block;
+    min-height: 0;
+    padding: 0.55rem 0.75rem;
+    border: 1px dashed var(--ce-rule);
+    background: none;
+    color: var(--ce-ash);
+    text-align: center;
+    font-size: 0.88rem;
+
+    &:empty {
+      padding: 0.2rem;
+    }
+  }
+}
+
+.who {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover .name {
+    color: var(--ce-brass);
+  }
+}
+
+.name {
+  font-family: var(--ce-serif);
+  font-size: 1.02rem;
+  line-height: 1.15;
+
+  small {
+    display: block;
+    font-family: var(--ce-sans);
+    font-size: 0.75rem;
+    color: var(--ce-ash);
+  }
+}
+
+.lends {
+  color: var(--ce-verdigris);
+  font-family: var(--ce-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.part {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  background: transparent;
+  color: var(--ce-ash);
+
+  &:hover {
+    color: var(--ce-bone);
+  }
+}
+
+// ------------------------------------------------------------ actions
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+
+  &:empty {
+    display: none;
+  }
+
+  .link {
+    margin-right: auto;
+    background: none;
+    border: none;
+    padding-left: 0;
+    color: var(--ce-brass);
+  }
+}
+
+// A hero held over a group with room: the panel is a drop target like the card.
+:host(.dropping) {
+  .detail {
+    border-color: var(--ce-brass);
+    box-shadow:
+      0 0 0 2px var(--ce-brass),
+      0 12px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  .slot.first {
+    border-color: var(--ce-brass);
+    color: var(--ce-brass);
+    background: rgba(201, 165, 90, 0.08);
+  }
+}

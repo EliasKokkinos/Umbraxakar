@@ -1,0 +1,142 @@
+@let r = resource();
+<section class="detail" aria-live="polite" [attr.aria-label]="r.name">
+  <button type="button" class="close" aria-label="Close" (click)="close.emit()">×</button>
+
+  <header>
+    <span class="portrait large" aria-hidden="true">
+      @if (portrait(); as src) {
+        <img [src]="src" alt="" />
+      } @else {
+        {{ monogram() }}
+      }
+    </span>
+    <div>
+      <h2>{{ r.name }}</h2>
+      <p class="sub">{{ subtitle() }}</p>
+    </div>
+  </header>
+
+  @let w = where();
+  <p [class]="'where ' + w.tone"><i aria-hidden="true"></i>{{ w.text }}</p>
+
+  <div class="tiles">
+    <div class="tile power-tile">
+      <span class="label">Power</span>
+      <span class="big num">{{ r.power.total }}</span>
+      @if (host() && r.lends) {
+        <span class="small">lends <strong class="num">+{{ r.lends }}</strong></span>
+      }
+    </div>
+
+    <div class="tile" [class.low]="r.morale <= 1">
+      <span class="label">Morale</span>
+      <ce-morale-marks class="marks" [morale]="r.morale" />
+      <span class="word">{{ moraleWord() }}</span>
+    </div>
+
+    @if (strength(); as s) {
+      <div class="tile" [class.low]="s.fightingPct < 50">
+        <span class="label">Ready to fight</span>
+        <span class="big num">{{ s.fighting }}<span class="of">/{{ s.max }}</span></span>
+        <span class="bar" aria-hidden="true">
+          <i class="fighting" [style.width.%]="s.fightingPct"></i>
+          <i class="injured" [style.width.%]="s.injuredPct"></i>
+        </span>
+        @if (s.injured || s.dead) {
+          <span class="small num">
+            @if (s.injured) { {{ s.injured }} injured }
+            @if (s.injured && s.dead) { · }
+            @if (s.dead) { {{ s.dead }} lost }
+          </span>
+        }
+      </div>
+    } @else {
+      <div class="tile" [class.low]="wounds().length">
+        <span class="label">Wounds</span>
+        @if (wounds().length) {
+          <span class="big num">{{ r.injuries.length }}</span>
+          <span class="small">
+            @for (x of wounds(); track x.severity) {
+              {{ x.n > 1 ? x.n + ' ' : '' }}{{ x.severity }}{{ $last ? '' : ', ' }}
+            }
+          </span>
+        } @else {
+          <span class="big unhurt">Unhurt</span>
+        }
+      </div>
+    }
+  </div>
+
+  @if (modifiers().length) {
+    <ul class="parts num" aria-label="How their power is reckoned">
+      <li><span>Base</span> {{ base() }}</li>
+      @for (p of modifiers(); track p.label) {
+        <li [class.up]="p.value > 0" [class.down]="p.value < 0"><span>{{ p.label }}</span> {{ signed(p.value) }}</li>
+      }
+    </ul>
+  }
+
+  @if (r.canCleanse) {
+    <p class="gift">Can cleanse deep corruption</p>
+  }
+
+  @if (isGroup()) {
+    <h3 class="heroes-head">
+      Heroes with them <span class="num">{{ heroes().length }} of {{ maxHeroes }}</span>
+      @if (heroBonus().lent) {
+        <span class="bonus num">
+          +{{ heroBonus().counted }}
+          @if (heroBonus().capped) {
+            <small>of {{ heroBonus().lent }}, the most a group can take</small>
+          }
+        </span>
+      }
+    </h3>
+    <ul class="heroes">
+      @for (h of heroRows(); track h.id) {
+        <li [style.--hue]="h.hue">
+          <button type="button" class="who" (click)="inspect.emit(h.id)" [attr.aria-label]="'Look at ' + h.name">
+            <span class="portrait" aria-hidden="true">
+              @if (h.portrait; as src) {
+                <img [src]="src" alt="" />
+              } @else {
+                {{ h.monogram }}
+              }
+            </span>
+            <span class="name">
+              {{ h.name }}
+              <small class="num">power {{ h.power.total }}@if (h.status) { · {{ h.status }}}</small>
+            </span>
+          </button>
+          <span class="lends num" title="Power they add">+{{ h.lends ?? 0 }}</span>
+          @if (atCastle()) {
+            <button type="button" class="part" (click)="detach.emit(h.id)">Part ways</button>
+          }
+        </li>
+      }
+      @for (i of openSlots(); track i) {
+        <li class="slot" [class.first]="$first">
+          @if (!atCastle()) {
+            {{ $first ? 'Call them home to change who rides with them' : '' }}
+          } @else if (dropping() && $first) {
+            Release to join them
+          } @else {
+            Drag a hero here
+          }
+        </li>
+      }
+    </ul>
+  }
+
+  <div class="actions">
+    @if (host(); as g) {
+      <button type="button" class="link" (click)="inspect.emit(g.id)">Look at {{ g.name }}</button>
+      @if (g.location.kind === 'castle') {
+        <button type="button" (click)="detach.emit(r.id)">Part ways</button>
+      }
+    }
+    @if (r.location.kind === 'event') {
+      <button type="button" (click)="recall.emit(r.id)">Call home</button>
+    }
+  </div>
+</section>

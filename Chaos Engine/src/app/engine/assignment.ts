@@ -14,7 +14,7 @@ import {
 import { canDeploy } from './morale';
 import { effectivePower } from './power';
 
-const MAX_ATTACHED = 3;
+export const MAX_ATTACHED = 3;
 
 export function eventDifficulty(e: EventState): number {
   return e.type === 'chaos-portal' ? e.difficulty : e.activationDifficulty;

@@ -22,6 +22,8 @@ export interface ResourceView {
   location: Location;
   attachedTo: string | null;
   attached: { id: string; name: string }[];
+  /** For a hero riding with a group: the Power they add to it (before the group's cap). */
+  lends?: number;
   injuries: InjurySeverity[];
   number?: number;
   maxNumber?: number;
@@ -32,7 +34,8 @@ export interface ResourceView {
 }
 
 function powerInPlace(state: GameState, r: ResourceState, rules: Rules): PowerBreakdown {
-  const event = eventOf(state, r.id);
+  // A hero riding with a group fights where the group fights.
+  const event = eventOf(state, r.attachedTo ?? r.id);
   const inAura = !!event && inTempleAura(event.position, state.events.temples, rules.events, rules.map.map);
   return effectivePower(r, {
     cfg: rules.resolution,
@@ -72,6 +75,7 @@ export function resourceView(state: GameState, r: ResourceState, rules: Rules): 
     image: r.image,
   };
   if (r.kind === 'group') Object.assign(view, { number: r.number, maxNumber: r.maxNumber, injured: r.injured });
+  if (r.attachedTo) view.lends = Math.ceil(view.power.total / rules.resolution.power.attachedHeroShare);
   return view;
 }
 

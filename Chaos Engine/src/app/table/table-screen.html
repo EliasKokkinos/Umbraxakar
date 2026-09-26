@@ -125,36 +125,16 @@
           (hover)="hoverEventId.set($event)"
         />
       } @else if (selectedResource(); as r) {
-        <section class="panel detail">
-          <button type="button" class="close" aria-label="Close" (click)="selectedResourceId.set(null)">×</button>
-          <h2>{{ r.name }}</h2>
-          <p class="sub">{{ r.faction }}</p>
-          <dl class="stats num">
-            @for (p of r.power.parts; track p.label) {
-              <div><dt>{{ p.label }}</dt><dd>{{ $first ? p.value : (p.value > 0 ? '+' + p.value : p.value) }}</dd></div>
-            }
-            <div class="total"><dt>Power</dt><dd>{{ r.power.total }}</dd></div>
-          </dl>
-          @if (r.injuries.length) {
-            <p class="warn">Wounded: {{ r.injuries.join(', ') }}</p>
-          }
-          @if (r.attached.length) {
-            <h3>With them</h3>
-            <ul class="sent">
-              @for (h of r.attached; track h.id) {
-                <li>
-                  <span>{{ h.name }}</span>
-                  @if (r.location.kind === 'castle') {
-                    <button type="button" (click)="detach(h.id)">Part ways</button>
-                  }
-                </li>
-              }
-            </ul>
-          }
-          @if (r.location.kind === 'event') {
-            <button type="button" (click)="recall(r.id)">Call home from {{ r.location.name }}</button>
-          }
-        </section>
+        <ce-resource-detail
+          [resource]="r"
+          [heroes]="selectedHeroes()"
+          [host]="selectedHost()"
+          (close)="selectedResourceId.set(null)"
+          (recall)="recall($event)"
+          (detach)="detach($event)"
+          (inspect)="inspectResource($event)"
+          (attachHere)="attach($event.heroId, $event.hostId)"
+        />
       }
 
       @if (heldHero(); as name) {

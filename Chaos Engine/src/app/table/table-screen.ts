@@ -5,6 +5,7 @@ import { ResourceView } from '../engine/views';
 import { fmt } from '../shared/format';
 import { HERO_DRAG_TYPE, MapBoard, RESOURCE_DRAG_TYPE } from '../shared/map-board';
 import { EventDetail } from './event-detail';
+import { ResourceDetail } from './resource-detail';
 import { ResourceCard } from './resource-card';
 import { RevealStage } from './reveal-stage';
 import { TableSound } from './table-sound';
@@ -17,7 +18,7 @@ const BANNER_MS = 5000;
 
 @Component({
   selector: 'ce-table-screen',
-  imports: [MapBoard, ResourceCard, RevealStage, EventDetail],
+  imports: [MapBoard, ResourceCard, RevealStage, EventDetail, ResourceDetail],
   templateUrl: './table-screen.html',
   styleUrl: './table-screen.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -165,6 +166,18 @@ export class TableScreen {
   protected readonly selectedResource = computed(() => {
     const id = this.selectedResourceId();
     return this.view()?.resources.find((r) => r.id === id) ?? null;
+  });
+
+  /** The heroes riding with the selected group. */
+  protected readonly selectedHeroes = computed(() => {
+    const r = this.selectedResource();
+    return r ? (this.view()?.resources.filter((h) => h.attachedTo === r.id) ?? []) : [];
+  });
+
+  /** The group the selected hero rides with. */
+  protected readonly selectedHost = computed(() => {
+    const id = this.selectedResource()?.attachedTo;
+    return id ? (this.view()?.resources.find((g) => g.id === id) ?? null) : null;
   });
 
   /** Revealed battles, minus the one still on the stage: the list must not spoil the throw. */
