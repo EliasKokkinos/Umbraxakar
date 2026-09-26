@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 import { PortraitStore } from '../data/portrait-store';
 import { PortalState, TempleState } from '../engine/event-state';
 import { Odds } from '../engine/odds';
 import { ResourceView } from '../engine/views';
-import { NOTCH_PATHS } from '../shared/map-board';
+import { NOTCH_PATHS, RESOURCE_DRAG_TYPE } from '../shared/map-board';
 import { factionHue, monogram } from './resource-card';
 
 /** A portal or temple on the TV: what it is, how bad it is, who is there, and the odds. */
@@ -15,6 +15,10 @@ import { factionHue, monogram } from './resource-card';
   host: {
     '[class.temple]': "event().type === 'mother-dark-temple'",
     '[style.--heat]': 'heat()',
+    '[class.dropping]': 'dropping()',
+    '(dragover)': 'onDragOver($event)',
+    '(dragleave)': 'onDragLeave($event)',
+    '(drop)': 'onDrop($event)',
   },
 })
 export class EventDetail {
@@ -27,6 +31,12 @@ export class EventDetail {
 
   readonly recall = output<string>();
   readonly close = output<void>();
+  /** A card dropped on the panel: send it here. */
+  readonly dropped = output<string>();
+  /** The event a held card is over (this one), or null when it leaves. */
+  readonly hover = output<string | null>();
+
+  protected readonly dropping = signal(false);
 
   protected readonly notches = NOTCH_PATHS;
   protected readonly threatSegments = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -55,6 +65,33 @@ export class EventDetail {
 
   /** Can more cards be sent here? */
   protected readonly open = computed(() => !!this.portal() || !this.temple()!.active);
+
+  protected onDragOver(ev: DragEvent): void {
+    if (!this.open() || !ev.dataTransfer?.types.includes(RESOURCE_DRAG_TYPE)) return;
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = 'move';
+    if (!this.dropping()) {
+      this.dropping.set(true);
+      this.hover.emit(this.event().id);
+    }
+  }
+
+  /** Leaving a child element is not leaving the panel. */
+  protected onDragLeave(ev: DragEvent): void {
+    const to = ev.relatedTarget as Node | null;
+    if (to && (ev.currentTarget as Node).contains(to)) return;
+    this.dropping.set(false);
+    this.hover.emit(null);
+  }
+
+  protected onDrop(ev: DragEvent): void {
+    const id = ev.dataTransfer?.getData(RESOURCE_DRAG_TYPE);
+    this.dropping.set(false);
+    this.hover.emit(null);
+    if (!id || !this.open()) return;
+    ev.preventDefault();
+    this.dropped.emit(id);
+  }
 
   protected readonly rows = computed(() =>
     this.cards().map((c) => ({

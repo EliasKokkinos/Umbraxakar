@@ -61,12 +61,13 @@ header {
 
 .tiles {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.5rem;
   margin-top: 0.9rem;
 }
 
 .tile {
+  min-width: 0;
   display: grid;
   justify-items: center;
   align-content: start;
@@ -82,6 +83,8 @@ header {
   color: var(--ce-ash);
   font-size: 0.78rem;
   line-height: 1.2;
+  // Narrow tiles wrap the label rather than clip it.
+  overflow-wrap: anywhere;
 }
 
 .big {
@@ -315,4 +318,20 @@ header {
   border-radius: 5px;
   color: var(--ce-ash);
   text-align: center;
+}
+
+// A card held over the panel: it is a drop target like the marker.
+:host(.dropping) {
+  .detail {
+    border-color: var(--ce-brass);
+    box-shadow:
+      0 0 0 2px var(--ce-brass),
+      0 12px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  .empty {
+    border-color: var(--ce-brass);
+    color: var(--ce-brass);
+    background: rgba(201, 165, 90, 0.08);
+  }
 }

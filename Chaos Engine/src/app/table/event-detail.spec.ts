@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { PERSISTENCE, memoryChosen } from '../data/persistence';
-import { portal } from '../engine/testing';
+import { eventsState, portal } from '../engine/testing';
+import { RESOURCE_DRAG_TYPE } from '../shared/map-board';
 import { EventDetail } from './event-detail';
 
 describe('EventDetail', () => {
@@ -50,5 +51,54 @@ describe('EventDetail', () => {
     el(f).querySelector<HTMLButtonElement>('.home')!.click();
     expect(recalled).toEqual(['karsa-orlong']);
     expect(el(f).querySelector('.portrait')!.textContent!.trim()).toBe('KO');
+  });
+
+  describe('as a drop target', () => {
+    /** jsdom has no DragEvent or DataTransfer: an ordinary event carrying a stand-in. */
+    const drag = (type: string, id = 'karsa-orlong', relatedTarget: EventTarget | null = null) => {
+      const ev = new Event(type, { bubbles: true, cancelable: true });
+      const dataTransfer = { types: [RESOURCE_DRAG_TYPE], getData: () => id, dropEffect: 'none' };
+      Object.defineProperties(ev, { dataTransfer: { value: dataTransfer }, relatedTarget: { value: relatedTarget } });
+      return ev;
+    };
+
+    it('lights up and reports the hover while a card is held over it, and sends it on drop', async () => {
+      const f = await mount({ event: portal({ id: 'p1' }) });
+      const hovers: (string | null)[] = [];
+      const dropped: string[] = [];
+      f.componentInstance.hover.subscribe((h) => hovers.push(h));
+      f.componentInstance.dropped.subscribe((id) => dropped.push(id));
+
+      const over = drag('dragover');
+      el(f).dispatchEvent(over);
+      await f.whenStable();
+      expect(over.defaultPrevented).toBe(true);
+      expect(el(f).classList).toContain('dropping');
+      expect(el(f).textContent).toContain('Release to send them');
+
+      el(f).dispatchEvent(drag('drop'));
+      await f.whenStable();
+      expect(dropped).toEqual(['karsa-orlong']);
+      expect(hovers).toEqual(['p1', null]);
+      expect(el(f).classList).not.toContain('dropping');
+    });
+
+    it('leaving a child element is not leaving the panel', async () => {
+      const f = await mount({ event: portal() });
+      el(f).dispatchEvent(drag('dragover'));
+      await f.whenStable();
+      const inner = el(f).querySelector('.tiles')!;
+      el(f).dispatchEvent(drag('dragleave', 'karsa-orlong', inner));
+      await f.whenStable();
+      expect(el(f).classList).toContain('dropping');
+    });
+
+    it('an awakened temple takes no cards', async () => {
+      const temple = eventsState().temples.find((t) => t.active)!;
+      const f = await mount({ event: temple });
+      const over = drag('dragover');
+      el(f).dispatchEvent(over);
+      expect(over.defaultPrevented).toBe(false);
+    });
   });
 });

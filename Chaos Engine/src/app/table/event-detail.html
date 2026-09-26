@@ -98,6 +98,9 @@
       }
     </ul>
   } @else if (open()) {
-    <p class="empty">No one stands here yet. Drag a card onto it to send them.</p>
+    <p class="empty">{{ dropping() ? 'Release to send them' : 'No one stands here yet. Drag a card here to send them.' }}</p>
+  }
+  @if (dropping() && rows().length) {
+    <p class="empty">Release to send them too</p>
   }
 </section>

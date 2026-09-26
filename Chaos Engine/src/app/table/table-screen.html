@@ -121,6 +121,8 @@
           [odds]="selectedEventOdds()"
           (recall)="recall($event)"
           (close)="selectedEventId.set(null)"
+          (dropped)="send($event, e.id)"
+          (hover)="hoverEventId.set($event)"
         />
       } @else if (selectedResource(); as r) {
         <section class="panel detail">
