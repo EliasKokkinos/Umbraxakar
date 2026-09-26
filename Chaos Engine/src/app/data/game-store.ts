@@ -1,11 +1,11 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { assign, attach, detach, unassign } from '../engine/assignment';
 import { Harm, Outcome } from '../engine/battle';
-import { chooseCommander, resolveBlocker } from '../engine/commanders';
+import { chooseCommander, removeInfluence, resetInfluence, resolveBlocker, setInfluence } from '../engine/commanders';
 import { GameState, Result, Rules, eventById, newGame, resourceById } from '../engine/game-state';
 import { History, createHistory, push, redo, undo } from '../engine/history';
 import { deserialize, serialize } from '../engine/save';
-import { Seed } from '../engine/seed-types';
+import { CommanderInfluence, Seed } from '../engine/seed-types';
 import { PendingResolution, commitTurn, rerollBattle, resolveAll } from '../engine/turn';
 import { PERSISTENCE } from './persistence';
 import { TurnSnapshots } from './turn-snapshots';
@@ -128,8 +128,26 @@ export class GameStore {
   }
 
   takeCommand(commanderId: string): boolean {
-    const name = this.rules.commanders.find((c) => c.id === commanderId)?.name ?? commanderId;
-    return this.act(`${name} takes command`, (s, r) => chooseCommander(s, commanderId, r));
+    return this.act(`${this.commanderName(commanderId)} takes command`, (s, r) => chooseCommander(s, commanderId, r));
+  }
+
+  setSway(commanderId: string, entry: CommanderInfluence): boolean {
+    const label = `Set ${this.commanderName(commanderId)}'s sway on ${this.nameOf(entry.resourceId)}`;
+    return this.act(label, (s, r) => setInfluence(s, commanderId, entry, r));
+  }
+
+  removeSway(commanderId: string, resourceId: string): boolean {
+    return this.act(`Remove ${this.commanderName(commanderId)}'s sway on ${this.nameOf(resourceId)}`, (s, r) =>
+      removeInfluence(s, commanderId, resourceId, r),
+    );
+  }
+
+  resetSway(commanderId: string): boolean {
+    return this.act(`Restore ${this.commanderName(commanderId)}'s sway from the archive`, (s) => resetInfluence(s, commanderId));
+  }
+
+  private commanderName(id: string): string {
+    return this.rules.commanders.find((c) => c.id === id)?.name ?? id;
   }
 
   undo(): void {

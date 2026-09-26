@@ -144,8 +144,12 @@ export function removeResource(state: GameState, id: string): Result {
   const s = withoutAssignment(state, id);
   const c = s.castle;
   const { [id]: _recruits, ...recruits } = c.recruits;
+  const commanderInfluence = Object.fromEntries(
+    Object.entries(s.commanderInfluence).map(([c, list]) => [c, list.filter((i) => i.resourceId !== id)]),
+  );
   return ok({
     ...s,
+    commanderInfluence,
     resources: s.resources.filter((r) => r.id !== id).map((r) => (r.attachedTo === id ? { ...r, attachedTo: null } : r)),
     castle: {
       ...c,

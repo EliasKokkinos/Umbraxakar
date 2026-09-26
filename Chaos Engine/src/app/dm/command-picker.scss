@@ -89,3 +89,47 @@ li {
     color: var(--ce-brass);
   }
 }
+
+.quiet {
+  margin-top: 0.2rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--ce-brass);
+  font-size: var(--ce-small);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--ce-brass) 40%, transparent);
+  text-underline-offset: 3px;
+
+  &:hover,
+  &[aria-pressed='true'] {
+    color: var(--ce-bone);
+  }
+}
+
+.head .primary {
+  flex: none;
+}
+
+.edited {
+  margin-left: 0.35rem;
+  padding: 0 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--ce-brass) 55%, var(--ce-rule));
+  border-radius: 999px;
+  color: var(--ce-brass);
+  font-family: var(--ce-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.others {
+  margin-top: 0.4rem;
+  border-top: 1px solid var(--ce-rule);
+
+  summary {
+    padding: 0.6rem 0;
+    color: var(--ce-ash);
+    cursor: pointer;
+  }
+}

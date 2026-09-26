@@ -1,7 +1,7 @@
 // What the table (the TV) may know. This is the only data that ever leaves the DM window,
 // so DM-only information cannot leak by construction: it is simply never put in.
 import { BattleResult } from './battle';
-import { hasCommanderThisTurn } from './commanders';
+import { appliedSway, hasCommanderThisTurn } from './commanders';
 import { Odds, SendOdds, currentOdds, oddsIfSent } from './odds';
 import { facilityLevel } from './castle';
 import { PortalState, TempleState } from './event-state';
@@ -140,7 +140,7 @@ export function tableView(state: GameState, rules: Rules, commanders: Commander[
           name: commander.name,
           player: commander.player,
           // The sway as it was when they took command; locked resources stay secret.
-          impact: (commander.influence ?? [])
+          impact: appliedSway(state, rules)
             .filter((i) => shownIds.has(i.resourceId))
             .map((i) => ({ name: resources.find((r) => r.id === i.resourceId)!.name, delta: i.morale, reason: i.reason })),
         }

@@ -33,6 +33,8 @@ export const MIGRATIONS: Record<number, (state: Record<string, unknown>) => Reco
       events: { ...events, portals: events.portals.map(onlyGroups), temples: events.temples.map(onlyGroups) },
     };
   },
+  // v4: the DM can rewrite a commander's sway; the sway applied at command is recorded.
+  3: (s) => ({ ...s, commandSway: null, commanderInfluence: {} }),
 };
 
 export function toSaveFile(state: GameState, label: string, now = new Date(), portraits?: Record<string, string>): SaveFile {

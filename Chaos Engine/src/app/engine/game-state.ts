@@ -5,9 +5,9 @@ import { canDeploy } from './morale';
 import { effectivePower } from './power';
 import { HeroState, ResourceState, resourcesFromSeed } from './resource-state';
 import { Rng } from './rng';
-import { CastleSeed, Commander, EventsConfig, ResolutionConfig, Seed } from './seed-types';
+import { CastleSeed, Commander, CommanderInfluence, EventsConfig, ResolutionConfig, Seed } from './seed-types';
 
-export const GAME_STATE_VERSION = 3;
+export const GAME_STATE_VERSION = 4;
 
 /** A hero in the Healers' Hall: occupies a slot and the hero until done. */
 export interface Treatment {
@@ -53,6 +53,10 @@ export interface GameState {
   commanderId: string | null;
   /** The turn the current commander took command; null before anyone has. */
   commanderTurn: number | null;
+  /** The sway applied when the current commander took command, as it stood then. */
+  commandSway: CommanderInfluence[] | null;
+  /** The DM's own sway for a commander, replacing the archive's (the seed) for that commander. */
+  commanderInfluence: Record<string, CommanderInfluence[]>;
   resources: ResourceState[];
   events: EventsState;
   castle: CastleState;
@@ -152,6 +156,8 @@ export function newGame(seed: Seed, rules: Rules, rngSeed: number): GameState {
     rngState: rng.state,
     commanderId: null,
     commanderTurn: null,
+    commandSway: null,
+    commanderInfluence: {},
     resources: resourcesFromSeed(seed.resources),
     events,
     castle: castleFromSeed(seed.castle),

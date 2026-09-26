@@ -1,0 +1,62 @@
+@if (commandsNow()) {
+  <p class="hint">They command this turn: their sway is already applied. Changes here count from their next command.</p>
+}
+
+@if (rows().length) {
+  <ul class="rows" aria-label="Sway">
+    @for (r of rows(); track r.resourceId) {
+      <li [class.locked]="r.locked">
+        <select
+          class="delta num"
+          [class.up]="r.morale > 0"
+          [class.down]="r.morale < 0"
+          [attr.aria-label]="'Sway on ' + r.name"
+          (change)="changeMorale(r, $any($event.target).value)"
+        >
+          @for (d of range; track d) {
+            <option [value]="d" [selected]="d === r.morale">{{ signed(d) }}</option>
+          }
+        </select>
+        <span class="name">{{ r.name }}{{ r.locked ? ' (not yet in play)' : '' }}</span>
+        <button type="button" class="remove" [attr.aria-label]="'Remove sway on ' + r.name" (click)="remove(r.resourceId)">×</button>
+        <input
+          class="reason"
+          type="text"
+          [value]="r.reason"
+          [attr.aria-label]="'Why, for ' + r.name"
+          (change)="change(r, { reason: $any($event.target).value })"
+          (keydown.enter)="$any($event.target).blur()"
+        />
+      </li>
+    }
+  </ul>
+} @else {
+  <p class="hint">They sway no one yet.</p>
+}
+
+<form class="add" [formGroup]="form" (ngSubmit)="add()">
+  <select class="delta num" formControlName="morale" aria-label="Sway">
+    @for (d of range; track d) {
+      <option [ngValue]="d">{{ signed(d) }}</option>
+    }
+  </select>
+  <select formControlName="resourceId" aria-label="Whom they sway">
+    <option value="" disabled>Sway someone new…</option>
+    @for (g of choices(); track g.label) {
+      <optgroup [label]="g.label">
+        @for (o of g.options; track o.id) {
+          <option [value]="o.id">{{ o.name }}</option>
+        }
+      </optgroup>
+    }
+  </select>
+  <input class="reason" type="text" formControlName="reason" placeholder="Why: the table shows this" aria-label="Why" />
+  <button type="submit" class="primary" [disabled]="!canAdd()">Add</button>
+</form>
+
+<div class="foot">
+  @if (edited()) {
+    <button type="button" class="link" (click)="reset()">Restore the archive's sway</button>
+  }
+  <button type="button" (click)="done.emit()">Done</button>
+</div>

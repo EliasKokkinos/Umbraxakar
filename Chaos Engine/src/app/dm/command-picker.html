@@ -10,18 +10,28 @@
   </header>
 }
 
-@for (c of options(); track c.id) {
-  <article class="commander">
+<ng-template #card let-c>
+  <article class="commander" [class.editing]="editing() === c.id">
     <div class="head">
       <div>
-        <h3>{{ c.name }}</h3>
+        <h3>
+          {{ c.name }}
+          @if (c.edited) {
+            <span class="edited">your sway</span>
+          }
+        </h3>
         <p class="role">{{ c.role }}, played by {{ c.player }}</p>
+        <button type="button" class="quiet" [attr.aria-pressed]="editing() === c.id" (click)="toggleEdit(c.id)">
+          {{ editing() === c.id ? 'Close the sway' : 'Edit sway' }}
+        </button>
       </div>
       @if (!chosen()) {
         <button type="button" class="primary" (click)="take(c.id)">Take command</button>
       }
     </div>
-    @if (c.impact.length) {
+    @if (editing() === c.id) {
+      <ce-sway-editor [commanderId]="c.id" (done)="editing.set(null)" />
+    } @else if (c.impact.length) {
       <ul>
         @for (i of c.impact; track i.resourceId) {
           <li [class.up]="i.delta > 0" [class.down]="i.delta < 0" [class.locked]="i.locked">
@@ -38,4 +48,17 @@
       <p class="role">Sways no one in particular.</p>
     }
   </article>
+</ng-template>
+
+@for (c of options(); track c.id) {
+  <ng-container *ngTemplateOutlet="card; context: { $implicit: c }" />
+}
+
+@if (others().length) {
+  <details class="others" [open]="!!editing()">
+    <summary>The other commanders</summary>
+    @for (c of others(); track c.id) {
+      <ng-container *ngTemplateOutlet="card; context: { $implicit: c }" />
+    }
+  </details>
 }

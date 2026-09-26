@@ -36,10 +36,10 @@ describe('save files', () => {
 
   it('migrates older saves forward, step by step', () => {
     const current = serialize(state, 'old');
-    const migrations = { 3: (s: Record<string, unknown>) => ({ ...s, addedInV4: true }) };
-    const loaded = deserialize(current, migrations, 4);
-    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 4, addedInV4: true });
-    expect(deserialize(current, {}, 4)).toEqual({ ok: false, error: 'No migration from save version 3' });
+    const migrations = { 4: (s: Record<string, unknown>) => ({ ...s, addedInV5: true }) };
+    const loaded = deserialize(current, migrations, 5);
+    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 5, addedInV5: true });
+    expect(deserialize(current, {}, 5)).toEqual({ ok: false, error: 'No migration from save version 4' });
   });
 
   it('upgrades a real version 1 save (before commanders took command per turn)', () => {
@@ -48,7 +48,7 @@ describe('save files', () => {
     file.version = 1;
     file.state.version = 1;
     const loaded = deserialize(JSON.stringify(file));
-    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 3, commanderTurn: null });
+    expect(loaded.ok && loaded.state.state).toMatchObject({ version: 4, commanderTurn: null, commandSway: null, commanderInfluence: {} });
   });
 
   it('upgrades a version 2 save: heroes alone in the field come home, hero-on-hero attachments end', () => {
@@ -65,7 +65,7 @@ describe('save files', () => {
     const loaded = deserialize(JSON.stringify(file));
     if (!loaded.ok) throw new Error(loaded.error);
     const s = loaded.state.state;
-    expect(s.version).toBe(3);
+    expect(s.version).toBe(4);
     expect(s.events.portals[0].assigned).toEqual(['bridgeburners']);
     expect(s.resources.find((r) => r.id === 'blues')!.attachedTo).toBeNull();
     expect(s.resources.find((r) => r.id === 'cowl')!.attachedTo).toBe('avowed-prince');
